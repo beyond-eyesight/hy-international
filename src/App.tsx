@@ -9,9 +9,7 @@
  */
 
 import React, { useState } from 'react';
-import { StyleSheet } from 'react-native';
-import RegionalChatScreen from './components/screens/chat/RegionalChatScreen';
-import SignInScreen from './components/screens/SignInScreen';
+import SignUpScreen from './components/screens/SignUpScreen';
 
 interface IToDo {
   text: string;
@@ -23,32 +21,5 @@ export default function App() {
   const [toDoList, setToDos] = useState<IToDo[]>([]);
   const [error, showError] = useState<Boolean>(false);
 
-  return <SignInScreen />;
+  return <SignUpScreen />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: 35,
-    height: '100%',
-    alignItems: 'center'
-  },
-  header: {
-    flexDirection: 'row',
-    paddingTop: 35,
-    width: '100%',
-    height: '5%',
-    backgroundColor: '#FCFCFC'
-  },
-  inputWrapper: {
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 20
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    fontFamily: 'ProximaNova-Regular'
-  }
-});

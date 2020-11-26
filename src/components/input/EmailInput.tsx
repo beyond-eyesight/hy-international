@@ -1,9 +1,8 @@
 import styled from 'styled-components/native';
-import { StyleProp, StyleSheet, Text, ViewStyle } from 'react-native';
+import { StyleSheet } from 'react-native';
 import React, { useState } from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
 import RNTextInput from './RNTextInput';
-import { Bold } from '../text/Typographies';
 import colors from '../../styles/color';
 import RNText from '../text/RNText';
 
@@ -110,12 +109,5 @@ const EmailInput: React.FC<Props> = ({
     </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  BLOCK_SIZE: {
-    height: '100%',
-    width: '50%'
-  }
-});
 
 export default EmailInput;

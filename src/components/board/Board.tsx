@@ -6,6 +6,7 @@ import colors from '../../styles/color';
 interface Props {
   containerWidth: string;
   containerHeight: string;
+  title: string;
 }
 
 const Container = styled.View`
@@ -20,9 +21,10 @@ const Title = styled(RNText).attrs({
   font-size: 40px;
 `;
 
-const Signboard: React.FC<Props> = ({
+const Board: React.FC<Props> = ({
   containerWidth,
-  containerHeight
+  containerHeight,
+  title
 }: Props) => {
   return (
     <Container
@@ -31,9 +33,9 @@ const Signboard: React.FC<Props> = ({
         height: containerHeight
       }}
     >
-      <Title>Sign In</Title>
+      <Title>{title}</Title>
     </Container>
   );
 };
 
-export default Signboard;
+export default Board;

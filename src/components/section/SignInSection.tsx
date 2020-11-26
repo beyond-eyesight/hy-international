@@ -1,20 +1,21 @@
 import styled from 'styled-components/native';
 import React from 'react';
 import colors from '../../styles/color';
-import SignInButton from '../button/SignInButton';
-import PasswordInput from '../input/PasswordInput';
+import DefaultButton from '../button/DefaultButton';
+import DefaultTextInput from '../input/DefaultTextInput';
 import EmailInput from '../input/EmailInput';
-import Signboard from '../signboard/Signboard';
+import Board from '../board/Board';
 import RNText from '../text/RNText';
 
 const Container = styled.View`
   height: 100%;
   background: ${colors.white};
   align-items: center;
+  width: 90%;
 `;
 
 const NoticeContainer = styled.View`
-  width: 90%;
+  width: 100%;
   align-items: center;
   margin-top: 5%;
   margin-bottom: 10%;
@@ -42,18 +43,19 @@ const ImportantText = styled(RNText).attrs({
 const SignInSection: React.FC = () => {
   return (
     <Container>
-      <Signboard containerWidth="100%" containerHeight="10%" />
+      <Board containerWidth="100%" containerHeight="10%" title="Sign In" />
       <EmailInput
-        containerWidth="90%"
+        containerWidth="100%"
         containerHeight="6%"
         marginTop="5%"
         marginBottom="3%"
       />
-      <PasswordInput
-        containerWidth="90%"
+      <DefaultTextInput
+        containerWidth="100%"
         containerHeight="6%"
         marginTop="1%"
         marginBottom="3%"
+        placeholder=" Password"
       />
       <NoticeContainer>
         <Title>Notice!</Title>
@@ -66,7 +68,13 @@ const SignInSection: React.FC = () => {
           cause this app is another system.
         </NormalText>
       </NoticeContainer>
-      <SignInButton containerWidth="90%" containerHeight="6%" />
+      <DefaultButton
+        containerWidth="100%"
+        containerHeight="6%"
+        content="Sign In"
+        ellipticalColor={colors.blue_signiture}
+        textColor={colors.white}
+      />
     </Container>
   );
 };

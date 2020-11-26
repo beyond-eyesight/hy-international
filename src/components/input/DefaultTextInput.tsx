@@ -6,6 +6,7 @@ import colors from '../../styles/color';
 
 const Container = styled.View`
   align-items: center;
+  text-align: center;
 `;
 
 interface Props {
@@ -13,13 +14,17 @@ interface Props {
   containerHeight: string;
   marginTop: string;
   marginBottom: string;
+  placeholder: string;
+  textAlign?: string;
 }
 
-const PasswordInput: React.FC<Props> = ({
+const DefaultTextInput: React.FC<Props> = ({
   containerWidth,
   containerHeight,
   marginTop,
-  marginBottom
+  marginBottom,
+  placeholder,
+  textAlign = 'auto'
 }: Props) => {
   const radius = 10;
   return (
@@ -36,8 +41,9 @@ const PasswordInput: React.FC<Props> = ({
         borderTopRightRadius={radius}
         borderBottomLeftRadius={radius}
         borderBottomRightRadius={radius}
-        placeHolder=" Password"
+        placeHolder={placeholder}
         placeholderTextColor={colors.gray500}
+        textAlign={textAlign}
       />
     </Container>
   );
@@ -50,4 +56,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default PasswordInput;
+export default DefaultTextInput;

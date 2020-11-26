@@ -1,4 +1,4 @@
-import { StyleProp, TextInputProps, ViewStyle } from 'react-native';
+import { TextInputProps } from 'react-native';
 import styled from 'styled-components/native';
 import React from 'react';
 import colors from '../../styles/color';
@@ -11,12 +11,13 @@ const fontTypeToFont: { [key in FontType]: string } = {
   LIGHT: 'ProximaNovaA-Light'
 };
 
-const Container = styled.TextInput`
+const Container = styled.TextInput<{ textAlign: string }>`
   color: ${colors.gray450};
   background: ${colors.gray_1};
   border: solid ${colors.gray_2};
   font-size: 18px;
   font-family: ${fontTypeToFont.REGULAR};
+  text-align: ${({ textAlign }) => textAlign};
 `;
 
 interface Props extends TextInputProps {
@@ -28,6 +29,7 @@ interface Props extends TextInputProps {
   placeholderTextColor: string;
   containerWidth?: string;
   containerHeight?: string;
+  textAlign?: string;
 }
 
 export default function RNTextInput({
@@ -38,7 +40,8 @@ export default function RNTextInput({
   placeHolder,
   placeholderTextColor,
   containerWidth = '100%',
-  containerHeight = '100%'
+  containerHeight = '100%',
+  textAlign = 'auto'
 }: Props) {
   return (
     <Container
@@ -52,6 +55,7 @@ export default function RNTextInput({
       }}
       placeholder={placeHolder}
       placeholderTextColor={placeholderTextColor}
+      textAlign={textAlign}
     />
   );
 }
