@@ -7,7 +7,6 @@ import BackTopbar from '../components/topbar/BackTopbar';
 
 const Container = styled(ContainerWithStatusBar)`
   background-color: ${colors.milkWhite};
-  align-items: center;
 `;
 
 interface Props {

@@ -8,6 +8,7 @@ import { SCREEN_IDS } from './src/screens/constant';
 import SignInScreen from './src/screens/SignInScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
 import ZoneScreen from './src/screens/ZoneScreen';
+import ChatScreen from './src/screens/ChatScreen';
 
 interface IScreenProps {
   id: string;
@@ -26,6 +27,10 @@ const screens: IScreenProps[] = [
   {
     id: SCREEN_IDS.ZoneScreen,
     Component: ZoneScreen
+  },
+  {
+    id: SCREEN_IDS.ChatScreen,
+    Component: ChatScreen
   }
 ];
 
