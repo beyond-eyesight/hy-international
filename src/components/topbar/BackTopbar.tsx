@@ -1,10 +1,10 @@
 import React from 'react';
-import { Navigation } from 'react-native-navigation';
 import styled from 'styled-components/native';
 import Topbar from './Topbar';
 import IconButton from '../button/IconButton';
 import icons from '../../../assets/icons';
 import { SCREEN_IDS } from '../../screens/constant';
+import { pop, push } from '../../utils/navigator';
 
 export type Props = {
   componentId: string;
@@ -32,8 +32,8 @@ const BackTopbar: React.FC<Omit<Props, 'iconSource' | 'iconStyle'>> = ({
         <BackButton
           image={icons.backButton}
           hitSlopSize={16}
-          onPress={() => {
-            Navigation.pop(componentId);
+          onPress={async () => {
+            await pop(componentId);
           }}
         />
       }
@@ -41,13 +41,12 @@ const BackTopbar: React.FC<Omit<Props, 'iconSource' | 'iconStyle'>> = ({
         <InfoButton
           image={icons.information}
           hitSlopSize={23}
-          onPress={() =>
-            Navigation.push(componentId, {
-              component: {
-                name: SCREEN_IDS.SignUpScreen
-              }
-            })
-          }
+          onPress={async () => {
+            await push({
+              currentComponentId: componentId,
+              nextComponentId: SCREEN_IDS.ZoneScreen
+            });
+          }}
         />
       }
     />
