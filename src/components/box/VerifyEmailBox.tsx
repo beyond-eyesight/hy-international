@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import Dash from 'react-native-dash';
 import colors from '../../styles/color';
 import RNText from '../text/RNText';
-import DefaultButton from '../button/DefaultButton';
+import TextButton from '../button/TextButton';
 
 const Container = styled.View`
   width: 100%;
@@ -28,7 +28,7 @@ const Title = styled(RNText).attrs({
   font-size: 25px;
 `;
 
-const SendEmailButton = styled(DefaultButton).attrs({
+const SendEmailButton = styled(TextButton).attrs({
   containerWidth: '35%',
   // todo: 픽셀로 바꾸
   containerHeight: '90%',

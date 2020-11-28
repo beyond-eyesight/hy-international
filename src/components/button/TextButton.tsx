@@ -9,6 +9,7 @@ interface Props {
   ellipticalColor: string;
   textColor: string;
   borderRadius: string;
+  onPress?: () => void;
 }
 
 const Container = styled.View`
@@ -38,13 +39,14 @@ const Content = styled(Bold)`
   font-size: 20px;
 `;
 
-const DefaultButton: React.FC<Props> = ({
+const TextButton: React.FC<Props> = ({
   containerWidth,
   containerHeight,
   content,
   ellipticalColor,
   textColor,
-  borderRadius
+  borderRadius,
+  onPress
 }: Props) => {
   return (
     <Container style={{ width: containerWidth, height: containerHeight }}>
@@ -52,6 +54,7 @@ const DefaultButton: React.FC<Props> = ({
         ellipticalColor={ellipticalColor}
         borderRadius={borderRadius}
         textColor={textColor}
+        onPress={onPress}
       >
         <Content textColor={textColor}>{content}</Content>
       </Elliptical>
@@ -59,4 +62,4 @@ const DefaultButton: React.FC<Props> = ({
   );
 };
 
-export default DefaultButton;
+export default TextButton;

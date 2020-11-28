@@ -18,7 +18,7 @@ const ZoneScreen: React.FC<Props> = ({ componentId }: Props) => {
   return (
     <Container statusBarColor={colors.blue_signiture}>
       <BackTopbar componentId={componentId} />
-      <ZoneSection />
+      <ZoneSection componentId={componentId} />
     </Container>
   );
 };

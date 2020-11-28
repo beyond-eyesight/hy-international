@@ -3,7 +3,13 @@ import styled from 'styled-components/native';
 import colors from '../../styles/color';
 import Board from '../board/Board';
 import RNText from '../text/RNText';
-import DefaultButton from '../button/DefaultButton';
+import TextButton from '../button/TextButton';
+import { push } from '../../utils/navigator';
+import { SCREEN_IDS } from '../../screens/constant';
+
+export type Props = {
+  componentId: string;
+};
 
 const Container = styled.View`
   height: 100%;
@@ -28,7 +34,7 @@ const ChatRoomContainer = styled.View`
   height: 100%;
 `;
 
-const ZoneSection: React.FC = () => {
+const ZoneSection: React.FC<Props> = ({ componentId }: Props) => {
   return (
     <Container>
       <Board
@@ -42,13 +48,19 @@ const ZoneSection: React.FC = () => {
         </Explanation>
       </ExplanationContainer>
       <ChatRoomContainer>
-        <DefaultButton
+        <TextButton
           containerWidth="100%"
           containerHeight="6%"
           content="Wangsimni"
           ellipticalColor={colors.blue_signiture}
           textColor={colors.white}
           borderRadius="50px"
+          onPress={async () => {
+            await push({
+              currentComponentId: componentId,
+              nextComponentName: SCREEN_IDS.ChatScreen
+            });
+          }}
         />
       </ChatRoomContainer>
     </Container>

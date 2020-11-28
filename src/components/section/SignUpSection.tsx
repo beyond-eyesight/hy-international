@@ -4,7 +4,7 @@ import colors from '../../styles/color';
 import Board from '../board/Board';
 import EmailInput from '../input/EmailInput';
 import DefaultTextInput from '../input/DefaultTextInput';
-import DefaultButton from '../button/DefaultButton';
+import TextButton from '../button/TextButton';
 import VerifyEmailBox from '../box/VerifyEmailBox';
 
 const Container = styled.View`
@@ -46,7 +46,7 @@ const SignUpSection: React.FC = () => {
         marginBottom="3%"
         placeholder=" Password Verification"
       />
-      <DefaultButton
+      <TextButton
         containerWidth="100%"
         containerHeight="6%"
         content="Sign Up"

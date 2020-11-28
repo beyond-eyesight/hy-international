@@ -44,7 +44,7 @@ const BackTopbar: React.FC<Omit<Props, 'iconSource' | 'iconStyle'>> = ({
           onPress={async () => {
             await push({
               currentComponentId: componentId,
-              nextComponentId: SCREEN_IDS.ChatScreen
+              nextComponentName: SCREEN_IDS.ZoneScreen
             });
           }}
         />

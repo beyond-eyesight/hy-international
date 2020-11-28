@@ -5,7 +5,7 @@ import RNText from '../text/RNText';
 import Board from '../board/Board';
 import EmailInput from '../input/EmailInput';
 import DefaultTextInput from '../input/DefaultTextInput';
-import DefaultButton from '../button/DefaultButton';
+import TextButton from '../button/TextButton';
 
 const Container = styled.View`
   height: 100%;
@@ -68,7 +68,7 @@ const SignInSection: React.FC = () => {
           cause this app is another system.
         </NormalText>
       </NoticeContainer>
-      <DefaultButton
+      <TextButton
         containerWidth="100%"
         containerHeight="6%"
         content="Sign In"
