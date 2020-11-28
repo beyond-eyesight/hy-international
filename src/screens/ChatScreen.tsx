@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import ContainerWithStatusBar from '../components/container/ContainerWithStatusBar';
 import colors from '../styles/color';
-import SignInSection from '../components/section/SignInSection';
+import ChatSection from '../components/section/ChatSection';
 import BackTopbar from '../components/topbar/BackTopbar';
 
 const Container = styled(ContainerWithStatusBar)`
@@ -14,13 +14,13 @@ interface Props {
   componentId: string;
 }
 
-const SignInScreen: React.FC<Props> = ({ componentId }: Props) => {
+const ChatScreen: React.FC<Props> = ({ componentId }: Props) => {
   return (
     <Container statusBarColor={colors.blue_signiture}>
       <BackTopbar componentId={componentId} />
-      <SignInSection />
+      <ChatSection />
     </Container>
   );
 };
 
-export default SignInScreen;
+export default ChatScreen;
