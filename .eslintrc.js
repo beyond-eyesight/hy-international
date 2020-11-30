@@ -15,6 +15,7 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'off',
     'no-restricted-syntax': 0,
     'react/jsx-props-no-spreading': ['warn'],
-    'react/require-default-props': 'off'
+    'react/require-default-props': 'off',
+    'no-underscore-dangle': 'off'
   }
 };
