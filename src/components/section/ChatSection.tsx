@@ -1,101 +1,64 @@
-// eslint-disable-next-line max-classes-per-file
 import React, { useEffect, useState } from 'react';
 import { GiftedChat, IMessage } from 'react-native-gifted-chat';
 import { CompatClient, Message, Stomp } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 import 'text-encoding-polyfill';
-import { User } from 'react-native-gifted-chat/lib/Models';
+import ChatMessage from '../../model/chatMessage';
+import ChatMessageDto from '../../dto/chatMessageDto';
 
+const ws = Stomp.over(() => new SockJS('http://localhost:8080/ws-stomp'));
 // todo: refac
 const ChatSection: React.FC = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);
-  const ws = Stomp.over(() => new SockJS('http://localhost:8080/ws-stomp'));
+  // todo: remove hardcoding
 
   useEffect(() => {
     ws.connect(
+      // todo: extract variable
       {
         'accept-version': '1.2'
       },
-      onConnect(ws, setMessages, messages)
+      onConnect(
+        ws,
+        setMessages,
+        // todo: remove hard coding
+        '/sub/chat/room/110841e3-e6fb-4191-8fd8-5674a5107c33',
+        messages
+      )
     );
-  }, [ws, messages]);
+  }, [messages]);
 
   return (
     <GiftedChat
       messages={messages}
       onSend={(messages: IMessage[]) => onSend(ws, setMessages, messages)}
       user={{
+        // todo: remove hard coding
         _id: 4
       }}
     />
   );
 };
 
-class ChatMessage implements IMessage {
-  _id: string;
-
-  text: string;
-
-  createdAt: Date | number;
-
-  user: User;
-
-  constructor(id: string, text: string, createdAt: Date | number, user: User) {
-    this._id = id;
-    this.text = text;
-    this.createdAt = createdAt;
-    this.user = user;
-  }
-}
-
-class ChatMessageDto {
-  constructor(id: string, chatRoomId: string, senderId: string, body: string) {
-    this.id = id;
-    this.chatRoomId = chatRoomId;
-    this.senderId = senderId;
-    this.body = body;
-  }
-
-  id: string;
-
-  chatRoomId: string;
-
-  senderId: string;
-
-  body: string;
-
-  static fromIMessage(message: IMessage) {
-    return new ChatMessageDto(
-      message._id as string,
-      '110841e3-e6fb-4191-8fd8-5674a5107c33',
-      message.user._id as string,
-      message.text
-    );
-  }
-}
 function onConnect(
   ws: CompatClient,
   setMessages: (
     value: ((prevState: IMessage[]) => IMessage[]) | IMessage[]
   ) => void,
+  destination: string,
   messages: IMessage[]
 ) {
-  // todo: 여기에서 파라미터 받는걸로 리
+  // todo: 여기에서 파라미터 받는걸로 리팩
   return () => {
     ws.subscribe(
-      `/sub/chat/room/110841e3-e6fb-4191-8fd8-5674a5107c33`,
+      destination,
       (message: Message) => {
-        const body: ChatMessageDto = JSON.parse(message.body);
+        const chatMessageDto: ChatMessageDto = JSON.parse(message.body);
         setMessages(
-          GiftedChat.append(messages, [
-            new ChatMessage(body.id, body.body, new Date(), {
-              _id: body.senderId,
-              name: 'Juhyun',
-              avatar: 'https://placeimg.com/140/140/any'
-            })
-          ])
+          GiftedChat.append(messages, [ChatMessage.fromDto(chatMessageDto)])
         );
       },
+      // todo: remove hard coding
       {
         id: '1',
         ack: 'client'
