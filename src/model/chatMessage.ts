@@ -18,12 +18,16 @@ export default class ChatMessage implements IMessage {
     this.user = user;
   }
 
-  static fromDto(chatMessageDto: ChatMessageDto) {
+  static fromDto(chatMessageDto: ChatMessageDto): ChatMessage {
     return new ChatMessage(
       chatMessageDto.id,
       chatMessageDto.body,
       chatMessageDto.createdAt,
       { _id: chatMessageDto.senderId }
     );
+  }
+
+  isOwn(userId: string): boolean {
+    return this.user._id === userId;
   }
 }
