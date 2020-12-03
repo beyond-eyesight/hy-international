@@ -3,12 +3,13 @@ import { GiftedChat, IMessage } from 'react-native-gifted-chat';
 import { CompatClient, Message, Stomp } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 import 'text-encoding-polyfill';
+import { v4 as uuidv4 } from 'uuid';
 import ChatMessage from '../../model/chatMessage';
 import ChatMessageDto from '../../dto/chatMessageDto';
 
 // todo: remove hard coding
 const ws = Stomp.over(() => new SockJS('http://localhost:8080/ws-stomp'));
-const userId: string = '1';
+const userId: string = uuidv4();
 
 // todo: refac
 const ChatSection: React.FC = () => {
