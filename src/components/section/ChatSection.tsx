@@ -11,7 +11,6 @@ const ws = Stomp.over(() => new SockJS('http://localhost:8080/ws-stomp'));
 const ChatSection: React.FC = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);
   // todo: remove hardcoding
-
   useEffect(() => {
     ws.connect(
       // todo: extract variable
@@ -54,8 +53,10 @@ function onConnect(
       destination,
       (message: Message) => {
         const chatMessageDto: ChatMessageDto = JSON.parse(message.body);
-        setMessages(
-          GiftedChat.append(messages, [ChatMessage.fromDto(chatMessageDto)])
+        setMessages((previousMessages) =>
+          GiftedChat.append(previousMessages, [
+            ChatMessage.fromDto(chatMessageDto)
+          ])
         );
       },
       // todo: remove hard coding
@@ -76,13 +77,12 @@ function onSend(
 ) {
   // todo: 여러개의 메시지를 한번에 SEND할 수 있을까?
   newMessages.forEach((newMessage) => {
-    const chatMessageDto = ChatMessageDto.fromIMessage(newMessage);
     ws.send(
       `/sub/chat/room/110841e3-e6fb-4191-8fd8-5674a5107c33`,
       {
         'content-type': 'application/json'
       },
-      JSON.stringify(chatMessageDto)
+      JSON.stringify(ChatMessageDto.fromIMessage(newMessage))
     );
   });
   setMessages((previousMessages) =>
