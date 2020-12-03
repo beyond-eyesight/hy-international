@@ -18,6 +18,7 @@
     "@types/sockjs-client": "^1.1.1",
     "@types/uuid": "^8.3.0",
     "glob": "^7.1.6",
+    "inversify": "^5.0.1",
     "lodash": "^4.17.20",
     "metro-config": "^0.63.0",
     "react": "16.13.1",
@@ -30,17 +31,21 @@
     "react-native-svg": "^12.1.0",
     "react-native-svg-transformer": "^0.14.3",
     "react-native-vector-icons": "^7.1.0",
+    "reflect-metadata": "^0.1.13",
     "sockjs-client": "^1.5.0",
     "styled-components": "^5.2.0",
     "text-encoding-polyfill": "^0.6.7",
+    "ts-jest": "^26.4.4",
     "uuid": "^8.3.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.4",
-    "@babel/runtime": "^7.8.4",
+    "@babel/plugin-proposal-decorators": "^7.12.1",
     "@react-native-community/eslint-config": "^1.1.0",
     "@svgr/plugin-prettier": "^5.4.0",
     "@svgr/plugin-svgo": "^5.4.0",
+    "@testing-library/jest-native": "^3.4.3",
+    "@testing-library/react-hooks": "^3.4.2",
+    "@testing-library/react-native": "^7.1.0",
     "@types/jest": "^25.2.3",
     "@types/lodash": "^4.14.163",
     "@types/react-native": "^0.63.30",
@@ -48,8 +53,6 @@
     "@types/styled-components": "^5.1.4",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.27.0",
-    "babel-jest": "^25.1.0",
-    "babel-plugin-styled-components": "^1.11.1",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-typescript": "^11.4.0",
     "eslint-config-prettier": "^6.15.0",
@@ -57,23 +60,12 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.21.5",
     "husky": "^4.3.0",
-    "jest": "^25.1.0",
+    "jest": "^25.5.4",
     "metro-react-native-babel-preset": "^0.59.0",
     "prettier": "^2.1.2",
     "pretty-quick": "^3.1.0",
     "react-test-renderer": "16.13.1",
     "typescript": "^3.8.3"
-  },
-  "jest": {
-    "preset": "react-native",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
   },
   "husky": {
     "hooks": {

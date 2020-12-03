@@ -9,6 +9,7 @@ import SignInScreen from './src/screens/SignInScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
 import ZoneScreen from './src/screens/ZoneScreen';
 import ChatScreen from './src/screens/ChatScreen';
+import 'reflect-metadata';
 
 interface IScreenProps {
   id: string;

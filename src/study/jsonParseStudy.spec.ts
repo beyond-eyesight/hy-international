@@ -1,4 +1,3 @@
-// @ts-ignore
 describe('JsonParse', () => {
   describe('#constructor()', () => {
     it('should be defined', () => {
@@ -15,3 +14,5 @@ describe('JsonParse', () => {
     });
   });
 });
+
+export {};
