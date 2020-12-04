@@ -89,7 +89,7 @@ function sendMessages(newMessages: IMessage[], ws: CompatClient) {
       {
         'content-type': 'application/json'
       },
-      JSON.stringify(ChatMessageDto.fromIMessage(newMessage))
+      JSON.stringify(ChatMessageDto.fromMessage(newMessage))
     );
   });
 }

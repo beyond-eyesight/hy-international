@@ -25,7 +25,7 @@ export default class ChatMessageDto {
 
   readonly body: string;
 
-  static fromIMessage(message: IMessage) {
+  static fromMessage(message: IMessage) {
     return new ChatMessageDto(
       message._id as string,
       new Date(),
@@ -34,5 +34,9 @@ export default class ChatMessageDto {
       message.user._id as string,
       message.text
     );
+  }
+
+  serialize(): string {
+    return JSON.stringify(this);
   }
 }

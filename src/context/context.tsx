@@ -12,7 +12,10 @@ type Props = {
   children: ReactNode;
 };
 
-export const Provider: React.FC<Props> = ({ container, children }: Props) => {
+export const ContextProvider: React.FC<Props> = ({
+  container,
+  children
+}: Props) => {
   return (
     <ApplicationContext.Provider value={{ container }}>
       {children}

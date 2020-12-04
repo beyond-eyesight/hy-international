@@ -2,7 +2,7 @@ import React from 'react';
 import { Text } from 'react-native';
 import { render } from '@testing-library/react-native';
 import { Container, injectable } from 'inversify';
-import { Provider, useInjection } from '../context/context';
+import { ContextProvider, useInjection } from '../context/context';
 import { IProvider } from '../context/providers';
 import 'reflect-metadata';
 
@@ -27,9 +27,9 @@ describe('context', () => {
 
       // when
       const { getByText } = render(
-        <Provider container={container}>
+        <ContextProvider container={container}>
           <ExampleChildComponent />
-        </Provider>
+        </ContextProvider>
       );
       const component = getByText(returnValueOfBean);
 
