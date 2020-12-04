@@ -29,5 +29,7 @@ export function useInjection<T>(identifier: interfaces.ServiceIdentifier<T>) {
   if (!container) {
     throw new Error();
   }
-  return container.get<T>(identifier);
+
+  const provider: T = container.get<T>(identifier);
+  return provider;
 }

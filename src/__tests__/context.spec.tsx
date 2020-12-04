@@ -1,23 +1,40 @@
 import React from 'react';
 import { Text } from 'react-native';
 import { render } from '@testing-library/react-native';
-import { Provider } from '../context/context';
-import container from '../context/container';
+import { Container, injectable } from 'inversify';
+import { Provider, useInjection } from '../context/context';
+import { IProvider } from '../context/providers';
+import 'reflect-metadata';
 
-describe('iocReact', () => {
+describe('context', () => {
   describe('#useInjection()', () => {
-    it('should container be injected to Provider', () => {
-      const text: string = 'provider';
+    it('Provider should be injected', () => {
+      // given
+      const identifier: string = 'exampleProvider';
+      const returnValueOfBean: string = 'World';
+      const container = new Container();
+      @injectable()
+      class ExampleProvider implements IProvider<typeof identifier> {
+        provide = () => returnValueOfBean;
+      }
+      container.bind<IProvider<string>>(identifier).to(ExampleProvider);
+      const ExampleChildComponent: React.FC = () => {
+        const provider: IProvider<string> = useInjection<
+          IProvider<typeof identifier>
+        >(identifier);
+        return <Text>{provider.provide()}</Text>;
+      };
+
+      // when
       const { getByText } = render(
         <Provider container={container}>
-          <Text>{text}</Text>
+          <ExampleChildComponent />
         </Provider>
       );
-      const provider = getByText(text);
+      const component = getByText(returnValueOfBean);
 
-      expect(provider.parent?.props.container).toEqual(container);
+      // then
+      expect(component).toBeDefined();
     });
   });
 });
-
-export {};
