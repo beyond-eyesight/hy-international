@@ -1,7 +1,8 @@
 import { IMessage } from 'react-native-gifted-chat';
 
 export default class ChatMessageDto {
-  constructor(
+  // todo: check 위험!
+  private constructor(
     id: string,
     createdAt: Date,
     chatRoomId: string,
@@ -24,6 +25,16 @@ export default class ChatMessageDto {
   readonly senderId: string;
 
   readonly body: string;
+
+  static of(
+    id: string,
+    createdAt: Date,
+    chatRoomId: string,
+    senderId: string,
+    body: string
+  ) {
+    return new ChatMessageDto(id, createdAt, chatRoomId, senderId, body);
+  }
 
   static fromMessage(message: IMessage) {
     return new ChatMessageDto(

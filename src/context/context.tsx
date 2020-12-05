@@ -23,10 +23,6 @@ export const ContextProvider: React.FC<Props> = ({
   );
 };
 
-export const Consumer: React.FC = () => {
-  return <ApplicationContext.Consumer>{}</ApplicationContext.Consumer>;
-};
-
 export function useInjection<T>(identifier: interfaces.ServiceIdentifier<T>) {
   const { container } = useContext(ApplicationContext);
   if (!container) {
