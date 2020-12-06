@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import ContainerWithStatusBar from '../components/container/ContainerWithStatusBar';
-import colors from '../styles/color';
-import ChatSection from '../components/section/ChatSection';
-import BackTopbar from '../components/topbar/BackTopbar';
+import ContainerWithStatusBar from 'components/container/ContainerWithStatusBar';
+import colors from 'styles/color';
+import BackTopbar from 'components/topbar/BackTopbar';
+import ChatSection from 'components/section/ChatSection';
 
 const Container = styled(ContainerWithStatusBar)`
   background-color: ${colors.milkWhite};

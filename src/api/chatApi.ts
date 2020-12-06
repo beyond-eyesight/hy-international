@@ -1,9 +1,9 @@
 import { injectable } from 'inversify';
 import { Stomp } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
-import ChatRoom from '../model/chatRoom';
-import chatMessage from '../model/chatMessage';
-import ChatMessageDto from '../dto/chatMessageDto';
+import chatMessage from 'model/chatMessage';
+import ChatRoom from 'model/chatRoom';
+import ChatMessageDto from 'dto/chatMessageDto';
 
 @injectable()
 export default class ChatApi {

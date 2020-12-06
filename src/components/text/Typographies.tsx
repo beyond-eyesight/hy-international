@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import RNText from './RNText';
+import RNText from 'components/text/RNText';
 
 export const Bold = styled(RNText).attrs({ fontType: 'BOLD' })``;
 export const Regular = styled(RNText).attrs({ fontType: 'REGULAR' })``;

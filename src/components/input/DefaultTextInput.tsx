@@ -1,8 +1,8 @@
 import styled from 'styled-components/native';
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import RNTextInput from './RNTextInput';
-import colors from '../../styles/color';
+import RNTextInput from 'components/input/RNTextInput';
+import colors from 'styles/color';
 
 const Container = styled.View`
   align-items: center;

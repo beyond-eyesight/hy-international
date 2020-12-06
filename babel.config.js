@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   presets: ['module:metro-react-native-babel-preset'],
   plugins: [
@@ -6,13 +8,13 @@ module.exports = {
     [
       'module-resolver',
       {
-        root: ['./src'],
+        root: ['.'],
         alias: {
-          '~/*': './src',
+          '~/*': path.resolve(__dirname, '.'),
+          assets: './assets',
           test: './test',
           underscore: 'lodash'
-        },
-        cwd: 'babelrc'
+        }
       }
     ]
   ]

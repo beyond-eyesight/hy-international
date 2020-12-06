@@ -1,4 +1,3 @@
-// tslint:disable:object-literal-sort-keys
 const colors = {
   black: '#000000',
   black50: '#80000000',

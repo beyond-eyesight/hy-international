@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { Text } from 'react-native';
-import { Bold } from '../text/Typographies';
+import { Bold } from 'components/text/Typographies';
 
 interface Props {
   containerWidth: string;

@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import Dash from 'react-native-dash';
-import colors from '../../styles/color';
-import RNText from '../text/RNText';
-import TextButton from '../button/TextButton';
+import colors from 'styles/color';
+import TextButton from 'components/button/TextButton';
+import RNText from 'components/text/RNText';
 
 const Container = styled.View`
   width: 100%;

@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
-import Destination from './destination';
-import ChatRoomId from './chatRoomId';
+import ChatRoomId from 'model/chatRoomId';
+import Destination from 'model/destination';
 
 describe('Destination', () => {
   describe('#fromChatRoomId', () => {

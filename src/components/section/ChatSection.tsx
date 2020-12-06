@@ -4,8 +4,8 @@ import { CompatClient, Message, Stomp } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 import 'text-encoding-polyfill';
 import { v4 as uuidv4 } from 'uuid';
-import ChatMessage from '../../model/chatMessage';
-import ChatMessageDto from '../../dto/chatMessageDto';
+import ChatMessageDto from 'dto/chatMessageDto';
+import ChatMessage from 'model/chatMessage';
 
 // todo: remove hard coding
 const ws = Stomp.over(() => new SockJS('http://localhost:8080/ws-stomp'));

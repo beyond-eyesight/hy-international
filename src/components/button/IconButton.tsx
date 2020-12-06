@@ -1,7 +1,7 @@
 import React from 'react';
 import { ImageProps, TouchableOpacityProps } from 'react-native';
 import styled from 'styled-components/native';
-import getHitSlop from '../../utils/view';
+import getHitSlop from 'utils/view';
 
 export interface Props extends TouchableOpacityProps {
   image: ImageProps['source'];

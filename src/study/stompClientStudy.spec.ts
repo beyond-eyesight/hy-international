@@ -3,7 +3,7 @@ import { Client, FrameImpl, IFrame } from '@stomp/stompjs';
 import { v4 as uuidv4 } from 'uuid';
 import { WS } from 'jest-websocket-mock';
 import { IPublishParams } from '@stomp/stompjs/esm6/types';
-import ChatMessageDto from '../dto/chatMessageDto';
+import ChatMessageDto from 'dto/chatMessageDto';
 
 const brokerURL = 'ws://localhost:1234/ws-stomp';
 const server = new WS(brokerURL);

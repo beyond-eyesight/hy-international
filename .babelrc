@@ -1,0 +1,19 @@
+{
+  "presets": ["module:metro-react-native-babel-preset"],
+  "plugins": [
+    ["babel-plugin-styled-components"],
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    [
+      "module-resolver",
+      {
+        "root": ["."],
+        "alias": {
+          "~/*": ".",
+          "assets": "./assets",
+          "test": "./test",
+          "underscore": "lodash"
+        }
+      }
+    ]
+  ]
+}
