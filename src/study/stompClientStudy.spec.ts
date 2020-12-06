@@ -16,6 +16,10 @@ const stompClient = new Client({
 });
 
 describe('Stomp Client', () => {
+  afterAll(() => {
+    stompClient.deactivate();
+    server.close();
+  });
   it('should ', async () => {
     await testConnect();
     await testSend();
