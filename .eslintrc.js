@@ -17,5 +17,10 @@ module.exports = {
     'react/jsx-props-no-spreading': ['warn'],
     'react/require-default-props': 'off',
     'no-underscore-dangle': 'off'
+  },
+  settings: {
+    'import/resolver': {
+      'babel-module': {}
+    }
   }
 };
