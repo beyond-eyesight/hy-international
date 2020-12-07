@@ -7,13 +7,12 @@ import ChatMessageDto from 'dto/chatMessageDto';
 
 const brokerURL = 'ws://localhost:1234/ws-stomp';
 
-async function assertSendMessagePublished(stompClient: Client, server: WS) {
-  const message: string | ArrayBuffer = sendMessage(stompClient);
-  await expect(server).toReceiveMessage(message);
-  expect(server).toHaveReceivedMessages([message]);
-}
-
 describe('Stomp Client', () => {
+  let stompClient: Client;
+  afterAll(async () => {
+    await disconnect(stompClient);
+    WS.clean();
+  });
   describe('when server is valid', () => {
     const server: WS = new WS(brokerURL, { verifyClient: () => true });
     const mockOnConnect: (
@@ -22,7 +21,7 @@ describe('Stomp Client', () => {
 
     it('should Connect & publish SEND message', async () => {
       // given
-      const stompClient = createClient(() => {}, mockOnConnect);
+      stompClient = createClient(() => {}, mockOnConnect);
       // when
       await connect(stompClient, server);
       // then
@@ -32,7 +31,7 @@ describe('Stomp Client', () => {
 
     it('should throw Type error when sending message with deactivated state', () => {
       // given
-      const stompClient = createClient(() => {}, mockOnConnect);
+      stompClient = createClient(() => {}, mockOnConnect);
       expect(stompClient.active).toBeFalsy();
 
       // when & then
@@ -46,7 +45,7 @@ describe('Stomp Client', () => {
       const mockBeforeConnect = jest.fn(() => {
         stompClient.deactivate();
       });
-      const stompClient = createClient(mockBeforeConnect, (frame) => {});
+      stompClient = createClient(mockBeforeConnect, (frame) => {});
       // when
       stompClient.activate();
       // then
@@ -150,6 +149,8 @@ async function assertConnected(
   expect(mockOnConnect).toBeCalled();
 }
 
-afterAll(async () => {
-  WS.clean();
-});
+async function assertSendMessagePublished(stompClient: Client, server: WS) {
+  const message: string | ArrayBuffer = sendMessage(stompClient);
+  await expect(server).toReceiveMessage(message);
+  expect(server).toHaveReceivedMessages([message]);
+}
