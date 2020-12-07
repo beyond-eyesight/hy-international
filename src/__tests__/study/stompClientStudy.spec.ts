@@ -22,15 +22,17 @@ describe('Stomp Client', () => {
 
     it('should Connect & publish SEND message', async () => {
       // given
-      const stompClient = createClient(mockOnConnect);
+      const stompClient = createClient(() => {}, mockOnConnect);
+      // when
       await connect(stompClient, server);
+      // then
       await assertConnected(server, mockOnConnect);
       await assertSendMessagePublished(stompClient, server);
     });
 
     it('should throw Type error when sending message with deactivated state', () => {
       // given
-      const stompClient = createClient(mockOnConnect);
+      const stompClient = createClient(() => {}, mockOnConnect);
       expect(stompClient.active).toBeFalsy();
 
       // when & then
@@ -38,12 +40,36 @@ describe('Stomp Client', () => {
         new TypeError("Cannot read property 'publish' of undefined")
       );
     });
+
+    it('should not be connected with deactivate_beforeConnect, but connected after configure', async () => {
+      // given
+      const mockBeforeConnect = jest.fn(() => {
+        stompClient.deactivate();
+      });
+      const stompClient = createClient(mockBeforeConnect, (frame) => {});
+      // when
+      stompClient.activate();
+      // then
+      expect(mockBeforeConnect).toBeCalled();
+
+      // when
+      stompClient.configure({
+        brokerURL,
+        reconnectDelay: 5000,
+        heartbeatIncoming: 4000,
+        heartbeatOutgoing: 4000,
+        beforeConnect: () => {},
+        onConnect: mockOnConnect
+      });
+      connect(stompClient, server);
+      // then
+      await assertConnected(server, mockOnConnect);
+    });
   });
 });
 
 async function connect(stompClient: Client, server: WS): Promise<void> {
   stompClient.activate();
-
   server.on('connection', (socket) => {
     socket.send(
       createMessage('CONNECTED', { version: '1.2', 'heart-beat': '0,0' })
@@ -87,12 +113,16 @@ async function disconnect(stompClient: Client) {
   expect(stompClient.active).toBeFalsy();
 }
 
-function createClient(onConnect: (frame: IFrame) => void) {
+function createClient(
+  beforeConnect: () => void,
+  onConnect: (frame: IFrame) => void
+) {
   return new Client({
     brokerURL,
     reconnectDelay: 5000,
     heartbeatIncoming: 4000,
     heartbeatOutgoing: 4000,
+    beforeConnect,
     onConnect
   });
 }
