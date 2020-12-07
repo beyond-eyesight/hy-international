@@ -7,6 +7,10 @@ import ChatMessageDto from 'src/dto/chatMessageDto';
 
 const brokerURL = 'ws://localhost:1234/ws-stomp';
 
+jest.mock('react-native-get-random-values', () => ({
+  getRandomBase64: jest.fn()
+}));
+
 describe('Stomp Client', () => {
   let stompClient: Client;
   afterAll(async () => {

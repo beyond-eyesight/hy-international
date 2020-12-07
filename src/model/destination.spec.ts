@@ -3,6 +3,10 @@ import { v4 as uuidv4 } from 'uuid';
 import Destination from 'src/model/destination';
 import ChatRoomId from 'src/model/chatRoomId';
 
+jest.mock('react-native-get-random-values', () => ({
+  getRandomBase64: jest.fn()
+}));
+
 describe('Destination', () => {
   describe('#fromChatRoomId', () => {
     it('should return Destination with Prefix and value', () => {

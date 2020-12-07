@@ -34,7 +34,7 @@ export const ContextProvider: React.FC<Props> = ({
 export function useInjection<T>(
   identifier: interfaces.ServiceIdentifier<T>
 ): T {
-  const { container } = useContext(ApplicationContext);
+  const { container } = useContext(UselessContext);
   if (!container) {
     throw new Error();
   }
