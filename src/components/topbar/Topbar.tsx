@@ -1,9 +1,9 @@
 import React from 'react';
 import { ImageProps, StyleProp, ViewStyle } from 'react-native';
 import styled from 'styled-components/native';
-import IconButton from 'components/button/IconButton';
-import colors from 'styles/color';
-import Bold18 from 'components/text/Typographies';
+import IconButton from 'src/components/button/IconButton';
+import colors from 'src/styles/color';
+import { Bold18 } from 'src/components/text/Typographies';
 
 export type Props = {
   style?: StyleProp<ViewStyle>;

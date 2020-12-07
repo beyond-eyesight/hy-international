@@ -1,7 +1,7 @@
 import React from 'react';
 import { RegisteredStyle, ViewStyle } from 'react-native';
 import styled from 'styled-components/native';
-import { getStatusBarHeight } from 'utils/device';
+import { getStatusBarHeight } from 'src/utils/device';
 
 interface Props {
   children?: React.ReactNode;

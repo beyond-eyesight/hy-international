@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import ChatRoomId from 'model/chatRoomId';
+import ChatRoomId from 'src/model/chatRoomId';
 
 describe('ChatRoomId', () => {
   describe('#constructor', () => {

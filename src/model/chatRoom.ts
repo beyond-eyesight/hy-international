@@ -1,5 +1,5 @@
-import ChatRoomId from 'model/chatRoomId';
-import ChatRoomName from 'model/chatRoomName';
+import ChatRoomId from 'src/model/chatRoomId';
+import ChatRoomName from 'src/model/chatRoomName';
 
 export default class ChatRoom {
   private readonly _id: ChatRoomId;

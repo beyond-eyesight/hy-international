@@ -2,9 +2,9 @@ import React from 'react';
 import { Text } from 'react-native';
 import { render } from '@testing-library/react-native';
 import { Container, injectable } from 'inversify';
-import { ContextProvider, useInjection } from 'context/context';
-import { IProvider } from 'context/providers';
 import 'reflect-metadata';
+import { IProvider } from 'src/context/providers';
+import { ContextProvider, useInjection } from 'src/context/context';
 
 describe('context', () => {
   describe('#useInjection()', () => {

@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import colors from '../../styles/color';
-import Board from '../board/Board';
-import EmailInput from '../input/EmailInput';
-import DefaultTextInput from '../input/DefaultTextInput';
-import TextButton from '../button/TextButton';
-import VerifyEmailBox from '../box/VerifyEmailBox';
+import colors from 'src/styles/color';
+import Board from 'src/components/board/Board';
+import EmailInput from 'src/components/input/EmailInput';
+import VerifyEmailBox from 'src/components/box/VerifyEmailBox';
+import DefaultTextInput from 'src/components/input/DefaultTextInput';
+import TextButton from 'src/components/button/TextButton';
 
 const Container = styled.View`
   height: 100%;

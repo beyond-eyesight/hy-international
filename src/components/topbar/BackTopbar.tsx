@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { SCREEN_IDS } from 'screens/constant';
-import { pop, push } from 'utils/navigator';
-import IconButton from 'components/button/IconButton';
-import Topbar from 'components/topbar/Topbar';
-import icons from '../../../assets/icons';
+import IconButton from 'src/components/button/IconButton';
+import Topbar from 'src/components/topbar/Topbar';
+import icons from 'assets/icons/index';
+import { pop, push } from 'src/utils/navigator';
+import { SCREEN_IDS } from 'src/screens/constant';
 
 export type Props = {
   componentId: string;

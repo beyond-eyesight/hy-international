@@ -1,4 +1,4 @@
-import ChatRoomId from 'model/chatRoomId';
+import ChatRoomId from 'src/model/chatRoomId';
 
 export default class Destination {
   private static CHAT_ROOM_PREFIX = `/sub/chat/room/`;

@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import ContainerWithStatusBar from 'components/container/ContainerWithStatusBar';
-import colors from 'styles/color';
-import BackTopbar from 'components/topbar/BackTopbar';
-import ZoneSection from 'components/section/ZoneSection';
+import ContainerWithStatusBar from 'src/components/container/ContainerWithStatusBar';
+import colors from 'src/styles/color';
+import BackTopbar from 'src/components/topbar/BackTopbar';
+import ZoneSection from 'src/components/section/ZoneSection';
 
 const Container = styled(ContainerWithStatusBar)`
   background-color: ${colors.milkWhite};

@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import colors from '../../styles/color';
-import Board from '../board/Board';
-import RNText from '../text/RNText';
-import TextButton from '../button/TextButton';
-import { push } from '../../utils/navigator';
-import { SCREEN_IDS } from '../../screens/constant';
+import RNText from 'src/components/text/RNText';
+import Board from 'src/components/board/Board';
+import TextButton from 'src/components/button/TextButton';
+import colors from 'src/styles/color';
+import { push } from 'src/utils/navigator';
+import { SCREEN_IDS } from 'src/screens/constant';
 
 export type Props = {
   componentId: string;

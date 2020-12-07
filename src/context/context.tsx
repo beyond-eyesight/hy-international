@@ -23,12 +23,13 @@ export const ContextProvider: React.FC<Props> = ({
   );
 };
 
-export function useInjection<T>(identifier: interfaces.ServiceIdentifier<T>) {
+export function useInjection<T>(
+  identifier: interfaces.ServiceIdentifier<T>
+): T {
   const { container } = useContext(ApplicationContext);
   if (!container) {
     throw new Error();
   }
 
-  const provider: T = container.get<T>(identifier);
-  return provider;
+  return container.get<T>(identifier);
 }

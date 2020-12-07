@@ -1,7 +1,7 @@
 import { TextInputProps } from 'react-native';
 import styled from 'styled-components/native';
 import React from 'react';
-import colors from 'styles/color';
+import colors from 'src/styles/color';
 
 type FontType = 'BOLD' | 'REGULAR' | 'LIGHT';
 

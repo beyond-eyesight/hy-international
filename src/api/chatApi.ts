@@ -1,10 +1,10 @@
 import { injectable } from 'inversify';
 import { Client, IFrame } from '@stomp/stompjs';
-import chatMessage from 'model/chatMessage';
-import ChatRoom from 'model/chatRoom';
-import ChatMessageDto from 'dto/chatMessageDto';
-import createStompClient from 'api/adapter/stompClientFactory';
 import { IMessage } from '@stomp/stompjs/esm6/i-message';
+import createStompClient from 'src/api/adapter/stompClientFactory';
+import ChatRoom from 'src/model/chatRoom';
+import ChatMessage from 'src/model/chatMessage';
+import ChatMessageDto from 'src/dto/chatMessageDto';
 
 @injectable()
 export default class ChatApi {
@@ -22,7 +22,7 @@ export default class ChatApi {
     );
   }
 
-  public sendMessage(chatRoom: ChatRoom, chatMessage: chatMessage): void {
+  public sendMessage(chatRoom: ChatRoom, chatMessage: ChatMessage): void {
     this.assertSocketConnected();
     const header = { 'content-type': 'application/json' };
     const chatMessageDto = ChatMessageDto.fromMessage(chatMessage);

@@ -4,8 +4,12 @@ import { CompatClient, Message, Stomp } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 import 'text-encoding-polyfill';
 import { v4 as uuidv4 } from 'uuid';
-import ChatMessageDto from 'dto/chatMessageDto';
-import ChatMessage from 'model/chatMessage';
+import ChatApi from 'src/api/chatApi';
+import { useInjection } from 'src/context/context';
+import { IProvider } from 'src/context/providers';
+import Types from 'src/api/types';
+import ChatMessageDto from 'src/dto/chatMessageDto';
+import ChatMessage from 'src/model/chatMessage';
 
 // todo: remove hard coding
 const ws = Stomp.over(() => new SockJS('http://localhost:8080/ws-stomp'));
@@ -14,6 +18,13 @@ const userId: string = uuidv4();
 // todo: refac
 const ChatSection: React.FC = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);
+  const chatApi: ChatApi = useInjection<IProvider<ChatApi>>(
+    Types.CHAT
+  ).provide();
+
+  console.log('chatApi!');
+  console.log(chatApi);
+
   // todo: remove hardcoding
   useEffect(() => {
     ws.connect(
@@ -30,10 +41,15 @@ const ChatSection: React.FC = () => {
     );
   }, [messages]);
 
-  const onSend = useCallback((ws: CompatClient, newMessages: IMessage[]) => {
-    sendMessages(newMessages, ws);
-    renderMessages(setMessages, newMessages);
-  }, []);
+  const onSend = useCallback(
+    (ws: CompatClient, newMessages: IMessage[]) => {
+      console.log('chatApi!');
+      console.log(chatApi);
+      sendMessages(newMessages, ws);
+      renderMessages(setMessages, newMessages);
+    },
+    [chatApi]
+  );
 
   return (
     <GiftedChat

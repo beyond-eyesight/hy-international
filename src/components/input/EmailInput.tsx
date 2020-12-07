@@ -1,9 +1,9 @@
 import styled from 'styled-components/native';
 import React, { useState } from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
-import RNTextInput from 'components/input/RNTextInput';
-import colors from 'styles/color';
-import RNText from 'components/text/RNText';
+import colors from 'src/styles/color';
+import RNText from 'src/components/text/RNText';
+import RNTextInput from 'src/components/input/RNTextInput';
 
 interface Props {
   containerWidth: string;

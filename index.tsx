@@ -4,12 +4,12 @@
 
 import React from 'react';
 import { Navigation } from 'react-native-navigation';
-import { SCREEN_IDS } from './src/screens/constant';
-import SignInScreen from './src/screens/SignInScreen';
-import SignUpScreen from './src/screens/SignUpScreen';
-import ZoneScreen from './src/screens/ZoneScreen';
-import ChatScreen from './src/screens/ChatScreen';
 import 'reflect-metadata';
+import { SCREEN_IDS } from 'src/screens/constant';
+import SignUpScreen from 'src/screens/SignUpScreen';
+import SignInScreen from 'src/screens/SignInScreen';
+import ZoneScreen from 'src/screens/ZoneScreen';
+import ChatScreen from 'src/screens/ChatScreen';
 
 interface IScreenProps {
   id: string;

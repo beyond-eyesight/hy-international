@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import colors from 'styles/color';
-import RNText from 'components/text/RNText';
+import RNText from 'src/components/text/RNText';
+import colors from 'src/styles/color';
 
 interface Props {
   containerWidth: string;

@@ -7,12 +7,7 @@
       "module-resolver",
       {
         "root": ["."],
-        "alias": {
-          "~/*": ".",
-          "assets": "./assets",
-          "test": "./test",
-          "underscore": "lodash"
-        }
+        "extensions": [".js", ".ios.js", ".android.js", ".ts", ".tsx"]
       }
     ]
   ]
