@@ -1,11 +1,12 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { GiftedChat, IMessage } from 'react-native-gifted-chat';
 import { CompatClient, Message, Stomp } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 import 'text-encoding-polyfill';
+import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 import ChatApi from 'src/api/chatApi';
-import { useInjection } from 'src/context/context';
+import { ApplicationContext, useInjection } from 'src/context/context';
 import { IProvider } from 'src/context/providers';
 import Types from 'src/api/types';
 import ChatMessageDto from 'src/dto/chatMessageDto';
@@ -18,9 +19,10 @@ const userId: string = uuidv4();
 // todo: refac
 const ChatSection: React.FC = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);
-  const chatApi: ChatApi = useInjection<IProvider<ChatApi>>(
-    Types.CHAT
-  ).provide();
+  const { container } = useContext(ApplicationContext);
+  const chatApi: ChatApi = container
+    .get<IProvider<ChatApi>>(Types.CHAT)
+    .provide();
 
   console.log('chatApi!');
   console.log(chatApi);
