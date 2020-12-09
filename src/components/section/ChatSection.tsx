@@ -9,7 +9,6 @@ import Types from 'src/api/types';
 import ChatMessageDto from 'src/dto/chatMessageDto';
 import ChatMessage from 'src/model/chatMessage';
 import ChatRoom from 'src/model/chatRoom';
-import 'text-encoding';
 
 // todo: remove hard coding
 

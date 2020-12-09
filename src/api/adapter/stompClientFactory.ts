@@ -1,7 +1,5 @@
 import { Client, IFrame, Stomp } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
-import * as encoding from 'text-encoding';
-import 'text-encoding';
 
 const createStompClient = (
   url: string,

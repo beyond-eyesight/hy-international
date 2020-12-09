@@ -10,6 +10,7 @@ import SignUpScreen from 'src/screens/SignUpScreen';
 import SignInScreen from 'src/screens/SignInScreen';
 import ZoneScreen from 'src/screens/ZoneScreen';
 import ChatScreen from 'src/screens/ChatScreen';
+import 'text-encoding';
 
 interface IScreenProps {
   id: string;

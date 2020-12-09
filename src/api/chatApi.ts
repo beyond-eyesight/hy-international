@@ -7,7 +7,6 @@ import createStompClient, {
 import ChatRoom from 'src/model/chatRoom';
 import ChatMessageDto from 'src/dto/chatMessageDto';
 import ChatRoomId from 'src/model/chatRoomId';
-import 'text-encoding';
 
 @injectable()
 export default class ChatApi {
