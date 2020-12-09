@@ -32,6 +32,10 @@ const ChatSection: React.FC<Props> = ({ chatRoom }: Props) => {
       const chatMessageDto: ChatMessageDto = JSON.parse(message.body);
       renderMessageOfOthers(chatMessageDto, setMessages);
     });
+
+    return () => {
+      chatApi.leaveRoom(chatRoom.id);
+    };
   }, [chatApi, chatRoom.id]);
 
   // todo: 트랜잭션으로 묶든가 해야할거같은디
