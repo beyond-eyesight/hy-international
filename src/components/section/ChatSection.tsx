@@ -28,11 +28,11 @@ const ChatSection: React.FC<Props> = ({ chatRoom }: Props) => {
 
   // todo: remove hardcoding
   useEffect(() => {
-    chatApi.joinRoom(chatRoom, (message: StompMessage) => {
+    chatApi.joinRoom(chatRoom.id, (message: StompMessage) => {
       const chatMessageDto: ChatMessageDto = JSON.parse(message.body);
       renderMessageOfOthers(chatMessageDto, setMessages);
     });
-  }, [chatApi, chatRoom]);
+  }, [chatApi, chatRoom.id]);
 
   // todo: 트랜잭션으로 묶든가 해야할거같은디
   const onSend = useCallback(
@@ -48,7 +48,7 @@ const ChatSection: React.FC<Props> = ({ chatRoom }: Props) => {
       sendMessages(newMessages);
       renderMessages(setMessages, newMessages);
     },
-    [chatApi, chatRoom]
+    [chatApi, chatRoom.id]
   );
 
   return (
