@@ -10,6 +10,9 @@ import ChatRoomId from 'src/model/chatRoomId';
 
 @injectable()
 export default class ChatApi {
+  // todo: config 파일로 옮기
+  private static readonly DESTINATION_PREFIX = '/sub/chat/room/';
+
   private readonly ws: Client;
 
   constructor() {
@@ -30,16 +33,16 @@ export default class ChatApi {
   ): void {
     this.assertSocketConnected();
     const header = { 'content-type': 'application/json' };
-    const destinationPrefix = '/sub/chat/room/';
+
     this.ws.publish({
-      destination: destinationPrefix + chatRoomId.toString(),
+      destination: ChatApi.DESTINATION_PREFIX + chatRoomId.toString(),
       headers: header,
       body: chatMessageDto.serialize()
     });
   }
 
-  public leaveRoom(chatRoom: ChatRoom): void {
-    this.ws.unsubscribe(chatRoom.id.toString());
+  public leaveRoom(chatRoomId: ChatRoomId): void {
+    this.ws.unsubscribe(chatRoomId.toString());
   }
 
   public joinRoom(
@@ -78,8 +81,10 @@ export default class ChatApi {
       id: roomId,
       ack: 'client'
     };
-    // todo: config 파일로 옮기
-    const destinationPrefix = '/sub/chat/room/';
-    this.ws.subscribe(destinationPrefix + roomId, subscribeCallback, header);
+    this.ws.subscribe(
+      ChatApi.DESTINATION_PREFIX + roomId,
+      subscribeCallback,
+      header
+    );
   }
 }
