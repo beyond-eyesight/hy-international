@@ -10,6 +10,10 @@ export default class ChatRoom {
     return this._id;
   }
 
+  static of(id: string, name: string) {
+    return new ChatRoom(new ChatRoomId(id), new ChatRoomName(name));
+  }
+
   constructor(id: ChatRoomId, name: ChatRoomName) {
     this._id = id;
     this.name = name;

@@ -6,6 +6,7 @@ import TextButton from 'src/components/button/TextButton';
 import colors from 'src/styles/color';
 import { push } from 'src/utils/navigator';
 import { SCREEN_IDS } from 'src/screens/constant';
+import ChatRoom from 'src/model/chatRoom';
 
 export type Props = {
   componentId: string;
@@ -58,7 +59,13 @@ const ZoneSection: React.FC<Props> = ({ componentId }: Props) => {
           onPress={async () => {
             await push({
               currentComponentId: componentId,
-              nextComponentName: SCREEN_IDS.ChatScreen
+              nextComponentName: SCREEN_IDS.ChatScreen,
+              params: {
+                chatRoom: ChatRoom.of(
+                  '110841e3-e6fb-4191-8fd8-5674a5107c33',
+                  'Wangsimni'
+                )
+              }
             });
           }}
         />

@@ -1,10 +1,13 @@
 import { injectable } from 'inversify';
 import { Client, IFrame } from '@stomp/stompjs';
-import { IMessage } from '@stomp/stompjs/esm6/i-message';
-import createStompClient from 'src/api/adapter/stompClientFactory';
+import { IMessage as StompMessage } from '@stomp/stompjs/esm6/i-message';
+import createStompClient, {
+  WebSocketVersion
+} from 'src/api/adapter/stompClientFactory';
 import ChatRoom from 'src/model/chatRoom';
-import ChatMessage from 'src/model/chatMessage';
 import ChatMessageDto from 'src/dto/chatMessageDto';
+import ChatRoomId from 'src/model/chatRoomId';
+import 'text-encoding';
 
 @injectable()
 export default class ChatApi {
@@ -14,20 +17,21 @@ export default class ChatApi {
 
   constructor() {
     this.ws = createStompClient(
-      'ws://localhost:8080/ws-stomp',
-      async () => {
-        await this.ws.deactivate();
-      },
-      (frame: IFrame) => {}
+      'http://localhost:8080/ws-stomp',
+      () => {},
+      (frame: IFrame) => {},
+      WebSocketVersion.STANDARD
     );
   }
 
-  public sendMessage(chatRoom: ChatRoom, chatMessage: ChatMessage): void {
+  public sendMessage(
+    chatRoomId: ChatRoomId,
+    chatMessageDto: ChatMessageDto
+  ): void {
     this.assertSocketConnected();
     const header = { 'content-type': 'application/json' };
-    const chatMessageDto = ChatMessageDto.fromMessage(chatMessage);
     this.ws.publish({
-      destination: chatRoom.id.toString(),
+      destination: chatRoomId.toString(),
       headers: header,
       body: chatMessageDto.serialize()
     });
@@ -39,18 +43,8 @@ export default class ChatApi {
 
   public joinRoom(
     chatRoom: ChatRoom,
-    subscribeCallback: (message: IMessage) => {}
+    subscribeCallback: (message: StompMessage) => void
   ): void {
-    this.ws.configure({
-      brokerURL: 'ws://localhost:8080/ws-stomp',
-      reconnectDelay: 5000,
-      heartbeatIncoming: 4000,
-      heartbeatOutgoing: 4000,
-      beforeConnect: () => {},
-      onConnect: (frame: IFrame) => {
-        this.subscribe(chatRoom, subscribeCallback);
-      }
-    });
     this.ws.activate();
   }
 
@@ -63,9 +57,9 @@ export default class ChatApi {
   // todo: check subscribe할 때 콜백이 리턴 값을 가질 수 있을지...
   private subscribe(
     chatRoom: ChatRoom,
-    subscribeCallback: (message: IMessage) => {}
+    subscribeCallback: (message: StompMessage) => void
   ): void {
-    const roomId: string = chatRoom.id.toString();
+    const roomId: string = '3';
     const header = {
       id: roomId,
       ack: 'client'

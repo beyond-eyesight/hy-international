@@ -64,7 +64,7 @@ describe('Stomp Client', () => {
         beforeConnect: () => {},
         onConnect: mockOnConnect
       });
-      connect(stompClient, server);
+      await connect(stompClient, server);
       // then
       await assertConnected(server, mockOnConnect);
     });

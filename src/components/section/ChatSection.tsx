@@ -1,65 +1,64 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { GiftedChat, IMessage } from 'react-native-gifted-chat';
-import { CompatClient, Message, Stomp } from '@stomp/stompjs';
-import SockJS from 'sockjs-client';
-import 'text-encoding-polyfill';
-import 'react-native-get-random-values';
-import { v4 as uuidv4 } from 'uuid';
+import { CompatClient, Message } from '@stomp/stompjs';
 import ChatApi from 'src/api/chatApi';
-import { ApplicationContext, useInjection } from 'src/context/context';
+import { IMessage as StompMessage } from '@stomp/stompjs/esm6/i-message';
+import { ApplicationContext } from 'src/context/context';
 import { IProvider } from 'src/context/providers';
 import Types from 'src/api/types';
 import ChatMessageDto from 'src/dto/chatMessageDto';
 import ChatMessage from 'src/model/chatMessage';
+import ChatRoom from 'src/model/chatRoom';
+import 'text-encoding';
 
 // todo: remove hard coding
-const ws = Stomp.over(() => new SockJS('http://localhost:8080/ws-stomp'));
-const userId: string = uuidv4();
+
+interface Props {
+  chatRoom: ChatRoom;
+}
+
+// todo: userId 하드코딩 제거!
 
 // todo: refac
-const ChatSection: React.FC = () => {
+const ChatSection: React.FC<Props> = ({ chatRoom }: Props) => {
   const [messages, setMessages] = useState<IMessage[]>([]);
   const { container } = useContext(ApplicationContext);
   const chatApi: ChatApi = container
     .get<IProvider<ChatApi>>(Types.CHAT)
     .provide();
 
-  console.log('chatApi!');
-  console.log(chatApi);
-
   // todo: remove hardcoding
   useEffect(() => {
-    ws.connect(
-      // todo: extract variable
-      {
-        'accept-version': '1.2'
-      },
-      onConnect(
-        ws,
-        setMessages,
-        // todo: remove hard coding
-        '/sub/chat/room/110841e3-e6fb-4191-8fd8-5674a5107c33'
-      )
-    );
-  }, [messages]);
+    chatApi.joinRoom(chatRoom, (message: StompMessage) => {
+      const chatMessageDto: ChatMessageDto = JSON.parse(message.body);
+      renderMessageOfOthers(chatMessageDto, setMessages);
+    });
+  }, [chatApi, chatRoom]);
 
+  // todo: 트랜잭션으로 묶든가 해야할거같은디
   const onSend = useCallback(
-    (ws: CompatClient, newMessages: IMessage[]) => {
-      console.log('chatApi!');
-      console.log(chatApi);
-      sendMessages(newMessages, ws);
+    (newMessages: IMessage[]) => {
+      function sendMessages(newMessages: IMessage[]) {
+        newMessages.forEach((newMessage) => {
+          chatApi.sendMessage(
+            chatRoom.id,
+            ChatMessageDto.fromMessage(newMessage)
+          );
+        });
+      }
+      sendMessages(newMessages);
       renderMessages(setMessages, newMessages);
     },
-    [chatApi]
+    [chatApi, chatRoom]
   );
 
   return (
     <GiftedChat
       messages={messages}
-      onSend={(messages: IMessage[]) => onSend(ws, messages)}
+      onSend={(messages: IMessage[]) => onSend(messages)}
       user={{
         // todo: remove hard coding
-        _id: userId
+        _id: '1'
       }}
     />
   );
@@ -100,18 +99,6 @@ function subscribe(
   );
 }
 
-function sendMessages(newMessages: IMessage[], ws: CompatClient) {
-  newMessages.forEach((newMessage) => {
-    ws.send(
-      `/sub/chat/room/110841e3-e6fb-4191-8fd8-5674a5107c33`,
-      {
-        'content-type': 'application/json'
-      },
-      JSON.stringify(ChatMessageDto.fromMessage(newMessage))
-    );
-  });
-}
-
 function renderMessages(
   setMessages: (
     value: ((prevState: IMessage[]) => IMessage[]) | IMessage[]
@@ -130,7 +117,7 @@ function renderMessageOfOthers(
   ) => void
 ) {
   const chatMessage: ChatMessage = ChatMessage.fromDto(chatMessageDto);
-  if (chatMessage.isOwn(userId)) {
+  if (chatMessage.isOwn('1')) {
     return;
   }
   renderMessages(setMessages, [chatMessage]);

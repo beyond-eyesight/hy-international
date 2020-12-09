@@ -3,12 +3,18 @@ import { Navigation } from 'react-native-navigation';
 interface Props {
   currentComponentId: string;
   nextComponentName: string;
+  params?: object;
 }
 
-const push = async ({ currentComponentId, nextComponentName }: Props) => {
+const push = async ({
+  currentComponentId,
+  nextComponentName,
+  params
+}: Props) => {
   await Navigation.push(currentComponentId, {
     component: {
-      name: nextComponentName
+      name: nextComponentName,
+      passProps: params
     }
   });
 };

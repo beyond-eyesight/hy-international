@@ -37,7 +37,8 @@
     "reflect-metadata": "^0.1.13",
     "sockjs-client": "^1.5.0",
     "styled-components": "^5.2.0",
-    "text-encoding-polyfill": "^0.6.7",
+    "text-decoding": "^1.0.0",
+    "text-encoding": "^0.7.0",
     "ts-jest": "^26.4.4",
     "uuid": "^8.3.1"
   },
@@ -54,6 +55,7 @@
     "@types/react-native": "^0.63.37",
     "@types/react-test-renderer": "^16.9.2",
     "@types/styled-components": "^5.1.4",
+    "@types/text-encoding": "0.0.35",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.27.0",
     "babel-plugin-module-resolver": "^4.0.0",
