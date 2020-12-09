@@ -30,8 +30,9 @@ export default class ChatApi {
   ): void {
     this.assertSocketConnected();
     const header = { 'content-type': 'application/json' };
+    const destinationPrefix = '/sub/chat/room/';
     this.ws.publish({
-      destination: chatRoomId.toString(),
+      destination: destinationPrefix + chatRoomId.toString(),
       headers: header,
       body: chatMessageDto.serialize()
     });
