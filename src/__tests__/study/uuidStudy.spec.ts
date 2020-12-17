@@ -8,6 +8,7 @@ jest.mock('react-native-get-random-values', () => ({
 describe('UUID', () => {
   describe('v4', () => {
     it('should return random uuid', () => {
+      console.log(uuidv4());
       expect(uuidv4()).toBeDefined();
     });
   });

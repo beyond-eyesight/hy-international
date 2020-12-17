@@ -4,7 +4,6 @@ import { IMessage as StompMessage } from '@stomp/stompjs/esm6/i-message';
 import createStompClient, {
   WebSocketVersion
 } from 'src/api/adapter/stompClientFactory';
-import ChatRoom from 'src/model/chatRoom';
 import ChatMessageDto from 'src/dto/chatMessageDto';
 import ChatRoomId from 'src/model/chatRoomId';
 

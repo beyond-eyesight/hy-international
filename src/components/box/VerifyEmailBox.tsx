@@ -29,9 +29,9 @@ const Title = styled(RNText).attrs({
 `;
 
 const SendEmailButton = styled(TextButton).attrs({
-  containerWidth: '35%',
+  width: '35%',
   // todo: 픽셀로 바꾸
-  containerHeight: '90%',
+  height: '90%',
   content: 'Send',
   ellipticalColor: colors.blue_signiture,
   textColor: colors.white,

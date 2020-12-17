@@ -1,12 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components/native';
 import RNText from 'src/components/text/RNText';
 import Board from 'src/components/board/Board';
-import TextButton from 'src/components/button/TextButton';
-import colors from 'src/styles/color';
-import { push } from 'src/utils/navigator';
-import { SCREEN_IDS } from 'src/screens/constant';
-import ChatRoom from 'src/model/chatRoom';
+import ZoneList from 'src/components/list/ZoneList';
+import { ApplicationContext } from 'src/context/context';
 
 export type Props = {
   componentId: string;
@@ -21,7 +18,7 @@ const ExplanationContainer = styled.View`
   width: 100%;
   align-items: center;
   margin-top: 5%;
-  margin-bottom: 10%;
+  margin-bottom: 5%;
 `;
 
 const Explanation = styled(RNText).attrs({
@@ -30,12 +27,8 @@ const Explanation = styled(RNText).attrs({
   font-size: 22px;
 `;
 
-const ChatRoomContainer = styled.View`
-  width: 100%;
-  height: 100%;
-`;
-
 const ZoneSection: React.FC<Props> = ({ componentId }: Props) => {
+  const { chatRooms } = useContext(ApplicationContext);
   return (
     <Container>
       <Board
@@ -48,28 +41,7 @@ const ZoneSection: React.FC<Props> = ({ componentId }: Props) => {
           you can join chat room when you are near the location
         </Explanation>
       </ExplanationContainer>
-      <ChatRoomContainer>
-        <TextButton
-          containerWidth="100%"
-          containerHeight="6%"
-          content="Wangsimni"
-          ellipticalColor={colors.blue_signiture}
-          textColor={colors.white}
-          borderRadius="50px"
-          onPress={async () => {
-            await push({
-              currentComponentId: componentId,
-              nextComponentName: SCREEN_IDS.ChatScreen,
-              params: {
-                chatRoom: ChatRoom.of(
-                  '110841e3-e6fb-4191-8fd8-5674a5107c33',
-                  'Wangsimni'
-                )
-              }
-            });
-          }}
-        />
-      </ChatRoomContainer>
+      <ZoneList chatRooms={chatRooms} />
     </Container>
   );
 };
