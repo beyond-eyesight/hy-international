@@ -6,8 +6,8 @@ import RNText from 'src/components/text/RNText';
 import RNTextInput from 'src/components/input/RNTextInput';
 
 interface Props {
-  containerWidth: string;
-  containerHeight: string;
+  width: string;
+  height: string;
   marginTop: string;
   marginBottom: string;
 }
@@ -33,8 +33,8 @@ const AtSign = styled(RNText).attrs({
 `;
 
 const EmailInput: React.FC<Props> = ({
-  containerWidth,
-  containerHeight,
+  width,
+  height,
   marginTop,
   marginBottom
 }: Props) => {
@@ -46,8 +46,8 @@ const EmailInput: React.FC<Props> = ({
   return (
     <Container
       style={{
-        width: containerWidth,
-        height: containerHeight,
+        width,
+        height,
         marginTop,
         marginBottom
       }}

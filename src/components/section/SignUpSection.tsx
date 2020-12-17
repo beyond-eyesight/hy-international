@@ -18,12 +18,7 @@ const SignUpSection: React.FC = () => {
   return (
     <Container>
       <Board containerWidth="100%" containerHeight="10%" title="Sign Up" />
-      <EmailInput
-        containerWidth="100%"
-        containerHeight="6%"
-        marginTop="5%"
-        marginBottom="3%"
-      />
+      <EmailInput width="100%" height="6%" marginTop="5%" marginBottom="3%" />
       <VerifyEmailBox />
       <DefaultTextInput
         containerWidth="100%"
@@ -47,8 +42,8 @@ const SignUpSection: React.FC = () => {
         placeholder=" Password Verification"
       />
       <TextButton
-        containerWidth="100%"
-        containerHeight="6%"
+        width="100%"
+        height="6%"
         content="Sign Up"
         ellipticalColor={colors.blue_signiture}
         textColor={colors.white}

@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { Text } from 'react-native';
 import { Bold } from 'src/components/text/Typographies';
 
 interface Props {
-  containerWidth: string;
-  containerHeight: string;
+  width: string;
+  height: string;
   content: string;
   ellipticalColor: string;
   textColor: string;
@@ -13,18 +12,15 @@ interface Props {
   onPress?: () => void;
 }
 
-const Container = styled.View`
-  align-items: center;
-  justify-content: center;
-`;
-
 const Elliptical = styled.TouchableOpacity<{
+  width: string;
+  height: string;
   ellipticalColor: string;
   textColor: string;
   borderRadius: string;
 }>`
-  width: 100%;
-  height: 100%;
+  width: ${({ width }) => width};
+  height: ${({ height }) => height};
   background: ${({ ellipticalColor }) => ellipticalColor};
   border-radius: ${({ borderRadius }) => borderRadius};
   border: none;
@@ -36,31 +32,31 @@ const Elliptical = styled.TouchableOpacity<{
 const Content = styled(Bold)`
   flex-direction: row;
   color: ${({ textColor }) => textColor};
-  align-self: center;
   font-size: 20px;
 `;
 
 const TextButton: React.FC<Props> = ({
-  containerWidth,
-  containerHeight,
+  width,
+  height,
   content,
   ellipticalColor,
   textColor,
   borderRadius,
-  onPress
+  onPress,
+  ...props
 }: Props) => {
   return (
-    <Container style={{ width: containerWidth, height: containerHeight }}>
-      <Elliptical
-        ellipticalColor={ellipticalColor}
-        borderRadius={borderRadius}
-        textColor={textColor}
-        onPress={onPress}
-      >
-        <Content textColor={textColor}>{content}</Content>
-      </Elliptical>
-      <Text />
-    </Container>
+    <Elliptical
+      width={width}
+      height={height}
+      ellipticalColor={ellipticalColor}
+      borderRadius={borderRadius}
+      textColor={textColor}
+      onPress={onPress}
+      {...props}
+    >
+      <Content textColor={textColor}>{content}</Content>
+    </Elliptical>
   );
 };
 

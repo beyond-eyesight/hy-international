@@ -44,12 +44,7 @@ const SignInSection: React.FC = () => {
   return (
     <Container>
       <Board containerWidth="100%" containerHeight="10%" title="Sign In" />
-      <EmailInput
-        containerWidth="100%"
-        containerHeight="6%"
-        marginTop="5%"
-        marginBottom="3%"
-      />
+      <EmailInput width="100%" height="6%" marginTop="5%" marginBottom="3%" />
       <DefaultTextInput
         containerWidth="100%"
         containerHeight="6%"
@@ -69,8 +64,8 @@ const SignInSection: React.FC = () => {
         </NormalText>
       </NoticeContainer>
       <TextButton
-        containerWidth="100%"
-        containerHeight="6%"
+        width="100%"
+        height="6%"
         content="Sign In"
         ellipticalColor={colors.blue_signiture}
         textColor={colors.white}

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components/native';
 import RNText from 'src/components/text/RNText';
 import Board from 'src/components/board/Board';
-import InfiniteList from 'src/components/list/InfiniteList';
+import ZoneList from 'src/components/list/ZoneList';
 import { ApplicationContext } from 'src/context/context';
 
 export type Props = {
@@ -41,7 +41,7 @@ const ZoneSection: React.FC<Props> = ({ componentId }: Props) => {
           you can join chat room when you are near the location
         </Explanation>
       </ExplanationContainer>
-      <InfiniteList chatRooms={chatRooms} />
+      <ZoneList chatRooms={chatRooms} />
     </Container>
   );
 };
