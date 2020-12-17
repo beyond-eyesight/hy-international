@@ -3,12 +3,12 @@ import { GiftedChat, IMessage } from 'react-native-gifted-chat';
 import { CompatClient, Message } from '@stomp/stompjs';
 import ChatApi from 'src/api/chatApi';
 import { IMessage as StompMessage } from '@stomp/stompjs/esm6/i-message';
-import { ApplicationContext } from 'src/context/context';
 import { IProvider } from 'src/context/providers';
 import Types from 'src/api/types';
 import ChatMessageDto from 'src/dto/chatMessageDto';
 import ChatMessage from 'src/model/chatMessage';
 import ChatRoom from 'src/model/chatRoom';
+import { ApplicationContext } from 'src/context/context';
 
 // todo: remove hard coding
 

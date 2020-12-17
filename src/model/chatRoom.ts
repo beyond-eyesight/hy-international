@@ -4,10 +4,14 @@ import ChatRoomName from 'src/model/chatRoomName';
 export default class ChatRoom {
   private readonly _id: ChatRoomId;
 
-  private readonly name: ChatRoomName;
+  private readonly _name: ChatRoomName;
 
   get id(): ChatRoomId {
     return this._id;
+  }
+
+  get name(): ChatRoomName {
+    return this._name;
   }
 
   static of(id: string, name: string) {
@@ -16,6 +20,6 @@ export default class ChatRoom {
 
   constructor(id: ChatRoomId, name: ChatRoomName) {
     this._id = id;
-    this.name = name;
+    this._name = name;
   }
 }
