@@ -6,20 +6,25 @@ import createStompClient, {
 } from 'src/api/adapter/stompClientFactory';
 import ChatMessageDto from 'src/dto/chatMessageDto';
 import ChatRoomId from 'src/model/chatRoomId';
+import { AxiosInstance } from 'axios';
+import createAxios from 'src/api/adapter/axiosFactory';
 
 @injectable()
 export default class ChatApi {
   // todo: config 파일로 옮기
   private static readonly DESTINATION_PREFIX = '/sub/chat/room/';
 
-  private readonly ws: Client;
+  private readonly httpClient: AxiosInstance;
+
+  private readonly stompClient: Client;
 
   constructor() {
-    this.ws = createStompClient(
+    this.httpClient = createAxios({ baseURL: 'http://localhost:3000/' });
+    this.stompClient = createStompClient(
       'INVALID_URL',
       {
         beforeConnect: async () => {
-          await this.ws.deactivate();
+          await this.stompClient.deactivate();
         }
       },
       WebSocketVersion.STANDARD
@@ -33,7 +38,7 @@ export default class ChatApi {
     this.assertSocketConnected();
     const header = { 'content-type': 'application/json' };
 
-    this.ws.publish({
+    this.stompClient.publish({
       destination: ChatApi.DESTINATION_PREFIX + chatRoomId.toString(),
       headers: header,
       body: chatMessageDto.serialize()
@@ -41,14 +46,14 @@ export default class ChatApi {
   }
 
   public leaveRoom(chatRoomId: ChatRoomId): void {
-    this.ws.unsubscribe(chatRoomId.toString());
+    this.stompClient.unsubscribe(chatRoomId.toString());
   }
 
   public joinRoom(
     chatRoomId: ChatRoomId,
     subscribeCallback: (message: StompMessage) => void
   ): void {
-    this.ws.configure({
+    this.stompClient.configure({
       brokerURL: 'ws://localhost:8080/ws-stomp',
       forceBinaryWSFrames: true,
       appendMissingNULLonIncoming: true,
@@ -57,11 +62,11 @@ export default class ChatApi {
         this.subscribe(chatRoomId, subscribeCallback);
       }
     });
-    this.ws.activate();
+    this.stompClient.activate();
   }
 
   private assertSocketConnected() {
-    if (!this.ws.active) {
+    if (!this.stompClient.active) {
       throw Error('Socket 서버에 연결되지 않은 상태입니다.');
     }
   }
@@ -80,7 +85,7 @@ export default class ChatApi {
       id: roomId,
       ack: 'client'
     };
-    this.ws.subscribe(
+    this.stompClient.subscribe(
       ChatApi.DESTINATION_PREFIX + roomId,
       subscribeCallback,
       header
