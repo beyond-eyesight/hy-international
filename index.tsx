@@ -11,9 +11,6 @@ import SignInScreen from 'src/screens/SignInScreen';
 import ZoneScreen from 'src/screens/ZoneScreen';
 import ChatScreen from 'src/screens/ChatScreen';
 import 'text-encoding';
-import { create } from 'mobx-persist';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { dataStore } from 'src/context/context';
 
 interface IScreenProps {
   id: string;
@@ -52,24 +49,17 @@ Navigation.setDefaultOptions({
   }
 });
 Navigation.events().registerAppLaunchedListener(async () => {
-  hydrateStores().then(async () => {
-    await Navigation.setRoot({
-      root: {
-        stack: {
-          children: [
-            {
-              component: {
-                name: SCREEN_IDS.SignInScreen
-              }
+  await Navigation.setRoot({
+    root: {
+      stack: {
+        children: [
+          {
+            component: {
+              name: SCREEN_IDS.SignInScreen
             }
-          ]
-        }
+          }
+        ]
       }
-    });
+    }
   });
 });
-
-async function hydrateStores() {
-  const hydrate = create({ storage: AsyncStorage });
-  await hydrate('DataStore', dataStore);
-}
