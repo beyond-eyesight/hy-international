@@ -42,7 +42,7 @@ const TextButton: React.FC<Props> = ({
   ellipticalColor,
   textColor,
   borderRadius,
-  onPress,
+  onPress = () => {},
   ...props
 }: Props) => {
   return (

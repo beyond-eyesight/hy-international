@@ -5,6 +5,8 @@ import styled from 'styled-components/native';
 import colors from 'src/styles/color';
 import TextButton from 'src/components/button/TextButton';
 import RNText from 'src/components/text/RNText';
+import { push } from 'src/utils/navigator';
+import { SCREEN_IDS } from 'src/screens/constant';
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -55,10 +57,23 @@ const JoinButton = styled(TextButton).attrs({
 `;
 
 interface Props {
+  componentId: string;
   chatRooms: ChatRoom[];
 }
 
-const ZoneList: React.FC<Props> = ({ chatRooms }: Props) => {
+const join = async (componentId: string, chatRoom: ChatRoom) => {
+  // todo: validation logic(위치값을 보내고, 들어갈 수 있는지 확인하는 로직)
+  console.log('clicked!!');
+  await push({
+    currentComponentId: componentId,
+    nextComponentName: SCREEN_IDS.ChatScreen,
+    params: {
+      chatRoom
+    }
+  });
+};
+
+const ZoneList: React.FC<Props> = ({ componentId, chatRooms }: Props) => {
   const renderItem: ListRenderItem<ChatRoom> = (info) => {
     return (
       <Zone>
@@ -66,7 +81,11 @@ const ZoneList: React.FC<Props> = ({ chatRooms }: Props) => {
           <ZoneName>{info.item.name.toString()}</ZoneName>
           <ZoneExplanation>? people are talking</ZoneExplanation>
         </TextContainer>
-        <JoinButton />
+        <JoinButton
+          onPress={async () => {
+            await join(componentId, info.item);
+          }}
+        />
       </Zone>
     );
   };
@@ -77,6 +96,7 @@ const ZoneList: React.FC<Props> = ({ chatRooms }: Props) => {
         data={chatRooms}
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
+        // todo: refac
         contentContainerStyle={{ height: '10%' }}
         ItemSeparatorComponent={Separator}
       />

@@ -18,12 +18,6 @@ export type Props = {
 
 const TOP_BAR_HEIGHT = 56;
 
-const LeftButton = styled(IconButton)`
-  position: relative;
-  width: 8px;
-  height: 16px;
-`;
-
 // todo: refac bg-bottom-color
 const Container = styled.View`
   flex-direction: row;
