@@ -23,7 +23,6 @@
     "lodash": "^4.17.20",
     "metro-config": "^0.63.0",
     "mobx": "^6.0.4",
-    "mobx-persist": "^0.4.1",
     "mobx-react": "^7.0.5",
     "react": "16.13.1",
     "react-native": "^0.63.4",

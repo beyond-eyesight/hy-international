@@ -2,22 +2,21 @@ import React, { ReactNode, useContext } from 'react';
 import { Container, interfaces } from 'inversify';
 import { observable } from 'mobx';
 import container from 'src/context/container';
-import { persist } from 'mobx-persist';
 import ChatRoom from 'src/model/chatRoom';
 
 class Store {
   @observable container = container;
 
-  @persist @observable chatRooms: ChatRoom[] = [
+  @observable chatRooms: ChatRoom[] = [
     ChatRoom.of('08b97464-9d76-4c62-bc28-632f4dd0b89b', 'Wangsimni'),
     ChatRoom.of('c2c38f51-bbdb-4e49-8074-a11e129b7061', 'Campus'),
     ChatRoom.of('cf09f864-f391-464a-ad9b-bc9086f4aa05', 'Itaewon')
   ];
 }
 
-const beanStore = new Store();
+const store = new Store();
 
-export const ApplicationContext = React.createContext(beanStore);
+export const ApplicationContext = React.createContext(store);
 
 type Props = {
   container: Container;
