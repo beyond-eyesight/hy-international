@@ -10,15 +10,11 @@ import ChatMessage from 'src/model/chatMessage';
 import ChatRoom from 'src/model/chatRoom';
 import { ApplicationContext } from 'src/context/context';
 
-// todo: remove hard coding
-
 interface Props {
   chatRoom: ChatRoom;
 }
 
 // todo: userId 하드코딩 제거!
-
-// todo: refac
 const ChatSection: React.FC<Props> = ({ chatRoom }: Props) => {
   const [messages, setMessages] = useState<IMessage[]>([]);
   const { container } = useContext(ApplicationContext);
@@ -26,7 +22,6 @@ const ChatSection: React.FC<Props> = ({ chatRoom }: Props) => {
     .get<IProvider<ChatApi>>(Types.CHAT)
     .provide();
 
-  // todo: remove hardcoding
   useEffect(() => {
     chatApi.joinRoom(chatRoom.id, (message: StompMessage) => {
       const chatMessageDto: ChatMessageDto = JSON.parse(message.body);
@@ -66,41 +61,6 @@ const ChatSection: React.FC<Props> = ({ chatRoom }: Props) => {
     />
   );
 };
-
-function onConnect(
-  ws: CompatClient,
-  setMessages: (
-    value: ((prevState: IMessage[]) => IMessage[]) | IMessage[]
-  ) => void,
-  destination: string
-) {
-  // todo: 여기에서 파라미터 받는걸로 리팩
-  return () => {
-    subscribe(ws, destination, setMessages);
-  };
-}
-
-function subscribe(
-  ws: CompatClient,
-  destination: string,
-  setMessages: (
-    value: ((prevState: IMessage[]) => IMessage[]) | IMessage[]
-  ) => void
-) {
-  // todo: remove hard coding
-  const header = {
-    id: '1',
-    ack: 'client'
-  };
-  ws.subscribe(
-    destination,
-    (message: Message) => {
-      const chatMessageDto: ChatMessageDto = JSON.parse(message.body);
-      renderMessageOfOthers(chatMessageDto, setMessages);
-    },
-    header
-  );
-}
 
 function renderMessages(
   setMessages: (

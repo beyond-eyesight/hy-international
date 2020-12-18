@@ -56,7 +56,7 @@ const SignInSection: React.FC = () => {
         <Title>Notice!</Title>
         <NormalText>
           Only hanyang e-mail can be used.{' '}
-          <ImportantText>
+          <ImportantText textColor="white">
             Although you already registered in Hanyang Portal, you should sign
             up
           </ImportantText>{' '}

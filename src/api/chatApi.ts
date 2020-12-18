@@ -14,12 +14,17 @@ export default class ChatApi {
   // todo: config 파일로 옮기
   private static readonly DESTINATION_PREFIX = '/sub/chat/room/';
 
+  private static readonly WEB_SOCKET_SERVER_BASE_URL =
+    'ws://localhost:8080/ws-stomp';
+
+  private static readonly HTTP_SERVER_BASE_URL = 'http://localhost:8080/';
+
   private readonly httpClient: AxiosInstance;
 
   private readonly stompClient: Client;
 
   constructor() {
-    this.httpClient = createAxios({ baseURL: 'http://localhost:3000/' });
+    this.httpClient = createAxios({ baseURL: ChatApi.HTTP_SERVER_BASE_URL });
     this.stompClient = createStompClient(
       'INVALID_URL',
       {
@@ -54,7 +59,7 @@ export default class ChatApi {
     subscribeCallback: (message: StompMessage) => void
   ): void {
     this.stompClient.configure({
-      brokerURL: 'ws://localhost:8080/ws-stomp',
+      brokerURL: ChatApi.WEB_SOCKET_SERVER_BASE_URL,
       forceBinaryWSFrames: true,
       appendMissingNULLonIncoming: true,
       beforeConnect: () => {},

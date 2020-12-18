@@ -8,7 +8,7 @@ class Store {
   @observable container = container;
 
   @observable chatRooms: ChatRoom[] = [
-    ChatRoom.of('08b97464-9d76-4c62-bc28-632f4dd0b89b', 'Wangsimni'),
+    ChatRoom.of('110841e3-e6fb-4191-8fd8-5674a5107c33', 'Wangsimni'),
     ChatRoom.of('c2c38f51-bbdb-4e49-8074-a11e129b7061', 'Campus'),
     ChatRoom.of('cf09f864-f391-464a-ad9b-bc9086f4aa05', 'Itaewon')
   ];
