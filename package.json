@@ -18,6 +18,7 @@
     "@types/react-native-vector-icons": "^6.4.6",
     "@types/sockjs-client": "^1.1.1",
     "@types/uuid": "^8.3.0",
+    "axios": "^0.21.0",
     "glob": "^7.1.6",
     "inversify": "^5.0.1",
     "lodash": "^4.17.20",

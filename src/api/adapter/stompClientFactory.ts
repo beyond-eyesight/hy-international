@@ -21,7 +21,6 @@ const createStompClient = (
   return new Client(stompConfig);
 };
 
-// todo: ReactNative에 내장된 WebSocket도 넣어주기
 export enum WebSocketVersion {
   STANDARD = 'STANDARD',
   SOCKJS = 'SOCKJS',
