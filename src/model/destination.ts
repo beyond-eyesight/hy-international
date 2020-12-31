@@ -1,4 +1,4 @@
-import ChatRoomId from 'src/model/chatRoomId';
+import ZoneId from 'src/model/zoneId';
 
 export default class Destination {
   private static CHAT_ROOM_PREFIX = `/sub/chat/room/`;
@@ -9,7 +9,7 @@ export default class Destination {
     this.value = value;
   }
 
-  public static fromChatRoomId(chatRoomId: ChatRoomId): Destination {
+  public static fromChatRoomId(chatRoomId: ZoneId): Destination {
     return new Destination(chatRoomId.toString());
   }
 

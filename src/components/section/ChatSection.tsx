@@ -1,17 +1,16 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { GiftedChat, IMessage } from 'react-native-gifted-chat';
-import { CompatClient, Message } from '@stomp/stompjs';
 import ChatApi from 'src/api/chatApi';
 import { IMessage as StompMessage } from '@stomp/stompjs/esm6/i-message';
-import { IProvider } from 'src/context/providers';
 import Types from 'src/api/types';
 import ChatMessageDto from 'src/dto/chatMessageDto';
 import ChatMessage from 'src/model/chatMessage';
-import ChatRoom from 'src/model/chatRoom';
+import Zone from 'src/model/zone';
 import { ApplicationContext } from 'src/context/context';
+import { IProvider } from 'src/context/providers/chatProvider';
 
 interface Props {
-  chatRoom: ChatRoom;
+  chatRoom: Zone;
 }
 
 // todo: userId 하드코딩 제거!

@@ -3,8 +3,8 @@ import { Text } from 'react-native';
 import { render } from '@testing-library/react-native';
 import { Container, injectable } from 'inversify';
 import 'reflect-metadata';
-import { IProvider } from 'src/context/providers';
 import { ContextProvider, useInjection } from 'src/context/context';
+import { IProvider } from 'src/context/providers/chatProvider';
 
 describe('context', () => {
   describe('#useInjection()', () => {

@@ -1,6 +1,6 @@
 import { FlatList, ListRenderItem, View } from 'react-native';
 import React from 'react';
-import ChatRoom from 'src/model/chatRoom';
+import Zone from 'src/model/zone';
 import styled from 'styled-components/native';
 import colors from 'src/styles/color';
 import TextButton from 'src/components/button/TextButton';
@@ -15,7 +15,7 @@ const Container = styled.SafeAreaView`
   width: 100%;
 `;
 
-const List = styled(FlatList as new () => FlatList<ChatRoom>)``;
+const List = styled(FlatList as new () => FlatList<Zone>)``;
 
 const Separator = styled.View`
   height: 1px;
@@ -23,7 +23,7 @@ const Separator = styled.View`
   background-color: ${colors.gray300};
 `;
 
-const Zone = styled.View`
+const ZoneView = styled.View`
   flex-direction: row;
   height: 100%;
   align-items: center;
@@ -58,12 +58,11 @@ const JoinButton = styled(TextButton).attrs({
 
 interface Props {
   componentId: string;
-  chatRooms: ChatRoom[];
+  chatRooms?: Zone[];
 }
 
-const join = async (componentId: string, chatRoom: ChatRoom) => {
+const join = async (componentId: string, chatRoom: Zone) => {
   // todo: validation logic(위치값을 보내고, 들어갈 수 있는지 확인하는 로직)
-  console.log('clicked!!');
   await push({
     currentComponentId: componentId,
     nextComponentName: SCREEN_IDS.ChatScreen,
@@ -74,9 +73,9 @@ const join = async (componentId: string, chatRoom: ChatRoom) => {
 };
 
 const ZoneList: React.FC<Props> = ({ componentId, chatRooms }: Props) => {
-  const renderItem: ListRenderItem<ChatRoom> = (info) => {
+  const renderItem: ListRenderItem<Zone> = (info) => {
     return (
-      <Zone>
+      <ZoneView>
         <TextContainer>
           <ZoneName>{info.item.name.toString()}</ZoneName>
           <ZoneExplanation>? people are talking</ZoneExplanation>
@@ -86,7 +85,7 @@ const ZoneList: React.FC<Props> = ({ componentId, chatRooms }: Props) => {
             await join(componentId, info.item);
           }}
         />
-      </Zone>
+      </ZoneView>
     );
   };
 

@@ -6,6 +6,8 @@ import Board from 'src/components/board/Board';
 import EmailInput from 'src/components/input/EmailInput';
 import DefaultTextInput from 'src/components/input/DefaultTextInput';
 import TextButton from 'src/components/button/TextButton';
+import { push } from 'src/utils/navigator';
+import { SCREEN_IDS } from 'src/screens/constant';
 
 const Container = styled.View`
   height: 100%;
@@ -40,7 +42,11 @@ const ImportantText = styled(RNText).attrs({
   font-size: 17px;
 `;
 
-const SignInSection: React.FC = () => {
+interface Props {
+  componentId: string;
+}
+
+const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
   return (
     <Container>
       <Board containerWidth="100%" containerHeight="10%" title="Sign In" />
@@ -70,6 +76,12 @@ const SignInSection: React.FC = () => {
         ellipticalColor={colors.blue_signiture}
         textColor={colors.white}
         borderRadius="100px"
+        onPress={async () => {
+          await push({
+            currentComponentId: componentId,
+            nextComponentName: SCREEN_IDS.ZoneScreen
+          });
+        }}
       />
     </Container>
   );

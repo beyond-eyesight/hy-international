@@ -1,6 +1,6 @@
 import { validate as uuidValidate } from 'uuid';
 
-export default class ChatRoomId {
+export default class ZoneId {
   private readonly value: string;
 
   constructor(value: string) {

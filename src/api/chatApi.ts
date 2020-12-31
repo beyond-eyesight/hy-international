@@ -5,7 +5,7 @@ import createStompClient, {
   WebSocketVersion
 } from 'src/api/adapter/stompClientFactory';
 import ChatMessageDto from 'src/dto/chatMessageDto';
-import ChatRoomId from 'src/model/chatRoomId';
+import ZoneId from 'src/model/zoneId';
 import { AxiosInstance } from 'axios';
 import createAxios from 'src/api/adapter/axiosFactory';
 
@@ -36,10 +36,7 @@ export default class ChatApi {
     );
   }
 
-  public sendMessage(
-    chatRoomId: ChatRoomId,
-    chatMessageDto: ChatMessageDto
-  ): void {
+  public sendMessage(chatRoomId: ZoneId, chatMessageDto: ChatMessageDto): void {
     this.assertSocketConnected();
     const header = { 'content-type': 'application/json' };
 
@@ -50,12 +47,12 @@ export default class ChatApi {
     });
   }
 
-  public leaveRoom(chatRoomId: ChatRoomId): void {
+  public leaveRoom(chatRoomId: ZoneId): void {
     this.stompClient.unsubscribe(chatRoomId.toString());
   }
 
   public joinRoom(
-    chatRoomId: ChatRoomId,
+    chatRoomId: ZoneId,
     subscribeCallback: (message: StompMessage) => void
   ): void {
     this.stompClient.configure({
@@ -82,7 +79,7 @@ export default class ChatApi {
 
   // todo: check subscribe할 때 콜백이 리턴 값을 가질 수 있을지...
   private subscribe(
-    chatRoomId: ChatRoomId,
+    chatRoomId: ZoneId,
     subscribeCallback: (message: StompMessage) => void
   ): void {
     const roomId: string = chatRoomId.toString();
