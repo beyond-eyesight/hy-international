@@ -20,7 +20,6 @@
     "@types/uuid": "^8.3.0",
     "axios": "^0.21.0",
     "glob": "^7.1.6",
-    "inversify": "^5.0.1",
     "lodash": "^4.17.20",
     "metro-config": "^0.63.0",
     "mobx": "^6.0.4",
