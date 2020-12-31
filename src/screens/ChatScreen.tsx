@@ -12,14 +12,14 @@ const Container = styled(ContainerWithStatusBar)`
 
 interface Props {
   componentId: string;
-  chatRoom: Zone;
+  zone: Zone;
 }
 
-const ChatScreen: React.FC<Props> = ({ componentId, chatRoom }: Props) => {
+const ChatScreen: React.FC<Props> = ({ componentId, zone }: Props) => {
   return (
     <Container statusBarColor={colors.blue_signiture}>
       <BackTopbar componentId={componentId} />
-      <ChatSection chatRoom={chatRoom} />
+      <ChatSection zone={zone} />
     </Container>
   );
 };

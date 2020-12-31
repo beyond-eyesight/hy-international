@@ -55,7 +55,7 @@ const ZoneSection: React.FC<Props> = ({ componentId }: Props) => {
           you can join chat room when you are near the location
         </Explanation>
       </ExplanationContainer>
-      <ZoneList componentId={componentId} chatRooms={chatRooms} />
+      <ZoneList componentId={componentId} zones={chatRooms} />
     </Container>
   );
 };
