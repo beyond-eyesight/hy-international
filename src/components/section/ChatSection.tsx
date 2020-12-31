@@ -4,7 +4,7 @@ import { IMessage as StompMessage } from '@stomp/stompjs/esm6/i-message';
 import ChatMessageDto from 'src/dto/chatMessageDto';
 import ChatMessage from 'src/model/chatMessage';
 import Zone from 'src/model/zone';
-import ApplicationContext from 'src/context/context';
+import ApplicationContext from 'src/context/applicationContext';
 
 interface Props {
   zone: Zone;

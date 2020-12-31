@@ -3,8 +3,8 @@ import styled from 'styled-components/native';
 import RNText from 'src/components/text/RNText';
 import Board from 'src/components/board/Board';
 import ZoneList from 'src/components/list/ZoneList';
-import ApplicationContext from 'src/context/context';
 import Zone from 'src/model/zone';
+import ApplicationContext from 'src/context/applicationContext';
 
 export type Props = {
   componentId: string;
