@@ -1,13 +1,10 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { GiftedChat, IMessage } from 'react-native-gifted-chat';
-import ChatApi from 'src/api/chatApi';
 import { IMessage as StompMessage } from '@stomp/stompjs/esm6/i-message';
-import Types from 'src/api/types';
 import ChatMessageDto from 'src/dto/chatMessageDto';
 import ChatMessage from 'src/model/chatMessage';
-import { ApplicationContext } from 'src/context/context';
 import Zone from 'src/model/zone';
-import { IProvider } from 'src/context/providers/chatProvider';
+import ApplicationContext from 'src/context/applicationContext';
 
 interface Props {
   zone: Zone;
@@ -16,10 +13,7 @@ interface Props {
 // todo: userId 하드코딩 제거!
 const ChatSection: React.FC<Props> = ({ zone }: Props) => {
   const [messages, setMessages] = useState<IMessage[]>([]);
-  const { container } = useContext(ApplicationContext);
-  const chatApi: ChatApi = container
-    .get<IProvider<ChatApi>>(Types.CHAT)
-    .provide();
+  const { chatApi } = useContext(ApplicationContext);
 
   useEffect(() => {
     chatApi.joinRoom(zone.id, (message: StompMessage) => {
@@ -30,7 +24,7 @@ const ChatSection: React.FC<Props> = ({ zone }: Props) => {
     return () => {
       chatApi.leaveRoom(zone.id);
     };
-  }, [chatApi, zone.id]);
+  }, [chatApi, zone]);
 
   // todo: 트랜잭션으로 묶든가 해야할거같은디
   const onSend = useCallback(

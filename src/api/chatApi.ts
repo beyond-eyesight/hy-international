@@ -1,15 +1,13 @@
-import { injectable } from 'inversify';
 import { Client, IFrame } from '@stomp/stompjs';
 import { IMessage as StompMessage } from '@stomp/stompjs/esm6/i-message';
 import createStompClient, {
   WebSocketVersion
 } from 'src/api/adapter/stompClientFactory';
 import ChatMessageDto from 'src/dto/chatMessageDto';
-import ZoneId from 'src/model/zoneId';
 import { AxiosInstance } from 'axios';
 import createAxios from 'src/api/adapter/axiosFactory';
+import ZoneId from 'src/model/zoneId';
 
-@injectable()
 export default class ChatApi {
   // todo: config 파일로 옮기
   private static readonly DESTINATION_PREFIX = '/sub/chat/room/';
