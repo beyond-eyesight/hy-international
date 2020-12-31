@@ -1,12 +1,12 @@
 import { FlatList, ListRenderItem, View } from 'react-native';
 import React from 'react';
-import Zone from 'src/model/zone';
 import styled from 'styled-components/native';
 import colors from 'src/styles/color';
 import TextButton from 'src/components/button/TextButton';
 import RNText from 'src/components/text/RNText';
 import { push } from 'src/utils/navigator';
 import { SCREEN_IDS } from 'src/screens/constant';
+import Zone from 'src/model/zone';
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -58,21 +58,21 @@ const JoinButton = styled(TextButton).attrs({
 
 interface Props {
   componentId: string;
-  chatRooms?: Zone[];
+  zones?: Zone[];
 }
 
-const join = async (componentId: string, chatRoom: Zone) => {
+const join = async (componentId: string, zone: Zone) => {
   // todo: validation logic(위치값을 보내고, 들어갈 수 있는지 확인하는 로직)
   await push({
     currentComponentId: componentId,
     nextComponentName: SCREEN_IDS.ChatScreen,
     params: {
-      chatRoom
+      zone
     }
   });
 };
 
-const ZoneList: React.FC<Props> = ({ componentId, chatRooms }: Props) => {
+const ZoneList: React.FC<Props> = ({ componentId, zones }: Props) => {
   const renderItem: ListRenderItem<Zone> = (info) => {
     return (
       <ZoneView>
@@ -92,7 +92,7 @@ const ZoneList: React.FC<Props> = ({ componentId, chatRooms }: Props) => {
   return (
     <Container>
       <List
-        data={chatRooms}
+        data={zones}
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
         // todo: refac
