@@ -18,7 +18,7 @@ const SignInScreen: React.FC<Props> = ({ componentId }: Props) => {
   return (
     <Container statusBarColor={colors.blue_signiture}>
       <BackTopbar componentId={componentId} />
-      <SignInSection />
+      <SignInSection componentId={componentId} />
     </Container>
   );
 };

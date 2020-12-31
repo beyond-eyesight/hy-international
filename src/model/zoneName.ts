@@ -1,4 +1,4 @@
-export default class ChatRoomName {
+export default class ZoneName {
   private readonly value: string;
 
   constructor(value: string) {

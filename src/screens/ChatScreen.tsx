@@ -4,7 +4,7 @@ import ContainerWithStatusBar from 'src/components/container/ContainerWithStatus
 import colors from 'src/styles/color';
 import BackTopbar from 'src/components/topbar/BackTopbar';
 import ChatSection from 'src/components/section/ChatSection';
-import ChatRoom from 'src/model/chatRoom';
+import Zone from 'src/model/zone';
 
 const Container = styled(ContainerWithStatusBar)`
   background-color: ${colors.milkWhite};
@@ -12,7 +12,7 @@ const Container = styled(ContainerWithStatusBar)`
 
 interface Props {
   componentId: string;
-  chatRoom: ChatRoom;
+  chatRoom: Zone;
 }
 
 const ChatScreen: React.FC<Props> = ({ componentId, chatRoom }: Props) => {
