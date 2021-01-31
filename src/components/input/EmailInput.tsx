@@ -15,6 +15,7 @@ interface Props {
 const Container = styled.View`
   flex-direction: row;
   justify-content: space-between;
+  z-index: 1;
 `;
 
 const AtSignView = styled.View`
@@ -87,7 +88,7 @@ const EmailInput: React.FC<Props> = ({
           fontSize: 12
         }}
         style={{
-          backgroundColor: '#fafafa',
+          backgroundColor: colors.gray20,
           borderBottomLeftRadius: 0,
           borderTopLeftRadius: 0,
           borderTopRightRadius: radius,
@@ -96,7 +97,7 @@ const EmailInput: React.FC<Props> = ({
         itemStyle={{
           justifyContent: 'flex-start'
         }}
-        dropDownStyle={{ backgroundColor: '#fafafa' }}
+        dropDownStyle={{ backgroundColor: colors.gray20 }}
         onChangeList={(items, callback) => {
           new Promise((resolve, reject) => resolve(setItems(items)))
             .then(() => callback())
