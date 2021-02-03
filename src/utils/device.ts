@@ -1,6 +1,6 @@
 import { Dimensions, Platform, StatusBar } from 'react-native';
 
-export const isNotIOS = Platform.OS !== 'ios';
+export const isIOS = Platform.OS === 'ios';
 export const isNotAndroid = Platform.OS !== 'android';
 
 const dimension = Dimensions.get('window');
@@ -31,12 +31,12 @@ const getIphoneXStatusBarHeight = (isSafe: boolean) => {
 };
 
 const getIosStatusBarHeight = (isSafe: boolean) => {
-  if (isNotIOS) {
-    throw new Error('This is not IOS');
-  }
   if (isIphoneX) {
     return getIphoneXStatusBarHeight(isSafe);
   }
+  if (isIOS && !isIphoneX) {
+    return 20;
+  }
 
-  return 20;
+  return 0;
 };
