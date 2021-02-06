@@ -4,7 +4,7 @@ import IconButton from 'src/components/button/IconButton';
 import Topbar from 'src/components/topbar/Topbar';
 import icons from 'assets/icons/index';
 import { pop, push } from 'src/utils/navigator';
-import { SCREEN_IDS } from 'src/screens/constant';
+import { SCREEN_IDS } from 'src/components/screens/constant';
 
 export type Props = {
   componentId: string;

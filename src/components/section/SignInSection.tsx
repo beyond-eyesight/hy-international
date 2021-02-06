@@ -7,7 +7,7 @@ import EmailInput from 'src/components/input/EmailInput';
 import DefaultTextInput from 'src/components/input/DefaultTextInput';
 import TextButton from 'src/components/button/TextButton';
 import { push } from 'src/utils/navigator';
-import { SCREEN_IDS } from 'src/screens/constant';
+import { SCREEN_IDS } from 'src/components/screens/constant';
 
 const Container = styled.View`
   height: 100%;

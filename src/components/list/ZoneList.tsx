@@ -5,8 +5,8 @@ import colors from 'src/styles/color';
 import TextButton from 'src/components/button/TextButton';
 import RNText from 'src/components/text/RNText';
 import { push } from 'src/utils/navigator';
-import { SCREEN_IDS } from 'src/screens/constant';
 import Zone from 'src/model/zone';
+import { SCREEN_IDS } from 'src/components/screens/constant';
 
 const Container = styled.SafeAreaView`
   flex: 1;
