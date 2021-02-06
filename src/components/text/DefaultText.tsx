@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import RNText from 'src/components/text/RNText';
-import colors from 'src/styles/color';
+import colors from 'src/utils/color';
 
 const Container = styled.View`
   align-items: center;

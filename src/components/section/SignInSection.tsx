@@ -1,12 +1,12 @@
 import styled from 'styled-components/native';
 import React from 'react';
-import colors from 'src/styles/color';
 import RNText from 'src/components/text/RNText';
 import Board from 'src/components/board/Board';
 import EmailInput from 'src/components/input/EmailInput';
 import DefaultTextInput from 'src/components/input/DefaultTextInput';
 import TextButton from 'src/components/button/TextButton';
 import { push } from 'src/utils/navigator';
+import colors from 'src/utils/color';
 import { SCREEN_IDS } from 'src/components/screens/constant';
 
 const Container = styled.View`

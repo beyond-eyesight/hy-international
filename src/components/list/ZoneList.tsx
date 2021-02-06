@@ -1,12 +1,12 @@
 import { FlatList, ListRenderItem, View } from 'react-native';
 import React from 'react';
 import styled from 'styled-components/native';
-import colors from 'src/styles/color';
 import TextButton from 'src/components/button/TextButton';
 import RNText from 'src/components/text/RNText';
 import { push } from 'src/utils/navigator';
 import Zone from 'src/model/zone';
 import { SCREEN_IDS } from 'src/components/screens/constant';
+import colors from 'src/utils/color';
 
 const Container = styled.SafeAreaView`
   flex: 1;
