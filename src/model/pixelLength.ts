@@ -1,12 +1,11 @@
-export default class Percentage {
+export default class PixelLength {
   private readonly _value: number;
 
-  // todo: validation logic and test
   constructor(value: number) {
     this._value = value;
   }
 
   public toString = (): string => {
-    return `${this._value.toString()}%`;
+    return `${this._value.toString()}px`;
   };
 }
