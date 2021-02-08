@@ -258,6 +258,8 @@ PODS:
     - React-RCTText
   - RNCAsyncStorage (1.13.2):
     - React
+  - RNDeviceInfo (8.0.1):
+    - React-Core
   - RNSVG (12.1.0):
     - React
   - RNVectorIcons (7.1.0):
@@ -295,6 +297,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - ReactNativeNavigation (from `../node_modules/react-native-navigation`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
+  - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -360,6 +363,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-navigation"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-async-storage/async-storage"
+  RNDeviceInfo:
+    :path: "../node_modules/react-native-device-info"
   RNSVG:
     :path: "../node_modules/react-native-svg"
   RNVectorIcons:
@@ -397,6 +402,7 @@ SPEC CHECKSUMS:
   ReactCommon: 73d79c7039f473b76db6ff7c6b159c478acbbb3b
   ReactNativeNavigation: a4ca957f6656172b6a7632592c101a5f75a0c9a2
   RNCAsyncStorage: bc2f81cc1df90c267ce9ed30bb2dbc93b945a8ee
+  RNDeviceInfo: 54401b60514387f9120ab8265be5ed9103d842b9
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   RNVectorIcons: bc69e6a278b14842063605de32bec61f0b251a59
   Yoga: 4bd86afe9883422a7c4028c00e34790f560923d6
