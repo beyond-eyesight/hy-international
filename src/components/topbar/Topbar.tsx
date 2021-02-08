@@ -22,19 +22,19 @@ export type Props = {
 const TOP_BAR_HEIGHT = new PercentageLength(0.06);
 
 // todo: refac bg-bottom-color
-const Container = styled.View<{ height: number }>`
+const Container = styled.View<{ height: string }>`
   flex-direction: row;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: ${({ height }) => `${height.toString()}px`};
+  height: ${({ height }) => height};
   border-bottom-width: 1px;
   border-bottom-color: #d4d7dd;
 `;
 
-const Content = styled.View<{ justifyContent: string; height: number }>`
+const Content = styled.View<{ justifyContent: string; height: string }>`
   width: 100%;
-  height: ${({ height }) => `${height.toString()}px`};
+  height: ${({ height }) => height};
   background-color: ${colors.milkWhite};
   flex-direction: row;
   align-items: center;
@@ -62,8 +62,8 @@ const Topbar: React.FC<Props> = ({
   const hasTitle = Boolean(title);
   const height: PixelLength = scaleApi.scale(TOP_BAR_HEIGHT, getHeightOf);
   return (
-    <Container style={containerStyle} height={height.value}>
-      <Content justifyContent={justifyContent} height={height.value}>
+    <Container style={containerStyle} height={height.toString()}>
+      <Content justifyContent={justifyContent} height={height.toString()}>
         {LeftComponent}
         {hasTitle && typeof title === 'string' ? (
           <Title numberOfLines={1}>{title}</Title>
