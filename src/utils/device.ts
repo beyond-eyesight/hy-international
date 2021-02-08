@@ -1,5 +1,4 @@
 import { Dimensions, Platform, ScaledSize, StatusBar } from 'react-native';
-import { makeObservable } from 'mobx';
 
 export const isIOS = Platform.OS === 'ios';
 export const isNotAndroid = Platform.OS !== 'android';
@@ -71,9 +70,10 @@ function calculateModelLengthRatio(
 // todo: 얘를 빈으로 만들기
 export interface StandardDeviceModel {
   getSize(): ScaledSize;
+  getDimensionType(): 'window' | 'screen';
 }
 
-export class IPhone11 implements StandardDeviceModel {
+class IPhone11 implements StandardDeviceModel {
   private readonly _width = 414;
 
   private readonly _height = 896;
@@ -82,6 +82,8 @@ export class IPhone11 implements StandardDeviceModel {
 
   private readonly _fontScale = 1;
 
+  private readonly _dimensionType: 'window' | 'screen' = 'screen';
+
   private size: ScaledSize = {
     width: this._width,
     height: this._height,
@@ -89,16 +91,18 @@ export class IPhone11 implements StandardDeviceModel {
     fontScale: this._fontScale
   };
 
-  constructor() {
-    makeObservable(this);
-  }
-
   getSize(): ScaledSize {
     return this.size;
   }
+
+  getDimensionType(): 'window' | 'screen' {
+    return this._dimensionType;
+  }
 }
 
-type LengthGetter = (scaledSize: ScaledSize) => number;
+export const standardDeviceModel: StandardDeviceModel = new IPhone11();
+
+export type LengthGetter = (scaledSize: ScaledSize) => number;
 
 export function widthGetter(scaledSize: ScaledSize) {
   return scaledSize.width;
