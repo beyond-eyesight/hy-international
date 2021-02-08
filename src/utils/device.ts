@@ -15,10 +15,13 @@ export const getStatusBarHeight = (isSafe: boolean) => {
 };
 
 export const getAndroidStatusBarHeight = (() => {
-  if (isNotAndroid) {
-    return 0;
-  }
-  return StatusBar.currentHeight;
+  // todo: 예제 코드에서는 status 바만큼 패딩을 줬는데, 내가 할때는 0을 줘야 제대로 보임
+  // if (isNotAndroid) {
+  //   return 0;
+  // }
+  // console.log('andoroid statusbar height');
+  // console.log(StatusBar.currentHeight);
+  return 0;
 })();
 
 export const isIphoneX =
