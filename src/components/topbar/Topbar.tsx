@@ -3,7 +3,7 @@ import { ImageProps, StyleProp, ViewStyle } from 'react-native';
 import styled from 'styled-components/native';
 import { Bold18 } from 'src/components/text/Typographies';
 import colors from 'src/utils/color';
-import { calculateRefinedLength, heightGetter } from 'src/utils/device';
+import { heightGetter } from 'src/utils/device';
 import ApplicationContext from 'src/context/applicationContext';
 
 export type Props = {
@@ -17,7 +17,7 @@ export type Props = {
   justifyContent?: string;
 };
 
-const TOP_BAR_HEIGHT = calculateRefinedLength(56, heightGetter);
+const TOP_BAR_HEIGHT = 56;
 
 // todo: refac bg-bottom-color
 const Container = styled.View<{ height: number }>`
@@ -58,7 +58,7 @@ const Topbar: React.FC<Props> = ({
 }: Props) => {
   const { scaleApi } = useContext(ApplicationContext);
   const hasTitle = Boolean(title);
-  const height = scaleApi.calculateRefinedLength(56, heightGetter);
+  const height = scaleApi.calculateRefinedLength(TOP_BAR_HEIGHT, heightGetter);
   return (
     <Container style={containerStyle} height={height}>
       <Content justifyContent={justifyContent} height={height}>
