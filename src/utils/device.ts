@@ -45,7 +45,7 @@ export function calculateRefinedLength(
   length: number,
   lengthGetter: LengthGetter
 ): number {
-  const standardModel: StandardModel = new IPhone11();
+  const standardModel: StandardDeviceModel = new IPhone11();
   const currentModelSize: ScaledSize = getCurrentModelSize();
   const ratio: number = calculateModelLengthRatio(
     currentModelSize,
@@ -68,11 +68,11 @@ function calculateModelLengthRatio(
 }
 
 // todo: 얘를 빈으로 만들기
-interface StandardModel {
+export interface StandardDeviceModel {
   getSize(): ScaledSize;
 }
 
-class IPhone11 implements StandardModel {
+export class IPhone11 implements StandardDeviceModel {
   private fontScale: number = 1;
 
   private height: number = 896;
@@ -93,7 +93,7 @@ class IPhone11 implements StandardModel {
 
 type LengthGetter = (scaledSize: ScaledSize) => number;
 
-function widthGetter(scaledSize: ScaledSize) {
+export function widthGetter(scaledSize: ScaledSize) {
   return scaledSize.width;
 }
 
