@@ -1,4 +1,5 @@
 import { Dimensions, Platform, ScaledSize, StatusBar } from 'react-native';
+import { makeObservable } from 'mobx';
 
 export const isIOS = Platform.OS === 'ios';
 export const isNotAndroid = Platform.OS !== 'android';
@@ -73,21 +74,27 @@ export interface StandardDeviceModel {
 }
 
 export class IPhone11 implements StandardDeviceModel {
-  private fontScale: number = 1;
+  private readonly _width = 414;
 
-  private height: number = 896;
+  private readonly _height = 896;
 
-  private scale: number = 2;
+  private readonly _scale = 2;
 
-  private width: number = 414;
+  private readonly _fontScale = 1;
+
+  private size: ScaledSize = {
+    width: this._width,
+    height: this._height,
+    scale: this._scale,
+    fontScale: this._fontScale
+  };
+
+  constructor() {
+    makeObservable(this);
+  }
 
   getSize(): ScaledSize {
-    return {
-      width: this.width,
-      height: this.height,
-      scale: this.scale,
-      fontScale: this.fontScale
-    };
+    return this.size;
   }
 }
 
