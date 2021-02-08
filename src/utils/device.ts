@@ -41,7 +41,7 @@ const getIosStatusBarHeight = (isSafe: boolean) => {
   return 0;
 };
 
-function calculateRefinedLength(
+export function calculateRefinedLength(
   length: number,
   lengthGetter: LengthGetter
 ): number {
@@ -97,6 +97,6 @@ function widthGetter(scaledSize: ScaledSize) {
   return scaledSize.width;
 }
 
-function heightGetter(scaledSize: ScaledSize) {
+export function heightGetter(scaledSize: ScaledSize) {
   return scaledSize.height;
 }

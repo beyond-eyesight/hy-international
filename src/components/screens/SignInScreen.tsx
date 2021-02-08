@@ -4,8 +4,6 @@ import ContainerWithStatusBar from 'src/components/container/ContainerWithStatus
 import BackTopbar from 'src/components/topbar/BackTopbar';
 import SignInSection from 'src/components/section/SignInSection';
 import colors from 'src/utils/color';
-import { Dimensions, Platform } from 'react-native';
-import { getModel } from 'react-native-device-info';
 
 const Container = styled(ContainerWithStatusBar)`
   background-color: ${colors.milkWhite};
@@ -17,11 +15,6 @@ interface Props {
 }
 
 const SignInScreen: React.FC<Props> = ({ componentId }: Props) => {
-  console.log('kkkk');
-  console.log(Dimensions.get('screen'));
-  console.log(getModel());
-  console.log(Platform);
-
   return (
     <Container statusBarColor={colors.blue_signiture}>
       <BackTopbar componentId={componentId} />

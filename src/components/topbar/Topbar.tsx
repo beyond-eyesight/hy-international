@@ -3,6 +3,7 @@ import { ImageProps, StyleProp, ViewStyle } from 'react-native';
 import styled from 'styled-components/native';
 import { Bold18 } from 'src/components/text/Typographies';
 import colors from 'src/utils/color';
+import { calculateRefinedLength, heightGetter } from 'src/utils/device';
 
 export type Props = {
   style?: StyleProp<ViewStyle>;
@@ -15,7 +16,7 @@ export type Props = {
   justifyContent?: string;
 };
 
-const TOP_BAR_HEIGHT = 56;
+const TOP_BAR_HEIGHT = calculateRefinedLength(56, heightGetter);
 
 // todo: refac bg-bottom-color
 const Container = styled.View`
@@ -68,7 +69,5 @@ function Topbar({
     </Container>
   );
 }
-
-// {hasTitle && !typeof title === 'string' ? title : null}
 
 export default Topbar;
