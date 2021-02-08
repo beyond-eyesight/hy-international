@@ -45,7 +45,7 @@ const Title = styled(Bold18)`
   align-self: center;
 `;
 
-function Topbar({
+const Topbar: React.FC<Props> = ({
   style: containerStyle,
   title,
   iconSource,
@@ -54,7 +54,7 @@ function Topbar({
   RightComponent,
   onBackPress,
   justifyContent = 'space-between'
-}: Props) {
+}: Props) => {
   const hasTitle = Boolean(title);
   return (
     <Container style={containerStyle}>
@@ -68,6 +68,6 @@ function Topbar({
       </Content>
     </Container>
   );
-}
+};
 
 export default Topbar;
