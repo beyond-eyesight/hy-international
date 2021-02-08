@@ -16,7 +16,8 @@ module.exports = {
     'no-restricted-syntax': 0,
     'react/jsx-props-no-spreading': ['warn'],
     'react/require-default-props': 'off',
-    'no-underscore-dangle': 'off'
+    'no-underscore-dangle': 'off',
+    '@typescript-eslint/no-dupe-class-members': 'off'
   },
   settings: {
     'import/resolver': {

@@ -1,30 +1,49 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components/native';
 import IconButton from 'src/components/button/IconButton';
 import Topbar from 'src/components/topbar/Topbar';
 import icons from 'assets/icons/index';
 import { pop, push } from 'src/utils/navigator';
 import { SCREEN_IDS } from 'src/components/screens/constant';
+import PercentageLength from 'src/layout/length/percentageLength';
+import ApplicationContext from 'src/context/applicationContext';
+import PixelLength from 'src/layout/length/pixelLength';
+import { getHeightOf, getWidthOf } from 'src/layout/standardDeviceModel';
 
 export type Props = {
   componentId: string;
   title?: string;
 };
 
-const InfoButton = styled(IconButton)`
-  width: 35px;
-  height: 35px;
+const BUTTON_LENGTH = new PercentageLength(0.085);
+const BACK_BUTTON_WIDTH = new PercentageLength(0.02);
+const BACK_BUTTON_HEIGHT = new PercentageLength(0.018);
+
+const InfoButton = styled(IconButton)<{ length: string }>`
+  width: ${({ length }) => length};
+  height: ${({ length }) => length};
 `;
 
-const BackButton = styled(IconButton)`
-  width: 8px;
-  height: 16px;
+const BackButton = styled(IconButton)<{ width: string; height: string }>`
+  width: ${({ width }) => width};
+  height: ${({ height }) => height};
 `;
 
 const BackTopbar: React.FC<Omit<Props, 'iconSource' | 'iconStyle'>> = ({
   componentId,
   title
 }: Props) => {
+  const { scaleApi } = useContext(ApplicationContext);
+  const length: PixelLength = scaleApi.scale(BUTTON_LENGTH, getWidthOf);
+  const backButtonWidth: PixelLength = scaleApi.scale(
+    BACK_BUTTON_WIDTH,
+    getWidthOf
+  );
+
+  const backButtonHeight: PixelLength = scaleApi.scale(
+    BACK_BUTTON_HEIGHT,
+    getHeightOf
+  );
   return (
     <Topbar
       title={title}
@@ -35,6 +54,8 @@ const BackTopbar: React.FC<Omit<Props, 'iconSource' | 'iconStyle'>> = ({
           onPress={async () => {
             await pop(componentId);
           }}
+          width={backButtonWidth.toString()}
+          height={backButtonHeight.toString()}
         />
       }
       RightComponent={
@@ -47,6 +68,7 @@ const BackTopbar: React.FC<Omit<Props, 'iconSource' | 'iconStyle'>> = ({
               nextComponentName: SCREEN_IDS.ZoneScreen
             });
           }}
+          length={length.toString()}
         />
       }
     />
