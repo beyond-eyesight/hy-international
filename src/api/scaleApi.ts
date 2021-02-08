@@ -1,11 +1,11 @@
+import { Dimensions, ScaledSize } from 'react-native';
 import {
   GetPixcelLengthOf,
   standardDeviceModel,
   StandardDeviceModel
-} from 'src/utils/device';
-import { Dimensions, ScaledSize } from 'react-native';
-import PercentageLength from 'src/model/percentageLength';
-import PixelLength from 'src/model/pixelLength';
+} from 'src/layout/standardDeviceModel';
+import PercentageLength from 'src/layout/length/percentageLength';
+import PixelLength from 'src/layout/length/pixelLength';
 
 export default class ScaleApi {
   private standardDeviceModel: StandardDeviceModel = standardDeviceModel;

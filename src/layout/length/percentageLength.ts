@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-cycle
-import PixelLength from 'src/model/pixelLength';
+import PixelLength from 'src/layout/length/pixelLength';
 
 export default class PercentageLength {
   private readonly _value: number;

@@ -3,10 +3,10 @@ import { ImageProps, StyleProp, ViewStyle } from 'react-native';
 import styled from 'styled-components/native';
 import { Bold18 } from 'src/components/text/Typographies';
 import colors from 'src/utils/color';
-import { getHeightOf } from 'src/utils/device';
 import ApplicationContext from 'src/context/applicationContext';
-import PercentageLength from 'src/model/percentageLength';
-import PixelLength from 'src/model/pixelLength';
+import PercentageLength from 'src/layout/length/percentageLength';
+import { getHeightOf } from 'src/layout/standardDeviceModel';
+import PixelLength from 'src/layout/length/pixelLength';
 
 export type Props = {
   style?: StyleProp<ViewStyle>;
