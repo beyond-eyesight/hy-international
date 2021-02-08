@@ -5,10 +5,10 @@ import Topbar from 'src/components/topbar/Topbar';
 import icons from 'assets/icons/index';
 import { pop, push } from 'src/utils/navigator';
 import { SCREEN_IDS } from 'src/components/screens/constant';
-import PercentageLength from 'src/layout/length/percentageLength';
 import ApplicationContext from 'src/context/applicationContext';
-import PixelLength from 'src/layout/length/pixelLength';
 import { getHeightOf, getWidthOf } from 'src/layout/standardDeviceModel';
+import PixelLength from 'src/layout/length/pixelLength';
+import PercentageLength from 'src/layout/length/percentageLength';
 
 export type Props = {
   componentId: string;
