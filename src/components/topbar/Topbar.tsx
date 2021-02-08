@@ -3,8 +3,10 @@ import { ImageProps, StyleProp, ViewStyle } from 'react-native';
 import styled from 'styled-components/native';
 import { Bold18 } from 'src/components/text/Typographies';
 import colors from 'src/utils/color';
-import { heightGetter } from 'src/utils/device';
+import { getHeightOf } from 'src/utils/device';
 import ApplicationContext from 'src/context/applicationContext';
+import PercentageLength from 'src/model/percentageLength';
+import PixelLength from 'src/model/pixelLength';
 
 export type Props = {
   style?: StyleProp<ViewStyle>;
@@ -17,7 +19,7 @@ export type Props = {
   justifyContent?: string;
 };
 
-const TOP_BAR_HEIGHT = 56;
+const TOP_BAR_HEIGHT = new PercentageLength(0.06);
 
 // todo: refac bg-bottom-color
 const Container = styled.View<{ height: number }>`
@@ -58,10 +60,10 @@ const Topbar: React.FC<Props> = ({
 }: Props) => {
   const { scaleApi } = useContext(ApplicationContext);
   const hasTitle = Boolean(title);
-  const height = scaleApi.calculateRefinedLength(TOP_BAR_HEIGHT, heightGetter);
+  const height: PixelLength = scaleApi.scale(TOP_BAR_HEIGHT, getHeightOf);
   return (
-    <Container style={containerStyle} height={height}>
-      <Content justifyContent={justifyContent} height={height}>
+    <Container style={containerStyle} height={height.value}>
+      <Content justifyContent={justifyContent} height={height.value}>
         {LeftComponent}
         {hasTitle && typeof title === 'string' ? (
           <Title numberOfLines={1}>{title}</Title>

@@ -1,4 +1,6 @@
 import { Dimensions, Platform, ScaledSize, StatusBar } from 'react-native';
+import PercentageLength from 'src/model/percentageLength';
+import PixelLength from 'src/model/pixelLength';
 
 export const isIOS = Platform.OS === 'ios';
 export const isNotAndroid = Platform.OS !== 'android';
@@ -41,36 +43,14 @@ const getIosStatusBarHeight = (isSafe: boolean) => {
   return 0;
 };
 
-export function calculateRefinedLength(
-  length: number,
-  lengthGetter: LengthGetter
-): number {
-  const standardModel: StandardDeviceModel = new IPhone11();
-  const currentModelSize: ScaledSize = getCurrentModelSize();
-  const ratio: number = calculateModelLengthRatio(
-    currentModelSize,
-    standardModel.getSize(),
-    lengthGetter
-  );
-  return length * ratio;
-}
-
-function getCurrentModelSize(): ScaledSize {
-  return Dimensions.get('screen');
-}
-
-function calculateModelLengthRatio(
-  currentModelSize: ScaledSize,
-  standardModelSize: ScaledSize,
-  lengthGetter: LengthGetter
-) {
-  return lengthGetter(currentModelSize) / lengthGetter(standardModelSize);
-}
-
 // todo: 얘를 빈으로 만들기
 export interface StandardDeviceModel {
   getSize(): ScaledSize;
   getDimensionType(): 'window' | 'screen';
+  toPixcelFrom(
+    percentage: PercentageLength,
+    getLengthOf: GetPixcelLengthOf
+  ): PixelLength;
 }
 
 class IPhone11 implements StandardDeviceModel {
@@ -98,16 +78,24 @@ class IPhone11 implements StandardDeviceModel {
   getDimensionType(): 'window' | 'screen' {
     return this._dimensionType;
   }
+
+  toPixcelFrom(
+    percentage: PercentageLength,
+    getLengthOf: GetPixcelLengthOf
+  ): PixelLength {
+    const screenLength: PixelLength = getLengthOf(this.size);
+    return screenLength.calculate(percentage);
+  }
 }
 
 export const standardDeviceModel: StandardDeviceModel = new IPhone11();
 
-export type LengthGetter = (scaledSize: ScaledSize) => number;
+export type GetPixcelLengthOf = (scaledSize: ScaledSize) => PixelLength;
 
-export function widthGetter(scaledSize: ScaledSize) {
-  return scaledSize.width;
+export function getWidthOf(scaledSize: ScaledSize): PixelLength {
+  return new PixelLength(scaledSize.width);
 }
 
-export function heightGetter(scaledSize: ScaledSize) {
-  return scaledSize.height;
+export function getHeightOf(scaledSize: ScaledSize): PixelLength {
+  return new PixelLength(scaledSize.height);
 }
