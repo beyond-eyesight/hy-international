@@ -7,17 +7,17 @@ import { pop, push } from 'src/utils/navigator';
 import { SCREEN_IDS } from 'src/components/screens/constant';
 import ApplicationContext from 'src/context/applicationContext';
 import { getHeightOf, getWidthOf } from 'src/layout/standardDeviceModel';
-import PixelLength from 'src/layout/length/pixelLength';
-import PercentageLength from 'src/layout/length/percentageLength';
+import PercentageSize from 'src/layout/size/percentageSize';
+import PixelSize from 'src/layout/size/pixelSize';
 
 export type Props = {
   componentId: string;
   title?: string;
 };
 
-const BUTTON_LENGTH = new PercentageLength(0.085);
-const BACK_BUTTON_WIDTH = new PercentageLength(0.02);
-const BACK_BUTTON_HEIGHT = new PercentageLength(0.018);
+const BUTTON_LENGTH = new PercentageSize(0.085);
+const BACK_BUTTON_WIDTH = new PercentageSize(0.02);
+const BACK_BUTTON_HEIGHT = new PercentageSize(0.018);
 
 const InfoButton = styled(IconButton)<{ length: string }>`
   width: ${({ length }) => length};
@@ -34,13 +34,13 @@ const BackTopbar: React.FC<Omit<Props, 'iconSource' | 'iconStyle'>> = ({
   title
 }: Props) => {
   const { scaleApi } = useContext(ApplicationContext);
-  const length: PixelLength = scaleApi.scale(BUTTON_LENGTH, getWidthOf);
-  const backButtonWidth: PixelLength = scaleApi.scale(
+  const length: PixelSize = scaleApi.scale(BUTTON_LENGTH, getWidthOf);
+  const backButtonWidth: PixelSize = scaleApi.scale(
     BACK_BUTTON_WIDTH,
     getWidthOf
   );
 
-  const backButtonHeight: PixelLength = scaleApi.scale(
+  const backButtonHeight: PixelSize = scaleApi.scale(
     BACK_BUTTON_HEIGHT,
     getHeightOf
   );

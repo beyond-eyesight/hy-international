@@ -1,14 +1,14 @@
 import { ScaledSize } from 'react-native';
-import PercentageLength from 'src/layout/length/percentageLength';
-import PixelLength from 'src/layout/length/pixelLength';
+import PercentageSize from 'src/layout/size/percentageSize';
+import PixelSize from 'src/layout/size/pixelSize';
 
 export interface StandardDeviceModel {
   getSize(): ScaledSize;
   getDimensionType(): 'window' | 'screen';
   toPixcelFrom(
-    percentage: PercentageLength,
+    percentage: PercentageSize,
     getLengthOf: GetPixcelLengthOf
-  ): PixelLength;
+  ): PixelSize;
 }
 
 class IPhone11 implements StandardDeviceModel {
@@ -38,22 +38,22 @@ class IPhone11 implements StandardDeviceModel {
   }
 
   toPixcelFrom(
-    percentage: PercentageLength,
+    percentage: PercentageSize,
     getLengthOf: GetPixcelLengthOf
-  ): PixelLength {
-    const screenLength: PixelLength = getLengthOf(this.size);
+  ): PixelSize {
+    const screenLength: PixelSize = getLengthOf(this.size);
     return screenLength.calculate(percentage);
   }
 }
 
 export const standardDeviceModel: StandardDeviceModel = new IPhone11();
 
-export type GetPixcelLengthOf = (scaledSize: ScaledSize) => PixelLength;
+export type GetPixcelLengthOf = (scaledSize: ScaledSize) => PixelSize;
 
-export function getWidthOf(scaledSize: ScaledSize): PixelLength {
-  return new PixelLength(scaledSize.width);
+export function getWidthOf(scaledSize: ScaledSize): PixelSize {
+  return new PixelSize(scaledSize.width);
 }
 
-export function getHeightOf(scaledSize: ScaledSize): PixelLength {
-  return new PixelLength(scaledSize.height);
+export function getHeightOf(scaledSize: ScaledSize): PixelSize {
+  return new PixelSize(scaledSize.height);
 }

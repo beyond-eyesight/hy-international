@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-cycle
-import PixelLength from 'src/layout/length/pixelLength';
+import PixelSize from 'src/layout/size/pixelSize';
 
-export default class PercentageLength {
+export default class PercentageSize {
   private readonly _value: number;
 
   // todo: validation logic and test
@@ -10,10 +10,10 @@ export default class PercentageLength {
   }
 
   public static calculate(
-    numerator: PixelLength,
-    denominator: PixelLength
-  ): PercentageLength {
-    return new PercentageLength(numerator.value / denominator.value);
+    numerator: PixelSize,
+    denominator: PixelSize
+  ): PercentageSize {
+    return new PercentageSize(numerator.value / denominator.value);
   }
 
   get value(): number {

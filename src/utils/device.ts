@@ -1,7 +1,6 @@
-import { Dimensions, Platform, StatusBar } from 'react-native';
+import { Dimensions, Platform } from 'react-native';
 
 // todo: 다 layout 폴더로 옮기기
-
 export const isIOS = Platform.OS === 'ios';
 export const isNotAndroid = Platform.OS !== 'android';
 

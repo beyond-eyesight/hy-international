@@ -4,16 +4,16 @@ import {
   standardDeviceModel,
   StandardDeviceModel
 } from 'src/layout/standardDeviceModel';
-import PercentageLength from 'src/layout/length/percentageLength';
-import PixelLength from 'src/layout/length/pixelLength';
+import PercentageSize from 'src/layout/size/percentageSize';
+import PixelSize from 'src/layout/size/pixelSize';
 
 export default class ScaleApi {
   private standardDeviceModel: StandardDeviceModel = standardDeviceModel;
 
   public scale(
-    percentageLength: PercentageLength,
+    percentageLength: PercentageSize,
     getLengthOf: GetPixcelLengthOf
-  ): PixelLength {
+  ): PixelSize {
     const pixelLength = this.standardDeviceModel.toPixcelFrom(
       percentageLength,
       getLengthOf
@@ -23,11 +23,11 @@ export default class ScaleApi {
   }
 
   private refine(
-    pixelLength: PixelLength,
+    pixelLength: PixelSize,
     ratioStandardGetter: GetPixcelLengthOf
-  ): PixelLength {
+  ): PixelSize {
     const currentModelSize: ScaledSize = this.getCurrentModelSize();
-    const ratio: PercentageLength = this.calculateModelLengthRatio(
+    const ratio: PercentageSize = this.calculateModelLengthRatio(
       currentModelSize,
       ratioStandardGetter
     );
@@ -38,9 +38,9 @@ export default class ScaleApi {
   private calculateModelLengthRatio(
     currentModelSize: ScaledSize,
     lengthGetter: GetPixcelLengthOf
-  ): PercentageLength {
+  ): PercentageSize {
     const standardModelSize = this.standardDeviceModel.getSize();
-    return PercentageLength.calculate(
+    return PercentageSize.calculate(
       lengthGetter(currentModelSize),
       lengthGetter(standardModelSize)
     );

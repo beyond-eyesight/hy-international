@@ -4,9 +4,9 @@ import styled from 'styled-components/native';
 import { Bold18 } from 'src/components/text/Typographies';
 import colors from 'src/utils/color';
 import ApplicationContext from 'src/context/applicationContext';
-import PercentageLength from 'src/layout/length/percentageLength';
 import { getHeightOf } from 'src/layout/standardDeviceModel';
-import PixelLength from 'src/layout/length/pixelLength';
+import PercentageSize from 'src/layout/size/percentageSize';
+import PixelSize from 'src/layout/size/pixelSize';
 
 export type Props = {
   style?: StyleProp<ViewStyle>;
@@ -19,7 +19,7 @@ export type Props = {
   justifyContent?: string;
 };
 
-const TOP_BAR_HEIGHT = new PercentageLength(0.06);
+const TOP_BAR_HEIGHT = new PercentageSize(0.06);
 
 // todo: refac bg-bottom-color
 const Container = styled.View<{ height: string }>`
@@ -60,7 +60,7 @@ const Topbar: React.FC<Props> = ({
 }: Props) => {
   const { scaleApi } = useContext(ApplicationContext);
   const hasTitle = Boolean(title);
-  const height: PixelLength = scaleApi.scale(TOP_BAR_HEIGHT, getHeightOf);
+  const height: PixelSize = scaleApi.scale(TOP_BAR_HEIGHT, getHeightOf);
   return (
     <Container style={containerStyle} height={height.toString()}>
       <Content justifyContent={justifyContent} height={height.toString()}>
