@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { ImageProps, StyleProp, ViewStyle } from 'react-native';
 import styled from 'styled-components/native';
-import { Bold18 } from 'src/components/text/Typographies';
 import colors from 'src/utils/color';
 import ApplicationContext from 'src/context/applicationContext';
 import { getHeightOf } from 'src/layout/standardDeviceModel';
 import PercentageSize from 'src/layout/size/percentageSize';
 import PixelSize from 'src/layout/size/pixelSize';
+import RNText from 'src/components/text/RNText';
 
 export type Props = {
   style?: StyleProp<ViewStyle>;
@@ -42,10 +42,11 @@ const Content = styled.View<{ justifyContent: string; height: string }>`
   padding-horizontal: 20px;
 `;
 
-const Title = styled(Bold18)`
-  flex-direction: row;
-  color: ${colors.black};
-  align-self: center;
+const Title = styled(RNText).attrs({
+  fontType: 'BOLD',
+  textColor: colors.black
+})`
+  font-size: 25px;
 `;
 
 const Topbar: React.FC<Props> = ({
