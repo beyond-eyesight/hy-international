@@ -1,4 +1,6 @@
 // todo: refac - weight로 get
+import PixelSize from 'src/layout/size/pixelSize';
+
 type ProximaNova =
   | 'ProximaNova-Bold'
   | 'ProximaNova-Regular'

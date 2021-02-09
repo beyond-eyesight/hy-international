@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-cycle
 import PixelSize from 'src/layout/size/pixelSize';
+import { Dimensions } from 'react-native';
 
 export default class PercentageSize {
   private readonly _value: number;
@@ -23,4 +24,10 @@ export default class PercentageSize {
   public toString = (): string => {
     return `${(this._value * 100).toString()}%`;
   };
+
+  public toPixelSize(): PixelSize {
+    const { height, width } = Dimensions.get('screen');
+    const standardLength = width > height ? width : height;
+    return new PixelSize(Math.round(this.value * standardLength));
+  }
 }
