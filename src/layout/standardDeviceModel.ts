@@ -1,5 +1,7 @@
 import { ScaledSize } from 'react-native';
+// eslint-disable-next-line import/no-cycle
 import PercentageSize from 'src/layout/size/percentageSize';
+// eslint-disable-next-line import/no-cycle
 import PixelSize from 'src/layout/size/pixelSize';
 
 export interface StandardDeviceModel {
@@ -51,9 +53,9 @@ export const standardDeviceModel: StandardDeviceModel = new IPhone11();
 export type GetPixcelLengthOf = (scaledSize: ScaledSize) => PixelSize;
 
 export function getWidthOf(scaledSize: ScaledSize): PixelSize {
-  return new PixelSize(scaledSize.width);
+  return new PixelSize(scaledSize.width, new IPhone11());
 }
 
 export function getHeightOf(scaledSize: ScaledSize): PixelSize {
-  return new PixelSize(scaledSize.height);
+  return new PixelSize(scaledSize.height, new IPhone11());
 }

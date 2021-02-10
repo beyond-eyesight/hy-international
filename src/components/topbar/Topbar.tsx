@@ -49,6 +49,8 @@ const Title = styled(RNText).attrs({
   font-size: 25px;
 `;
 
+// 둘다 사이
+// getPixel, getPercent
 const Topbar: React.FC<Props> = ({
   style: containerStyle,
   title,

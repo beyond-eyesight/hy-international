@@ -21,7 +21,7 @@ interface Props {
 const size = new PercentageSize(0.03);
 
 const SignInScreen: React.FC<Props> = ({ componentId }: Props) => {
-  const pixelSize = size.toPixelSize().toString();
+  const pixelSize = size.toString();
 
   return (
     <Container statusBarColor={colors.blue_signiture}>
