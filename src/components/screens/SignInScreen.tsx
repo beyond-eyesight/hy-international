@@ -18,7 +18,7 @@ const Container = styled(ContainerWithStatusBar)`
 interface Props {
   componentId: string;
 }
-const size = new Percentage(0.03);
+const size = new Percentage(3);
 
 const SignInScreen: React.FC<Props> = ({ componentId }: Props) => {
   const pixelSize = translateFromPercentageToPixel(

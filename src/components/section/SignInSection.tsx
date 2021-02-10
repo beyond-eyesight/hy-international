@@ -8,20 +8,38 @@ import TextButton from 'src/components/button/TextButton';
 import { push } from 'src/utils/navigator';
 import colors from 'src/utils/color';
 import { SCREEN_IDS } from 'src/components/screens/constant';
-import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
+import Percentage from 'src/layout/size/percentage';
+import translateFromPercentageToPixel from 'src/layout/translator/percentageToPixelTranslator';
+import Pixel from 'src/layout/size/pixel';
+import runningDeviceModel from 'src/layout/device/model/deviceModel';
 
 const Container = styled.View`
-  height: 100%;
+  height: ${translateFromPercentageToPixel(
+    new Percentage(100),
+    new Pixel(runningDeviceModel._height)
+  ).toString};
   background: ${colors.white};
   align-items: center;
-  width: 90%;
+  width: ${translateFromPercentageToPixel(
+    new Percentage(90),
+    new Pixel(runningDeviceModel._width)
+  ).toString};
 `;
 
 const NoticeContainer = styled.View`
-  width: 100%;
+  width: ${translateFromPercentageToPixel(
+    new Percentage(100),
+    new Pixel(runningDeviceModel._width)
+  ).toString};
   align-items: center;
-  margin-top: 5%;
-  margin-bottom: 10%;
+  margin-top: ${translateFromPercentageToPixel(
+    new Percentage(5),
+    new Pixel(runningDeviceModel._height)
+  ).toString};
+  margin-bottom: ${translateFromPercentageToPixel(
+    new Percentage(10),
+    new Pixel(runningDeviceModel._height)
+  ).toString};
 `;
 
 const Title = styled(RNText).attrs({
