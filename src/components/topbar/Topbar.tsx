@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import { ImageProps, StyleProp, ViewStyle } from 'react-native';
 import styled from 'styled-components/native';
-import { Bold18 } from 'src/components/text/Typographies';
 import colors from 'src/utils/color';
-import ApplicationContext from 'src/context/applicationContext';
-import PercentageLength from 'src/layout/length/percentageLength';
-import { getHeightOf } from 'src/layout/standardDeviceModel';
-import PixelLength from 'src/layout/length/pixelLength';
+import Percentage from 'src/layout/size/percentage';
+import RNText from 'src/components/text/RNText';
+import { LengthUnit } from 'src/layout/size/lengthUnit';
+import translateFromPercentageToPixel from 'src/layout/translator/percentageToPixelTranslator';
+import runningDeviceModel from 'src/layout/device/model/deviceModel';
+import Pixel from 'src/layout/size/pixel';
 
 export type Props = {
   style?: StyleProp<ViewStyle>;
@@ -19,7 +20,7 @@ export type Props = {
   justifyContent?: string;
 };
 
-const TOP_BAR_HEIGHT = new PercentageLength(0.06);
+const TOP_BAR_HEIGHT = new Percentage(0.06);
 
 // todo: refac bg-bottom-color
 const Container = styled.View<{ height: string }>`
@@ -42,12 +43,15 @@ const Content = styled.View<{ justifyContent: string; height: string }>`
   padding-horizontal: 20px;
 `;
 
-const Title = styled(Bold18)`
-  flex-direction: row;
-  color: ${colors.black};
-  align-self: center;
+const Title = styled(RNText).attrs({
+  fontType: 'BOLD',
+  textColor: colors.black
+})`
+  font-size: 25px;
 `;
 
+// 둘다 사이
+// getPixel, getPercent
 const Topbar: React.FC<Props> = ({
   style: containerStyle,
   title,
@@ -58,9 +62,12 @@ const Topbar: React.FC<Props> = ({
   onBackPress,
   justifyContent = 'space-between'
 }: Props) => {
-  const { scaleApi } = useContext(ApplicationContext);
   const hasTitle = Boolean(title);
-  const height: PixelLength = scaleApi.scale(TOP_BAR_HEIGHT, getHeightOf);
+  // todo: 여기 좀 이상
+  const height: LengthUnit = translateFromPercentageToPixel(
+    TOP_BAR_HEIGHT,
+    new Pixel(runningDeviceModel._height)
+  );
   return (
     <Container style={containerStyle} height={height.toString()}>
       <Content justifyContent={justifyContent} height={height.toString()}>

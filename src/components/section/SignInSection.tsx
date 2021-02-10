@@ -8,6 +8,7 @@ import TextButton from 'src/components/button/TextButton';
 import { push } from 'src/utils/navigator';
 import colors from 'src/utils/color';
 import { SCREEN_IDS } from 'src/components/screens/constant';
+import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 
 const Container = styled.View`
   height: 100%;

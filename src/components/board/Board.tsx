@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import RNText from 'src/components/text/RNText';
+import DefaultText from 'src/components/text/DefaultText';
 import colors from 'src/utils/color';
 
 interface Props {
@@ -14,12 +14,13 @@ const Container = styled.View`
   justify-content: center;
 `;
 
-const Title = styled(RNText).attrs({
-  fontType: 'BOLD',
-  textColor: colors.black
-})`
-  font-size: 40px;
-`;
+const Title = styled(DefaultText).attrs({
+  fontFamily: 'ProximaNova-Bold',
+  fontStyle: 'nomal',
+  fontSize: '40px',
+  lineHeight: '40px',
+  color: colors.black
+})``;
 
 const Board: React.FC<Props> = ({
   containerWidth,

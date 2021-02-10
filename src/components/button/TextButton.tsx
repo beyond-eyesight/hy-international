@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { Bold } from 'src/components/text/Typographies';
+import RNText from 'src/components/text/RNText';
+import colors from 'src/utils/color';
 
 interface Props {
   width: string;
@@ -29,10 +30,11 @@ const Elliptical = styled.TouchableOpacity<{
   justify-content: center;
 `;
 
-const Content = styled(Bold)`
-  flex-direction: row;
-  color: ${({ textColor }) => textColor};
-  font-size: 20px;
+const Content = styled(RNText).attrs({
+  fontType: 'BOLD',
+  textColor: colors.white
+})`
+  font-size: 25px;
 `;
 
 const TextButton: React.FC<Props> = ({
