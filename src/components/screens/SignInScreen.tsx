@@ -5,10 +5,10 @@ import BackTopbar from 'src/components/topbar/BackTopbar';
 import SignInSection from 'src/components/section/SignInSection';
 import colors from 'src/utils/color';
 import DefaultText from 'src/components/text/DefaultText';
-import { RFPercentage } from 'react-native-responsive-fontsize';
-import PixelSize from 'src/layout/size/pixelSize';
-import { Dimensions, Platform, StatusBar } from 'react-native';
-import PercentageSize from 'src/layout/size/percentageSize';
+import Percentage from 'src/layout/size/percentage';
+import translateFromPercentageToPixel from 'src/layout/translator/percentageToPixelTranslator';
+import Pixel from 'src/layout/size/pixel';
+import runningDeviceModel from 'src/layout/device/model/deviceModel';
 
 const Container = styled(ContainerWithStatusBar)`
   background-color: ${colors.milkWhite};
@@ -18,10 +18,13 @@ const Container = styled(ContainerWithStatusBar)`
 interface Props {
   componentId: string;
 }
-const size = new PercentageSize(0.03);
+const size = new Percentage(0.03);
 
 const SignInScreen: React.FC<Props> = ({ componentId }: Props) => {
-  const pixelSize = size.toString();
+  const pixelSize = translateFromPercentageToPixel(
+    size,
+    new Pixel(runningDeviceModel._height)
+  );
 
   return (
     <Container statusBarColor={colors.blue_signiture}>
@@ -29,8 +32,8 @@ const SignInScreen: React.FC<Props> = ({ componentId }: Props) => {
       <DefaultText
         fontFamily="ProximaNova-Regular"
         fontStyle="normal"
-        fontSize={pixelSize}
-        lineHeight={pixelSize}
+        fontSize={pixelSize.toString()}
+        lineHeight={pixelSize.toString()}
         color="black"
       >
         abcdefg
