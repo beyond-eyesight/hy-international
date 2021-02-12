@@ -52,11 +52,11 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
       />
       <NoticeContainer>
         <DefaultText
-          fontFamily="ProximaNova-Regular"
+          fontFamily="ProximaNova-Bold"
           fontStyle="normal"
           fontSize={titleSize.toString()}
           lineHeight={titleSize.toString()}
-          color={colors.white}
+          color={colors.black}
         >
           Notice!
         </DefaultText>
@@ -65,7 +65,7 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
           fontStyle="normal"
           fontSize={bodySize.toString()}
           lineHeight={bodySize.toString()}
-          color={colors.white}
+          color={colors.black}
         >
           Only hanyang e-mail can be used. Although you already registered in
           Hanyang Portal, you should sign up cause this app is another system.

@@ -28,10 +28,10 @@ const BackTopbar: React.FC<Omit<Props, 'iconSource' | 'iconStyle'>> = ({
   componentId,
   title
 }: Props) => {
-  const length: Pixel = getRunningModelWidth().multiply(new Percentage(0.02));
+  const length: Pixel = getRunningModelWidth().multiply(new Percentage(8));
 
   const backButtonHeight: Pixel = getRunningModelWidth().multiply(
-    new Percentage(0.18)
+    new Percentage(4.8)
   );
   return (
     <Topbar
