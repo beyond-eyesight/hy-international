@@ -9,37 +9,24 @@ import { push } from 'src/utils/navigator';
 import colors from 'src/utils/color';
 import { SCREEN_IDS } from 'src/components/screens/constant';
 import Percentage from 'src/layout/size/percentage';
-import translateFromPercentageToPixel from 'src/layout/translator/percentageToPixelTranslator';
-import Pixel from 'src/layout/size/pixel';
-import runningDeviceModel from 'src/layout/device/model/deviceModel';
+import {
+  getRunningModelHeight,
+  getRunningModelWidth
+} from 'src/layout/device/model/deviceModel';
 
 const Container = styled.View`
-  height: ${translateFromPercentageToPixel(
-    new Percentage(100),
-    new Pixel(runningDeviceModel._height)
-  ).toString};
+  height: ${getRunningModelHeight().multiply(new Percentage(100)).toString};
   background: ${colors.white};
   align-items: center;
-  width: ${translateFromPercentageToPixel(
-    new Percentage(90),
-    new Pixel(runningDeviceModel._width)
-  ).toString};
+  width: ${getRunningModelWidth().multiply(new Percentage(90)).toString};
 `;
 
 const NoticeContainer = styled.View`
-  width: ${translateFromPercentageToPixel(
-    new Percentage(100),
-    new Pixel(runningDeviceModel._width)
-  ).toString};
+  width: ${getRunningModelWidth().multiply(new Percentage(90)).toString};
   align-items: center;
-  margin-top: ${translateFromPercentageToPixel(
-    new Percentage(5),
-    new Pixel(runningDeviceModel._height)
-  ).toString};
-  margin-bottom: ${translateFromPercentageToPixel(
-    new Percentage(10),
-    new Pixel(runningDeviceModel._height)
-  ).toString};
+  margin-top: ${getRunningModelHeight().multiply(new Percentage(5)).toString};
+  margin-bottom: ${getRunningModelHeight().multiply(new Percentage(10))
+    .toString};
 `;
 
 const Title = styled(RNText).attrs({

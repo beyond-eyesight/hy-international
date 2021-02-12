@@ -1,7 +1,5 @@
-import { LengthUnit } from 'src/layout/size/lengthUnit';
-
 // 범위 1~100
-export default class Percentage implements LengthUnit {
+export default class Percentage {
   private readonly _value: number;
 
   // todo: validation logic and test

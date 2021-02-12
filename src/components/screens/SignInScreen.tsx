@@ -6,9 +6,8 @@ import SignInSection from 'src/components/section/SignInSection';
 import colors from 'src/utils/color';
 import DefaultText from 'src/components/text/DefaultText';
 import Percentage from 'src/layout/size/percentage';
-import translateFromPercentageToPixel from 'src/layout/translator/percentageToPixelTranslator';
 import Pixel from 'src/layout/size/pixel';
-import runningDeviceModel from 'src/layout/device/model/deviceModel';
+import { getRunningModelHeight } from 'src/layout/device/model/deviceModel';
 
 const Container = styled(ContainerWithStatusBar)`
   background-color: ${colors.milkWhite};
@@ -18,13 +17,9 @@ const Container = styled(ContainerWithStatusBar)`
 interface Props {
   componentId: string;
 }
-const size = new Percentage(3);
 
 const SignInScreen: React.FC<Props> = ({ componentId }: Props) => {
-  const pixelSize = translateFromPercentageToPixel(
-    size,
-    new Pixel(runningDeviceModel._height)
-  );
+  const textSize: Pixel = getRunningModelHeight().multiply(new Percentage(3));
 
   return (
     <Container statusBarColor={colors.blue_signiture}>
@@ -32,8 +27,8 @@ const SignInScreen: React.FC<Props> = ({ componentId }: Props) => {
       <DefaultText
         fontFamily="ProximaNova-Regular"
         fontStyle="normal"
-        fontSize={pixelSize.toString()}
-        lineHeight={pixelSize.toString()}
+        fontSize={textSize.toString()}
+        lineHeight={textSize.toString()}
         color="black"
       >
         abcdefg
