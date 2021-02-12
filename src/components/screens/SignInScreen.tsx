@@ -19,20 +19,10 @@ interface Props {
 }
 
 const SignInScreen: React.FC<Props> = ({ componentId }: Props) => {
-  const textSize: Pixel = getRunningModelHeight().multiply(new Percentage(3));
-
   return (
     <Container statusBarColor={colors.blue_signiture}>
       <BackTopbar componentId={componentId} />
-      <DefaultText
-        fontFamily="ProximaNova-Regular"
-        fontStyle="normal"
-        fontSize={textSize.toString()}
-        lineHeight={textSize.toString()}
-        color="black"
-      >
-        abcdefg
-      </DefaultText>
+
       <SignInSection componentId={componentId} />
     </Container>
   );

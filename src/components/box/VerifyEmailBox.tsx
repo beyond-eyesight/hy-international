@@ -2,8 +2,11 @@ import React from 'react';
 import styled from 'styled-components/native';
 import Dash from 'react-native-dash';
 import TextButton from 'src/components/button/TextButton';
-import RNText from 'src/components/text/RNText';
 import colors from 'src/utils/color';
+import DefaultText from 'src/components/text/DefaultText';
+import Pixel from 'src/layout/size/pixel';
+import { getRunningModelHeight } from 'src/layout/device/model/deviceModel';
+import Percentage from 'src/layout/size/percentage';
 
 const Container = styled.View`
   width: 100%;
@@ -21,12 +24,6 @@ const TitleContainer = styled.View`
   border-bottom-color: ${colors.red200};
   border-bottom-width: 10;
 `;
-const Title = styled(RNText).attrs({
-  fontType: 'BOLD',
-  textColor: colors.black
-})`
-  font-size: 25px;
-`;
 
 const SendEmailButton = styled(TextButton).attrs({
   width: '35%',
@@ -39,10 +36,19 @@ const SendEmailButton = styled(TextButton).attrs({
 })``;
 
 const VerifyEmailBox: React.FC = () => {
+  const textSize: Pixel = getRunningModelHeight().multiply(new Percentage(3));
   return (
     <Container>
       <TitleContainer style={{ borderStyle: 'dashed' }}>
-        <Title>Verify Your Email</Title>
+        <DefaultText
+          fontFamily="ProximaNova-Regular"
+          fontStyle="normal"
+          fontSize={textSize.toString()}
+          lineHeight={textSize.toString()}
+          color="black"
+        >
+          abcdefg
+        </DefaultText>
         <SendEmailButton />
       </TitleContainer>
       <Dash
