@@ -1,10 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components/native';
-import RNText from 'src/components/text/RNText';
 import Board from 'src/components/board/Board';
 import ZoneList from 'src/components/list/ZoneList';
 import Zone from 'src/model/zone';
 import ApplicationContext from 'src/context/applicationContext';
+import colors from 'src/utils/color';
+import DefaultText from 'src/components/text/DefaultText';
+import Pixel from 'src/layout/size/pixel';
+import { getRunningModelHeight } from 'src/layout/device/model/deviceModel';
+import Percentage from 'src/layout/size/percentage';
 
 export type Props = {
   componentId: string;
@@ -22,15 +26,10 @@ const ExplanationContainer = styled.View`
   margin-bottom: 5%;
 `;
 
-const Explanation = styled(RNText).attrs({
-  fontType: 'REGULAR'
-})`
-  font-size: 22px;
-`;
-
 const ZoneSection: React.FC<Props> = ({ componentId }: Props) => {
   const [chatRooms, setChatRooms] = useState<Zone[]>();
   const { zoneApi } = useContext(ApplicationContext);
+  const textSize: Pixel = getRunningModelHeight().multiply(new Percentage(2.5));
 
   useEffect(() => {
     zoneApi.getZones().then((response) => {
@@ -45,9 +44,15 @@ const ZoneSection: React.FC<Props> = ({ componentId }: Props) => {
         title="Enter Chat Zone"
       />
       <ExplanationContainer>
-        <Explanation>
+        <DefaultText
+          fontFamily="ProximaNova-Regular"
+          fontStyle="normal"
+          fontSize={textSize.toString()}
+          lineHeight={textSize.toString()}
+          color={colors.white}
+        >
           you can join chat room when you are near the location
-        </Explanation>
+        </DefaultText>
       </ExplanationContainer>
       <ZoneList componentId={componentId} zones={chatRooms} />
     </Container>

@@ -1,6 +1,5 @@
 import styled from 'styled-components/native';
 import React from 'react';
-import RNText from 'src/components/text/RNText';
 import Board from 'src/components/board/Board';
 import EmailInput from 'src/components/input/EmailInput';
 import DefaultTextInput from 'src/components/input/DefaultTextInput';
@@ -13,6 +12,8 @@ import {
   getRunningModelHeight,
   getRunningModelWidth
 } from 'src/layout/device/model/deviceModel';
+import DefaultText from 'src/components/text/DefaultText';
+import Pixel from 'src/layout/size/pixel';
 
 const Container = styled.View`
   height: ${getRunningModelHeight().multiply(new Percentage(100)).toString};
@@ -29,30 +30,15 @@ const NoticeContainer = styled.View`
     .toString};
 `;
 
-const Title = styled(RNText).attrs({
-  fontType: 'BOLD'
-})`
-  font-size: 22px;
-`;
-
-const NormalText = styled(RNText).attrs({
-  fontType: 'REGULAR'
-})`
-  font-size: 17px;
-`;
-
-const ImportantText = styled(RNText).attrs({
-  fontType: 'BOLD',
-  textColor: colors.red500
-})`
-  font-size: 17px;
-`;
-
 interface Props {
   componentId: string;
 }
 
 const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
+  const titleSize: Pixel = getRunningModelHeight().multiply(
+    new Percentage(2.5)
+  );
+  const bodySize: Pixel = getRunningModelHeight().multiply(new Percentage(1.9));
   return (
     <Container>
       <Board containerWidth="100%" containerHeight="10%" title="Sign In" />
@@ -65,15 +51,25 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
         placeholder=" Password"
       />
       <NoticeContainer>
-        <Title>Notice!</Title>
-        <NormalText>
-          Only hanyang e-mail can be used.{' '}
-          <ImportantText textColor="white">
-            Although you already registered in Hanyang Portal, you should sign
-            up
-          </ImportantText>{' '}
-          cause this app is another system.
-        </NormalText>
+        <DefaultText
+          fontFamily="ProximaNova-Regular"
+          fontStyle="normal"
+          fontSize={titleSize.toString()}
+          lineHeight={titleSize.toString()}
+          color={colors.white}
+        >
+          Notice!
+        </DefaultText>
+        <DefaultText
+          fontFamily="ProximaNova-Regular"
+          fontStyle="normal"
+          fontSize={bodySize.toString()}
+          lineHeight={bodySize.toString()}
+          color={colors.white}
+        >
+          Only hanyang e-mail can be used. Although you already registered in
+          Hanyang Portal, you should sign up cause this app is another system.
+        </DefaultText>
       </NoticeContainer>
       <TextButton
         width="100%"

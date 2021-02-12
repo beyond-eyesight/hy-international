@@ -1,9 +1,12 @@
 import styled from 'styled-components/native';
 import React, { useState } from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
-import RNText from 'src/components/text/RNText';
 import RNTextInput from 'src/components/input/RNTextInput';
 import colors from 'src/utils/color';
+import DefaultText from 'src/components/text/DefaultText';
+import Pixel from 'src/layout/size/pixel';
+import { getRunningModelHeight } from 'src/layout/device/model/deviceModel';
+import Percentage from 'src/layout/size/percentage';
 
 interface Props {
   width: string;
@@ -26,13 +29,6 @@ const AtSignView = styled.View`
   justify-content: center;
 `;
 
-const AtSign = styled(RNText).attrs({
-  fontType: 'BOLD',
-  textColor: colors.white
-})`
-  font-size: 25px;
-`;
-
 const EmailInput: React.FC<Props> = ({
   width,
   height,
@@ -43,7 +39,7 @@ const EmailInput: React.FC<Props> = ({
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([]);
   let controller;
-
+  const textSize: Pixel = getRunningModelHeight().multiply(new Percentage(3));
   return (
     <Container
       style={{
@@ -62,7 +58,15 @@ const EmailInput: React.FC<Props> = ({
         containerHeight="100%"
       />
       <AtSignView>
-        <AtSign>@</AtSign>
+        <DefaultText
+          fontFamily="ProximaNova-Regular"
+          fontStyle="normal"
+          fontSize={textSize.toString()}
+          lineHeight={textSize.toString()}
+          color={colors.white}
+        >
+          @
+        </DefaultText>
       </AtSignView>
       <DropDownPicker
         items={[

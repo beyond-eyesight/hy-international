@@ -3,9 +3,9 @@ import { ImageProps, StyleProp, ViewStyle } from 'react-native';
 import styled from 'styled-components/native';
 import colors from 'src/utils/color';
 import Percentage from 'src/layout/size/percentage';
-import RNText from 'src/components/text/RNText';
 import { getRunningModelHeight } from 'src/layout/device/model/deviceModel';
 import Pixel from 'src/layout/size/pixel';
+import DefaultText from 'src/components/text/DefaultText';
 
 export type Props = {
   style?: StyleProp<ViewStyle>;
@@ -39,13 +39,6 @@ const Content = styled.View<{ justifyContent: string; height: string }>`
   padding-horizontal: 20px;
 `;
 
-const Title = styled(RNText).attrs({
-  fontType: 'BOLD',
-  textColor: colors.black
-})`
-  font-size: 25px;
-`;
-
 // 둘다 사이
 // getPixel, getPercent
 const Topbar: React.FC<Props> = ({
@@ -60,13 +53,22 @@ const Topbar: React.FC<Props> = ({
 }: Props) => {
   const hasTitle = Boolean(title);
   // todo: 여기 좀 이상
-  const height: Pixel = getRunningModelHeight().multiply(new Percentage(0.06));
+  const height: Pixel = getRunningModelHeight().multiply(new Percentage(6));
+  const textSize: Pixel = getRunningModelHeight().multiply(new Percentage(3));
   return (
     <Container style={containerStyle} height={height.toString()}>
       <Content justifyContent={justifyContent} height={height.toString()}>
         {LeftComponent}
         {hasTitle && typeof title === 'string' ? (
-          <Title numberOfLines={1}>{title}</Title>
+          <DefaultText
+            fontFamily="ProximaNova-Regular"
+            fontStyle="normal"
+            fontSize={textSize.toString()}
+            lineHeight={textSize.toString()}
+            color="black"
+          >
+            {title}
+          </DefaultText>
         ) : null}
 
         {RightComponent}

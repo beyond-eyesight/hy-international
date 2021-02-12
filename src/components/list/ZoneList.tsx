@@ -2,11 +2,14 @@ import { FlatList, ListRenderItem, View } from 'react-native';
 import React from 'react';
 import styled from 'styled-components/native';
 import TextButton from 'src/components/button/TextButton';
-import RNText from 'src/components/text/RNText';
 import { push } from 'src/utils/navigator';
 import Zone from 'src/model/zone';
 import { SCREEN_IDS } from 'src/components/screens/constant';
 import colors from 'src/utils/color';
+import DefaultText from 'src/components/text/DefaultText';
+import Pixel from 'src/layout/size/pixel';
+import { getRunningModelHeight } from 'src/layout/device/model/deviceModel';
+import Percentage from 'src/layout/size/percentage';
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -31,18 +34,6 @@ const ZoneView = styled.View`
 
 const TextContainer = styled.View`
   flex: 3;
-`;
-
-const ZoneName = styled(RNText).attrs({
-  fontType: 'BOLD'
-})`
-  font-size: 22px;
-`;
-
-const ZoneExplanation = styled(RNText).attrs({
-  fontType: 'REGULAR'
-})`
-  font-size: 17px;
 `;
 
 const JoinButton = styled(TextButton).attrs({
@@ -73,12 +64,34 @@ const join = async (componentId: string, zone: Zone) => {
 };
 
 const ZoneList: React.FC<Props> = ({ componentId, zones }: Props) => {
+  const zoneNameSize: Pixel = getRunningModelHeight().multiply(
+    new Percentage(2.5)
+  );
+  const zoneExplanationSize: Pixel = getRunningModelHeight().multiply(
+    new Percentage(1.9)
+  );
   const renderItem: ListRenderItem<Zone> = (info) => {
     return (
       <ZoneView>
         <TextContainer>
-          <ZoneName>{info.item.name.toString()}</ZoneName>
-          <ZoneExplanation>? people are talking</ZoneExplanation>
+          <DefaultText
+            fontFamily="ProximaNova-Regular"
+            fontStyle="normal"
+            fontSize={zoneNameSize.toString()}
+            lineHeight={zoneNameSize.toString()}
+            color={colors.white}
+          >
+            {info.item.name.toString()}
+          </DefaultText>
+          <DefaultText
+            fontFamily="ProximaNova-Regular"
+            fontStyle="normal"
+            fontSize={zoneExplanationSize.toString()}
+            lineHeight={zoneExplanationSize.toString()}
+            color={colors.white}
+          >
+            ? people are talking
+          </DefaultText>
         </TextContainer>
         <JoinButton
           onPress={async () => {
