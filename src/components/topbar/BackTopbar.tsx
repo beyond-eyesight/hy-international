@@ -6,19 +6,13 @@ import icons from 'assets/icons/index';
 import { pop, push } from 'src/utils/navigator';
 import { SCREEN_IDS } from 'src/components/screens/constant';
 import Percentage from 'src/layout/size/percentage';
-import { LengthUnit } from 'src/layout/size/lengthUnit';
-import translateFromPercentageToPixel from 'src/layout/translator/percentageToPixelTranslator';
 import Pixel from 'src/layout/size/pixel';
-import runningDeviceModel from 'src/layout/device/model/deviceModel';
+import { getRunningModelWidth } from 'src/layout/device/model/deviceModel';
 
 export type Props = {
   componentId: string;
   title?: string;
 };
-
-const BUTTON_LENGTH = new Percentage(0.085);
-const BACK_BUTTON_WIDTH = new Percentage(0.02);
-const BACK_BUTTON_HEIGHT = new Percentage(0.018);
 
 const InfoButton = styled(IconButton)<{ length: string }>`
   width: ${({ length }) => length};
@@ -34,14 +28,10 @@ const BackTopbar: React.FC<Omit<Props, 'iconSource' | 'iconStyle'>> = ({
   componentId,
   title
 }: Props) => {
-  const length: LengthUnit = translateFromPercentageToPixel(
-    BACK_BUTTON_WIDTH,
-    new Pixel(runningDeviceModel._width)
-  );
+  const length: Pixel = getRunningModelWidth().multiply(new Percentage(0.02));
 
-  const backButtonHeight: LengthUnit = translateFromPercentageToPixel(
-    BACK_BUTTON_HEIGHT,
-    new Pixel(runningDeviceModel._width)
+  const backButtonHeight: Pixel = getRunningModelWidth().multiply(
+    new Percentage(0.18)
   );
   return (
     <Topbar

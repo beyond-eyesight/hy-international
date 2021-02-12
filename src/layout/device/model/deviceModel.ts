@@ -1,4 +1,5 @@
 import { Dimensions, ScaledSize } from 'react-native';
+import Pixel from 'src/layout/size/pixel';
 
 export interface DeviceModel {
   readonly _width: number;
@@ -11,4 +12,10 @@ const runningDeviceModel: DeviceModel = {
   _width: runningScreen.width
 };
 
-export default runningDeviceModel;
+export function getRunningModelHeight() {
+  return new Pixel(runningDeviceModel._height);
+}
+
+export function getRunningModelWidth() {
+  return new Pixel(runningDeviceModel._width);
+}

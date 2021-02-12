@@ -1,7 +1,6 @@
-import Ratio from 'src/layout/device/standardLength/ratio';
-import { LengthUnit } from 'src/layout/size/lengthUnit';
+import Percentage from 'src/layout/size/percentage';
 
-export default class Pixel implements LengthUnit {
+export default class Pixel {
   protected readonly _value: number;
 
   constructor(value: number) {
@@ -12,7 +11,7 @@ export default class Pixel implements LengthUnit {
     return `${this._value.toString()}px`;
   };
 
-  public multiply(ratio: Ratio): Pixel {
-    return new Pixel(this._value * ratio.value);
+  public multiply(percentage: Percentage): Pixel {
+    return new Pixel(this._value * (percentage.value / 100));
   }
 }
