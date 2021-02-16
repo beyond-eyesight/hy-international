@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { Font } from 'src/layout/font';
+import { Font } from 'src/draw/font';
 
 const RawText = styled.Text<Font>`
   font-family: ${({ fontFamily }: Font) => fontFamily};

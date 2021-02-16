@@ -7,9 +7,9 @@ import Zone from 'src/model/zone';
 import { SCREEN_IDS } from 'src/components/screens/constant';
 import colors from 'src/utils/color';
 import RawText from 'src/components/text/RawText';
-import Pixel from 'src/layout/size/pixel';
-import { getRunningModelHeight } from 'src/layout/device/model/deviceModel';
-import Percentage from 'src/layout/size/percentage';
+import Pixel from 'src/draw/size/pixel';
+import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
+import Percentage from 'src/draw/size/percentage';
 
 const Container = styled.SafeAreaView`
   flex: 1;

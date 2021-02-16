@@ -1,4 +1,4 @@
-import Percentage from 'src/layout/size/percentage';
+import Percentage from 'src/draw/size/percentage';
 
 export default class Pixel {
   protected readonly _value: number;

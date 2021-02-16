@@ -1,5 +1,5 @@
 import { Dimensions, ScaledSize } from 'react-native';
-import Pixel from 'src/layout/size/pixel';
+import Pixel from 'src/draw/size/pixel';
 
 export interface DeviceModel {
   readonly _width: number;

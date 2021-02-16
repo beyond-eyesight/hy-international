@@ -5,13 +5,13 @@ import TextButton from 'src/components/button/TextButton';
 import { push } from 'src/utils/navigator';
 import colors from 'src/utils/color';
 import { SCREEN_IDS } from 'src/components/screens/constant';
-import Percentage from 'src/layout/size/percentage';
+import Percentage from 'src/draw/size/percentage';
 import {
   getRunningModelHeight,
   getRunningModelWidth
-} from 'src/layout/device/model/deviceModel';
+} from 'src/draw/device/model/deviceModel';
 import RawText from 'src/components/text/RawText';
-import Pixel from 'src/layout/size/pixel';
+import Pixel from 'src/draw/size/pixel';
 import RNTextInput from 'src/components/input/RNTextInput';
 import DropDownPicker from 'react-native-dropdown-picker';
 import RawTextInput from 'src/components/text/RawTextInput';

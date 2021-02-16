@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-cycle
-import Percentage from 'src/layout/size/percentage';
+import Percentage from 'src/draw/size/percentage';
 
 export default class Ratio {
   private readonly _value: number;

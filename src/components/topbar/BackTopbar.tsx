@@ -5,9 +5,9 @@ import Topbar from 'src/components/topbar/Topbar';
 import icons from 'assets/icons/index';
 import { pop, push } from 'src/utils/navigator';
 import { SCREEN_IDS } from 'src/components/screens/constant';
-import Percentage from 'src/layout/size/percentage';
-import Pixel from 'src/layout/size/pixel';
-import { getRunningModelWidth } from 'src/layout/device/model/deviceModel';
+import Percentage from 'src/draw/size/percentage';
+import Pixel from 'src/draw/size/pixel';
+import { getRunningModelWidth } from 'src/draw/device/model/deviceModel';
 
 export type Props = {
   componentId: string;

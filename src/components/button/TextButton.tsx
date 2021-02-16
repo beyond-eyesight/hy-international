@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components/native';
 import colors from 'src/utils/color';
 import RawText from 'src/components/text/RawText';
-import Pixel from 'src/layout/size/pixel';
-import { getRunningModelHeight } from 'src/layout/device/model/deviceModel';
-import Percentage from 'src/layout/size/percentage';
+import Pixel from 'src/draw/size/pixel';
+import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
+import Percentage from 'src/draw/size/percentage';
 
 interface Props {
   width: string;

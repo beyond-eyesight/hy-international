@@ -1,4 +1,4 @@
-import { DeviceModel } from 'src/layout/device/model/deviceModel';
+import { DeviceModel } from 'src/draw/device/model/deviceModel';
 
 export default class IPhone11 implements DeviceModel {
   readonly _width = 414;
