@@ -1,6 +1,5 @@
 import styled from 'styled-components/native';
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import RNTextInput from 'src/components/input/RNTextInput';
 import colors from 'src/utils/color';
 
@@ -48,12 +47,5 @@ const DefaultTextInput: React.FC<Props> = ({
     </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  BLOCK_SIZE: {
-    height: '23%',
-    width: '85%'
-  }
-});
 
 export default DefaultTextInput;

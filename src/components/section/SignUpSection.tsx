@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import Board from 'src/components/board/Board';
 import VerifyEmailBox from 'src/components/box/VerifyEmailBox';
-import DefaultTextInput from 'src/components/input/DefaultTextInput';
 import TextButton from 'src/components/button/TextButton';
 import colors from 'src/utils/color';
 import Pixel from 'src/layout/size/pixel';
@@ -31,6 +30,11 @@ const AtSignView = styled.View`
   background-color: ${colors.blue_signiture};
   align-items: center;
   justify-content: center;
+`;
+
+const DefaultTextInputContainer = styled.View`
+  align-items: center;
+  text-align: center;
 `;
 
 const SignUpSection: React.FC = () => {
@@ -112,27 +116,60 @@ const SignUpSection: React.FC = () => {
         />
       </EmailContainer>
       <VerifyEmailBox />
-      <DefaultTextInput
-        containerWidth="100%"
-        containerHeight="6%"
-        marginTop="1%"
-        marginBottom="3%"
-        placeholder=" Verification Code"
-      />
-      <DefaultTextInput
-        containerWidth="100%"
-        containerHeight="6%"
-        marginTop="1%"
-        marginBottom="3%"
-        placeholder=" Password"
-      />
-      <DefaultTextInput
-        containerWidth="100%"
-        containerHeight="6%"
-        marginTop="1%"
-        marginBottom="3%"
-        placeholder=" Password Verification"
-      />
+      <DefaultTextInputContainer
+        style={{
+          width: '100%',
+          height: '6%',
+          marginTop: '1%',
+          marginBottom: '3%'
+        }}
+      >
+        <RNTextInput
+          borderTopLeftRadius={10}
+          borderTopRightRadius={10}
+          borderBottomLeftRadius={10}
+          borderBottomRightRadius={10}
+          placeHolder=" Verification Code"
+          placeholderTextColor={colors.gray500}
+          textAlign="auto"
+        />
+      </DefaultTextInputContainer>
+      <DefaultTextInputContainer
+        style={{
+          width: '100%',
+          height: '6%',
+          marginTop: '1%',
+          marginBottom: '3%'
+        }}
+      >
+        <RNTextInput
+          borderTopLeftRadius={10}
+          borderTopRightRadius={10}
+          borderBottomLeftRadius={10}
+          borderBottomRightRadius={10}
+          placeHolder=" Password"
+          placeholderTextColor={colors.gray500}
+          textAlign="auto"
+        />
+      </DefaultTextInputContainer>
+      <DefaultTextInputContainer
+        style={{
+          width: '100%',
+          height: '6%',
+          marginTop: '1%',
+          marginBottom: '3%'
+        }}
+      >
+        <RNTextInput
+          borderTopLeftRadius={10}
+          borderTopRightRadius={10}
+          borderBottomLeftRadius={10}
+          borderBottomRightRadius={10}
+          placeHolder=" Password Verification"
+          placeholderTextColor={colors.gray500}
+          textAlign="auto"
+        />
+      </DefaultTextInputContainer>
       <TextButton
         width="100%"
         height="6%"

@@ -1,7 +1,6 @@
 import styled from 'styled-components/native';
 import React, { useState } from 'react';
 import Board from 'src/components/board/Board';
-import DefaultTextInput from 'src/components/input/DefaultTextInput';
 import TextButton from 'src/components/button/TextButton';
 import { push } from 'src/utils/navigator';
 import colors from 'src/utils/color';
@@ -47,6 +46,11 @@ const EmailContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
   z-index: 1;
+`;
+
+const DefaultTextInputContainer = styled.View`
+  align-items: center;
+  text-align: center;
 `;
 
 const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
@@ -131,13 +135,24 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
           onChangeItem={(item) => setValue(item.value)}
         />
       </EmailContainer>
-      <DefaultTextInput
-        containerWidth="100%"
-        containerHeight="6%"
-        marginTop="1%"
-        marginBottom="3%"
-        placeholder=" Password"
-      />
+      <DefaultTextInputContainer
+        style={{
+          width: '100%',
+          height: '6%',
+          marginTop: '1%',
+          marginBottom: '3%'
+        }}
+      >
+        <RNTextInput
+          borderTopLeftRadius={10}
+          borderTopRightRadius={10}
+          borderBottomLeftRadius={10}
+          borderBottomRightRadius={10}
+          placeHolder=" Password"
+          placeholderTextColor={colors.gray500}
+          textAlign="auto"
+        />
+      </DefaultTextInputContainer>
       <NoticeContainer>
         <DefaultText
           fontFamily="ProximaNova-Bold"
