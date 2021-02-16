@@ -4,7 +4,7 @@ import ContainerWithStatusBar from 'src/components/container/ContainerWithStatus
 import BackTopbar from 'src/components/topbar/BackTopbar';
 import SignInSection from 'src/components/section/SignInSection';
 import colors from 'src/utils/color';
-import DefaultText from 'src/components/text/DefaultText';
+import RawText from 'src/components/text/RawText';
 import Percentage from 'src/layout/size/percentage';
 import Pixel from 'src/layout/size/pixel';
 import { getRunningModelHeight } from 'src/layout/device/model/deviceModel';

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import colors from 'src/utils/color';
-import DefaultText from 'src/components/text/DefaultText';
+import RawText from 'src/components/text/RawText';
 import Pixel from 'src/layout/size/pixel';
 import { getRunningModelHeight } from 'src/layout/device/model/deviceModel';
 import Percentage from 'src/layout/size/percentage';
@@ -54,7 +54,7 @@ const TextButton: React.FC<Props> = ({
       onPress={onPress}
       {...props}
     >
-      <DefaultText
+      <RawText
         fontFamily="ProximaNova-Regular"
         fontStyle="normal"
         fontSize={textSize.toString()}
@@ -62,7 +62,7 @@ const TextButton: React.FC<Props> = ({
         color={colors.white}
       >
         {content}
-      </DefaultText>
+      </RawText>
     </Elliptical>
   );
 };

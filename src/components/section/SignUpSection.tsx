@@ -8,7 +8,7 @@ import Pixel from 'src/layout/size/pixel';
 import { getRunningModelHeight } from 'src/layout/device/model/deviceModel';
 import Percentage from 'src/layout/size/percentage';
 import RNTextInput from 'src/components/input/RNTextInput';
-import DefaultText from 'src/components/text/DefaultText';
+import RawText from 'src/components/text/RawText';
 import DropDownPicker from 'react-native-dropdown-picker';
 
 const Container = styled.View`
@@ -62,7 +62,7 @@ const SignUpSection: React.FC = () => {
           containerHeight="100%"
         />
         <AtSignView>
-          <DefaultText
+          <RawText
             fontFamily="ProximaNova-Regular"
             fontStyle="normal"
             fontSize={textSize.toString()}
@@ -70,7 +70,7 @@ const SignUpSection: React.FC = () => {
             color={colors.white}
           >
             @
-          </DefaultText>
+          </RawText>
         </AtSignView>
         <DropDownPicker
           items={[

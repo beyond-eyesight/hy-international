@@ -10,11 +10,11 @@ import {
   getRunningModelHeight,
   getRunningModelWidth
 } from 'src/layout/device/model/deviceModel';
-import DefaultText from 'src/components/text/DefaultText';
+import RawText from 'src/components/text/RawText';
 import Pixel from 'src/layout/size/pixel';
 import RNTextInput from 'src/components/input/RNTextInput';
 import DropDownPicker from 'react-native-dropdown-picker';
-import DefaultTextInput from 'src/components/text/DefaultTextInput';
+import RawTextInput from 'src/components/text/RawTextInput';
 
 const Container = styled.View`
   height: ${getRunningModelHeight().multiply(new Percentage(100)).toString};
@@ -69,7 +69,7 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
   return (
     <Container>
       <Board containerWidth="100%" containerHeight="10%" title="Sign In" />
-      <DefaultTextInput
+      <RawTextInput
         fontFamily="ProximaNova-Regular"
         fontStyle="normal"
         fontSize={placeholderSize.toString()}
@@ -95,7 +95,7 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
           containerHeight="100%"
         />
         <AtSignView>
-          <DefaultText
+          <RawText
             fontFamily="ProximaNova-Regular"
             fontStyle="normal"
             fontSize={textSize.toString()}
@@ -103,7 +103,7 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
             color={colors.white}
           >
             @
-          </DefaultText>
+          </RawText>
         </AtSignView>
         <DropDownPicker
           items={[
@@ -167,7 +167,7 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
         />
       </DefaultTextInputContainer>
       <NoticeContainer>
-        <DefaultText
+        <RawText
           fontFamily="ProximaNova-Bold"
           fontStyle="normal"
           fontSize={titleSize.toString()}
@@ -175,8 +175,8 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
           color={colors.black}
         >
           Notice!
-        </DefaultText>
-        <DefaultText
+        </RawText>
+        <RawText
           fontFamily="ProximaNova-Regular"
           fontStyle="normal"
           fontSize={bodySize.toString()}
@@ -185,7 +185,7 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
         >
           Only hanyang e-mail can be used. Although you already registered in
           Hanyang Portal, you should sign up cause this app is another system.
-        </DefaultText>
+        </RawText>
       </NoticeContainer>
       <TextButton
         width="100%"

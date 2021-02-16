@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
 import RNTextInput from 'src/components/input/RNTextInput';
 import colors from 'src/utils/color';
-import DefaultText from 'src/components/text/DefaultText';
+import RawText from 'src/components/text/RawText';
 import Pixel from 'src/layout/size/pixel';
 import { getRunningModelHeight } from 'src/layout/device/model/deviceModel';
 import Percentage from 'src/layout/size/percentage';
@@ -58,7 +58,7 @@ const EmailInput: React.FC<Props> = ({
         containerHeight="100%"
       />
       <AtSignView>
-        <DefaultText
+        <RawText
           fontFamily="ProximaNova-Regular"
           fontStyle="normal"
           fontSize={textSize.toString()}
@@ -66,7 +66,7 @@ const EmailInput: React.FC<Props> = ({
           color={colors.white}
         >
           @
-        </DefaultText>
+        </RawText>
       </AtSignView>
       <DropDownPicker
         items={[
