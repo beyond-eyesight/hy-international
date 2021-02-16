@@ -11,7 +11,7 @@ const fontTypeToFont: { [key in FontType]: string } = {
   LIGHT: 'ProximaNovaA-Light'
 };
 
-const Container = styled.TextInput<{ textAlign: string }>`
+const DefaultTextInput = styled.TextInput<{ textAlign: string }>`
   color: ${colors.gray450};
   background: ${colors.gray_1};
   border: solid ${colors.gray_2};
@@ -44,7 +44,7 @@ export default function RNTextInput({
   textAlign = 'auto'
 }: Props) {
   return (
-    <Container
+    <DefaultTextInput
       style={{
         borderTopLeftRadius,
         borderTopRightRadius,

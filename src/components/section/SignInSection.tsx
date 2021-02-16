@@ -14,6 +14,7 @@ import DefaultText from 'src/components/text/DefaultText';
 import Pixel from 'src/layout/size/pixel';
 import RNTextInput from 'src/components/input/RNTextInput';
 import DropDownPicker from 'react-native-dropdown-picker';
+import DefaultTextInput from 'src/components/text/DefaultTextInput';
 
 const Container = styled.View`
   height: ${getRunningModelHeight().multiply(new Percentage(100)).toString};
@@ -54,6 +55,9 @@ const DefaultTextInputContainer = styled.View`
 `;
 
 const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
+  const placeholderSize: Pixel = getRunningModelHeight().multiply(
+    new Percentage(2)
+  );
   const textSize: Pixel = getRunningModelHeight().multiply(new Percentage(3));
   const titleSize: Pixel = getRunningModelHeight().multiply(
     new Percentage(2.5)
@@ -65,6 +69,15 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
   return (
     <Container>
       <Board containerWidth="100%" containerHeight="10%" title="Sign In" />
+      <DefaultTextInput
+        fontFamily="ProximaNova-Regular"
+        fontStyle="normal"
+        fontSize={placeholderSize.toString()}
+        lineHeight={placeholderSize.toString()}
+        color={colors.black}
+        placeholder="placeholder"
+        placeholderTextColor={colors.gray500}
+      />
       <EmailContainer
         style={{
           width: '100%',
