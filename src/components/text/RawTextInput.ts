@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { Font, Placeholder } from 'src/draw/font';
+import { Font, Placeholder } from 'src/draw/text/font';
 
 interface TextInputProps extends Font, Placeholder {}
 
