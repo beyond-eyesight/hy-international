@@ -10,8 +10,3 @@ export interface Font {
   lineHeight: string;
   color: string;
 }
-
-export interface Placeholder {
-  placeholder: string;
-  placeholderTextColor: string;
-}
