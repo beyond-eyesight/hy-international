@@ -3,7 +3,6 @@ import styled from 'styled-components/native';
 import Dash from 'react-native-dash';
 import TextButton from 'src/components/button/TextButton';
 import colors from 'src/utils/color';
-import RawText from 'src/components/text/RawText';
 import Pixel from 'src/draw/size/pixel';
 import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
 import Percentage from 'src/draw/size/percentage';
@@ -40,15 +39,6 @@ const VerifyEmailBox: React.FC = () => {
   return (
     <Container>
       <TitleContainer style={{ borderStyle: 'dashed' }}>
-        <RawText
-          fontFamily="ProximaNova-Regular"
-          fontStyle="normal"
-          fontSize={textSize.toString()}
-          lineHeight={textSize.toString()}
-          color="black"
-        >
-          abcdefg
-        </RawText>
         <SendEmailButton />
       </TitleContainer>
       <Dash
