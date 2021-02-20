@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import RawText from 'src/components/text/RawText';
 import colors from 'src/utils/color';
+import TextBox from 'src/components/box/TextBox';
 
 interface Props {
   containerWidth: string;

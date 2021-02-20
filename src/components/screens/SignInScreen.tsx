@@ -15,21 +15,25 @@ interface Props {
   componentId: string;
 }
 
+const RefacAtSignView = styled(TextBox)`
+  background-color: ${colors.black};
+`;
+
 const SignInScreen: React.FC<Props> = ({ componentId }: Props) => {
   return (
     <Container statusBarColor={colors.blue_signiture}>
       <BackTopbar componentId={componentId} />
-      <TextBox
+      <RefacAtSignView
         font={{
           fontFamily: 'ProximaNova-Regular',
           fontStyle: 'normal',
           lineHeight: '20px',
           fontSize: '20px',
-          color: colors.black
+          color: colors.gray500
         }}
       >
-        dddd
-      </TextBox>
+        ddddffff
+      </RefacAtSignView>
       <SignInSection componentId={componentId} />
     </Container>
   );
