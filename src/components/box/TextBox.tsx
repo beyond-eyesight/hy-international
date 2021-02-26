@@ -1,28 +1,24 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
+import { Text, TextStyle, View, ViewStyle } from 'react-native';
 
-import RawText from 'src/components/text/RawText';
-import { Font } from 'src/draw/text/font';
-import styled from 'styled-components/native';
-
-interface Props {
-  font: Font;
-  children: React.ReactNode;
+export interface TextBoxStyleProps {
+  boxStyle: ViewStyle;
+  textStyle: TextStyle;
 }
 
-const Container = styled.View``;
-const TextBox: React.FC<Props> = ({ font, children }: Props) => {
+interface TextBoxProps extends TextBoxStyleProps {
+  children: ReactNode;
+}
+
+const TextBox: React.FC<TextBoxProps> = ({
+  boxStyle,
+  textStyle,
+  children
+}: TextBoxProps) => {
   return (
-    <Container>
-      <RawText
-        fontFamily={font.fontFamily}
-        fontStyle={font.fontStyle}
-        fontSize={font.fontSize}
-        lineHeight={font.lineHeight}
-        color={font.color}
-      >
-        {children}
-      </RawText>
-    </Container>
+    <View style={boxStyle}>
+      <Text style={textStyle}>{children}</Text>
+    </View>
   );
 };
 

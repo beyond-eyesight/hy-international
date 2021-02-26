@@ -131,7 +131,7 @@ const SignUpSection: React.FC = () => {
           borderBottomRightRadius={10}
           placeHolder=" Verification Code"
           placeholderTextColor={colors.gray500}
-          textAlign="auto"
+          textAlign="center"
         />
       </DefaultTextInputContainer>
       <DefaultTextInputContainer
@@ -149,7 +149,7 @@ const SignUpSection: React.FC = () => {
           borderBottomRightRadius={10}
           placeHolder=" Password"
           placeholderTextColor={colors.gray500}
-          textAlign="auto"
+          textAlign="center"
         />
       </DefaultTextInputContainer>
       <DefaultTextInputContainer
@@ -167,7 +167,7 @@ const SignUpSection: React.FC = () => {
           borderBottomRightRadius={10}
           placeHolder=" Password Verification"
           placeholderTextColor={colors.gray500}
-          textAlign="auto"
+          textAlign="center"
         />
       </DefaultTextInputContainer>
       <TextButton

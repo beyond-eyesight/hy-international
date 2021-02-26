@@ -14,7 +14,7 @@ interface Props {
   marginTop: string;
   marginBottom: string;
   placeholder: string;
-  textAlign?: string;
+  textAlign?: 'center' | 'left' | 'right' | undefined;
 }
 
 const DefaultTextInput: React.FC<Props> = ({
@@ -23,7 +23,7 @@ const DefaultTextInput: React.FC<Props> = ({
   marginTop,
   marginBottom,
   placeholder,
-  textAlign = 'auto'
+  textAlign = 'center'
 }: Props) => {
   const radius = 10;
   return (

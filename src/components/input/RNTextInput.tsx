@@ -29,7 +29,6 @@ interface Props extends TextInputProps {
   placeholderTextColor: string;
   containerWidth?: string;
   containerHeight?: string;
-  textAlign?: string;
 }
 
 export default function RNTextInput({
@@ -40,8 +39,7 @@ export default function RNTextInput({
   placeHolder,
   placeholderTextColor,
   containerWidth = '100%',
-  containerHeight = '100%',
-  textAlign = 'auto'
+  containerHeight = '100%'
 }: Props) {
   return (
     <DefaultTextInput
@@ -55,7 +53,7 @@ export default function RNTextInput({
       }}
       placeholder={placeHolder}
       placeholderTextColor={placeholderTextColor}
-      textAlign={textAlign}
+      textAlign="center"
     />
   );
 }

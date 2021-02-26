@@ -14,7 +14,6 @@ import RawText from 'src/components/text/RawText';
 import Pixel from 'src/draw/size/pixel';
 import RNTextInput from 'src/components/input/RNTextInput';
 import DropDownPicker from 'react-native-dropdown-picker';
-import TextBox from 'src/components/box/TextBox';
 
 const Container = styled.View`
   height: ${getRunningModelHeight().multiply(new Percentage(100)).toString};
@@ -40,13 +39,6 @@ const AtSignView = styled.View`
   width: 10%
   background-color: ${colors.blue_signiture};
   align-items: center;
-  justify-content: center;
-`;
-
-const RefacAtSignView = styled(TextBox)`
-  height: 100%
-  width: 10%
-  background-color: ${colors.blue_signiture};
   justify-content: center;
 `;
 
@@ -92,17 +84,6 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
           containerWidth="50%"
           containerHeight="100%"
         />
-        <RefacAtSignView
-          font={{
-            fontFamily: 'ProximaNova-Regular',
-            fontStyle: 'normal',
-            lineHeight: textSize.toString(),
-            fontSize: textSize.toString(),
-            color: colors.black
-          }}
-        >
-          @
-        </RefacAtSignView>
         <AtSignView>
           <RawText
             fontFamily="ProximaNova-Regular"
@@ -172,7 +153,7 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
           borderBottomRightRadius={10}
           placeHolder=" Password"
           placeholderTextColor={colors.gray500}
-          textAlign="auto"
+          textAlign="center"
         />
       </DefaultTextInputContainer>
       <NoticeContainer>
