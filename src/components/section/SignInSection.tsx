@@ -16,6 +16,7 @@ import RNTextInput from 'src/components/input/RNTextInput';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { StyleSheet } from 'react-native';
 import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
+import TextInputBox from 'src/components/box/TextInputBox';
 
 const Container = styled.View`
   height: ${getRunningModelHeight().multiply(new Percentage(100)).toString};
@@ -69,6 +70,8 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
           marginBottom: '3%'
         }}
       >
+        <TextInputBox />
+
         <RNTextInput
           borderTopLeftRadius={10}
           borderBottomLeftRadius={10}

@@ -9,6 +9,7 @@ import RawText from 'src/components/text/RawText';
 import Pixel from 'src/draw/size/pixel';
 import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
 import Percentage from 'src/draw/size/percentage';
+import TextInputBox from 'src/components/box/TextInputBox';
 
 export type Props = {
   componentId: string;
@@ -38,6 +39,7 @@ const ZoneSection: React.FC<Props> = ({ componentId }: Props) => {
   }, [zoneApi]);
   return (
     <Container>
+      <TextInputBox />
       <Board
         containerWidth="100%"
         containerHeight="6%"

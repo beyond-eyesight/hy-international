@@ -4,6 +4,7 @@ import ContainerWithStatusBar from 'src/components/container/ContainerWithStatus
 import BackTopbar from 'src/components/topbar/BackTopbar';
 import SignInSection from 'src/components/section/SignInSection';
 import colors from 'src/utils/color';
+import { DefaultTheme, Provider } from 'react-native-paper';
 
 const Container = styled(ContainerWithStatusBar)`
   background-color: ${colors.milkWhite};

@@ -2,7 +2,7 @@
  * @format
  */
 
-import React from 'react';
+import React, { Component, ComponentType, ReactNode } from 'react';
 import { Navigation } from 'react-native-navigation';
 import 'reflect-metadata';
 import 'text-encoding';
@@ -11,6 +11,7 @@ import SignUpScreen from 'src/components/screens/SignUpScreen';
 import SignInScreen from 'src/components/screens/SignInScreen';
 import ZoneScreen from 'src/components/screens/ZoneScreen';
 import ChatScreen from 'src/components/screens/ChatScreen';
+import { DefaultTheme, Provider } from 'react-native-paper';
 
 interface IScreenProps {
   id: string;
@@ -38,8 +39,27 @@ const screens: IScreenProps[] = [
 
 screens.forEach((screen) => {
   const { id, Component } = screen;
-  Navigation.registerComponent(id, () => Component);
+  Navigation.registerComponent(
+    id,
+    () => (props) => (
+      <Provider theme={theme}>
+        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+        <Component {...props} />
+      </Provider>
+    ),
+    () => Component
+  );
 });
+
+const theme = {
+  ...DefaultTheme,
+  roundness: 2,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#3498db',
+    accent: '#f1c40f'
+  }
+};
 
 Navigation.setDefaultOptions({
   topBar: {
