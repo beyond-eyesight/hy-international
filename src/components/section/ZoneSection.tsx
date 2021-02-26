@@ -5,10 +5,10 @@ import ZoneList from 'src/components/list/ZoneList';
 import Zone from 'src/model/zone';
 import ApplicationContext from 'src/context/applicationContext';
 import colors from 'src/utils/color';
-import DefaultText from 'src/components/text/DefaultText';
-import Pixel from 'src/layout/size/pixel';
-import { getRunningModelHeight } from 'src/layout/device/model/deviceModel';
-import Percentage from 'src/layout/size/percentage';
+import RawText from 'src/components/text/RawText';
+import Pixel from 'src/draw/size/pixel';
+import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
+import Percentage from 'src/draw/size/percentage';
 
 export type Props = {
   componentId: string;
@@ -44,7 +44,7 @@ const ZoneSection: React.FC<Props> = ({ componentId }: Props) => {
         title="Enter Chat Zone"
       />
       <ExplanationContainer>
-        <DefaultText
+        <RawText
           fontFamily="ProximaNova-Regular"
           fontStyle="normal"
           fontSize={textSize.toString()}
@@ -52,7 +52,7 @@ const ZoneSection: React.FC<Props> = ({ componentId }: Props) => {
           color={colors.white}
         >
           you can join chat room when you are near the location
-        </DefaultText>
+        </RawText>
       </ExplanationContainer>
       <ZoneList componentId={componentId} zones={chatRooms} />
     </Container>

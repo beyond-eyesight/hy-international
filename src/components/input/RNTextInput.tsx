@@ -11,7 +11,7 @@ const fontTypeToFont: { [key in FontType]: string } = {
   LIGHT: 'ProximaNovaA-Light'
 };
 
-const Container = styled.TextInput<{ textAlign: string }>`
+const DefaultTextInput = styled.TextInput<{ textAlign: string }>`
   color: ${colors.gray450};
   background: ${colors.gray_1};
   border: solid ${colors.gray_2};
@@ -29,7 +29,6 @@ interface Props extends TextInputProps {
   placeholderTextColor: string;
   containerWidth?: string;
   containerHeight?: string;
-  textAlign?: string;
 }
 
 export default function RNTextInput({
@@ -40,11 +39,10 @@ export default function RNTextInput({
   placeHolder,
   placeholderTextColor,
   containerWidth = '100%',
-  containerHeight = '100%',
-  textAlign = 'auto'
+  containerHeight = '100%'
 }: Props) {
   return (
-    <Container
+    <DefaultTextInput
       style={{
         borderTopLeftRadius,
         borderTopRightRadius,
@@ -55,7 +53,7 @@ export default function RNTextInput({
       }}
       placeholder={placeHolder}
       placeholderTextColor={placeholderTextColor}
-      textAlign={textAlign}
+      textAlign="center"
     />
   );
 }

@@ -1,6 +1,5 @@
 import styled from 'styled-components/native';
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import RNTextInput from 'src/components/input/RNTextInput';
 import colors from 'src/utils/color';
 
@@ -15,7 +14,7 @@ interface Props {
   marginTop: string;
   marginBottom: string;
   placeholder: string;
-  textAlign?: string;
+  textAlign?: 'center' | 'left' | 'right' | undefined;
 }
 
 const DefaultTextInput: React.FC<Props> = ({
@@ -24,7 +23,7 @@ const DefaultTextInput: React.FC<Props> = ({
   marginTop,
   marginBottom,
   placeholder,
-  textAlign = 'auto'
+  textAlign = 'center'
 }: Props) => {
   const radius = 10;
   return (
@@ -48,12 +47,5 @@ const DefaultTextInput: React.FC<Props> = ({
     </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  BLOCK_SIZE: {
-    height: '23%',
-    width: '85%'
-  }
-});
 
 export default DefaultTextInput;

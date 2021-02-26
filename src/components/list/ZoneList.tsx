@@ -6,10 +6,10 @@ import { push } from 'src/utils/navigator';
 import Zone from 'src/model/zone';
 import { SCREEN_IDS } from 'src/components/screens/constant';
 import colors from 'src/utils/color';
-import DefaultText from 'src/components/text/DefaultText';
-import Pixel from 'src/layout/size/pixel';
-import { getRunningModelHeight } from 'src/layout/device/model/deviceModel';
-import Percentage from 'src/layout/size/percentage';
+import RawText from 'src/components/text/RawText';
+import Pixel from 'src/draw/size/pixel';
+import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
+import Percentage from 'src/draw/size/percentage';
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -74,7 +74,7 @@ const ZoneList: React.FC<Props> = ({ componentId, zones }: Props) => {
     return (
       <ZoneView>
         <TextContainer>
-          <DefaultText
+          <RawText
             fontFamily="ProximaNova-Regular"
             fontStyle="normal"
             fontSize={zoneNameSize.toString()}
@@ -82,8 +82,8 @@ const ZoneList: React.FC<Props> = ({ componentId, zones }: Props) => {
             color={colors.white}
           >
             {info.item.name.toString()}
-          </DefaultText>
-          <DefaultText
+          </RawText>
+          <RawText
             fontFamily="ProximaNova-Regular"
             fontStyle="normal"
             fontSize={zoneExplanationSize.toString()}
@@ -91,7 +91,7 @@ const ZoneList: React.FC<Props> = ({ componentId, zones }: Props) => {
             color={colors.white}
           >
             ? people are talking
-          </DefaultText>
+          </RawText>
         </TextContainer>
         <JoinButton
           onPress={async () => {

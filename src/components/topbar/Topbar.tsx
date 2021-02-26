@@ -2,10 +2,10 @@ import React from 'react';
 import { ImageProps, StyleProp, ViewStyle } from 'react-native';
 import styled from 'styled-components/native';
 import colors from 'src/utils/color';
-import Percentage from 'src/layout/size/percentage';
-import { getRunningModelHeight } from 'src/layout/device/model/deviceModel';
-import Pixel from 'src/layout/size/pixel';
-import DefaultText from 'src/components/text/DefaultText';
+import Percentage from 'src/draw/size/percentage';
+import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
+import Pixel from 'src/draw/size/pixel';
+import RawText from 'src/components/text/RawText';
 
 export type Props = {
   style?: StyleProp<ViewStyle>;
@@ -60,7 +60,7 @@ const Topbar: React.FC<Props> = ({
       <Content justifyContent={justifyContent} height={height.toString()}>
         {LeftComponent}
         {hasTitle && typeof title === 'string' ? (
-          <DefaultText
+          <RawText
             fontFamily="ProximaNova-Regular"
             fontStyle="normal"
             fontSize={textSize.toString()}
@@ -68,7 +68,7 @@ const Topbar: React.FC<Props> = ({
             color="black"
           >
             {title}
-          </DefaultText>
+          </RawText>
         ) : null}
 
         {RightComponent}

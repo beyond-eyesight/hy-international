@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import DefaultText from 'src/components/text/DefaultText';
+import RawText from 'src/components/text/RawText';
 import colors from 'src/utils/color';
 
 interface Props {
@@ -14,7 +14,7 @@ const Container = styled.View`
   justify-content: center;
 `;
 
-const Title = styled(DefaultText).attrs({
+const Title = styled(RawText).attrs({
   fontFamily: 'ProximaNova-Bold',
   fontStyle: 'nomal',
   fontSize: '40px',
