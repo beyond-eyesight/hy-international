@@ -4,11 +4,11 @@ import Board from 'src/components/board/Board';
 import ZoneList from 'src/components/list/ZoneList';
 import Zone from 'src/model/zone';
 import ApplicationContext from 'src/context/applicationContext';
-import colors from 'src/utils/color';
 import RawText from 'src/components/text/RawText';
 import Pixel from 'src/draw/size/pixel';
 import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
 import Percentage from 'src/draw/size/percentage';
+import colors from 'src/draw/color/color';
 import TextInputBox from 'src/components/box/TextInputBox';
 
 export type Props = {

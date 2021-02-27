@@ -1,11 +1,11 @@
 import React from 'react';
 import { ImageProps, StyleProp, ViewStyle } from 'react-native';
 import styled from 'styled-components/native';
-import colors from 'src/utils/color';
 import Percentage from 'src/draw/size/percentage';
 import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
 import Pixel from 'src/draw/size/pixel';
 import RawText from 'src/components/text/RawText';
+import colors from 'src/draw/color/color';
 
 export type Props = {
   style?: StyleProp<ViewStyle>;

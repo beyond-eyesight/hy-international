@@ -4,12 +4,12 @@ import styled from 'styled-components/native';
 import TextButton from 'src/components/button/TextButton';
 import Zone from 'src/model/zone';
 import { SCREEN_IDS } from 'src/components/screens/constant';
-import colors from 'src/utils/color';
 import RawText from 'src/components/text/RawText';
 import Pixel from 'src/draw/size/pixel';
 import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
 import Percentage from 'src/draw/size/percentage';
 import { push } from 'src/navigation/navigation';
+import colors from 'src/draw/color/color';
 
 const Container = styled.SafeAreaView`
   flex: 1;

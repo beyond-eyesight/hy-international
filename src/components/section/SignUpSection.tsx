@@ -3,13 +3,13 @@ import styled from 'styled-components/native';
 import Board from 'src/components/board/Board';
 import VerifyEmailBox from 'src/components/box/VerifyEmailBox';
 import TextButton from 'src/components/button/TextButton';
-import colors from 'src/utils/color';
 import Pixel from 'src/draw/size/pixel';
 import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
 import Percentage from 'src/draw/size/percentage';
 import RNTextInput from 'src/components/input/RNTextInput';
 import RawText from 'src/components/text/RawText';
 import DropDownPicker from 'react-native-dropdown-picker';
+import colors from 'src/draw/color/color';
 
 const Container = styled.View`
   height: 100%;

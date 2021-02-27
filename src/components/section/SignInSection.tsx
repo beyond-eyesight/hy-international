@@ -2,7 +2,6 @@ import styled from 'styled-components/native';
 import React, { useState } from 'react';
 import Board from 'src/components/board/Board';
 import TextButton from 'src/components/button/TextButton';
-import colors from 'src/utils/color';
 import { SCREEN_IDS } from 'src/components/screens/constant';
 import Percentage from 'src/draw/size/percentage';
 import {
@@ -17,6 +16,7 @@ import { StyleSheet } from 'react-native';
 import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
 import { push } from 'src/navigation/navigation';
 import TextInputBox from 'src/components/box/TextInputBox';
+import colors from 'src/draw/color/color';
 
 const Container = styled.View`
   height: ${getRunningModelHeight().multiply(new Percentage(100)).toString};

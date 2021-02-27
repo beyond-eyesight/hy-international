@@ -2,11 +2,11 @@ import styled from 'styled-components/native';
 import React, { useState } from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
 import RNTextInput from 'src/components/input/RNTextInput';
-import colors from 'src/utils/color';
 import RawText from 'src/components/text/RawText';
 import Pixel from 'src/draw/size/pixel';
 import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
 import Percentage from 'src/draw/size/percentage';
+import colors from 'src/draw/color/color';
 
 interface Props {
   width: string;
