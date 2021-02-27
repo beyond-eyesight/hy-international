@@ -2,7 +2,6 @@ import styled from 'styled-components/native';
 import React, { useState } from 'react';
 import Board from 'src/components/board/Board';
 import TextButton from 'src/components/button/TextButton';
-import { push } from 'src/utils/navigator';
 import colors from 'src/utils/color';
 import { SCREEN_IDS } from 'src/components/screens/constant';
 import Percentage from 'src/draw/size/percentage';
@@ -16,6 +15,7 @@ import RNTextInput from 'src/components/input/RNTextInput';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { StyleSheet } from 'react-native';
 import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
+import { push } from 'src/navigation/navigation';
 import TextInputBox from 'src/components/box/TextInputBox';
 
 const Container = styled.View`
