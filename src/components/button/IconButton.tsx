@@ -1,7 +1,7 @@
 import React from 'react';
 import { ImageProps, TouchableOpacityProps } from 'react-native';
 import styled from 'styled-components/native';
-import getHitSlop from 'src/utils/view';
+import _ from 'lodash';
 
 export interface Props extends TouchableOpacityProps {
   image: ImageProps['source'];
@@ -34,3 +34,18 @@ export default function IconButton({
     </Container>
   );
 }
+
+const getHitSlop = (iconSize?: number) => {
+  if (iconSize === undefined) {
+    return undefined;
+  }
+  const divisionValue = 2;
+  const extendSize = _.floor(iconSize / divisionValue);
+
+  return {
+    bottom: extendSize,
+    left: extendSize,
+    right: extendSize,
+    top: extendSize
+  };
+};

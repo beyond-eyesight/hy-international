@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextInput } from 'react-native-paper';
-import colors from 'src/utils/color';
 import { View } from 'react-native';
+import colors from 'src/draw/color/color';
 
 const TextInputBox: React.FC = () => {
   const [text, setText] = React.useState('');

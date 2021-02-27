@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components/native';
 import Dash from 'react-native-dash';
 import TextButton from 'src/components/button/TextButton';
-import colors from 'src/utils/color';
 import Pixel from 'src/draw/size/pixel';
 import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
 import Percentage from 'src/draw/size/percentage';
+import colors from 'src/draw/color/color';
 
 const Container = styled.View`
   width: 100%;

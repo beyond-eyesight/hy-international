@@ -3,11 +3,11 @@ import styled from 'styled-components/native';
 import IconButton from 'src/components/button/IconButton';
 import Topbar from 'src/components/topbar/Topbar';
 import icons from 'assets/icons/index';
-import { pop, push } from 'src/utils/navigator';
 import { SCREEN_IDS } from 'src/components/screens/constant';
 import Percentage from 'src/draw/size/percentage';
 import Pixel from 'src/draw/size/pixel';
 import { getRunningModelWidth } from 'src/draw/device/model/deviceModel';
+import { pop, push } from 'src/navigation/navigation';
 
 export type Props = {
   componentId: string;

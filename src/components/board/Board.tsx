@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import RawText from 'src/components/text/RawText';
-import colors from 'src/utils/color';
+import colors from 'src/draw/color/color';
 
 interface Props {
   containerWidth: string;

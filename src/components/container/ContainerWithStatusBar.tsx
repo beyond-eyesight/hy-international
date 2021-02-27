@@ -1,7 +1,7 @@
 import React from 'react';
 import { RegisteredStyle, ViewStyle } from 'react-native';
 import styled from 'styled-components/native';
-import { getStatusBarHeight } from 'src/utils/device';
+import { getStatusBarHeight } from 'src/draw/device/model/deviceModel';
 
 interface Props {
   children?: React.ReactNode;
@@ -11,7 +11,7 @@ interface Props {
 
 const Container = styled.View`
   flex: 1;
-  padding-top: ${getStatusBarHeight(true)}px;
+  padding-top: ${getStatusBarHeight().toString};
 `;
 
 const OutterContainer = styled.View<{ backgroundColor?: string }>`

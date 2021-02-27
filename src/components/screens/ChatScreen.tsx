@@ -4,7 +4,7 @@ import ContainerWithStatusBar from 'src/components/container/ContainerWithStatus
 import BackTopbar from 'src/components/topbar/BackTopbar';
 import ChatSection from 'src/components/section/ChatSection';
 import Zone from 'src/model/zone';
-import colors from 'src/utils/color';
+import colors from 'src/draw/color/color';
 
 const Container = styled(ContainerWithStatusBar)`
   background-color: ${colors.milkWhite};
