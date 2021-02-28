@@ -6,7 +6,7 @@ import RawText from 'src/components/text/RawText';
 import Pixel from 'src/draw/size/pixel';
 import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
 import Percentage from 'src/draw/size/percentage';
-import colors from 'src/draw/color/color';
+import { blue, grey, white } from 'src/draw/color';
 
 interface Props {
   width: string;
@@ -24,7 +24,7 @@ const Container = styled.View`
 const AtSignView = styled.View`
   height: 100%
   width: 10%
-  background-color: ${colors.blue_signiture};
+  background-color: ${blue.get('600')};
   align-items: center;
   justify-content: center;
 `;
@@ -53,7 +53,7 @@ const EmailInput: React.FC<Props> = ({
         borderTopLeftRadius={radius}
         borderBottomLeftRadius={radius}
         placeHolder=" Email ID"
-        placeholderTextColor={colors.gray500}
+        placeholderTextColor={grey.get('500')}
         containerWidth="50%"
         containerHeight="100%"
       />
@@ -63,7 +63,7 @@ const EmailInput: React.FC<Props> = ({
           fontStyle="normal"
           fontSize={textSize.toString()}
           lineHeight={textSize.toString()}
-          color={colors.white}
+          color={white}
         >
           @
         </RawText>
@@ -92,7 +92,7 @@ const EmailInput: React.FC<Props> = ({
           fontSize: 12
         }}
         style={{
-          backgroundColor: colors.gray20,
+          backgroundColor: grey.get('50'),
           borderBottomLeftRadius: 0,
           borderTopLeftRadius: 0,
           borderTopRightRadius: radius,
@@ -101,7 +101,7 @@ const EmailInput: React.FC<Props> = ({
         itemStyle={{
           justifyContent: 'flex-start'
         }}
-        dropDownStyle={{ backgroundColor: colors.gray20 }}
+        dropDownStyle={{ backgroundColor: grey.get('50') }}
         onChangeList={(items, callback) => {
           new Promise((resolve, reject) => resolve(setItems(items)))
             .then(() => callback())

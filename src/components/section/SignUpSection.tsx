@@ -9,12 +9,12 @@ import Percentage from 'src/draw/size/percentage';
 import RNTextInput from 'src/components/input/RNTextInput';
 import RawText from 'src/components/text/RawText';
 import DropDownPicker from 'react-native-dropdown-picker';
-import colors from 'src/draw/color/color';
+import { blue, grey, white } from 'src/draw/color';
 
 const Container = styled.View`
   height: 100%;
   width: 90%;
-  background: ${colors.white};
+  background: ${white};
   align-items: center;
 `;
 
@@ -27,7 +27,7 @@ const EmailContainer = styled.View`
 const AtSignView = styled.View`
   height: 100%
   width: 10%
-  background-color: ${colors.blue_signiture};
+  background-color: ${blue.get('600')};
   align-items: center;
   justify-content: center;
 `;
@@ -57,7 +57,7 @@ const SignUpSection: React.FC = () => {
           borderTopLeftRadius={10}
           borderBottomLeftRadius={10}
           placeHolder=" Email ID"
-          placeholderTextColor={colors.gray500}
+          placeholderTextColor={grey.get('500')}
           containerWidth="50%"
           containerHeight="100%"
         />
@@ -67,7 +67,7 @@ const SignUpSection: React.FC = () => {
             fontStyle="normal"
             fontSize={textSize.toString()}
             lineHeight={textSize.toString()}
-            color={colors.white}
+            color={grey.get('100')}
           >
             @
           </RawText>
@@ -96,7 +96,7 @@ const SignUpSection: React.FC = () => {
             fontSize: 12
           }}
           style={{
-            backgroundColor: colors.gray20,
+            backgroundColor: grey.get('50'),
             borderBottomLeftRadius: 0,
             borderTopLeftRadius: 0,
             borderTopRightRadius: 10,
@@ -105,7 +105,7 @@ const SignUpSection: React.FC = () => {
           itemStyle={{
             justifyContent: 'flex-start'
           }}
-          dropDownStyle={{ backgroundColor: colors.gray20 }}
+          dropDownStyle={{ backgroundColor: grey.get('50') }}
           onChangeList={(items, callback) => {
             new Promise((resolve, reject) => resolve(setItems(items)))
               .then(() => callback())
@@ -130,7 +130,7 @@ const SignUpSection: React.FC = () => {
           borderBottomLeftRadius={10}
           borderBottomRightRadius={10}
           placeHolder=" Verification Code"
-          placeholderTextColor={colors.gray500}
+          placeholderTextColor={grey.get('500')}
           textAlign="center"
         />
       </DefaultTextInputContainer>
@@ -148,7 +148,7 @@ const SignUpSection: React.FC = () => {
           borderBottomLeftRadius={10}
           borderBottomRightRadius={10}
           placeHolder=" Password"
-          placeholderTextColor={colors.gray500}
+          placeholderTextColor={grey.get('500')}
           textAlign="center"
         />
       </DefaultTextInputContainer>
@@ -166,7 +166,7 @@ const SignUpSection: React.FC = () => {
           borderBottomLeftRadius={10}
           borderBottomRightRadius={10}
           placeHolder=" Password Verification"
-          placeholderTextColor={colors.gray500}
+          placeholderTextColor={grey.get('500')}
           textAlign="center"
         />
       </DefaultTextInputContainer>
@@ -174,8 +174,8 @@ const SignUpSection: React.FC = () => {
         width="100%"
         height="6%"
         content="Sign Up"
-        ellipticalColor={colors.blue_signiture}
-        textColor={colors.white}
+        ellipticalColor={blue.get('600')}
+        textColor={white}
         borderRadius="100px"
       />
     </Container>

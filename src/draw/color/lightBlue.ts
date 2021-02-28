@@ -1,4 +1,4 @@
-const lightBlue = new Map<string, string>([
+const LightBlue = new Map<string, string>([
   ['50', '#E1F5FE'],
   ['100', '#B3E5FC'],
   ['200', '#81D4FA'],
@@ -15,4 +15,4 @@ const lightBlue = new Map<string, string>([
   ['A700', '#0091EA']
 ]);
 
-export default lightBlue;
+export default LightBlue;

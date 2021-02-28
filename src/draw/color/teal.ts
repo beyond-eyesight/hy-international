@@ -1,4 +1,4 @@
-const teal = new Map<string, string>([
+const Teal = new Map<string, string>([
   ['50', '#E0F2F1'],
   ['100', '#B2DFDB'],
   ['200', '#80CBC4'],
@@ -15,4 +15,4 @@ const teal = new Map<string, string>([
   ['A700', '#00BFA5']
 ]);
 
-export default teal;
+export default Teal;

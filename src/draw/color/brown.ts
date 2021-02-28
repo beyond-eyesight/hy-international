@@ -1,4 +1,4 @@
-const brown = new Map<string, string>([
+const Brown = new Map<string, string>([
   ['50', '#EFEBE9'],
   ['100', '#D7CCC8'],
   ['200', '#BCAAA4'],
@@ -11,4 +11,4 @@ const brown = new Map<string, string>([
   ['900', '#3E2723']
 ]);
 
-export default brown;
+export default Brown;

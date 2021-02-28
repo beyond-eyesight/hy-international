@@ -5,7 +5,7 @@ import TextButton from 'src/components/button/TextButton';
 import Pixel from 'src/draw/size/pixel';
 import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
 import Percentage from 'src/draw/size/percentage';
-import colors from 'src/draw/color/color';
+import { blue, red, white } from 'src/draw/color';
 
 const Container = styled.View`
   width: 100%;
@@ -20,7 +20,7 @@ const TitleContainer = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  border-bottom-color: ${colors.red200};
+  border-bottom-color: ${red.get('200')};
   border-bottom-width: 10;
 `;
 
@@ -29,8 +29,8 @@ const SendEmailButton = styled(TextButton).attrs({
   // todo: 픽셀로 바꾸
   height: '90%',
   content: 'Send',
-  ellipticalColor: colors.blue_signiture,
-  textColor: colors.white,
+  ellipticalColor: blue.get('600'),
+  textColor: white,
   borderRadius: '100px'
 })``;
 

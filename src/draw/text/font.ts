@@ -8,5 +8,5 @@ export interface Font {
   fontStyle: string;
   fontSize: string;
   lineHeight: string;
-  color: string;
+  color: string | undefined;
 }

@@ -1,4 +1,4 @@
-const purple = new Map<string, string>([
+const Purple = new Map<string, string>([
   ['50', '#F3E5F5'],
   ['100', '#E1BEE7'],
   ['200', '#CE93D8'],
@@ -15,4 +15,4 @@ const purple = new Map<string, string>([
   ['A700', '#AA00FF']
 ]);
 
-export default purple;
+export default Purple;

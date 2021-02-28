@@ -1,4 +1,4 @@
-const indigo = new Map<string, string>([
+const Indigo = new Map<string, string>([
   ['50', '#E8EAF6'],
   ['100', '#C5CAE9'],
   ['200', '#9FA8DA'],
@@ -15,4 +15,4 @@ const indigo = new Map<string, string>([
   ['A700', '#304FFE']
 ]);
 
-export default indigo;
+export default Indigo;

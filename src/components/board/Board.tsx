@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import RawText from 'src/components/text/RawText';
-import colors from 'src/draw/color/color';
+import { black } from 'src/draw/color';
 
 interface Props {
   containerWidth: string;
@@ -19,7 +19,7 @@ const Title = styled(RawText).attrs({
   fontStyle: 'nomal',
   fontSize: '40px',
   lineHeight: '40px',
-  color: colors.black
+  color: black
 })``;
 
 const Board: React.FC<Props> = ({

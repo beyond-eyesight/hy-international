@@ -1,5 +1,6 @@
-const grey = new Map<string, string>([
+const Grey = new Map<string, string>([
   ['50', '#FAFAFA'],
+  ['99', '#FCFCFC'],
   ['100', '#F5F5F5'],
   ['200', '#EEEEEE'],
   ['300', '#E0E0E0'],
@@ -11,4 +12,4 @@ const grey = new Map<string, string>([
   ['900', '#212121']
 ]);
 
-export default grey;
+export default Grey;

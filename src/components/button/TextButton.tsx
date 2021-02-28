@@ -4,14 +4,14 @@ import RawText from 'src/components/text/RawText';
 import Pixel from 'src/draw/size/pixel';
 import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
 import Percentage from 'src/draw/size/percentage';
-import colors from 'src/draw/color/color';
+import { white } from 'src/draw/color';
 
 interface Props {
   width: string;
   height: string;
   content: string;
-  ellipticalColor: string;
-  textColor: string;
+  ellipticalColor: string | undefined;
+  textColor: string | undefined;
   borderRadius: string;
   onPress?: () => void;
 }
@@ -19,8 +19,8 @@ interface Props {
 const Elliptical = styled.TouchableOpacity<{
   width: string;
   height: string;
-  ellipticalColor: string;
-  textColor: string;
+  ellipticalColor: string | undefined;
+  textColor: string | undefined;
   borderRadius: string;
 }>`
   width: ${({ width }) => width};
@@ -59,7 +59,7 @@ const TextButton: React.FC<Props> = ({
         fontStyle="normal"
         fontSize={textSize.toString()}
         lineHeight={textSize.toString()}
-        color={colors.white}
+        color={white}
       >
         {content}
       </RawText>

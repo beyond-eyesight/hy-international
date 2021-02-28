@@ -4,10 +4,10 @@ import ContainerWithStatusBar from 'src/components/container/ContainerWithStatus
 import BackTopbar from 'src/components/topbar/BackTopbar';
 import ChatSection from 'src/components/section/ChatSection';
 import Zone from 'src/model/zone';
-import colors from 'src/draw/color/color';
+import { blue, grey } from 'src/draw/color';
 
 const Container = styled(ContainerWithStatusBar)`
-  background-color: ${colors.milkWhite};
+  background-color: ${grey.get('99')};
 `;
 
 interface Props {
@@ -17,7 +17,7 @@ interface Props {
 
 const ChatScreen: React.FC<Props> = ({ componentId, zone }: Props) => {
   return (
-    <Container statusBarColor={colors.blue_signiture}>
+    <Container statusBarColor={blue.get('600')}>
       <BackTopbar componentId={componentId} />
       <ChatSection zone={zone} />
     </Container>

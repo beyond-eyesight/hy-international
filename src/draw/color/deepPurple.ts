@@ -1,4 +1,4 @@
-const deepPurple = new Map<string, string>([
+const DeepPurple = new Map<string, string>([
   ['50', '#EDE7F6'],
   ['100', '#D1C4E9'],
   ['200', '#B39DDB'],
@@ -15,4 +15,4 @@ const deepPurple = new Map<string, string>([
   ['A700', '#6200EA']
 ]);
 
-export default deepPurple;
+export default DeepPurple;

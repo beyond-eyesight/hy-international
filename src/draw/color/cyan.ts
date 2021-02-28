@@ -1,4 +1,4 @@
-const cyan = new Map<string, string>([
+const Cyan = new Map<string, string>([
   ['50', '#E0F7FA'],
   ['100', '#B2EBF2'],
   ['200', '#80DEEA'],
@@ -15,4 +15,4 @@ const cyan = new Map<string, string>([
   ['A700', '#00B8D4']
 ]);
 
-export default cyan;
+export default Cyan;

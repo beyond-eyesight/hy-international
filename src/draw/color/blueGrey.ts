@@ -1,4 +1,4 @@
-const blueGrey = new Map<string, string>([
+const BlueGrey = new Map<string, string>([
   ['50', '#ECEFF1'],
   ['100', '#CFD8DC'],
   ['200', '#B0BEC5'],
@@ -11,4 +11,4 @@ const blueGrey = new Map<string, string>([
   ['900', '#263238']
 ]);
 
-export default blueGrey;
+export default BlueGrey;

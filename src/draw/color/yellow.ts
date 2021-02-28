@@ -1,4 +1,4 @@
-const yellow = new Map<string, string>([
+const Yellow = new Map<string, string>([
   ['50', '#FFFDE7'],
   ['100', '#FFF9C4'],
   ['200', '#FFF59D'],
@@ -15,4 +15,4 @@ const yellow = new Map<string, string>([
   ['A700', '#FFD600']
 ]);
 
-export default yellow;
+export default Yellow;

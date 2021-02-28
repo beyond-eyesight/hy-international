@@ -1,4 +1,4 @@
-const deepOrange = new Map<string, string>([
+const DeepOrange = new Map<string, string>([
   ['50', '#FBE9E7'],
   ['100', '#FFCCBC'],
   ['200', '#FFAB91'],
@@ -15,4 +15,4 @@ const deepOrange = new Map<string, string>([
   ['A700', '#DD2C00']
 ]);
 
-export default deepOrange;
+export default DeepOrange;

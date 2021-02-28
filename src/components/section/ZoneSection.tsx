@@ -8,8 +8,8 @@ import RawText from 'src/components/text/RawText';
 import Pixel from 'src/draw/size/pixel';
 import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
 import Percentage from 'src/draw/size/percentage';
-import colors from 'src/draw/color/color';
 import TextInputBox from 'src/components/box/TextInputBox';
+import { grey } from 'src/draw/color';
 
 export type Props = {
   componentId: string;
@@ -51,7 +51,7 @@ const ZoneSection: React.FC<Props> = ({ componentId }: Props) => {
           fontStyle="normal"
           fontSize={textSize.toString()}
           lineHeight={textSize.toString()}
-          color={colors.white}
+          color={grey.get('100')}
         >
           you can join chat room when you are near the location
         </RawText>

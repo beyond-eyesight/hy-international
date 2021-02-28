@@ -1,4 +1,4 @@
-const red = new Map<string, string>([
+const Red = new Map<string, string>([
   ['50', '#FFEBEE'],
   ['100', '#FFCDD2'],
   ['200', '#EF9A9A'],
@@ -15,4 +15,4 @@ const red = new Map<string, string>([
   ['A700', '#D50000']
 ]);
 
-export default red;
+export default Red;

@@ -9,12 +9,12 @@ import Pixel from 'src/draw/size/pixel';
 import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
 import Percentage from 'src/draw/size/percentage';
 import { push } from 'src/navigation/navigation';
-import colors from 'src/draw/color/color';
+import { blue, grey, white } from 'src/draw/color';
 
 const Container = styled.SafeAreaView`
   flex: 1;
   height: 100%;
-  background: ${colors.white};
+  background: ${white};
   width: 100%;
 `;
 
@@ -23,7 +23,7 @@ const List = styled(FlatList as new () => FlatList<Zone>)``;
 const Separator = styled.View`
   height: 1px;
   width: 100%;
-  background-color: ${colors.gray300};
+  background-color: ${grey.get('300')};
 `;
 
 const ZoneView = styled.View`
@@ -40,8 +40,8 @@ const JoinButton = styled(TextButton).attrs({
   width: '20%',
   height: '70%',
   content: 'Join',
-  ellipticalColor: colors.blue_signiture,
-  textColor: colors.white,
+  ellipticalColor: blue.get('600'),
+  textColor: white,
   borderRadius: '100px'
 })`
   flex: 1;
@@ -79,7 +79,7 @@ const ZoneList: React.FC<Props> = ({ componentId, zones }: Props) => {
             fontStyle="normal"
             fontSize={zoneNameSize.toString()}
             lineHeight={zoneNameSize.toString()}
-            color={colors.white}
+            color={white}
           >
             {info.item.name.toString()}
           </RawText>
@@ -88,7 +88,7 @@ const ZoneList: React.FC<Props> = ({ componentId, zones }: Props) => {
             fontStyle="normal"
             fontSize={zoneExplanationSize.toString()}
             lineHeight={zoneExplanationSize.toString()}
-            color={colors.white}
+            color={white}
           >
             ? people are talking
           </RawText>

@@ -1,4 +1,4 @@
-const lime = new Map<string, string>([
+const Lime = new Map<string, string>([
   ['50', '#F9FBE7'],
   ['100', '#F0F4C3'],
   ['200', '#E6EE9C'],
@@ -15,4 +15,4 @@ const lime = new Map<string, string>([
   ['A700', '#AEEA00']
 ]);
 
-export default lime;
+export default Lime;

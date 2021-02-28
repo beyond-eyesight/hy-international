@@ -5,7 +5,7 @@ import Percentage from 'src/draw/size/percentage';
 import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
 import Pixel from 'src/draw/size/pixel';
 import RawText from 'src/components/text/RawText';
-import colors from 'src/draw/color/color';
+import { grey } from 'src/draw/color';
 
 export type Props = {
   style?: StyleProp<ViewStyle>;
@@ -32,7 +32,7 @@ const Container = styled.View<{ height: string }>`
 const Content = styled.View<{ justifyContent: string; height: string }>`
   width: 100%;
   height: ${({ height }) => height};
-  background-color: ${colors.milkWhite};
+  background-color: ${grey.get('99')};
   flex-direction: row;
   align-items: center;
   justify-content: ${({ justifyContent }) => justifyContent};
