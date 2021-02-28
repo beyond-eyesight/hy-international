@@ -3,17 +3,14 @@ import Board from 'src/components/board/Board';
 import TextButton from 'src/components/button/TextButton';
 import { SCREEN_IDS } from 'src/components/screens/constant';
 import Percentage from 'src/draw/size/percentage';
-import {
-  getRunningModelHeight,
-  getRunningModelWidth
-} from 'src/draw/device/model/deviceModel';
+import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
 import Pixel from 'src/draw/size/pixel';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { StyleSheet, View } from 'react-native';
 import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
 import { push } from 'src/navigation/navigation';
 import TextInputBox from 'src/components/box/TextInputBox';
-import { blue, grey, white } from 'src/draw/color';
+import { white } from 'src/draw/color';
 
 interface Props {
   componentId: string;

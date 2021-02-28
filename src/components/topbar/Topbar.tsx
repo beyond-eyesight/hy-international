@@ -9,7 +9,7 @@ import {
 import Percentage from 'src/draw/size/percentage';
 import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
 import Pixel from 'src/draw/size/pixel';
-import { blue, white } from 'src/draw/color';
+import { white } from 'src/draw/color';
 import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
 
 export type Props = {
