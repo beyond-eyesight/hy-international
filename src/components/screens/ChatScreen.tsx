@@ -1,5 +1,4 @@
 import React from 'react';
-import BackTopbar from 'src/components/topbar/BackTopbar';
 import ChatSection from 'src/components/section/ChatSection';
 import Zone from 'src/model/zone';
 import { View } from 'react-native';
@@ -12,7 +11,6 @@ interface Props {
 const ChatScreen: React.FC<Props> = ({ componentId, zone }: Props) => {
   return (
     <View>
-      <BackTopbar componentId={componentId} />
       <ChatSection zone={zone} />
     </View>
   );
