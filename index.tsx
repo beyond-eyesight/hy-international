@@ -2,7 +2,7 @@
  * @format
  */
 
-import React, { Component, ComponentType, ReactNode } from 'react';
+import React, { Component } from 'react';
 import { Navigation } from 'react-native-navigation';
 import 'reflect-metadata';
 import 'text-encoding';
