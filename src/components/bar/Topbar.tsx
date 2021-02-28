@@ -1,16 +1,11 @@
 import React from 'react';
-import {
-  ImageProps,
-  StyleProp,
-  StyleSheet,
-  View,
-  ViewStyle
-} from 'react-native';
+import { ImageProps, StyleProp, StyleSheet, ViewStyle } from 'react-native';
 import Percentage from 'src/draw/size/percentage';
 import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
 import Pixel from 'src/draw/size/pixel';
 import { white } from 'src/draw/color';
-import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
+import { TextBoxStyleProps } from 'src/components/box/TextBox';
+import { Appbar } from 'react-native-paper';
 
 export type Props = {
   style?: StyleProp<ViewStyle>;
@@ -40,30 +35,33 @@ const textBoxProps = StyleSheet.create<TextBoxStyleProps>({
     color: white
   }
 });
-const Topbar: React.FC<Props> = ({
-  style: containerStyle,
-  title,
-  iconSource,
-  iconStyle,
-  LeftComponent,
-  RightComponent,
-  onBackPress,
-  justifyContent = 'space-between'
-}: Props) => {
-  const hasTitle = Boolean(title);
-  // todo: 여기 좀 이상
-  const height: Pixel = getRunningModelHeight().multiply(new Percentage(6));
-
+const Topbar: React.FC = () => {
   return (
-    <View>
-      <TextBox
-        boxStyle={textBoxProps.boxStyle}
-        textStyle={textBoxProps.textStyle}
-      >
-        {title}
-      </TextBox>
-    </View>
+    <Appbar style={styles.top}>
+      <Appbar.Action
+        icon="archive"
+        onPress={() => console.log('Pressed archive')}
+      />
+      <Appbar.Action icon="mail" onPress={() => console.log('Pressed mail')} />
+      <Appbar.Action
+        icon="label"
+        onPress={() => console.log('Pressed label')}
+      />
+      <Appbar.Action
+        icon="delete"
+        onPress={() => console.log('Pressed delete')}
+      />
+    </Appbar>
   );
 };
+
+const styles = StyleSheet.create({
+  top: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0
+  }
+});
 
 export default Topbar;

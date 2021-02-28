@@ -1,6 +1,6 @@
 import React from 'react';
-import SignInSection from 'src/components/section/SignInSection';
 import { View } from 'react-native';
+import Topbar from 'src/components/bar/Topbar';
 
 interface Props {
   componentId: string;
@@ -9,7 +9,7 @@ interface Props {
 const SignInScreen: React.FC<Props> = ({ componentId }: Props) => {
   return (
     <View>
-      <SignInSection componentId={componentId} />
+      <Topbar />
     </View>
   );
 };
