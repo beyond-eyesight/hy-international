@@ -1,7 +1,7 @@
 import { TextInputProps } from 'react-native';
 import styled from 'styled-components/native';
 import React from 'react';
-import colors from 'src/draw/color/color';
+import { grey } from 'src/draw/color';
 
 type FontType = 'BOLD' | 'REGULAR' | 'LIGHT';
 
@@ -12,9 +12,9 @@ const fontTypeToFont: { [key in FontType]: string } = {
 };
 
 const DefaultTextInput = styled.TextInput<{ textAlign: string }>`
-  color: ${colors.gray450};
-  background: ${colors.gray_1};
-  border: solid ${colors.gray_2};
+  color: ${grey.get('500')};
+  background: ${grey.get('50')};
+  border: solid ${grey.get('99')};
   font-size: 18px;
   font-family: ${fontTypeToFont.REGULAR};
   text-align: ${({ textAlign }) => textAlign};
@@ -26,7 +26,7 @@ interface Props extends TextInputProps {
   borderBottomLeftRadius?: number;
   borderBottomRightRadius?: number;
   placeHolder: string;
-  placeholderTextColor: string;
+  placeholderTextColor: string | undefined;
   containerWidth?: string;
   containerHeight?: string;
 }

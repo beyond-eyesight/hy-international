@@ -1,12 +1,33 @@
-type ProximaNova =
-  | 'ProximaNova-Bold'
-  | 'ProximaNova-Regular'
-  | 'ProximaNovaA-Light';
+import { Font, Fonts } from 'react-native-paper/lib/typescript/types';
 
-export interface Font {
-  fontFamily: ProximaNova;
-  fontStyle: string;
-  fontSize: string;
-  lineHeight: string;
-  color: string;
-}
+// export interface Font {
+//   fontFamily: ProximaNova;
+//   fontStyle: string;
+//   fontSize: string;
+//   lineHeight: string;
+//   color: string | undefined;
+// }
+
+const ProximaNovaBold: Font = {
+  fontFamily: 'ProximaNova-Bold',
+  fontWeight: '500'
+};
+
+const ProximaNovaRegular: Font = {
+  fontFamily: 'ProximaNova-Regular',
+  fontWeight: '400'
+};
+
+const ProximaNovaLight: Font = {
+  fontFamily: 'ProximaNovaA-Light',
+  fontWeight: '300'
+};
+
+const ProximaNova: Fonts = {
+  light: ProximaNovaLight,
+  medium: ProximaNovaBold,
+  regular: ProximaNovaRegular,
+  thin: ProximaNovaLight
+};
+
+export default ProximaNova;

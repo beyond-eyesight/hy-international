@@ -3,10 +3,10 @@ import styled from 'styled-components/native';
 import ContainerWithStatusBar from 'src/components/container/ContainerWithStatusBar';
 import BackTopbar from 'src/components/topbar/BackTopbar';
 import SignInSection from 'src/components/section/SignInSection';
-import colors from 'src/draw/color/color';
+import { blue, grey } from 'src/draw/color';
 
 const Container = styled(ContainerWithStatusBar)`
-  background-color: ${colors.milkWhite};
+  background-color: ${grey.get('99')};
   align-items: center;
 `;
 
@@ -16,7 +16,7 @@ interface Props {
 
 const SignInScreen: React.FC<Props> = ({ componentId }: Props) => {
   return (
-    <Container statusBarColor={colors.blue_signiture}>
+    <Container statusBarColor={blue.get('600')}>
       <BackTopbar componentId={componentId} />
       <SignInSection componentId={componentId} />
     </Container>

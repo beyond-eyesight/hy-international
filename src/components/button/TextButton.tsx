@@ -1,17 +1,18 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import RawText from 'src/components/text/RawText';
 import Pixel from 'src/draw/size/pixel';
 import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
 import Percentage from 'src/draw/size/percentage';
-import colors from 'src/draw/color/color';
+import { grey, white } from 'src/draw/color';
+import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
+import { StyleSheet } from 'react-native';
 
 interface Props {
   width: string;
   height: string;
   content: string;
-  ellipticalColor: string;
-  textColor: string;
+  ellipticalColor: string | undefined;
+  textColor: string | undefined;
   borderRadius: string;
   onPress?: () => void;
 }
@@ -19,8 +20,8 @@ interface Props {
 const Elliptical = styled.TouchableOpacity<{
   width: string;
   height: string;
-  ellipticalColor: string;
-  textColor: string;
+  ellipticalColor: string | undefined;
+  textColor: string | undefined;
   borderRadius: string;
 }>`
   width: ${({ width }) => width};
@@ -43,7 +44,6 @@ const TextButton: React.FC<Props> = ({
   onPress = () => {},
   ...props
 }: Props) => {
-  const textSize: Pixel = getRunningModelHeight().multiply(new Percentage(3));
   return (
     <Elliptical
       width={width}
@@ -54,17 +54,32 @@ const TextButton: React.FC<Props> = ({
       onPress={onPress}
       {...props}
     >
-      <RawText
-        fontFamily="ProximaNova-Regular"
-        fontStyle="normal"
-        fontSize={textSize.toString()}
-        lineHeight={textSize.toString()}
-        color={colors.white}
+      <TextBox
+        boxStyle={textBoxProps.boxStyle}
+        textStyle={textBoxProps.textStyle}
       >
         {content}
-      </RawText>
+      </TextBox>
     </Elliptical>
   );
 };
+
+const textSize: Pixel = getRunningModelHeight().multiply(new Percentage(3));
+
+const textBoxProps = StyleSheet.create<TextBoxStyleProps>({
+  boxStyle: {
+    height: '100%',
+    width: '10%',
+    backgroundColor: grey.get('600'),
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  textStyle: {
+    fontFamily: 'ProximaNova-Regular',
+    fontSize: textSize.value,
+    lineHeight: textSize.value,
+    color: white
+  }
+});
 
 export default TextButton;

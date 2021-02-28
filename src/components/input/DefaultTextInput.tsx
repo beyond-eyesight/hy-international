@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import React from 'react';
 import RNTextInput from 'src/components/input/RNTextInput';
-import colors from 'src/draw/color/color';
+import { grey } from 'src/draw/color';
 
 const Container = styled.View`
   align-items: center;
@@ -41,7 +41,7 @@ const DefaultTextInput: React.FC<Props> = ({
         borderBottomLeftRadius={radius}
         borderBottomRightRadius={radius}
         placeHolder={placeholder}
-        placeholderTextColor={colors.gray500}
+        placeholderTextColor={grey.get('500')}
         textAlign={textAlign}
       />
     </Container>
