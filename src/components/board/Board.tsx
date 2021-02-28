@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components/native';
 import { grey, white } from 'src/draw/color';
 import { StyleSheet } from 'react-native';
 import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
@@ -9,11 +8,6 @@ interface Props {
   containerHeight: string;
   title: string;
 }
-
-const Container = styled.View`
-  align-items: center;
-  justify-content: center;
-`;
 
 const textBoxProps = StyleSheet.create<TextBoxStyleProps>({
   boxStyle: {
@@ -37,19 +31,12 @@ const Board: React.FC<Props> = ({
   title
 }: Props) => {
   return (
-    <Container
-      style={{
-        width: containerWidth,
-        height: containerHeight
-      }}
+    <TextBox
+      boxStyle={textBoxProps.boxStyle}
+      textStyle={textBoxProps.textStyle}
     >
-      <TextBox
-        boxStyle={textBoxProps.boxStyle}
-        textStyle={textBoxProps.textStyle}
-      >
-        {title}
-      </TextBox>
-    </Container>
+      {title}
+    </TextBox>
   );
 };
 

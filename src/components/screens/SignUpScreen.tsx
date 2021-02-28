@@ -1,14 +1,7 @@
 import React from 'react';
-import styled from 'styled-components/native';
-import ContainerWithStatusBar from 'src/components/container/ContainerWithStatusBar';
 import BackTopbar from 'src/components/topbar/BackTopbar';
 import SignUpSection from 'src/components/section/SignUpSection';
-import { blue } from 'src/draw/color';
-
-const Container = styled(ContainerWithStatusBar)`
-  background-color: ${blue.get('99')};
-  align-items: center;
-`;
+import { View } from 'react-native';
 
 interface Props {
   componentId: string;
@@ -16,10 +9,10 @@ interface Props {
 
 const SignUpScreen: React.FC<Props> = ({ componentId }: Props) => {
   return (
-    <Container statusBarColor={blue.get('600')}>
+    <View>
       <BackTopbar componentId={componentId} />
       <SignUpSection />
-    </Container>
+    </View>
   );
 };
 

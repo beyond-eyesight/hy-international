@@ -11,7 +11,7 @@ import SignUpScreen from 'src/components/screens/SignUpScreen';
 import SignInScreen from 'src/components/screens/SignInScreen';
 import ZoneScreen from 'src/components/screens/ZoneScreen';
 import ChatScreen from 'src/components/screens/ChatScreen';
-import { DefaultTheme, Provider } from 'react-native-paper';
+import { Provider } from 'react-native-paper';
 import theme from 'src/draw/theme/theme';
 
 interface IScreenProps {

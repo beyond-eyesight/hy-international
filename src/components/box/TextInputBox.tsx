@@ -15,8 +15,8 @@ const TextInputBox: React.FC = () => {
         label="email"
         value={text}
         onChangeText={(text) => setText(text)}
-        selectionColor={blue.get('600')}
-        underlineColor={blue.get('600')}
+        selectionColor="#FFFFFF"
+        underlineColor="#FFFFFF"
       />
     </View>
   );
