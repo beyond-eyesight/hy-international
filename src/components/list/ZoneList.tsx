@@ -1,15 +1,15 @@
-import { FlatList, ListRenderItem, View } from 'react-native';
+import { FlatList, ListRenderItem, StyleSheet, View } from 'react-native';
 import React from 'react';
 import styled from 'styled-components/native';
 import TextButton from 'src/components/button/TextButton';
 import Zone from 'src/model/zone';
 import { SCREEN_IDS } from 'src/components/screens/constant';
-import RawText from 'src/components/text/RawText';
 import Pixel from 'src/draw/size/pixel';
 import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
 import Percentage from 'src/draw/size/percentage';
 import { push } from 'src/navigation/navigation';
 import { blue, grey, white } from 'src/draw/color';
+import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -52,6 +52,13 @@ interface Props {
   zones?: Zone[];
 }
 
+const zoneNameSize: Pixel = getRunningModelHeight().multiply(
+  new Percentage(2.5)
+);
+const zoneExplanationSize: Pixel = getRunningModelHeight().multiply(
+  new Percentage(1.9)
+);
+
 const join = async (componentId: string, zone: Zone) => {
   // todo: validation logic(위치값을 보내고, 들어갈 수 있는지 확인하는 로직)
   await push({
@@ -63,35 +70,55 @@ const join = async (componentId: string, zone: Zone) => {
   });
 };
 
+const textBoxProps1 = StyleSheet.create<TextBoxStyleProps>({
+  boxStyle: {
+    height: '100%',
+    width: '10%',
+    backgroundColor: blue.get('600'),
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  textStyle: {
+    fontFamily: 'ProximaNova-Regular',
+    fontSize: zoneNameSize.value,
+    lineHeight: zoneExplanationSize.value,
+    color: white
+  }
+});
+
+const textBoxProps2 = StyleSheet.create<TextBoxStyleProps>({
+  boxStyle: {
+    height: '100%',
+    width: '10%',
+    backgroundColor: blue.get('600'),
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  textStyle: {
+    fontFamily: 'ProximaNova-Regular',
+    fontSize: zoneExplanationSize.value,
+    lineHeight: zoneExplanationSize.value,
+    color: white
+  }
+});
+
 const ZoneList: React.FC<Props> = ({ componentId, zones }: Props) => {
-  const zoneNameSize: Pixel = getRunningModelHeight().multiply(
-    new Percentage(2.5)
-  );
-  const zoneExplanationSize: Pixel = getRunningModelHeight().multiply(
-    new Percentage(1.9)
-  );
   const renderItem: ListRenderItem<Zone> = (info) => {
     return (
       <ZoneView>
         <TextContainer>
-          <RawText
-            fontFamily="ProximaNova-Regular"
-            fontStyle="normal"
-            fontSize={zoneNameSize.toString()}
-            lineHeight={zoneNameSize.toString()}
-            color={white}
+          <TextBox
+            boxStyle={textBoxProps1.boxStyle}
+            textStyle={textBoxProps1.textStyle}
           >
             {info.item.name.toString()}
-          </RawText>
-          <RawText
-            fontFamily="ProximaNova-Regular"
-            fontStyle="normal"
-            fontSize={zoneExplanationSize.toString()}
-            lineHeight={zoneExplanationSize.toString()}
-            color={white}
+          </TextBox>
+          <TextBox
+            boxStyle={textBoxProps2.boxStyle}
+            textStyle={textBoxProps2.textStyle}
           >
             ? people are talking
-          </RawText>
+          </TextBox>
         </TextContainer>
         <JoinButton
           onPress={async () => {

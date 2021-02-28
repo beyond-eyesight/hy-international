@@ -12,6 +12,7 @@ import SignInScreen from 'src/components/screens/SignInScreen';
 import ZoneScreen from 'src/components/screens/ZoneScreen';
 import ChatScreen from 'src/components/screens/ChatScreen';
 import { DefaultTheme, Provider } from 'react-native-paper';
+import theme from 'src/draw/theme/theme';
 
 interface IScreenProps {
   id: string;
@@ -50,16 +51,6 @@ screens.forEach((screen) => {
     () => Component
   );
 });
-
-const theme = {
-  ...DefaultTheme,
-  roundness: 2,
-  colors: {
-    ...DefaultTheme.colors,
-    primary: '#3498db',
-    accent: '#f1c40f'
-  }
-};
 
 Navigation.setDefaultOptions({
   topBar: {

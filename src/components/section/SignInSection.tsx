@@ -8,7 +8,6 @@ import {
   getRunningModelHeight,
   getRunningModelWidth
 } from 'src/draw/device/model/deviceModel';
-import RawText from 'src/components/text/RawText';
 import Pixel from 'src/draw/size/pixel';
 import RNTextInput from 'src/components/input/RNTextInput';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -48,15 +47,48 @@ const DefaultTextInputContainer = styled.View`
   text-align: center;
 `;
 
+const titleSize: Pixel = getRunningModelHeight().multiply(new Percentage(2.5));
+const bodySize: Pixel = getRunningModelHeight().multiply(new Percentage(1.9));
+
+const textBoxProps1 = StyleSheet.create<TextBoxStyleProps>({
+  boxStyle: {
+    height: '100%',
+    width: '10%',
+    backgroundColor: blue.get('600'),
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  textStyle: {
+    fontFamily: 'ProximaNova-Regular',
+    fontSize: titleSize.value,
+    lineHeight: titleSize.value,
+    color: white
+  }
+});
+
+const textBoxProps2 = StyleSheet.create<TextBoxStyleProps>({
+  boxStyle: {
+    height: '100%',
+    width: '10%',
+    backgroundColor: blue.get('600'),
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  textStyle: {
+    fontFamily: 'ProximaNova-Regular',
+    fontSize: bodySize.value,
+    lineHeight: bodySize.value,
+    color: white
+  }
+});
+
 const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
   const placeholderSize: Pixel = getRunningModelHeight().multiply(
     new Percentage(2)
   );
-  const titleSize: Pixel = getRunningModelHeight().multiply(
-    new Percentage(2.5)
-  );
+
   let controller;
-  const bodySize: Pixel = getRunningModelHeight().multiply(new Percentage(1.9));
+
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([]);
   return (
@@ -148,25 +180,19 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
         />
       </DefaultTextInputContainer>
       <NoticeContainer>
-        <RawText
-          fontFamily="ProximaNova-Bold"
-          fontStyle="normal"
-          fontSize={titleSize.toString()}
-          lineHeight={titleSize.toString()}
-          color={black}
+        <TextBox
+          boxStyle={textBoxProps1.boxStyle}
+          textStyle={textBoxProps1.textStyle}
         >
           Notice!
-        </RawText>
-        <RawText
-          fontFamily="ProximaNova-Regular"
-          fontStyle="normal"
-          fontSize={bodySize.toString()}
-          lineHeight={bodySize.toString()}
-          color={black}
+        </TextBox>
+        <TextBox
+          boxStyle={textBoxProps2.boxStyle}
+          textStyle={textBoxProps2.textStyle}
         >
           Only hanyang e-mail can be used. Although you already registered in
           Hanyang Portal, you should sign up cause this app is another system.
-        </RawText>
+        </TextBox>
       </NoticeContainer>
       <TextButton
         width="100%"

@@ -1,11 +1,11 @@
 import React from 'react';
-import { ImageProps, StyleProp, ViewStyle } from 'react-native';
+import { ImageProps, StyleProp, StyleSheet, ViewStyle } from 'react-native';
 import styled from 'styled-components/native';
 import Percentage from 'src/draw/size/percentage';
 import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
 import Pixel from 'src/draw/size/pixel';
-import RawText from 'src/components/text/RawText';
-import { grey } from 'src/draw/color';
+import { blue, grey, white } from 'src/draw/color';
+import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
 
 export type Props = {
   style?: StyleProp<ViewStyle>;
@@ -41,6 +41,24 @@ const Content = styled.View<{ justifyContent: string; height: string }>`
 
 // 둘다 사이
 // getPixel, getPercent
+
+const textSize: Pixel = getRunningModelHeight().multiply(new Percentage(3));
+
+const textBoxProps = StyleSheet.create<TextBoxStyleProps>({
+  boxStyle: {
+    height: '100%',
+    width: '10%',
+    backgroundColor: blue.get('600'),
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  textStyle: {
+    fontFamily: 'ProximaNova-Regular',
+    fontSize: textSize.value,
+    lineHeight: textSize.value,
+    color: white
+  }
+});
 const Topbar: React.FC<Props> = ({
   style: containerStyle,
   title,
@@ -54,21 +72,18 @@ const Topbar: React.FC<Props> = ({
   const hasTitle = Boolean(title);
   // todo: 여기 좀 이상
   const height: Pixel = getRunningModelHeight().multiply(new Percentage(6));
-  const textSize: Pixel = getRunningModelHeight().multiply(new Percentage(3));
+
   return (
     <Container style={containerStyle} height={height.toString()}>
       <Content justifyContent={justifyContent} height={height.toString()}>
         {LeftComponent}
         {hasTitle && typeof title === 'string' ? (
-          <RawText
-            fontFamily="ProximaNova-Regular"
-            fontStyle="normal"
-            fontSize={textSize.toString()}
-            lineHeight={textSize.toString()}
-            color="black"
+          <TextBox
+            boxStyle={textBoxProps.boxStyle}
+            textStyle={textBoxProps.textStyle}
           >
             {title}
-          </RawText>
+          </TextBox>
         ) : null}
 
         {RightComponent}

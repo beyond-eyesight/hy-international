@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import RawText from 'src/components/text/RawText';
-import { black } from 'src/draw/color';
+import { grey, white } from 'src/draw/color';
+import { StyleSheet } from 'react-native';
+import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
 
 interface Props {
   containerWidth: string;
@@ -14,13 +15,21 @@ const Container = styled.View`
   justify-content: center;
 `;
 
-const Title = styled(RawText).attrs({
-  fontFamily: 'ProximaNova-Bold',
-  fontStyle: 'nomal',
-  fontSize: '40px',
-  lineHeight: '40px',
-  color: black
-})``;
+const textBoxProps = StyleSheet.create<TextBoxStyleProps>({
+  boxStyle: {
+    height: '100%',
+    width: '10%',
+    backgroundColor: grey.get('600'),
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  textStyle: {
+    fontFamily: 'ProximaNova-Regular',
+    fontSize: 40,
+    lineHeight: 40,
+    color: white
+  }
+});
 
 const Board: React.FC<Props> = ({
   containerWidth,
@@ -34,7 +43,12 @@ const Board: React.FC<Props> = ({
         height: containerHeight
       }}
     >
-      <Title>{title}</Title>
+      <TextBox
+        boxStyle={textBoxProps.boxStyle}
+        textStyle={textBoxProps.textStyle}
+      >
+        {title}
+      </TextBox>
     </Container>
   );
 };

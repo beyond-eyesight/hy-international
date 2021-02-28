@@ -7,9 +7,10 @@ import Pixel from 'src/draw/size/pixel';
 import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
 import Percentage from 'src/draw/size/percentage';
 import RNTextInput from 'src/components/input/RNTextInput';
-import RawText from 'src/components/text/RawText';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { blue, grey, white } from 'src/draw/color';
+import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
+import { StyleSheet } from 'react-native';
 
 const Container = styled.View`
   height: 100%;
@@ -37,8 +38,25 @@ const DefaultTextInputContainer = styled.View`
   text-align: center;
 `;
 
+const textSize: Pixel = getRunningModelHeight().multiply(new Percentage(3));
+
+const textBoxProps = StyleSheet.create<TextBoxStyleProps>({
+  boxStyle: {
+    height: '100%',
+    width: '10%',
+    backgroundColor: blue.get('600'),
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  textStyle: {
+    fontFamily: 'ProximaNova-Regular',
+    fontSize: textSize.value,
+    lineHeight: textSize.value,
+    color: white
+  }
+});
+
 const SignUpSection: React.FC = () => {
-  const textSize: Pixel = getRunningModelHeight().multiply(new Percentage(3));
   let controller;
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([]);
@@ -61,17 +79,12 @@ const SignUpSection: React.FC = () => {
           containerWidth="50%"
           containerHeight="100%"
         />
-        <AtSignView>
-          <RawText
-            fontFamily="ProximaNova-Regular"
-            fontStyle="normal"
-            fontSize={textSize.toString()}
-            lineHeight={textSize.toString()}
-            color={grey.get('100')}
-          >
-            @
-          </RawText>
-        </AtSignView>
+        <TextBox
+          boxStyle={textBoxProps.boxStyle}
+          textStyle={textBoxProps.textStyle}
+        >
+          @
+        </TextBox>
         <DropDownPicker
           items={[
             {
