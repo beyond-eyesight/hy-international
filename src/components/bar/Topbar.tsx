@@ -7,11 +7,7 @@ import {
   TouchableWithoutFeedback,
   ViewStyle
 } from 'react-native';
-import Percentage from 'src/draw/size/percentage';
-import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
 import Pixel from 'src/draw/size/pixel';
-import { white } from 'src/draw/color';
-import { TextBoxStyleProps } from 'src/components/box/TextBox';
 import { Appbar } from 'react-native-paper';
 
 export type Props = {
@@ -36,7 +32,7 @@ interface ContentProps {
   subtitle: ReactNode;
   titleStyle: TextStyle;
   subtitleStyle: TextStyle;
-  titleRef: RefObject<Text>;
+  titleRef?: RefObject<Text>;
   onPress: () => void;
   contentStyle: ViewStyle;
 }
@@ -46,29 +42,21 @@ interface ActionProps {
   iconSize: Pixel;
   iconDisabled: boolean;
   actionStyle: ViewStyle;
-  actionRef: RefObject<TouchableWithoutFeedback>;
+  actionRef?: RefObject<TouchableWithoutFeedback>;
+  onPress: () => void;
 }
 
-interface TopBarProps {}
+interface TopBarProps {
+  headerProps: HeaderProps;
+  contentProps: ContentProps;
+  actionProps: ActionProps;
+}
 
-const textSize: Pixel = getRunningModelHeight().multiply(new Percentage(3));
-
-const textBoxProps = StyleSheet.create<TextBoxStyleProps>({
-  boxStyle: {
-    height: '100%',
-    width: '10%',
-    backgroundColor: '#FFFFFF',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  textStyle: {
-    fontFamily: 'ProximaNova-Regular',
-    fontSize: textSize.value,
-    lineHeight: textSize.value,
-    color: white
-  }
-});
-const Topbar: React.FC = () => {
+const Topbar: React.FC<TopBarProps> = ({
+  headerProps,
+  contentProps,
+  actionProps
+}: TopBarProps) => {
   return (
     <Appbar.Header style={styles.header}>
       <Appbar.Action
