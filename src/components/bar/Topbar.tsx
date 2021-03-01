@@ -71,9 +71,10 @@ const Topbar: React.FC<TopBarProps> = ({
   return (
     <Appbar.Header style={headerProps.headerStyle} dark={headerProps.isDark}>
       <View>
-        {leftActionsProps.map((leftActionProps) => {
+        {leftActionsProps.map((leftActionProps, key) => {
           return (
             <Appbar.Action
+              key={parseInt('radix', key)}
               icon={leftActionProps.icon}
               size={leftActionProps.iconSize.value}
               color={leftActionProps.iconColor}
@@ -88,9 +89,10 @@ const Topbar: React.FC<TopBarProps> = ({
         subtitle={contentProps.subtitle}
       />
       <View>
-        {rightActionsProps.map((rightActionProps) => {
+        {rightActionsProps.map((rightActionProps, key) => {
           return (
             <Appbar.Action
+              key={parseInt('radix', key)}
               icon={rightActionProps.icon}
               size={rightActionProps.iconSize.value}
               color={rightActionProps.iconColor}
