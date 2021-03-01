@@ -5,10 +5,12 @@ import {
   StyleSheet,
   TextStyle,
   TouchableWithoutFeedback,
+  View,
   ViewStyle
 } from 'react-native';
 import Pixel from 'src/draw/size/pixel';
 import { Appbar } from 'react-native-paper';
+import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
 
 export type Props = {
   style?: StyleProp<ViewStyle>;
@@ -43,7 +45,8 @@ interface ContentProps {
   contentStyle: ViewStyle;
 }
 
-interface ActionProps {
+export interface ActionProps {
+  icon: IconSource;
   iconColor: string;
   iconSize: Pixel;
   iconDisabled: boolean;
@@ -55,34 +58,47 @@ interface ActionProps {
 interface TopBarProps {
   headerProps: HeaderProps;
   contentProps: ContentProps;
-  actionProps: ActionProps;
+  leftActionsProps: Array<ActionProps>;
+  rightActionsProps: Array<ActionProps>;
 }
 
 const Topbar: React.FC<TopBarProps> = ({
   headerProps,
   contentProps,
-  actionProps
+  leftActionsProps,
+  rightActionsProps
 }: TopBarProps) => {
   return (
     <Appbar.Header style={headerProps.headerStyle} dark={headerProps.isDark}>
-      <Appbar.Action
-        icon="archive"
-        onPress={() => console.log('Pressed archive')}
-      />
-      <Appbar.Action icon="mail" onPress={() => console.log('Pressed mail')} />
+      <View>
+        {leftActionsProps.map((leftActionProps) => {
+          return (
+            <Appbar.Action
+              icon={leftActionProps.icon}
+              size={leftActionProps.iconSize.value}
+              color={leftActionProps.iconColor}
+              onPress={() => console.log('Pressed label')}
+            />
+          );
+        })}
+      </View>
       <Appbar.Content
         style={contentProps.contentStyle}
         title={contentProps.title}
         subtitle={contentProps.subtitle}
       />
-      <Appbar.Action
-        icon="label"
-        onPress={() => console.log('Pressed label')}
-      />
-      <Appbar.Action
-        icon="delete"
-        onPress={() => console.log('Pressed delete')}
-      />
+      <View>
+        {rightActionsProps.map((rightActionProps) => {
+          return (
+            <Appbar.Action
+              icon={rightActionProps.icon}
+              size={rightActionProps.iconSize.value}
+              color={rightActionProps.iconColor}
+              onPress={() => console.log('Pressed label')}
+            />
+          );
+        })}
+      </View>
     </Appbar.Header>
   );
 };

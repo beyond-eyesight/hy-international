@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import Topbar, { TopbarStyle } from 'src/components/bar/Topbar';
+import Topbar, { ActionProps, TopbarStyle } from 'src/components/bar/Topbar';
 import Pixel from 'src/draw/size/pixel';
 
 interface Props {
@@ -33,19 +33,34 @@ const TopbarNode: React.FC = () => {
     }
   });
 
+  const leftActionProps: Array<ActionProps> = [
+    {
+      icon: 'label',
+      iconColor: 'white',
+      iconSize: new Pixel(24),
+      iconDisabled: false,
+      actionStyle: {},
+      onPress: () => {}
+    }
+  ];
+
+  const rightActionProps: Array<ActionProps> = [
+    {
+      icon: 'delete',
+      iconColor: 'white',
+      iconSize: new Pixel(24),
+      iconDisabled: false,
+      actionStyle: {},
+      onPress: () => {}
+    }
+  ];
+
   return (
     <Topbar
       headerProps={{
         isDark: true,
         statusBarHeight: new Pixel(24),
         headerStyle: styles.header
-      }}
-      actionProps={{
-        iconColor: 'white',
-        iconSize: new Pixel(24),
-        iconDisabled: false,
-        actionStyle: styles.action,
-        onPress: () => {}
       }}
       contentProps={{
         title: 'hihi',
@@ -55,6 +70,8 @@ const TopbarNode: React.FC = () => {
         onPress: () => {},
         contentStyle: styles.content
       }}
+      leftActionsProps={leftActionProps}
+      rightActionsProps={rightActionProps}
     />
   );
 };
