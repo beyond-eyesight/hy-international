@@ -10,29 +10,36 @@ interface Props {
 const SignInScreen: React.FC<Props> = ({ componentId }: Props) => {
   return (
     <View>
-      <Topbar
-        headerProps={{
-          isDark: false,
-          statusBarHeight: new Pixel(24),
-          headerStyle: {}
-        }}
-        actionProps={{
-          iconColor: 'white',
-          iconSize: new Pixel(24),
-          iconDisabled: false,
-          actionStyle: {},
-          onPress: () => {}
-        }}
-        contentProps={{
-          title: 'hihi',
-          subtitle: 'kkk',
-          titleStyle: {},
-          subtitleStyle: {},
-          onPress: () => {},
-          contentStyle: {}
-        }}
-      />
+      <TopbarNode />
     </View>
   );
 };
+
+const TopbarNode: React.FC = () => {
+  return (
+    <Topbar
+      headerProps={{
+        isDark: false,
+        statusBarHeight: new Pixel(24),
+        headerStyle: {}
+      }}
+      actionProps={{
+        iconColor: 'white',
+        iconSize: new Pixel(24),
+        iconDisabled: false,
+        actionStyle: {},
+        onPress: () => {}
+      }}
+      contentProps={{
+        title: 'hihi',
+        subtitle: 'kkk',
+        titleStyle: {},
+        subtitleStyle: {},
+        onPress: () => {},
+        contentStyle: {}
+      }}
+    />
+  );
+};
+
 export default SignInScreen;
