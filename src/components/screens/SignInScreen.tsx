@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import Topbar from 'src/components/bar/Topbar';
+import Topbar, { TopbarStyle } from 'src/components/bar/Topbar';
 import Pixel from 'src/draw/size/pixel';
 
 interface Props {
@@ -16,7 +16,7 @@ const SignInScreen: React.FC<Props> = ({ componentId }: Props) => {
 };
 
 const TopbarNode: React.FC = () => {
-  const styles = StyleSheet.create({
+  const styles = StyleSheet.create<TopbarStyle>({
     header: {
       position: 'absolute',
       left: 0,

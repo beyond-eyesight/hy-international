@@ -21,6 +21,12 @@ export type Props = {
   justifyContent?: string;
 };
 
+export interface TopbarStyle {
+  header: ViewStyle;
+  content: ViewStyle;
+  action: ViewStyle;
+}
+
 interface HeaderProps {
   isDark: boolean;
   statusBarHeight: Pixel;
