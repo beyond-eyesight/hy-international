@@ -58,13 +58,17 @@ const Topbar: React.FC<TopBarProps> = ({
   actionProps
 }: TopBarProps) => {
   return (
-    <Appbar.Header style={styles.header}>
+    <Appbar.Header style={headerProps.headerStyle} dark={headerProps.isDark}>
       <Appbar.Action
         icon="archive"
         onPress={() => console.log('Pressed archive')}
       />
       <Appbar.Action icon="mail" onPress={() => console.log('Pressed mail')} />
-      <Appbar.Content style={styles.content} title="kkkk" subtitle="ffff" />
+      <Appbar.Content
+        style={contentProps.contentStyle}
+        title={contentProps.title}
+        subtitle={contentProps.subtitle}
+      />
       <Appbar.Action
         icon="label"
         onPress={() => console.log('Pressed label')}
@@ -76,22 +80,5 @@ const Topbar: React.FC<TopBarProps> = ({
     </Appbar.Header>
   );
 };
-
-const styles = StyleSheet.create({
-  header: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    justifyContent: 'space-between'
-  },
-  content: {
-    alignItems: 'center',
-    flex: 0,
-    width: 100
-  },
-  action: {
-    width: 100
-  }
-});
 
 export default Topbar;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Topbar from 'src/components/bar/Topbar';
 import Pixel from 'src/draw/size/pixel';
 
@@ -16,18 +16,35 @@ const SignInScreen: React.FC<Props> = ({ componentId }: Props) => {
 };
 
 const TopbarNode: React.FC = () => {
+  const styles = StyleSheet.create({
+    header: {
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      justifyContent: 'space-between'
+    },
+    content: {
+      alignItems: 'center',
+      flex: 0,
+      width: 100
+    },
+    action: {
+      width: 100
+    }
+  });
+
   return (
     <Topbar
       headerProps={{
-        isDark: false,
+        isDark: true,
         statusBarHeight: new Pixel(24),
-        headerStyle: {}
+        headerStyle: styles.header
       }}
       actionProps={{
         iconColor: 'white',
         iconSize: new Pixel(24),
         iconDisabled: false,
-        actionStyle: {},
+        actionStyle: styles.action,
         onPress: () => {}
       }}
       contentProps={{
@@ -36,7 +53,7 @@ const TopbarNode: React.FC = () => {
         titleStyle: {},
         subtitleStyle: {},
         onPress: () => {},
-        contentStyle: {}
+        contentStyle: styles.content
       }}
     />
   );
