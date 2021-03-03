@@ -1,5 +1,6 @@
 import { Theme } from 'react-native-paper/lib/typescript/types';
-import ProximaNova from 'src/draw/text/font';
+import { configureFonts } from 'react-native-paper';
+import fontConfig from 'src/draw/text/font';
 
 const theme: Theme = {
   animation: { scale: 1.0 },
@@ -18,7 +19,7 @@ const theme: Theme = {
     text: ''
   },
   dark: false,
-  fonts: ProximaNova,
+  fonts: configureFonts(fontConfig),
   roundness: 0
 };
 

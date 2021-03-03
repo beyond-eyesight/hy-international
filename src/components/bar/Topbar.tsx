@@ -81,7 +81,9 @@ const Topbar: React.FC<TopBarProps> = ({
               icon={leftActionProps.icon}
               size={leftActionProps.iconSize.value}
               color={leftActionProps.iconColor}
-              onPress={() => console.log('Pressed label')}
+              disabled={leftActionProps.iconDisabled}
+              style={leftActionProps.actionStyle}
+              onPress={leftActionProps.onPress}
             />
           );
         })}
@@ -89,7 +91,10 @@ const Topbar: React.FC<TopBarProps> = ({
       <Appbar.Content
         style={contentProps.contentStyle}
         title={contentProps.title}
+        titleStyle={contentProps.titleStyle}
         subtitle={contentProps.subtitle}
+        subtitleStyle={contentProps.subtitleStyle}
+        onPress={contentProps.onPress}
       />
       <View>
         {rightActionsProps.map((rightActionProps, key) => {
@@ -99,7 +104,9 @@ const Topbar: React.FC<TopBarProps> = ({
               icon={rightActionProps.icon}
               size={rightActionProps.iconSize.value}
               color={rightActionProps.iconColor}
-              onPress={() => console.log('Pressed label')}
+              disabled={rightActionProps.iconDisabled}
+              style={rightActionProps.actionStyle}
+              onPress={rightActionProps.onPress}
             />
           );
         })}
