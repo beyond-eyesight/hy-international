@@ -20,8 +20,9 @@ const runningDeviceModel: DeviceModel = {
   }
 };
 
-export function getStatusBarHeight() {
-  return new Pixel(runningDeviceModel.getStatusBarHeight());
+export function getRunningModelStatusBarHeight() {
+  const statusBarHeight = runningDeviceModel.getStatusBarHeight();
+  return new Pixel(statusBarHeight);
 }
 
 export function getRunningModelHeight() {

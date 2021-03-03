@@ -2,7 +2,6 @@ import React, { ReactNode, RefObject } from 'react';
 import {
   ImageProps,
   StyleProp,
-  StyleSheet,
   TextStyle,
   TouchableWithoutFeedback,
   View,
@@ -69,7 +68,11 @@ const Topbar: React.FC<TopBarProps> = ({
   rightActionsProps
 }: TopBarProps) => {
   return (
-    <Appbar.Header style={headerProps.headerStyle} dark={headerProps.isDark}>
+    <Appbar.Header
+      style={headerProps.headerStyle}
+      statusBarHeight={headerProps.statusBarHeight.value}
+      dark={headerProps.isDark}
+    >
       <View>
         {leftActionsProps.map((leftActionProps, key) => {
           return (

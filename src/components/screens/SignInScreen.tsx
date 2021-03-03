@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import Topbar, { ActionProps, TopbarStyle } from 'src/components/bar/Topbar';
 import Pixel from 'src/draw/size/pixel';
+import { getRunningModelStatusBarHeight } from 'src/draw/device/model/deviceModel';
 
 interface Props {
   componentId: string;
@@ -59,7 +60,7 @@ const TopbarNode: React.FC = () => {
     <Topbar
       headerProps={{
         isDark: true,
-        statusBarHeight: new Pixel(24),
+        statusBarHeight: getRunningModelStatusBarHeight(),
         headerStyle: styles.header
       }}
       contentProps={{
