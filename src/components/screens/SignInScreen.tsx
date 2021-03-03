@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import Topbar, { ActionProps, TopbarStyle } from 'src/components/bar/Topbar';
 import Pixel from 'src/draw/size/pixel';
 import {
+  getRunningModelBackActionIcon,
   getRunningModelHeight,
   getRunningModelStatusBarHeight
 } from 'src/draw/device/model/deviceModel';
@@ -24,7 +25,7 @@ const SignInScreen: React.FC<Props> = ({ componentId }: Props) => {
 const TopbarNode: React.FC = () => {
   const leftActionProps: Array<ActionProps> = [
     {
-      icon: 'label',
+      icon: getRunningModelBackActionIcon(),
       iconColor: 'white',
       iconSize: getRunningModelHeight().multiply(new Percentage(3)),
       iconDisabled: false,
@@ -35,7 +36,7 @@ const TopbarNode: React.FC = () => {
 
   const rightActionProps: Array<ActionProps> = [
     {
-      icon: 'delete',
+      icon: 'alarm-bell',
       iconColor: 'white',
       iconSize: getRunningModelHeight().multiply(new Percentage(3)),
       iconDisabled: false,

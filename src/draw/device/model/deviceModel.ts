@@ -1,10 +1,12 @@
 import { Dimensions, Platform, ScaledSize } from 'react-native';
 import Pixel from 'src/draw/size/pixel';
+import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
 
 export interface DeviceModel {
   readonly _width: number;
   readonly _height: number;
   getStatusBarHeight(): number;
+  getBackActionIcon(): IconSource;
 }
 
 const runningScreen: ScaledSize = Dimensions.get('screen');
@@ -17,19 +19,30 @@ const runningDeviceModel: DeviceModel = {
       android: 0,
       ios: getIosStatusBarHeight()
     });
+  },
+
+  getBackActionIcon(): IconSource {
+    return <IconSource>Platform.select({
+      android: 'arrow-left',
+      ios: 'chevron-left'
+    });
   }
 };
 
-export function getRunningModelStatusBarHeight() {
+export function getRunningModelBackActionIcon(): IconSource {
+  return runningDeviceModel.getBackActionIcon();
+}
+
+export function getRunningModelStatusBarHeight(): Pixel {
   const statusBarHeight = runningDeviceModel.getStatusBarHeight();
   return new Pixel(statusBarHeight);
 }
 
-export function getRunningModelHeight() {
+export function getRunningModelHeight(): Pixel {
   return new Pixel(runningDeviceModel._height);
 }
 
-export function getRunningModelWidth() {
+export function getRunningModelWidth(): Pixel {
   return new Pixel(runningDeviceModel._width);
 }
 
