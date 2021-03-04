@@ -16,6 +16,18 @@ interface Props {
   componentId: string;
 }
 
+const PasswordInput: React.FC = () => {
+  return (
+    <TextInputBox
+      textInputBoxStyle={{
+        boxStyle: passwordInputStyles.boxStyle,
+        contentStyle: passwordInputStyles.contentStyle
+      }}
+      label="password"
+    />
+  );
+};
+
 const EmailInput: React.FC = () => {
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([]);
@@ -57,13 +69,7 @@ const EmailInput: React.FC = () => {
 const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
   return (
     <View>
-      <TextInputBox
-        textInputBoxStyle={{
-          boxStyle: passwordInputStyles.boxStyle,
-          contentStyle: passwordInputStyles.contentStyle
-        }}
-        label="password"
-      />
+      <PasswordInput />
     </View>
   );
 };
