@@ -16,12 +16,11 @@ interface Props {
   componentId: string;
 }
 
-const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
+const EmailInput: React.FC = () => {
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([]);
-
   return (
-    <View style={sectionStyle.sectionStyle}>
+    <View style={emailInputStyles.containerStyle}>
       <TextInputBox
         textInputBoxStyle={{
           boxStyle: emailInputStyles.boxStyle,
@@ -49,6 +48,21 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
         }}
         defaultValue="hanyang.ac.kr"
         onChangeItem={(item) => setValue(item.value)}
+      />
+    </View>
+  );
+};
+
+// <EmailInput />
+const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
+  return (
+    <View>
+      <TextInputBox
+        textInputBoxStyle={{
+          boxStyle: passwordInputStyles.boxStyle,
+          contentStyle: passwordInputStyles.contentStyle
+        }}
+        label="password"
       />
     </View>
   );
@@ -92,7 +106,32 @@ const emailInputHeight: Pixel = getRunningModelHeight().multiply(
 );
 
 const emailInputBorderRadius: number = 10;
-const emailInputStyles = StyleSheet.create<TextInputBoxStyle>({
+const passwordInputStyles = StyleSheet.create({
+  boxStyle: {
+    width: getRunningModelWidth().multiply(new Percentage(87)).value,
+    height: emailInputHeight.value,
+    borderWidth: borderWith.value,
+    borderColor: '#E0E0E0',
+    borderRadius: emailInputBorderRadius,
+    overflow: 'hidden'
+  },
+  contentStyle: {
+    width: getRunningModelWidth().multiply(new Percentage(87)).value,
+    height: emailInputHeight.plus(borderWith.multiply(new Percentage(200)))
+      .value,
+    backgroundColor: '#EEEEEE',
+    borderColor: '#E0E0E0',
+    borderWidth: borderWith.value,
+    overflow: 'hidden'
+  }
+});
+const emailInputStyles = StyleSheet.create({
+  containerStyle: {
+    backgroundColor: '#FCFCFC',
+    height: getRunningModelHeight().multiply(new Percentage(100)).value,
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
   boxStyle: {
     width: emailInputWidth.value,
     height: emailInputHeight.value,
@@ -110,19 +149,10 @@ const emailInputStyles = StyleSheet.create<TextInputBoxStyle>({
     width: emailInputWidth.value,
     height: emailInputHeight.plus(borderWith.multiply(new Percentage(200)))
       .value,
-    backgroundColor: 'transparent',
+    borderColor: 'transparent',
     borderTopLeftRadius: emailInputBorderRadius,
     borderBottomLeftRadius: emailInputBorderRadius,
     overflow: 'hidden'
-  }
-});
-
-const sectionStyle = StyleSheet.create({
-  sectionStyle: {
-    backgroundColor: '#FCFCFC',
-    height: getRunningModelHeight().multiply(new Percentage(100)).value,
-    flexDirection: 'row',
-    justifyContent: 'center'
   }
 });
 
