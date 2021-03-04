@@ -1,27 +1,30 @@
 import React from 'react';
 import { TextInput } from 'react-native-paper';
 import { View, ViewStyle } from 'react-native';
+import { TextInputProps } from 'react-native-paper/lib/typescript/components/TextInput/TextInput';
+import { Theme } from 'react-native-paper/lib/typescript/types';
 
 export interface TextInputBoxStyle {
   boxStyle: ViewStyle;
   contentStyle: ViewStyle;
 }
 
-const TextInputBox: React.FC<TextInputBoxStyle> = ({
-  boxStyle,
-  contentStyle
-}: TextInputBoxStyle) => {
+interface TextInputBoxProps extends Omit<TextInputProps, 'theme'> {
+  textInputBoxStyle: TextInputBoxStyle;
+}
+
+const TextInputBox: React.FC<TextInputBoxProps> = ({
+  textInputBoxStyle,
+  label
+}: TextInputBoxProps) => {
   const [text, setText] = React.useState('');
   return (
-    <View style={boxStyle}>
+    <View style={textInputBoxStyle.boxStyle}>
       <TextInput
-        mode="flat"
-        label="email"
+        label={label}
         value={text}
         onChangeText={(text) => setText(text)}
-        underlineColor="transparent"
-        style={contentStyle}
-        onFocus={() => {}}
+        style={textInputBoxStyle.contentStyle}
       />
     </View>
   );

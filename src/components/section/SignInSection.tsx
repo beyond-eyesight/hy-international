@@ -11,6 +11,7 @@ import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
 import TextInputBox, {
   TextInputBoxStyle
 } from 'src/components/box/TextInputBox';
+import { Theme } from 'react-native-paper/lib/typescript/types';
 
 interface Props {
   componentId: string;
@@ -26,8 +27,11 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
   return (
     <View style={sectionStyle.sectionStyle}>
       <TextInputBox
-        boxStyle={emailInputStyles.boxStyle}
-        contentStyle={emailInputStyles.contentStyle}
+        textInputBoxStyle={{
+          boxStyle: emailInputStyles.boxStyle,
+          contentStyle: emailInputStyles.contentStyle
+        }}
+        label="email"
       />
     </View>
   );
