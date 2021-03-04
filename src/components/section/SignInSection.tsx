@@ -139,7 +139,8 @@ const passwordInputStyles = StyleSheet.create({
     borderColor: '#E0E0E0',
     borderRadius: emailInputBorderRadius,
     overflow: 'hidden',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    marginVertical: getRunningModelHeight().multiply(new Percentage(1)).value
   },
   contentStyle: {
     width: getRunningModelWidth().multiply(new Percentage(90)).value,
@@ -160,7 +161,8 @@ const emailInputStyles = StyleSheet.create({
   containerStyle: {
     backgroundColor: '#FCFCFC',
     flexDirection: 'row',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginVertical: getRunningModelHeight().multiply(new Percentage(1)).value
   },
   boxStyle: {
     width: emailInputWidth.value,
