@@ -23,6 +23,9 @@ const PasswordInput: React.FC = () => {
         contentStyle: passwordInputStyles.contentStyle
       }}
       label="password"
+      style={{
+        justifyContent: 'center'
+      }}
     />
   );
 };
@@ -64,12 +67,12 @@ const EmailInput: React.FC = () => {
   );
 };
 
-// <EmailInput />
-// <PasswordInput />
 const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
   const [visible, setVisible] = React.useState(true);
   return (
-    <View>
+    <View style={sectionStyle.containerStyle}>
+      <EmailInput />
+      <PasswordInput />
       <Banner
         visible={visible}
         actions={[
@@ -78,6 +81,9 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
             onPress: () => setVisible(false)
           }
         ]}
+        style={{
+          alignItems: 'center'
+        }}
         icon={() => <Avatar.Icon size={40} icon="chat-alert" />}
       >
         Although you already registered in Hanyang Portal, you should sign up
@@ -90,7 +96,7 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
 const atSignProps = StyleSheet.create<TextBoxStyleProps>({
   boxStyle: {
     height: getRunningModelHeight().multiply(new Percentage(8)).value,
-    width: getRunningModelHeight().multiply(new Percentage(7)).value,
+    width: getRunningModelWidth().multiply(new Percentage(10)).value,
     backgroundColor: '#1E88E5',
     alignItems: 'center',
     justifyContent: 'center'
@@ -127,15 +133,16 @@ const emailInputHeight: Pixel = getRunningModelHeight().multiply(
 const emailInputBorderRadius: number = 10;
 const passwordInputStyles = StyleSheet.create({
   boxStyle: {
-    width: getRunningModelWidth().multiply(new Percentage(87)).value,
+    width: getRunningModelWidth().multiply(new Percentage(90)).value,
     height: emailInputHeight.value,
     borderWidth: borderWith.value,
     borderColor: '#E0E0E0',
     borderRadius: emailInputBorderRadius,
-    overflow: 'hidden'
+    overflow: 'hidden',
+    alignSelf: 'center'
   },
   contentStyle: {
-    width: getRunningModelWidth().multiply(new Percentage(87)).value,
+    width: getRunningModelWidth().multiply(new Percentage(90)).value,
     height: emailInputHeight.plus(borderWith.multiply(new Percentage(200)))
       .value,
     backgroundColor: '#EEEEEE',
@@ -144,10 +151,14 @@ const passwordInputStyles = StyleSheet.create({
     overflow: 'hidden'
   }
 });
+
+const sectionStyle = StyleSheet.create({
+  containerStyle: {}
+});
+
 const emailInputStyles = StyleSheet.create({
   containerStyle: {
     backgroundColor: '#FCFCFC',
-    height: getRunningModelHeight().multiply(new Percentage(100)).value,
     flexDirection: 'row',
     justifyContent: 'center'
   },
