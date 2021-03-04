@@ -15,7 +15,7 @@ const theme: Theme = {
     notification: '#1E88E5',
     onBackground: '#1E88E5',
     onSurface: '#1E88E5',
-    placeholder: '#1E88E5',
+    placeholder: '#9E9E9E',
     surface: '#1E88E5',
     text: '#1E88E5'
   },

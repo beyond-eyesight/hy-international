@@ -99,7 +99,7 @@ const emailInputStyles = StyleSheet.create<TextInputBoxStyle>({
     height: emailInputHeight.value,
     backgroundColor: '#EEEEEE',
     borderWidth: borderWith.value,
-    borderColor: 'red',
+    borderColor: '#BDBDBD',
     borderRadius: emailInputBorderRadius,
     overflow: 'hidden'
   },
