@@ -8,9 +8,8 @@ import Pixel from 'src/draw/size/pixel';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { StyleSheet, View } from 'react-native';
 import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
-import TextInputBox, {
-  TextInputBoxStyle
-} from 'src/components/box/TextInputBox';
+import TextInputBox from 'src/components/box/TextInputBox';
+import { Avatar, Banner } from 'react-native-paper';
 
 interface Props {
   componentId: string;
@@ -66,10 +65,24 @@ const EmailInput: React.FC = () => {
 };
 
 // <EmailInput />
+// <PasswordInput />
 const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
+  const [visible, setVisible] = React.useState(true);
   return (
     <View>
-      <PasswordInput />
+      <Banner
+        visible={visible}
+        actions={[
+          {
+            label: 'OK',
+            onPress: () => setVisible(false)
+          }
+        ]}
+        icon={() => <Avatar.Icon size={40} icon="chat-alert" />}
+      >
+        Although you already registered in Hanyang Portal, you should sign up
+        cause this app is another system
+      </Banner>
     </View>
   );
 };

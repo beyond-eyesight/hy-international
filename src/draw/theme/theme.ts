@@ -16,8 +16,8 @@ const theme: Theme = {
     onBackground: '#1E88E5',
     onSurface: '#1E88E5',
     placeholder: '#9E9E9E',
-    surface: '#1E88E5',
-    text: '#1E88E5'
+    surface: '#FCFCFC',
+    text: 'black'
   },
   dark: false,
   fonts: configureFonts(fontConfig),
