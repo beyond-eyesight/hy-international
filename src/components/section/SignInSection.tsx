@@ -11,7 +11,6 @@ import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
 import TextInputBox, {
   TextInputBoxStyle
 } from 'src/components/box/TextInputBox';
-import { Theme } from 'react-native-paper/lib/typescript/types';
 
 interface Props {
   componentId: string;
@@ -136,7 +135,11 @@ const dropdownStyle = StyleSheet.create({
     fontSize: getRunningModelHeight().multiply(new Percentage(1.5)).value
   },
   contentStyle: {
-    backgroundColor: '#FCFCFC'
+    backgroundColor: '#FCFCFC',
+    borderBottomLeftRadius: 0,
+    borderTopLeftRadius: 0,
+    borderColor: '#E0E0E0',
+    borderLeftColor: 'transparent'
   },
   itemStyle: {
     justifyContent: 'flex-start'
