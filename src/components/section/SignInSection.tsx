@@ -24,7 +24,7 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([]);
   return (
-    <View style={styles.sectionStyle}>
+    <View style={sectionStyle.sectionStyle}>
       <TextInputBox
         boxStyle={emailInputStyles.boxStyle}
         contentStyle={emailInputStyles.contentStyle}
@@ -55,7 +55,7 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
 // onChangeItem={(item) => setValue(item.value)}
 // />
 
-const textBoxProps = StyleSheet.create<TextBoxStyleProps>({
+const atSignProps = StyleSheet.create<TextBoxStyleProps>({
   boxStyle: {
     height: getRunningModelHeight().multiply(new Percentage(8)).value,
     width: getRunningModelHeight().multiply(new Percentage(7)).value,
@@ -108,27 +108,30 @@ const emailInputStyles = StyleSheet.create<TextInputBoxStyle>({
   }
 });
 
-const styles = StyleSheet.create({
+const sectionStyle = StyleSheet.create({
   sectionStyle: {
     backgroundColor: '#FCFCFC',
     height: getRunningModelHeight().multiply(new Percentage(100)).value,
     flexDirection: 'row',
     justifyContent: 'center'
-  },
-  dropdownContainerStyle: {
+  }
+});
+
+const dropdownStyle = StyleSheet.create({
+  containerStyle: {
     width: getRunningModelWidth().multiply(new Percentage(35)).value,
     height: getRunningModelHeight().multiply(new Percentage(8)).value
   },
-  dropdownLabelStyle: {
+  labelStyle: {
     fontSize: getRunningModelHeight().multiply(new Percentage(1.5)).value
   },
-  dropdownContentStyle: {
+  contentStyle: {
     backgroundColor: '#FCFCFC'
   },
   itemStyle: {
     justifyContent: 'flex-start'
   },
-  dropdownDropdownStyle: { backgroundColor: '#FCFCFC' }
+  dropdownStyle: { backgroundColor: '#FCFCFC' }
 });
 
 export default SignInSection;
