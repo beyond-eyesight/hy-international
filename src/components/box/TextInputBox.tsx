@@ -29,15 +29,4 @@ const TextInputBox: React.FC<TextInputBoxProps> = ({
   );
 };
 
-// onKeyPress={() => {}}
-// onTextInput={() => {}}
-// onFocus={() => {}}
-// onBlur={() => {}}
-// onChange={() => {}}
-// onEndEditing={() => {}}
-// onLayout={() => {}}
-// onSelectionChange={() => {}}
-// onSubmitEditing={() => {}}
-// onScroll={() => {}}
-
 export default TextInputBox;

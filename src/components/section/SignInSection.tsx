@@ -99,19 +99,21 @@ const emailInputStyles = StyleSheet.create<TextInputBoxStyle>({
     height: emailInputHeight.value,
     backgroundColor: '#EEEEEE',
     borderWidth: borderWith.value,
-    borderColor: '#BDBDBD',
+    borderColor: '#E0E0E0',
+    borderRightColor: 'transparent',
     borderRadius: emailInputBorderRadius,
+    borderTopRightRadius: 0,
+    borderBottomRightRadius: 0,
+    borderBottomLeftRadius: emailInputBorderRadius,
     overflow: 'hidden'
   },
   contentStyle: {
-    width: emailInputWidth.minus(borderWith.multiply(new Percentage(200)))
-      .value,
+    width: emailInputWidth.value,
     height: emailInputHeight.plus(borderWith.multiply(new Percentage(200)))
       .value,
-    backgroundColor: '#EEEEEE',
-    borderRadius: emailInputBorderRadius,
-    borderTopEndRadius: emailInputBorderRadius,
-    borderTopStartRadius: emailInputBorderRadius,
+    backgroundColor: 'transparent',
+    borderTopLeftRadius: emailInputBorderRadius,
+    borderBottomLeftRadius: emailInputBorderRadius,
     overflow: 'hidden'
   }
 });
