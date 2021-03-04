@@ -8,7 +8,9 @@ import Pixel from 'src/draw/size/pixel';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { StyleSheet, View } from 'react-native';
 import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
-import TextInputBox from 'src/components/box/TextInputBox';
+import TextInputBox, {
+  TextInputBoxStyle
+} from 'src/components/box/TextInputBox';
 import { Avatar, Banner } from 'react-native-paper';
 
 const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
@@ -33,13 +35,15 @@ const EmailInput: React.FC = () => {
     new Percentage(45)
   );
 
-  const emailInputStyles = StyleSheet.create({
+  const emailInputContainerStyle = StyleSheet.create({
     containerStyle: {
-      backgroundColor: '#FCFCFC',
       flexDirection: 'row',
-      justifyContent: 'center',
+      alignSelf: 'center',
       marginVertical: getRunningModelHeight().multiply(new Percentage(1)).value
-    },
+    }
+  });
+
+  const emailInputStyles = StyleSheet.create<TextInputBoxStyle>({
     boxStyle: {
       width: emailInputWidth.value,
       height: inputComponentHeight.value,
@@ -114,7 +118,7 @@ const EmailInput: React.FC = () => {
   ];
 
   return (
-    <View style={emailInputStyles.containerStyle}>
+    <View style={emailInputContainerStyle.containerStyle}>
       <TextInputBox
         textInputBoxStyle={{
           boxStyle: emailInputStyles.boxStyle,
@@ -148,7 +152,7 @@ const EmailInput: React.FC = () => {
 };
 
 const PasswordInput: React.FC = () => {
-  const passwordInputStyles = StyleSheet.create({
+  const passwordInputStyles = StyleSheet.create<TextInputBoxStyle>({
     boxStyle: {
       width: getRunningModelWidth().multiply(new Percentage(90)).value,
       height: inputComponentHeight.value,
