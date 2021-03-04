@@ -2,7 +2,6 @@ import React from 'react';
 import { TextInput } from 'react-native-paper';
 import { View, ViewStyle } from 'react-native';
 import { TextInputProps } from 'react-native-paper/lib/typescript/components/TextInput/TextInput';
-import { Theme } from 'react-native-paper/lib/typescript/types';
 
 export interface TextInputBoxStyle {
   boxStyle: ViewStyle;

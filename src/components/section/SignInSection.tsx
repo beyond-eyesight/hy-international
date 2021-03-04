@@ -18,12 +18,9 @@ interface Props {
 }
 
 const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
-  const placeholderSize: Pixel = getRunningModelHeight().multiply(
-    new Percentage(2)
-  );
-
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([]);
+
   return (
     <View style={sectionStyle.sectionStyle}>
       <TextInputBox
@@ -33,31 +30,30 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
         }}
         label="email"
       />
+      <TextBox
+        boxStyle={atSignProps.boxStyle}
+        textStyle={atSignProps.textStyle}
+      >
+        @
+      </TextBox>
+      <DropDownPicker
+        items={emailHosts}
+        containerStyle={dropdownStyle.containerStyle}
+        labelStyle={dropdownStyle.labelStyle}
+        style={dropdownStyle.contentStyle}
+        itemStyle={dropdownStyle.itemStyle}
+        dropDownStyle={dropdownStyle.dropdownStyle}
+        onChangeList={(items, callback) => {
+          new Promise((resolve, reject) => resolve(setItems(items)))
+            .then(() => callback())
+            .catch(() => {});
+        }}
+        defaultValue="hanyang.ac.kr"
+        onChangeItem={(item) => setValue(item.value)}
+      />
     </View>
   );
 };
-
-// <TextBox
-//   boxStyle={textBoxProps.boxStyle}
-//   textStyle={textBoxProps.textStyle}
-// >
-//   @
-// </TextBox>
-// <DropDownPicker
-// items={emailHosts}
-// containerStyle={styles.dropdownContainerStyle}
-// labelStyle={styles.dropdownLabelStyle}
-// style={styles.dropdownContentStyle}
-// itemStyle={styles.itemStyle}
-// dropDownStyle={styles.dropdownDropdownStyle}
-// onChangeList={(items, callback) => {
-//   new Promise((resolve, reject) => resolve(setItems(items)))
-//     .then(() => callback())
-//     .catch(() => {});
-// }}
-// defaultValue="hanyang.ac.kr"
-// onChangeItem={(item) => setValue(item.value)}
-// />
 
 const atSignProps = StyleSheet.create<TextBoxStyleProps>({
   boxStyle: {
