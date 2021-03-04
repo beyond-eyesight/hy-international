@@ -100,8 +100,10 @@ const emailInputStyles = StyleSheet.create<TextInputBoxStyle>({
     borderColor: 'red'
   },
   contentStyle: {
-    width: emailInputWidth.value - 2 * borderWith.value,
-    height: emailInputHeight.value - 2 * borderWith.value,
+    width: emailInputWidth.minus(borderWith.multiply(new Percentage(200)))
+      .value,
+    height: emailInputHeight.minus(borderWith.multiply(new Percentage(200)))
+      .value,
     backgroundColor: '#EEEEEE'
   }
 });
