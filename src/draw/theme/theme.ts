@@ -4,19 +4,20 @@ import fontConfig from 'src/draw/text/font';
 
 const theme: Theme = {
   animation: { scale: 1.0 },
+  mode: 'exact',
   colors: {
     primary: '#1E88E5',
-    accent: '#0D47A1',
-    backdrop: 'rgba(0,0,0,0.5)',
-    background: '#FCFCFC',
-    disabled: 'rgba(0,0,0,0.26)',
-    error: '',
-    notification: '',
-    onBackground: '',
-    onSurface: '',
-    placeholder: 'rgba(33,33,33,.7)',
-    surface: '',
-    text: ''
+    accent: '#1E88E5',
+    backdrop: '#1E88E5',
+    background: 'white',
+    disabled: '#1E88E5',
+    error: '#1E88E5',
+    notification: '#1E88E5',
+    onBackground: '#1E88E5',
+    onSurface: '#1E88E5',
+    placeholder: '#1E88E5',
+    surface: '#1E88E5',
+    text: '#1E88E5'
   },
   dark: false,
   fonts: configureFonts(fontConfig),

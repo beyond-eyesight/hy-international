@@ -1,7 +1,5 @@
 import React, { ReactNode, RefObject } from 'react';
 import {
-  ImageProps,
-  StyleProp,
   TextStyle,
   TouchableWithoutFeedback,
   View,
@@ -10,17 +8,6 @@ import {
 import Pixel from 'src/draw/size/pixel';
 import { Appbar } from 'react-native-paper';
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
-
-export type Props = {
-  style?: StyleProp<ViewStyle>;
-  title?: React.ReactNode;
-  onBackPress?: () => void;
-  iconSource?: ImageProps['source'];
-  iconStyle?: ImageProps['style'];
-  LeftComponent?: JSX.Element;
-  RightComponent?: JSX.Element;
-  justifyContent?: string;
-};
 
 export interface TopbarStyle {
   header: ViewStyle;

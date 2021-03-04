@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Topbar, { ActionProps, TopbarStyle } from 'src/components/bar/Topbar';
 import Pixel from 'src/draw/size/pixel';
@@ -9,15 +9,22 @@ import {
 } from 'src/draw/device/model/deviceModel';
 import { blue } from 'src/draw/color';
 import Percentage from 'src/draw/size/percentage';
+import SignInSection from 'src/components/section/SignInSection';
 
 interface Props {
   componentId: string;
 }
 
 const SignInScreen: React.FC<Props> = ({ componentId }: Props) => {
+  const [showDropDown, setShowDropDown] = useState(false);
+  const [gender, setGender] = useState();
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([]);
+
   return (
-    <View>
+    <View style={styles.screenStyle}>
       <TopbarNode />
+      <SignInSection componentId={componentId} />
     </View>
   );
 };
@@ -72,7 +79,6 @@ const TopbarNode: React.FC = () => {
 
 const topbarStyles = StyleSheet.create<TopbarStyle>({
   header: {
-    position: 'absolute',
     left: 0,
     right: 0,
     justifyContent: 'space-between',
@@ -89,6 +95,13 @@ const topbarStyles = StyleSheet.create<TopbarStyle>({
   },
   action: {
     width: 100
+  }
+});
+
+const styles = StyleSheet.create({
+  screenStyle: {
+    backgroundColor: '#FCFCFC',
+    height: getRunningModelHeight().multiply(new Percentage(100)).value
   }
 });
 

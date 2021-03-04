@@ -6,7 +6,6 @@ import ApplicationContext from 'src/context/applicationContext';
 import Pixel from 'src/draw/size/pixel';
 import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
 import Percentage from 'src/draw/size/percentage';
-import TextInputBox from 'src/components/box/TextInputBox';
 import { blue, white } from 'src/draw/color';
 import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
 import { StyleSheet, View } from 'react-native';
@@ -44,7 +43,6 @@ const ZoneSection: React.FC<Props> = ({ componentId }: Props) => {
   }, [zoneApi]);
   return (
     <View>
-      <TextInputBox />
       <Board
         containerWidth="100%"
         containerHeight="6%"
