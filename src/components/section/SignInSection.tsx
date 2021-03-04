@@ -91,20 +91,26 @@ const borderWith: Pixel = new Pixel(1);
 const emailInputHeight: Pixel = getRunningModelHeight().multiply(
   new Percentage(8)
 );
+
+const emailInputBorderRadius: number = 10;
 const emailInputStyles = StyleSheet.create<TextInputBoxStyle>({
   boxStyle: {
     width: emailInputWidth.value,
     height: emailInputHeight.value,
     backgroundColor: '#EEEEEE',
     borderWidth: borderWith.value,
-    borderColor: 'red'
+    borderColor: 'red',
+    borderRadius: emailInputBorderRadius
   },
   contentStyle: {
     width: emailInputWidth.minus(borderWith.multiply(new Percentage(200)))
       .value,
     height: emailInputHeight.minus(borderWith.multiply(new Percentage(200)))
       .value,
-    backgroundColor: '#EEEEEE'
+    backgroundColor: '#EEEEEE',
+    borderRadius: emailInputBorderRadius,
+    borderTopEndRadius: emailInputBorderRadius,
+    borderTopStartRadius: emailInputBorderRadius
   }
 });
 
