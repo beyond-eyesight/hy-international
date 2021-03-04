@@ -22,4 +22,8 @@ export default class Pixel {
   public minus(other: Pixel): Pixel {
     return new Pixel(this._value - other._value);
   }
+
+  public plus(other: Pixel): Pixel {
+    return new Pixel(this._value + other._value);
+  }
 }
