@@ -219,7 +219,7 @@ const EmailInput: React.FC = () => {
     itemStyle: {
       justifyContent: 'flex-start'
     },
-    dropdownStyle: { backgroundColor: '#FCFCFC' }
+    dropdownStyle: { backgroundColor: '#FCFCFC', zIndex: 1 }
   });
 
   const emailHosts = [
