@@ -1,4 +1,4 @@
-import React, { Dispatch, ReactNode, SetStateAction, useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import Percentage from 'src/draw/size/percentage';
 import {
   getRunningModelHeight,
@@ -17,6 +17,7 @@ import InformationBoard from 'src/components/board/InformationBoard';
 const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
   const [bannerVisible, setBannerVisible] = React.useState(true);
 
+  // todo: refac
   function setBannerVisibleOpposite(bannerVisible: boolean) {
     return () => setBannerVisible(!bannerVisible);
   }
@@ -28,13 +29,11 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
       <EmailInput />
       <PasswordInput />
       <SigninButton onPress={setBannerVisibleOpposite(bannerVisible)} />
-      <SignupButton />
       <SignInFailBanner
         bannerVisible={bannerVisible}
-        onPress={() => {
-          console.log(bannerVisible);
-        }}
+        onPress={setBannerVisibleOpposite(bannerVisible)}
       />
+      <SignupButton />
     </View>
   );
 };
