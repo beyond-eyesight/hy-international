@@ -6,12 +6,12 @@ import {
 } from 'src/draw/device/model/deviceModel';
 import Pixel from 'src/draw/size/pixel';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { PixelRatio, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
 import TextInputBox, {
   TextInputBoxStyle
 } from 'src/components/box/TextInputBox';
-import { Avatar, Banner } from 'react-native-paper';
+import { Avatar, Banner, Button } from 'react-native-paper';
 import InformationBoard from 'src/components/board/InformationBoard';
 
 const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
@@ -22,6 +22,8 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
       </Board>
       <EmailInput />
       <PasswordInput />
+      <SigninButton />
+      <SignupButton />
       <SignInFailBanner />
     </View>
   );
@@ -46,7 +48,7 @@ const Board: React.FC<{ title: string; children: ReactNode }> = (props: {
       marginTop: getRunningModelHeight().multiply(new Percentage(5)).value
     },
     contentStyle: {
-      fontFamily: 'ProximaNova-Regular',
+      fontFamily: 'ProximaNova-Bold',
       fontSize: getRunningModelHeight().multiply(new Percentage(3)).value,
       lineHeight: getRunningModelHeight().multiply(new Percentage(3)).value,
       color: 'black'
@@ -79,6 +81,64 @@ const Board: React.FC<{ title: string; children: ReactNode }> = (props: {
     >
       {children}
     </InformationBoard>
+  );
+};
+
+const SigninButton: React.FC = () => {
+  return (
+    <Button
+      theme={{ roundness: 10 }}
+      icon={() => <Avatar.Icon size={40} icon="login" />}
+      mode="contained"
+      onPress={() => {
+        console.log('pressed');
+      }}
+      style={{
+        width: getRunningModelWidth().multiply(new Percentage(90)).value,
+        height: getRunningModelHeight().multiply(new Percentage(8)).value,
+        alignSelf: 'center',
+        marginTop: 10
+      }}
+      contentStyle={{
+        width: getRunningModelWidth().multiply(new Percentage(90)).value,
+        height: getRunningModelHeight().multiply(new Percentage(8)).value
+      }}
+      labelStyle={{
+        fontSize: getRunningModelHeight().multiply(new Percentage(2.5)).value,
+        lineHeight: getRunningModelHeight().multiply(new Percentage(2.5)).value
+      }}
+    >
+      Sign In
+    </Button>
+  );
+};
+
+const SignupButton: React.FC = () => {
+  return (
+    <Button
+      theme={{ roundness: 10 }}
+      icon={() => <Avatar.Icon size={40} icon="draw" />}
+      mode="contained"
+      onPress={() => {
+        console.log('pressed');
+      }}
+      style={{
+        width: getRunningModelWidth().multiply(new Percentage(90)).value,
+        height: getRunningModelHeight().multiply(new Percentage(8)).value,
+        alignSelf: 'center',
+        marginVertical: 10
+      }}
+      contentStyle={{
+        width: getRunningModelWidth().multiply(new Percentage(90)).value,
+        height: getRunningModelHeight().multiply(new Percentage(8)).value
+      }}
+      labelStyle={{
+        fontSize: getRunningModelHeight().multiply(new Percentage(2.5)).value,
+        lineHeight: getRunningModelHeight().multiply(new Percentage(2.5)).value
+      }}
+    >
+      Sign Up
+    </Button>
   );
 };
 

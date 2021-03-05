@@ -1,12 +1,7 @@
 import React, { ReactNode } from 'react';
-import { PixelRatio, StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import TextBox from 'src/components/box/TextBox';
 import { TextInputBoxStyle } from 'src/components/box/TextInputBox';
-import {
-  getRunningModelHeight,
-  getRunningModelWidth
-} from 'src/draw/device/model/deviceModel';
-import Percentage from 'src/draw/size/percentage';
 
 interface Props {
   title: string;
