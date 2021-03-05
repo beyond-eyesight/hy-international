@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react';
+import React, { Dispatch, ReactNode, SetStateAction, useState } from 'react';
 import Percentage from 'src/draw/size/percentage';
 import {
   getRunningModelHeight,
@@ -15,6 +15,7 @@ import { Avatar, Banner, Button } from 'react-native-paper';
 import InformationBoard from 'src/components/board/InformationBoard';
 
 const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
+  const [visible, setVisible] = React.useState(true);
   return (
     <View>
       <Board title="Welcome HY International">
@@ -22,9 +23,14 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
       </Board>
       <EmailInput />
       <PasswordInput />
-      <SigninButton />
+      <SigninButton visible={visible} setVisible={setVisible} />
       <SignupButton />
-      <SignInFailBanner />
+      <SignInFailBanner
+        visible={visible}
+        onPress={() => {
+          console.log(visible);
+        }}
+      />
     </View>
   );
 };
@@ -84,14 +90,21 @@ const Board: React.FC<{ title: string; children: ReactNode }> = (props: {
   );
 };
 
-const SigninButton: React.FC = () => {
+const SigninButton: React.FC<{
+  visible: boolean;
+  setVisible: Dispatch<SetStateAction<boolean>>;
+}> = (props: {
+  visible: boolean;
+  setVisible: Dispatch<SetStateAction<boolean>>;
+}) => {
+  const { visible, setVisible } = props;
   return (
     <Button
       theme={{ roundness: borderRadius }}
       icon={() => <Avatar.Icon size={40} icon="login" />}
       mode="contained"
       onPress={() => {
-        console.log('pressed');
+        setVisible(!visible);
       }}
       style={{
         width: getRunningModelWidth().multiply(new Percentage(90)).value,
@@ -305,15 +318,19 @@ const PasswordInput: React.FC = () => {
   );
 };
 
-const SignInFailBanner: React.FC = () => {
-  const [visible, setVisible] = React.useState(true);
+const SignInFailBanner: React.FC<{
+  visible: boolean;
+  onPress: () => void;
+}> = (props: { visible: boolean; onPress: () => void }) => {
+  const { visible, onPress } = props;
+
   return (
     <Banner
       visible={visible}
       actions={[
         {
           label: 'OK',
-          onPress: () => setVisible(false)
+          onPress
         }
       ]}
       style={{
