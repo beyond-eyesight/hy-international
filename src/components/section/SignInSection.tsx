@@ -101,14 +101,17 @@ const SigninButton: React.FC<{
   setBannerVisible: Dispatch<SetStateAction<boolean>>;
 }) => {
   const { bannerVisible, setBannerVisible } = props;
+
+  function setBannerVisibleOpposite(bannerVisible: boolean) {
+    return () => setBannerVisible(!bannerVisible);
+  }
+
   return (
     <Button
       theme={{ roundness: borderRadius }}
       icon={() => <Avatar.Icon size={40} icon="login" />}
       mode="contained"
-      onPress={() => {
-        setBannerVisible(!bannerVisible);
-      }}
+      onPress={setBannerVisibleOpposite(bannerVisible)}
       style={{
         width: getRunningModelWidth().multiply(new Percentage(90)).value,
         height: getRunningModelHeight().multiply(new Percentage(8)).value,
