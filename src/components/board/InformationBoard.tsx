@@ -33,7 +33,7 @@ const InformationBoard: React.FC<Props> = ({
         boxStyle={bodyStyles.boxStyle}
         textStyle={bodyStyles.contentStyle}
       >
-        You can enjoy more your exchange-campus life with this app
+        {children}
       </TextBox>
     </View>
   );

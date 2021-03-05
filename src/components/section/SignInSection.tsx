@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import Percentage from 'src/draw/size/percentage';
 import {
   getRunningModelHeight,
@@ -17,13 +17,9 @@ import InformationBoard from 'src/components/board/InformationBoard';
 const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
   return (
     <View>
-      <InformationBoard
-        title="Welcome HY International"
-        titleStyles={titleStyles}
-        bodyStyles={bodyStyles}
-      >
-        Join now! You can enjoy more your exchange-campus life with this app
-      </InformationBoard>
+      <Board title="Welcome HY International">
+        You can enjoy more your exchange-campus life with this app
+      </Board>
       <EmailInput />
       <PasswordInput />
       <SignInFailBanner />
@@ -31,44 +27,60 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
   );
 };
 
-const titleStyles = StyleSheet.create<TextInputBoxStyle>({
-  boxStyle: {
-    width: getRunningModelWidth().multiply(new Percentage(90)).value,
-    height: getRunningModelHeight().multiply(new Percentage(3)).value,
-    alignItems: 'center',
-    alignSelf: 'center',
-    justifyContent: 'center',
-    marginTop: getRunningModelHeight().multiply(new Percentage(5)).value
-  },
-  contentStyle: {
-    fontFamily: 'ProximaNova-Regular',
-    fontSize: getRunningModelHeight().multiply(new Percentage(3)).value,
-    lineHeight: getRunningModelHeight().multiply(new Percentage(3)).value,
-    color: 'black'
-  }
-});
-
-const bodyStyles = StyleSheet.create<TextInputBoxStyle>({
-  boxStyle: {
-    width: getRunningModelWidth().multiply(new Percentage(90)).value,
-    height: getRunningModelHeight().multiply(new Percentage(5)).value,
-    alignItems: 'center',
-    alignSelf: 'center',
-    justifyContent: 'center',
-    marginTop: getRunningModelHeight().multiply(new Percentage(3)).value,
-    marginBottom: getRunningModelHeight().multiply(new Percentage(3)).value
-  },
-  contentStyle: {
-    fontFamily: 'ProximaNova-Regular',
-    fontSize: getRunningModelHeight().multiply(new Percentage(2.5)).value,
-    lineHeight: getRunningModelHeight().multiply(new Percentage(2.5)).value,
-    color: 'black'
-  }
-});
-
 interface Props {
   componentId: string;
 }
+
+const Board: React.FC<{ title: string; children: ReactNode }> = (props: {
+  title: string;
+  children: ReactNode;
+}) => {
+  const { title, children } = props;
+  const titleStyles = StyleSheet.create<TextInputBoxStyle>({
+    boxStyle: {
+      width: getRunningModelWidth().multiply(new Percentage(90)).value,
+      height: getRunningModelHeight().multiply(new Percentage(3)).value,
+      alignItems: 'center',
+      alignSelf: 'center',
+      justifyContent: 'center',
+      marginTop: getRunningModelHeight().multiply(new Percentage(5)).value
+    },
+    contentStyle: {
+      fontFamily: 'ProximaNova-Regular',
+      fontSize: getRunningModelHeight().multiply(new Percentage(3)).value,
+      lineHeight: getRunningModelHeight().multiply(new Percentage(3)).value,
+      color: 'black'
+    }
+  });
+
+  const bodyStyles = StyleSheet.create<TextInputBoxStyle>({
+    boxStyle: {
+      width: getRunningModelWidth().multiply(new Percentage(90)).value,
+      height: getRunningModelHeight().multiply(new Percentage(5)).value,
+      alignItems: 'center',
+      alignSelf: 'center',
+      justifyContent: 'center',
+      marginTop: getRunningModelHeight().multiply(new Percentage(3)).value,
+      marginBottom: getRunningModelHeight().multiply(new Percentage(3)).value
+    },
+    contentStyle: {
+      fontFamily: 'ProximaNova-Regular',
+      fontSize: getRunningModelHeight().multiply(new Percentage(2.5)).value,
+      lineHeight: getRunningModelHeight().multiply(new Percentage(2.5)).value,
+      color: 'black'
+    }
+  });
+
+  return (
+    <InformationBoard
+      title={title}
+      titleStyles={titleStyles}
+      bodyStyles={bodyStyles}
+    >
+      {children}
+    </InformationBoard>
+  );
+};
 
 const EmailInput: React.FC = () => {
   const [value, setValue] = useState(null);
