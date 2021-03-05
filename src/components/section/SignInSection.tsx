@@ -87,7 +87,7 @@ const Board: React.FC<{ title: string; children: ReactNode }> = (props: {
 const SigninButton: React.FC = () => {
   return (
     <Button
-      theme={{ roundness: 10 }}
+      theme={{ roundness: borderRadius }}
       icon={() => <Avatar.Icon size={40} icon="login" />}
       mode="contained"
       onPress={() => {
@@ -97,7 +97,7 @@ const SigninButton: React.FC = () => {
         width: getRunningModelWidth().multiply(new Percentage(90)).value,
         height: getRunningModelHeight().multiply(new Percentage(8)).value,
         alignSelf: 'center',
-        marginTop: 10
+        marginTop: getRunningModelHeight().multiply(new Percentage(1)).value
       }}
       contentStyle={{
         width: getRunningModelWidth().multiply(new Percentage(90)).value,
@@ -116,7 +116,7 @@ const SigninButton: React.FC = () => {
 const SignupButton: React.FC = () => {
   return (
     <Button
-      theme={{ roundness: 10 }}
+      theme={{ roundness: borderRadius }}
       icon={() => <Avatar.Icon size={40} icon="draw" />}
       mode="contained"
       onPress={() => {
@@ -126,7 +126,8 @@ const SignupButton: React.FC = () => {
         width: getRunningModelWidth().multiply(new Percentage(90)).value,
         height: getRunningModelHeight().multiply(new Percentage(8)).value,
         alignSelf: 'center',
-        marginVertical: 10
+        marginVertical: getRunningModelHeight().multiply(new Percentage(1))
+          .value
       }}
       contentStyle={{
         width: getRunningModelWidth().multiply(new Percentage(90)).value,
