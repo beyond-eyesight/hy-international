@@ -15,7 +15,7 @@ import { Avatar, Banner, Button } from 'react-native-paper';
 import InformationBoard from 'src/components/board/InformationBoard';
 
 const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
-  const [visible, setVisible] = React.useState(true);
+  const [bannerVisible, setBannerVisible] = React.useState(true);
   return (
     <View>
       <Board title="Welcome HY International">
@@ -23,12 +23,15 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
       </Board>
       <EmailInput />
       <PasswordInput />
-      <SigninButton visible={visible} setVisible={setVisible} />
+      <SigninButton
+        bannerVisible={bannerVisible}
+        setBannerVisible={setBannerVisible}
+      />
       <SignupButton />
       <SignInFailBanner
-        visible={visible}
+        bannerVisible={bannerVisible}
         onPress={() => {
-          console.log(visible);
+          console.log(bannerVisible);
         }}
       />
     </View>
@@ -91,20 +94,20 @@ const Board: React.FC<{ title: string; children: ReactNode }> = (props: {
 };
 
 const SigninButton: React.FC<{
-  visible: boolean;
-  setVisible: Dispatch<SetStateAction<boolean>>;
+  bannerVisible: boolean;
+  setBannerVisible: Dispatch<SetStateAction<boolean>>;
 }> = (props: {
-  visible: boolean;
-  setVisible: Dispatch<SetStateAction<boolean>>;
+  bannerVisible: boolean;
+  setBannerVisible: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const { visible, setVisible } = props;
+  const { bannerVisible, setBannerVisible } = props;
   return (
     <Button
       theme={{ roundness: borderRadius }}
       icon={() => <Avatar.Icon size={40} icon="login" />}
       mode="contained"
       onPress={() => {
-        setVisible(!visible);
+        setBannerVisible(!bannerVisible);
       }}
       style={{
         width: getRunningModelWidth().multiply(new Percentage(90)).value,
@@ -319,14 +322,14 @@ const PasswordInput: React.FC = () => {
 };
 
 const SignInFailBanner: React.FC<{
-  visible: boolean;
+  bannerVisible: boolean;
   onPress: () => void;
-}> = (props: { visible: boolean; onPress: () => void }) => {
-  const { visible, onPress } = props;
+}> = (props: { bannerVisible: boolean; onPress: () => void }) => {
+  const { bannerVisible, onPress } = props;
 
   return (
     <Banner
-      visible={visible}
+      visible={bannerVisible}
       actions={[
         {
           label: 'OK',
