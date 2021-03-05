@@ -16,6 +16,10 @@ import InformationBoard from 'src/components/board/InformationBoard';
 
 const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
   const [bannerVisible, setBannerVisible] = React.useState(true);
+
+  function setBannerVisibleOpposite(bannerVisible: boolean) {
+    return () => setBannerVisible(!bannerVisible);
+  }
   return (
     <View>
       <Board title="Welcome HY International">
@@ -23,10 +27,7 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
       </Board>
       <EmailInput />
       <PasswordInput />
-      <SigninButton
-        bannerVisible={bannerVisible}
-        setBannerVisible={setBannerVisible}
-      />
+      <SigninButton onPress={setBannerVisibleOpposite(bannerVisible)} />
       <SignupButton />
       <SignInFailBanner
         bannerVisible={bannerVisible}
@@ -94,24 +95,16 @@ const Board: React.FC<{ title: string; children: ReactNode }> = (props: {
 };
 
 const SigninButton: React.FC<{
-  bannerVisible: boolean;
-  setBannerVisible: Dispatch<SetStateAction<boolean>>;
-}> = (props: {
-  bannerVisible: boolean;
-  setBannerVisible: Dispatch<SetStateAction<boolean>>;
-}) => {
-  const { bannerVisible, setBannerVisible } = props;
-
-  function setBannerVisibleOpposite(bannerVisible: boolean) {
-    return () => setBannerVisible(!bannerVisible);
-  }
+  onPress: () => void;
+}> = (props: { onPress: () => void }) => {
+  const { onPress } = props;
 
   return (
     <Button
       theme={{ roundness: borderRadius }}
       icon={() => <Avatar.Icon size={40} icon="login" />}
       mode="contained"
-      onPress={setBannerVisibleOpposite(bannerVisible)}
+      onPress={onPress}
       style={{
         width: getRunningModelWidth().multiply(new Percentage(90)).value,
         height: getRunningModelHeight().multiply(new Percentage(8)).value,
