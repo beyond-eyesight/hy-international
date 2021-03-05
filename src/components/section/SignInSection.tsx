@@ -6,22 +6,65 @@ import {
 } from 'src/draw/device/model/deviceModel';
 import Pixel from 'src/draw/size/pixel';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { StyleSheet, View } from 'react-native';
+import { PixelRatio, StyleSheet, View } from 'react-native';
 import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
 import TextInputBox, {
   TextInputBoxStyle
 } from 'src/components/box/TextInputBox';
 import { Avatar, Banner } from 'react-native-paper';
+import InformationBoard from 'src/components/board/InformationBoard';
 
 const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
   return (
     <View>
+      <InformationBoard
+        title="Welcome HY International"
+        titleStyles={titleStyles}
+        bodyStyles={bodyStyles}
+      >
+        Join now! You can enjoy more your exchange-campus life with this app
+      </InformationBoard>
       <EmailInput />
       <PasswordInput />
       <SignInFailBanner />
     </View>
   );
 };
+
+const titleStyles = StyleSheet.create<TextInputBoxStyle>({
+  boxStyle: {
+    width: getRunningModelWidth().multiply(new Percentage(90)).value,
+    height: getRunningModelHeight().multiply(new Percentage(3)).value,
+    alignItems: 'center',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    marginTop: getRunningModelHeight().multiply(new Percentage(5)).value
+  },
+  contentStyle: {
+    fontFamily: 'ProximaNova-Regular',
+    fontSize: getRunningModelHeight().multiply(new Percentage(3)).value,
+    lineHeight: getRunningModelHeight().multiply(new Percentage(3)).value,
+    color: 'black'
+  }
+});
+
+const bodyStyles = StyleSheet.create<TextInputBoxStyle>({
+  boxStyle: {
+    width: getRunningModelWidth().multiply(new Percentage(90)).value,
+    height: getRunningModelHeight().multiply(new Percentage(5)).value,
+    alignItems: 'center',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    marginTop: getRunningModelHeight().multiply(new Percentage(3)).value,
+    marginBottom: getRunningModelHeight().multiply(new Percentage(3)).value
+  },
+  contentStyle: {
+    fontFamily: 'ProximaNova-Regular',
+    fontSize: getRunningModelHeight().multiply(new Percentage(2.5)).value,
+    lineHeight: getRunningModelHeight().multiply(new Percentage(2.5)).value,
+    color: 'black'
+  }
+});
 
 interface Props {
   componentId: string;
