@@ -6,7 +6,7 @@ import {
 } from 'src/draw/device/model/deviceModel';
 import Pixel from 'src/draw/size/pixel';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ViewStyle } from 'react-native';
 import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
 import TextInputBox, {
   TextInputBoxStyle
@@ -98,7 +98,11 @@ const SigninButton: React.FC<{
 }> = (props: { onPress: () => void }) => {
   const { onPress } = props;
 
-  const signInButtonStyle = StyleSheet.create({
+  const signInButtonStyle = StyleSheet.create<{
+    container: ViewStyle;
+    content: ViewStyle;
+    label: ViewStyle;
+  }>({
     container: {
       alignSelf: 'center',
       marginTop: getRunningModelHeight().multiply(new Percentage(1)).value
@@ -117,7 +121,7 @@ const SigninButton: React.FC<{
 
   return (
     <Button
-      theme={{ roundness: borderRadius }}
+      theme={{ roundness: BORDER_RADIUS }}
       icon={() => (
         <Avatar.Icon
           size={getRunningModelHeight().multiply(new Percentage(4.5)).value}
@@ -138,7 +142,7 @@ const SigninButton: React.FC<{
 const SignupButton: React.FC = () => {
   return (
     <Button
-      theme={{ roundness: borderRadius }}
+      theme={{ roundness: BORDER_RADIUS }}
       icon={() => (
         <Avatar.Icon
           size={getRunningModelHeight().multiply(new Percentage(4.5)).value}
@@ -178,7 +182,7 @@ const EmailInput: React.FC = () => {
     new Percentage(45)
   );
 
-  const emailInputContainerStyle = StyleSheet.create({
+  const containerStyle = StyleSheet.create<{ containerStyle: ViewStyle }>({
     containerStyle: {
       flexDirection: 'row',
       alignSelf: 'center',
@@ -186,28 +190,28 @@ const EmailInput: React.FC = () => {
     }
   });
 
-  const emailInputStyles = StyleSheet.create<TextInputBoxStyle>({
+  const inputStyles = StyleSheet.create<TextInputBoxStyle>({
     boxStyle: {
       width: emailInputWidth.value,
-      height: inputComponentHeight.value,
+      height: INPUT_COMPONENT_HEIGHT.value,
       backgroundColor: '#EEEEEE',
-      borderWidth: borderWith.value,
+      borderWidth: BORDER_WIDTH.value,
       borderColor: '#E0E0E0',
       borderRightColor: 'transparent',
-      borderRadius,
+      borderRadius: BORDER_RADIUS,
       borderTopRightRadius: 0,
       borderBottomRightRadius: 0,
-      borderBottomLeftRadius: borderRadius,
+      borderBottomLeftRadius: BORDER_RADIUS,
       overflow: 'hidden'
     },
     contentStyle: {
       width: emailInputWidth.value,
-      height: inputComponentHeight.plus(
-        borderWith.multiply(new Percentage(200))
+      height: INPUT_COMPONENT_HEIGHT.plus(
+        BORDER_WIDTH.multiply(new Percentage(200))
       ).value,
       borderColor: 'transparent',
-      borderTopLeftRadius: borderRadius,
-      borderBottomLeftRadius: borderRadius,
+      borderTopLeftRadius: BORDER_RADIUS,
+      borderBottomLeftRadius: BORDER_RADIUS,
       overflow: 'hidden'
     }
   });
@@ -228,7 +232,13 @@ const EmailInput: React.FC = () => {
     }
   });
 
-  const dropdownStyle = StyleSheet.create({
+  const dropdownStyle = StyleSheet.create<{
+    containerStyle: ViewStyle;
+    labelStyle: ViewStyle;
+    contentStyle: ViewStyle;
+    itemStyle: ViewStyle;
+    dropdownStyle: ViewStyle;
+  }>({
     containerStyle: {
       width: getRunningModelWidth().multiply(new Percentage(35)).value,
       height: getRunningModelHeight().multiply(new Percentage(8)).value
@@ -261,11 +271,11 @@ const EmailInput: React.FC = () => {
   ];
 
   return (
-    <View style={emailInputContainerStyle.containerStyle}>
+    <View style={containerStyle.containerStyle}>
       <TextInputBox
         textInputBoxStyle={{
-          boxStyle: emailInputStyles.boxStyle,
-          contentStyle: emailInputStyles.contentStyle
+          boxStyle: inputStyles.boxStyle,
+          contentStyle: inputStyles.contentStyle
         }}
         label="email"
       />
@@ -298,22 +308,22 @@ const PasswordInput: React.FC = () => {
   const passwordInputStyles = StyleSheet.create<TextInputBoxStyle>({
     boxStyle: {
       width: getRunningModelWidth().multiply(new Percentage(90)).value,
-      height: inputComponentHeight.value,
-      borderWidth: borderWith.value,
+      height: INPUT_COMPONENT_HEIGHT.value,
+      borderWidth: BORDER_WIDTH.value,
       borderColor: '#E0E0E0',
-      borderRadius,
+      borderRadius: BORDER_RADIUS,
       overflow: 'hidden',
       alignSelf: 'center',
       marginVertical: getRunningModelHeight().multiply(new Percentage(1)).value
     },
     contentStyle: {
       width: getRunningModelWidth().multiply(new Percentage(90)).value,
-      height: inputComponentHeight.plus(
-        borderWith.multiply(new Percentage(200))
+      height: INPUT_COMPONENT_HEIGHT.plus(
+        BORDER_WIDTH.multiply(new Percentage(200))
       ).value,
       backgroundColor: '#EEEEEE',
       borderColor: '#E0E0E0',
-      borderWidth: borderWith.value,
+      borderWidth: BORDER_WIDTH.value,
       overflow: 'hidden'
     }
   });
@@ -352,12 +362,10 @@ const SignInFailBanner: React.FC<{
   );
 };
 
-const borderWith: Pixel = new Pixel(1);
-
-const inputComponentHeight: Pixel = getRunningModelHeight().multiply(
+const BORDER_WIDTH: Pixel = new Pixel(1);
+const INPUT_COMPONENT_HEIGHT: Pixel = getRunningModelHeight().multiply(
   new Percentage(8)
 );
-
-const borderRadius: number = 10;
+const BORDER_RADIUS: number = 10;
 
 export default SignInSection;
