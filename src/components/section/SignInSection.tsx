@@ -98,26 +98,37 @@ const SigninButton: React.FC<{
 }> = (props: { onPress: () => void }) => {
   const { onPress } = props;
 
+  const signInButtonStyle = StyleSheet.create({
+    container: {
+      alignSelf: 'center',
+      marginTop: getRunningModelHeight().multiply(new Percentage(1)).value
+    },
+
+    content: {
+      width: getRunningModelWidth().multiply(new Percentage(90)).value,
+      height: getRunningModelHeight().multiply(new Percentage(8)).value
+    },
+
+    label: {
+      fontSize: getRunningModelHeight().multiply(new Percentage(2.5)).value,
+      lineHeight: getRunningModelHeight().multiply(new Percentage(2.5)).value
+    }
+  });
+
   return (
     <Button
       theme={{ roundness: borderRadius }}
-      icon={() => <Avatar.Icon size={40} icon="login" />}
+      icon={() => (
+        <Avatar.Icon
+          size={getRunningModelHeight().multiply(new Percentage(4.5)).value}
+          icon="login"
+        />
+      )}
       mode="contained"
       onPress={onPress}
-      style={{
-        width: getRunningModelWidth().multiply(new Percentage(90)).value,
-        height: getRunningModelHeight().multiply(new Percentage(8)).value,
-        alignSelf: 'center',
-        marginTop: getRunningModelHeight().multiply(new Percentage(1)).value
-      }}
-      contentStyle={{
-        width: getRunningModelWidth().multiply(new Percentage(90)).value,
-        height: getRunningModelHeight().multiply(new Percentage(8)).value
-      }}
-      labelStyle={{
-        fontSize: getRunningModelHeight().multiply(new Percentage(2.5)).value,
-        lineHeight: getRunningModelHeight().multiply(new Percentage(2.5)).value
-      }}
+      style={signInButtonStyle.container}
+      contentStyle={signInButtonStyle.content}
+      labelStyle={signInButtonStyle.label}
     >
       Sign In
     </Button>
@@ -128,7 +139,12 @@ const SignupButton: React.FC = () => {
   return (
     <Button
       theme={{ roundness: borderRadius }}
-      icon={() => <Avatar.Icon size={40} icon="draw" />}
+      icon={() => (
+        <Avatar.Icon
+          size={getRunningModelHeight().multiply(new Percentage(4.5)).value}
+          icon="draw"
+        />
+      )}
       mode="contained"
       onPress={() => {
         console.log('pressed');
@@ -309,9 +325,6 @@ const PasswordInput: React.FC = () => {
         contentStyle: passwordInputStyles.contentStyle
       }}
       label="password"
-      style={{
-        justifyContent: 'center'
-      }}
     />
   );
 };
@@ -331,9 +344,6 @@ const SignInFailBanner: React.FC<{
           onPress
         }
       ]}
-      style={{
-        alignItems: 'center'
-      }}
       icon={() => <Avatar.Icon size={40} icon="chat-alert" />}
     >
       Although you already registered in Hanyang Portal, you should sign up
