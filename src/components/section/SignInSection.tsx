@@ -23,11 +23,11 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
   }
   return (
     <View>
-      <Board title="Welcome HY International">
+      <SigninBoard title="Welcome HY International">
         You can enjoy more your exchange-campus life with this app
-      </Board>
-      <EmailInput />
-      <PasswordInput />
+      </SigninBoard>
+      <SigninEmailInput />
+      <SigninPasswordInput />
       <SigninButton onPress={setBannerVisibleOpposite(bannerVisible)} />
       <SignInFailBanner
         bannerVisible={bannerVisible}
@@ -42,7 +42,7 @@ interface Props {
   componentId: string;
 }
 
-const Board: React.FC<{ title: string; children: ReactNode }> = (props: {
+const SigninBoard: React.FC<{ title: string; children: ReactNode }> = (props: {
   title: string;
   children: ReactNode;
 }) => {
@@ -174,7 +174,7 @@ const SignupButton: React.FC = () => {
   );
 };
 
-const EmailInput: React.FC = () => {
+const SigninEmailInput: React.FC = () => {
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([]);
 
@@ -304,7 +304,7 @@ const EmailInput: React.FC = () => {
   );
 };
 
-const PasswordInput: React.FC = () => {
+const SigninPasswordInput: React.FC = () => {
   const passwordInputStyles = StyleSheet.create<TextInputBoxStyle>({
     boxStyle: {
       width: getRunningModelWidth().multiply(new Percentage(90)).value,
