@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ViewStyle } from 'react-native';
 import Topbar, { ActionProps, TopbarStyle } from 'src/components/bar/Topbar';
 import Pixel from 'src/draw/size/pixel';
 import {
@@ -22,7 +22,7 @@ const SignInScreen: React.FC<Props> = ({ componentId }: Props) => {
   const [items, setItems] = useState([]);
 
   return (
-    <View style={styles.screenStyle}>
+    <View style={signinScreenStyle.screenStyle}>
       <TopbarNode />
       <SignInSection componentId={componentId} />
     </View>
@@ -98,7 +98,7 @@ const topbarStyles = StyleSheet.create<TopbarStyle>({
   }
 });
 
-const styles = StyleSheet.create({
+const signinScreenStyle = StyleSheet.create<{ screenStyle: ViewStyle }>({
   screenStyle: {
     backgroundColor: '#FCFCFC',
     height: getRunningModelHeight().multiply(new Percentage(100)).value
