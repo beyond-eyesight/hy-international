@@ -5,13 +5,12 @@ import { View } from 'react-native';
 
 interface Props {
   componentId: string;
-  zone: Zone;
 }
 
-const ChatScreen: React.FC<Props> = ({ componentId, zone }: Props) => {
+const ChatScreen: React.FC<Props> = ({ componentId }: Props) => {
   return (
     <View>
-      <ChatSection zone={zone} />
+      <ChatSection />
     </View>
   );
 };
