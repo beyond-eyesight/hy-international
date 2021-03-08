@@ -38,18 +38,14 @@ const screens: IScreenProps[] = [
   }
 ];
 
+// <Provider theme={theme}>
+//   {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+//   <Component {...props} />
+// </Provider>
+
 screens.forEach((screen) => {
   const { id, Component } = screen;
-  Navigation.registerComponent(
-    id,
-    () => (props) => (
-      <Provider theme={theme}>
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        <Component {...props} />
-      </Provider>
-    ),
-    () => Component
-  );
+  Navigation.registerComponent(id, () => Component);
 });
 
 Navigation.setDefaultOptions({
@@ -66,7 +62,7 @@ Navigation.events().registerAppLaunchedListener(async () => {
         children: [
           {
             component: {
-              name: SCREEN_IDS.ChatScreen
+              name: SCREEN_IDS.SignInScreen
             }
           }
         ]

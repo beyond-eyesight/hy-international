@@ -1,4 +1,4 @@
-import { Dimensions, Platform, ScaledSize } from 'react-native';
+import { Dimensions, PixelRatio, Platform, ScaledSize } from 'react-native';
 import Pixel from 'src/draw/size/pixel';
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
 
@@ -39,6 +39,8 @@ export function getRunningModelStatusBarHeight(): Pixel {
 }
 
 export function getRunningModelHeight(): Pixel {
+  console.log('height');
+  console.log(runningDeviceModel._height);
   return new Pixel(runningDeviceModel._height);
 }
 
