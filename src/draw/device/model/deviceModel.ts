@@ -1,23 +1,40 @@
-import { Dimensions, PixelRatio, Platform, ScaledSize } from 'react-native';
+import { Dimensions, Platform, ScaledSize, StatusBar } from 'react-native';
 import Pixel from 'src/draw/size/pixel';
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
 
 export interface DeviceModel {
   readonly _width: number;
   readonly _height: number;
-  getStatusBarHeight(): number;
+  getTopStatusBarHeight(): number;
+  getBottomStatusBarHeight(): number;
   getBackActionIcon(): IconSource;
 }
 
 const runningScreen: ScaledSize = Dimensions.get('screen');
+
+function getAndroidStatusBarHeight() {
+  if (Platform.OS === 'android') {
+    return StatusBar.currentHeight;
+  }
+
+  return 0;
+}
+
 const runningDeviceModel: DeviceModel = {
   _height: runningScreen.height,
   _width: runningScreen.width,
 
-  getStatusBarHeight(): number {
+  getTopStatusBarHeight(): number {
     return <number>Platform.select({
       android: 0,
       ios: getIosStatusBarHeight()
+    });
+  },
+
+  getBottomStatusBarHeight(): number {
+    return <number>Platform.select({
+      android: getAndroidStatusBarHeight(),
+      ios: 0
     });
   },
 
@@ -34,13 +51,10 @@ export function getRunningModelBackActionIcon(): IconSource {
 }
 
 export function getRunningModelStatusBarHeight(): Pixel {
-  const statusBarHeight = runningDeviceModel.getStatusBarHeight();
-  return new Pixel(statusBarHeight);
+  return new Pixel(runningDeviceModel.getTopStatusBarHeight());
 }
 
 export function getRunningModelHeight(): Pixel {
-  console.log('height');
-  console.log(runningDeviceModel._height);
   return new Pixel(runningDeviceModel._height);
 }
 
