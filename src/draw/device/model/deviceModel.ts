@@ -1,4 +1,4 @@
-import { Dimensions, Platform, ScaledSize, StatusBar } from 'react-native';
+import { Dimensions, PixelRatio, Platform, ScaledSize, StatusBar } from 'react-native';
 import Pixel from 'src/draw/size/pixel';
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
 
@@ -13,6 +13,8 @@ export interface DeviceModel {
 const runningScreen: ScaledSize = Dimensions.get('screen');
 
 function getAndroidStatusBarHeight() {
+  console.log('kk');
+  console.log(PixelRatio.get());
   if (Platform.OS === 'android') {
     return StatusBar.currentHeight;
   }

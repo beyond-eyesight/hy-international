@@ -15,14 +15,13 @@ const ChatSection: React.FC = () => {
       renderInputToolbar={(props) => (
         <InputToolbar
           containerStyle={{
-            position: 'relative',
             backgroundColor: 'red',
-            borderTopWidth: 1.5,
-            borderTopColor: '#333'
+            borderTopWidth: 0
           }}
           primaryStyle={{
+            bottom: 100,
             backgroundColor: 'blue',
-            position: 'relative'
+            position: 'absolute'
           }}
           {...props}
         />
