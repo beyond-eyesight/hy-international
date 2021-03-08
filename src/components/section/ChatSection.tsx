@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { GiftedChat, IMessage, InputToolbar } from 'react-native-gifted-chat';
+import { getRunningModelToolbarHeight } from '../../draw/device/model/deviceModel';
 
 // todo: userId 하드코딩 제거!
 const ChatSection: React.FC = () => {
@@ -19,7 +20,7 @@ const ChatSection: React.FC = () => {
             borderTopWidth: 0
           }}
           primaryStyle={{
-            bottom: 100,
+            bottom: getRunningModelToolbarHeight().value,
             backgroundColor: 'blue',
             position: 'absolute'
           }}

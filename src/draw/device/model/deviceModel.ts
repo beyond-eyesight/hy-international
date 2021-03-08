@@ -52,6 +52,10 @@ export function getRunningModelBackActionIcon(): IconSource {
   return runningDeviceModel.getBackActionIcon();
 }
 
+export function getRunningModelToolbarHeight(): Pixel {
+  return new Pixel(runningDeviceModel.getBottomStatusBarHeight());
+}
+
 export function getRunningModelStatusBarHeight(): Pixel {
   return new Pixel(runningDeviceModel.getTopStatusBarHeight());
 }
