@@ -11,10 +11,13 @@ export interface DeviceModel {
 }
 
 const runningScreen: ScaledSize = Dimensions.get('screen');
+const runningWindow: ScaledSize = Dimensions.get('window');
 
 function getAndroidStatusBarHeight() {
   console.log('kk');
-  console.log(PixelRatio.get());
+  console.log(runningScreen.height);
+  console.log(runningWindow.height);
+  console.log(StatusBar.currentHeight);
   if (Platform.OS === 'android') {
     return StatusBar.currentHeight;
   }
