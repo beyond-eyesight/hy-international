@@ -9,6 +9,7 @@ import {
 } from 'src/draw/device/model/deviceModel';
 import { blue } from 'src/draw/color';
 import Percentage from 'src/draw/size/percentage';
+import SignInSection from 'src/components/section/SignInSection';
 
 interface Props {
   componentId: string;
@@ -23,6 +24,7 @@ const SignInScreen: React.FC<Props> = ({ componentId }: Props) => {
   return (
     <View style={signinScreenStyle.screenStyle}>
       <TopbarNode />
+      <SignInSection componentId={componentId} />
     </View>
   );
 };

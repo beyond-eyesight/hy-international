@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { GiftedChat, IMessage } from 'react-native-gifted-chat';
+import { GiftedChat, IMessage, InputToolbar } from 'react-native-gifted-chat';
 
 // todo: userId 하드코딩 제거!
 const ChatSection: React.FC = () => {
@@ -11,6 +11,22 @@ const ChatSection: React.FC = () => {
     <GiftedChat
       messages={messages}
       onSend={(messages: IMessage[]) => {}}
+      renderActions={() => null}
+      renderInputToolbar={(props) => (
+        <InputToolbar
+          containerStyle={{
+            position: 'relative',
+            backgroundColor: 'red',
+            borderTopWidth: 1.5,
+            borderTopColor: '#333'
+          }}
+          primaryStyle={{
+            backgroundColor: 'blue',
+            position: 'relative'
+          }}
+          {...props}
+        />
+      )}
       user={{
         // todo: remove hard coding
         _id: '1'
