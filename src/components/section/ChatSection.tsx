@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   GiftedChat,
   IMessage,
@@ -6,7 +6,9 @@ import {
   InputToolbarProps
 } from 'react-native-gifted-chat';
 import {
-  KeyboardAvoidingView, Platform,
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
   StatusBar,
   StyleSheet,
   View
@@ -19,6 +21,11 @@ interface ToolbarProps extends InputToolbarProps {}
 // todo: userId 하드코딩 제거!
 const ChatSection: React.FC = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);
+  useEffect(() => {
+    Keyboard.addListener('keyboardDidShow', () => {
+      console.log('Keyboard Shown');
+    });
+  }, []);
   console.log('kk');
   console.log(StatusBar.currentHeight);
 
@@ -49,7 +56,7 @@ const ChatSection: React.FC = () => {
             containerStyle={{
               backgroundColor: 'red',
               borderWidth: 0,
-              bottom: getRunningModelToolbarHeight().value
+              bottom: getRunningModelToolbarHeight().value + 48 - 24
             }}
             primaryStyle={{}}
             {...props}
@@ -74,7 +81,4 @@ const ChatSection: React.FC = () => {
 //   />
 // )}
 
-
 export default ChatSection;
-
-
