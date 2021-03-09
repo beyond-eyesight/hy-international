@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
-import { GiftedChat, IMessage, InputToolbar, InputToolbarProps } from 'react-native-gifted-chat';
-import { KeyboardAvoidingView, StyleSheet, View } from 'react-native';
+import {
+  GiftedChat,
+  IMessage,
+  InputToolbar,
+  InputToolbarProps
+} from 'react-native-gifted-chat';
+import {
+  KeyboardAvoidingView, Platform,
+  StatusBar,
+  StyleSheet,
+  View
+} from 'react-native';
 import TextInputBox, { TextInputBoxStyle } from '../box/TextInputBox';
 
 interface ToolbarProps extends InputToolbarProps {}
@@ -8,20 +18,21 @@ interface ToolbarProps extends InputToolbarProps {}
 // todo: userId 하드코딩 제거!
 const ChatSection: React.FC = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);
+  console.log('kk');
+  console.log(StatusBar.currentHeight);
 
   // scrollToBottom
   // todo: 트랜잭션으로 묶든가 해야할거같은디
 
   const inputStyles = StyleSheet.create<TextInputBoxStyle>({
     boxStyle: {
-      width: 500,
+      width: '100%',
+      height: 48,
       backgroundColor: 'green'
     },
     contentStyle: {
-      width: 500,
-      height: 10 + 48,
-      paddingBottom: 48,
-      borderBottomColor: 'white',
+      width: '100%',
+      height: 48,
       backgroundColor: 'blue'
     }
   });
@@ -36,18 +47,11 @@ const ChatSection: React.FC = () => {
           <InputToolbar
             containerStyle={{
               backgroundColor: 'red',
-              borderTopWidth: 0,
-              bottom: 48
+              borderWidth: 0,
+              bottom: 24 + 48
             }}
+            primaryStyle={{}}
             {...props}
-            renderComposer={(props) => (
-              <TextInputBox
-                textInputBoxStyle={{
-                  boxStyle: inputStyles.boxStyle,
-                  contentStyle: inputStyles.contentStyle
-                }}
-              />
-            )}
           />
         )}
         user={{
@@ -55,11 +59,21 @@ const ChatSection: React.FC = () => {
           _id: '1'
         }}
       />
-      <KeyboardAvoidingView behavior="padding" />
+      {Platform.OS === 'android' && <KeyboardAvoidingView behavior="padding" />}
     </View>
   );
 };
 
+// renderComposer={(props) => (
+//   <TextInputBox
+//     textInputBoxStyle={{
+//       boxStyle: inputStyles.boxStyle,
+//       contentStyle: inputStyles.contentStyle
+//     }}
+//   />
+// )}
+
+
 export default ChatSection;
 
-// {Platform.OS === 'android' && <KeyboardAvoidingView behavior="padding" />}
+
