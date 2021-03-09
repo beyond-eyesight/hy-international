@@ -1,6 +1,13 @@
-import { Dimensions, PixelRatio, Platform, ScaledSize, StatusBar } from 'react-native';
+import {
+  Dimensions,
+  PixelRatio,
+  Platform,
+  ScaledSize,
+  StatusBar
+} from 'react-native';
 import Pixel from 'src/draw/size/pixel';
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
+import Percentage from '../../size/percentage';
 
 export interface DeviceModel {
   readonly _width: number;
@@ -64,6 +71,7 @@ export function getRunningModelStatusBarHeight(): Pixel {
 }
 
 export function getRunningModelHeight(): Pixel {
+  console.log(runningDeviceModel._height);
   return new Pixel(runningDeviceModel._height);
 }
 

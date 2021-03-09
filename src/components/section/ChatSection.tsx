@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { GiftedChat, IMessage, InputToolbar } from 'react-native-gifted-chat';
-import { KeyboardAvoidingView, Platform, View } from 'react-native';
+import { GiftedChat, IMessage, InputToolbar, InputToolbarProps } from 'react-native-gifted-chat';
+import { KeyboardAvoidingView, StyleSheet, View } from 'react-native';
+import TextInputBox, { TextInputBoxStyle } from '../box/TextInputBox';
+
+interface ToolbarProps extends InputToolbarProps {}
 
 // todo: userId 하드코딩 제거!
 const ChatSection: React.FC = () => {
@@ -8,6 +11,20 @@ const ChatSection: React.FC = () => {
 
   // scrollToBottom
   // todo: 트랜잭션으로 묶든가 해야할거같은디
+
+  const inputStyles = StyleSheet.create<TextInputBoxStyle>({
+    boxStyle: {
+      width: 500,
+      backgroundColor: 'green'
+    },
+    contentStyle: {
+      width: 500,
+      height: 10 + 48,
+      paddingBottom: 48,
+      borderBottomColor: 'white',
+      backgroundColor: 'blue'
+    }
+  });
 
   return (
     <View style={{ flex: 1 }}>
@@ -19,14 +36,18 @@ const ChatSection: React.FC = () => {
           <InputToolbar
             containerStyle={{
               backgroundColor: 'red',
-              height: 100,
-              borderTopWidth: 0
-            }}
-            primaryStyle={{
-              bottom: 72,
-              position: 'absolute'
+              borderTopWidth: 0,
+              bottom: 48
             }}
             {...props}
+            renderComposer={(props) => (
+              <TextInputBox
+                textInputBoxStyle={{
+                  boxStyle: inputStyles.boxStyle,
+                  contentStyle: inputStyles.contentStyle
+                }}
+              />
+            )}
           />
         )}
         user={{
@@ -34,9 +55,11 @@ const ChatSection: React.FC = () => {
           _id: '1'
         }}
       />
-      {Platform.OS === 'android' && <KeyboardAvoidingView behavior="padding" />}
+      <KeyboardAvoidingView behavior="padding" />
     </View>
   );
 };
 
 export default ChatSection;
+
+// {Platform.OS === 'android' && <KeyboardAvoidingView behavior="padding" />}
