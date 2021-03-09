@@ -14,18 +14,22 @@ import {
   View
 } from 'react-native';
 import TextInputBox, { TextInputBoxStyle } from '../box/TextInputBox';
-import { getRunningModelToolbarHeight } from '../../draw/device/model/deviceModel';
+import { getRunningModelBottomNavigationBarHeight } from '../../draw/device/model/deviceModel';
 
 interface ToolbarProps extends InputToolbarProps {}
 
 // todo: userId 하드코딩 제거!
 const ChatSection: React.FC = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);
+  const [bottom, setBottom] = useState<number>(
+    getRunningModelBottomNavigationBarHeight().value
+  );
   useEffect(() => {
     Keyboard.addListener('keyboardDidShow', () => {
       console.log('Keyboard Shown');
+      console.log(bottom);
     });
-  }, []);
+  }, [bottom]);
   console.log('kk');
   console.log(StatusBar.currentHeight);
 
@@ -56,7 +60,7 @@ const ChatSection: React.FC = () => {
             containerStyle={{
               backgroundColor: 'red',
               borderWidth: 0,
-              bottom: getRunningModelToolbarHeight().value + 48 - 24
+              bottom
             }}
             primaryStyle={{}}
             {...props}

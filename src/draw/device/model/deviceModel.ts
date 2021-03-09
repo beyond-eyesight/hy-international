@@ -6,14 +6,14 @@ export interface DeviceModel {
   readonly _width: number;
   readonly _height: number;
   getTopStatusBarHeight(): number;
-  getSoftmenuBarHeight(): number;
+  getBottomNavigationBarHeight(): number;
   getBackActionIcon(): IconSource;
 }
 
 const runningScreen: ScaledSize = Dimensions.get('screen');
 const runningWindow: ScaledSize = Dimensions.get('window');
 
-function getAndroidSoftmenuBarHeight() {
+function getAndroidBottomNavigationBarHeight() {
   if (Platform.OS === 'android') {
     const statusbarHeight: number | undefined = StatusBar.currentHeight;
     const softMenubarHeight = runningScreen.height - runningWindow.height;
@@ -37,9 +37,9 @@ const runningDeviceModel: DeviceModel = {
     });
   },
 
-  getSoftmenuBarHeight(): number {
+  getBottomNavigationBarHeight(): number {
     return <number>Platform.select({
-      android: getAndroidSoftmenuBarHeight(),
+      android: getAndroidBottomNavigationBarHeight(),
       ios: 0
     });
   },
@@ -56,8 +56,8 @@ export function getRunningModelBackActionIcon(): IconSource {
   return runningDeviceModel.getBackActionIcon();
 }
 
-export function getRunningModelToolbarHeight(): Pixel {
-  return new Pixel(runningDeviceModel.getSoftmenuBarHeight());
+export function getRunningModelBottomNavigationBarHeight(): Pixel {
+  return new Pixel(runningDeviceModel.getBottomNavigationBarHeight());
 }
 
 export function getRunningModelStatusBarHeight(): Pixel {
