@@ -12,6 +12,7 @@ import {
   View
 } from 'react-native';
 import TextInputBox, { TextInputBoxStyle } from '../box/TextInputBox';
+import { getRunningModelToolbarHeight } from '../../draw/device/model/deviceModel';
 
 interface ToolbarProps extends InputToolbarProps {}
 
@@ -48,7 +49,7 @@ const ChatSection: React.FC = () => {
             containerStyle={{
               backgroundColor: 'red',
               borderWidth: 0,
-              bottom: 24 + 48
+              bottom: getRunningModelToolbarHeight().value
             }}
             primaryStyle={{}}
             {...props}

@@ -1,31 +1,26 @@
-import {
-  Dimensions,
-  PixelRatio,
-  Platform,
-  ScaledSize,
-  StatusBar
-} from 'react-native';
+import { Dimensions, Platform, ScaledSize, StatusBar } from 'react-native';
 import Pixel from 'src/draw/size/pixel';
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
-import Percentage from '../../size/percentage';
 
 export interface DeviceModel {
   readonly _width: number;
   readonly _height: number;
   getTopStatusBarHeight(): number;
-  getBottomStatusBarHeight(): number;
+  getSoftmenuBarHeight(): number;
   getBackActionIcon(): IconSource;
 }
 
 const runningScreen: ScaledSize = Dimensions.get('screen');
 const runningWindow: ScaledSize = Dimensions.get('window');
 
-function getAndroidStatusBarHeight() {
-  console.log('here it is');
-  console.log(runningScreen.height);
-  console.log(runningWindow.height);
+function getAndroidSoftmenuBarHeight() {
   if (Platform.OS === 'android') {
-    return StatusBar.currentHeight;
+    const statusbarHeight: number | undefined = StatusBar.currentHeight;
+    const softMenubarHeight = runningScreen.height - runningWindow.height;
+    if (statusbarHeight === undefined) {
+      return 0;
+    }
+    return statusbarHeight + softMenubarHeight;
   }
 
   return 0;
@@ -42,9 +37,9 @@ const runningDeviceModel: DeviceModel = {
     });
   },
 
-  getBottomStatusBarHeight(): number {
+  getSoftmenuBarHeight(): number {
     return <number>Platform.select({
-      android: getAndroidStatusBarHeight(),
+      android: getAndroidSoftmenuBarHeight(),
       ios: 0
     });
   },
@@ -62,7 +57,7 @@ export function getRunningModelBackActionIcon(): IconSource {
 }
 
 export function getRunningModelToolbarHeight(): Pixel {
-  return new Pixel(runningDeviceModel.getBottomStatusBarHeight());
+  return new Pixel(runningDeviceModel.getSoftmenuBarHeight());
 }
 
 export function getRunningModelStatusBarHeight(): Pixel {
