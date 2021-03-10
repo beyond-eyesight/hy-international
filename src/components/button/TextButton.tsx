@@ -1,6 +1,6 @@
 import React from 'react';
 import Pixel from 'src/draw/size/pixel';
-import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
+import { runningDeviceModel } from 'src/draw/device/model/deviceModel';
 import Percentage from 'src/draw/size/percentage';
 import { grey, white } from 'src/draw/color';
 import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
@@ -15,6 +15,8 @@ interface Props {
   borderRadius: string;
   onPress?: () => void;
 }
+
+const deviceModelHeight: Pixel = runningDeviceModel._height;
 
 const TextButton: React.FC<Props> = ({
   width,
@@ -36,7 +38,7 @@ const TextButton: React.FC<Props> = ({
   );
 };
 
-const textSize: Pixel = getRunningModelHeight().multiply(new Percentage(3));
+const textSize: Pixel = deviceModelHeight.multiply(new Percentage(3));
 
 const textBoxProps = StyleSheet.create<TextBoxStyleProps>({
   boxStyle: {
