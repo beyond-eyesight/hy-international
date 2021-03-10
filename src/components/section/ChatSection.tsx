@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { GiftedChat, IMessage, InputToolbar } from 'react-native-gifted-chat';
-import { Keyboard, KeyboardAvoidingView, Platform, View } from 'react-native';
+import {
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  StyleSheet,
+  View
+} from 'react-native';
 import Pixel from '../../draw/size/pixel';
 import runningDeviceModel from '../../draw/device/model/deviceModel';
+import TextInputBox, { TextInputBoxStyle } from '../box/TextInputBox';
 
 // todo: userId 하드코딩 제거!
 const ChatSection: React.FC = () => {
@@ -12,7 +19,19 @@ const ChatSection: React.FC = () => {
   );
 
   const bottomOnKeyboardDidShow = runningDeviceModel.getBottomOnKeyboardDidShow();
-  const bottomOnKeyboardDidHide = runningDeviceModel.getBottomOnKeyboardDidHide()
+  const bottomOnKeyboardDidHide = runningDeviceModel.getBottomOnKeyboardDidHide();
+  const inputStyles = StyleSheet.create<TextInputBoxStyle>({
+    boxStyle: {
+      width: '100%',
+      height: 50,
+      backgroundColor: 'red'
+    },
+    contentStyle: {
+      width: '100%',
+      backgroundColor: 'red',
+      height: 50
+    }
+  });
   useEffect(() => {
     Keyboard.addListener('keyboardDidShow', () => {
       setBottom(bottomOnKeyboardDidShow);
@@ -27,16 +46,22 @@ const ChatSection: React.FC = () => {
       <GiftedChat
         messages={messages}
         onSend={(messages: IMessage[]) => {}}
-        forceGetKeyboardHeight
         renderInputToolbar={(props) => (
           <InputToolbar
             containerStyle={{
-              backgroundColor: 'red',
+              backgroundColor: 'blue',
               borderWidth: 0,
               bottom: bottom.value
             }}
+            renderComposer={(props) => (
+              <TextInputBox
+                textInputBoxStyle={{
+                  boxStyle: inputStyles.boxStyle,
+                  contentStyle: inputStyles.contentStyle
+                }}
+              />
+            )}
             primaryStyle={{}}
-            {...props}
           />
         )}
         user={{
@@ -48,14 +73,5 @@ const ChatSection: React.FC = () => {
     </View>
   );
 };
-
-// renderComposer={(props) => (
-//   <TextInputBox
-//     textInputBoxStyle={{
-//       boxStyle: inputStyles.boxStyle,
-//       contentStyle: inputStyles.contentStyle
-//     }}
-//   />
-// )}
 
 export default ChatSection;
