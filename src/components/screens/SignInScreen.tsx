@@ -2,18 +2,19 @@ import React, { useState } from 'react';
 import { StyleSheet, View, ViewStyle } from 'react-native';
 import Topbar, { ActionProps, TopbarStyle } from 'src/components/bar/Topbar';
 import Pixel from 'src/draw/size/pixel';
-import {
-  getRunningModelBackActionIcon,
-  getRunningModelHeight,
-  getRunningModelStatusBarHeight
-} from 'src/draw/device/model/deviceModel';
+import { runningDeviceModel } from 'src/draw/device/model/deviceModel';
 import { blue } from 'src/draw/color';
 import Percentage from 'src/draw/size/percentage';
 import SignInSection from 'src/components/section/SignInSection';
+import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
 
 interface Props {
   componentId: string;
 }
+
+const deviceModelHeight: Pixel = runningDeviceModel._height;
+const deviceStatusBarHeight: Pixel = runningDeviceModel.getStatusBarHeight();
+const backActionIcon: IconSource = runningDeviceModel.getBackActionIcon();
 
 const SignInScreen: React.FC<Props> = ({ componentId }: Props) => {
   const [showDropDown, setShowDropDown] = useState(false);
@@ -32,9 +33,9 @@ const SignInScreen: React.FC<Props> = ({ componentId }: Props) => {
 const TopbarNode: React.FC = () => {
   const leftActionProps: Array<ActionProps> = [
     {
-      icon: getRunningModelBackActionIcon(),
+      icon: backActionIcon,
       iconColor: 'white',
-      iconSize: getRunningModelHeight().multiply(new Percentage(3)),
+      iconSize: deviceModelHeight.multiply(new Percentage(3)),
       iconDisabled: false,
       actionStyle: {},
       onPress: () => {}
@@ -45,7 +46,7 @@ const TopbarNode: React.FC = () => {
     {
       icon: 'alarm-bell',
       iconColor: 'white',
-      iconSize: getRunningModelHeight().multiply(new Percentage(3)),
+      iconSize: deviceModelHeight.multiply(new Percentage(3)),
       iconDisabled: false,
       actionStyle: {},
       onPress: () => {}
@@ -63,10 +64,10 @@ const TopbarNode: React.FC = () => {
         title: 'hihi',
         subtitle: 'kkk',
         titleStyle: {
-          fontSize: getRunningModelHeight().multiply(new Percentage(3)).value
+          fontSize: deviceModelHeight.multiply(new Percentage(3)).value
         },
         subtitleStyle: {
-          fontSize: getRunningModelHeight().multiply(new Percentage(2)).value
+          fontSize: deviceModelHeight.multiply(new Percentage(2)).value
         },
         onPress: () => {},
         contentStyle: topbarStyles.content
@@ -83,10 +84,10 @@ const topbarStyles = StyleSheet.create<TopbarStyle>({
     right: 0,
     justifyContent: 'space-between',
     height:
-      getRunningModelHeight().multiply(new Percentage(6)).value +
-      getRunningModelStatusBarHeight().value,
+      deviceModelHeight.multiply(new Percentage(6)).value +
+      deviceStatusBarHeight.value,
     backgroundColor: blue.get('600'),
-    paddingTop: getRunningModelStatusBarHeight().value
+    paddingTop: deviceStatusBarHeight.value
   },
   content: {
     alignItems: 'center',
@@ -101,7 +102,7 @@ const topbarStyles = StyleSheet.create<TopbarStyle>({
 const signinScreenStyle = StyleSheet.create<{ screenStyle: ViewStyle }>({
   screenStyle: {
     backgroundColor: '#FCFCFC',
-    height: getRunningModelHeight().multiply(new Percentage(100)).value
+    height: deviceModelHeight.multiply(new Percentage(100)).value
   }
 });
 
