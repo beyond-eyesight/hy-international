@@ -21,18 +21,6 @@ const ChatSection: React.FC = () => {
 
   const bottomOnKeyboardDidShow = runningDeviceModel.getBottomOnKeyboardDidShow();
   const bottomOnKeyboardDidHide = runningDeviceModel.getBottomOnKeyboardDidHide();
-  const inputStyles = StyleSheet.create<TextInputBoxStyle>({
-    boxStyle: {
-      width: 100,
-      height: 30,
-      backgroundColor: 'red'
-    },
-    contentStyle: {
-      width: 100,
-      backgroundColor: 'red',
-      height: 30
-    }
-  });
   useEffect(() => {
     Keyboard.addListener('keyboardDidShow', () => {
       setBottom(bottomOnKeyboardDidShow);
@@ -48,40 +36,7 @@ const ChatSection: React.FC = () => {
         messages={messages}
         onSend={(messages: IMessage[]) => {}}
         renderActions={(props) => null}
-        renderInputToolbar={(props) => (
-          <InputToolbar
-            renderActions={(props) => null}
-            containerStyle={{
-              backgroundColor: 'blue',
-              borderWidth: 0,
-              bottom: bottom.value
-            }}
-            renderComposer={(props) => (
-              <View
-                style={{
-                  flexDirection: 'row',
-                  flex: 1,
-                  justifyContent: 'space-between'
-                }}
-              >
-                <TextInputBox
-                  textInputBoxStyle={{
-                    boxStyle: inputStyles.boxStyle,
-                    contentStyle: inputStyles.contentStyle
-                  }}
-                />
-                <Button
-                  mode="text"
-                  color="white"
-                  style={{ backgroundColor: 'white' }}
-                >
-                  haha
-                </Button>
-              </View>
-            )}
-            primaryStyle={{}}
-          />
-        )}
+        renderInputToolbar={(props) => <InputBar bottom={bottom} />}
         user={{
           // todo: remove hard coding
           _id: '1'
@@ -89,6 +44,62 @@ const ChatSection: React.FC = () => {
       />
       {Platform.OS === 'android' && <KeyboardAvoidingView behavior="padding" />}
     </View>
+  );
+};
+
+const Composer: React.FC = () => {
+  const inputStyles = StyleSheet.create<TextInputBoxStyle>({
+    boxStyle: {
+      width: 100,
+      height: 30,
+      backgroundColor: 'red'
+    },
+    contentStyle: {
+      width: 100,
+      backgroundColor: 'red',
+      height: 30
+    }
+  });
+
+  return (
+    <View
+      style={{
+        flexDirection: 'row',
+        flex: 1,
+        justifyContent: 'space-between'
+      }}
+    >
+      <TextInputBox
+        textInputBoxStyle={{
+          boxStyle: inputStyles.boxStyle,
+          contentStyle: inputStyles.contentStyle
+        }}
+      />
+      <Button mode="text" color="white">
+        haha
+      </Button>
+    </View>
+  );
+};
+
+const InputBar: React.FC<{ bottom: Pixel }> = (props: { bottom: Pixel }) => {
+  const { bottom } = props;
+
+  const containerStyles = StyleSheet.create({
+    container: {
+      backgroundColor: 'blue',
+      borderWidth: 0,
+      bottom: bottom.value
+    }
+  });
+
+  return (
+    <InputToolbar
+      renderActions={() => null}
+      containerStyle={containerStyles.container}
+      renderComposer={(props) => <Composer />}
+      primaryStyle={{}}
+    />
   );
 };
 
