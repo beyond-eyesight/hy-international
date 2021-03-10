@@ -4,11 +4,11 @@ import ZoneList from 'src/components/list/ZoneList';
 import Zone from 'src/model/zone';
 import ApplicationContext from 'src/context/applicationContext';
 import Pixel from 'src/draw/size/pixel';
-import { runningDeviceModel } from 'src/draw/device/model/deviceModel';
 import Percentage from 'src/draw/size/percentage';
 import { blue, white } from 'src/draw/color';
 import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
 import { StyleSheet, View } from 'react-native';
+import runningDeviceModel from '../../draw/device/model/deviceModel';
 
 export type Props = {
   componentId: string;

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { GiftedChat, IMessage, InputToolbar } from 'react-native-gifted-chat';
 import { Keyboard, KeyboardAvoidingView, Platform, View } from 'react-native';
-import { runningDeviceModel } from '../../draw/device/model/deviceModel';
 import Pixel from '../../draw/size/pixel';
+import runningDeviceModel from '../../draw/device/model/deviceModel';
 
 // todo: userId 하드코딩 제거!
 const ChatSection: React.FC = () => {

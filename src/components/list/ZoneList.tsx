@@ -3,11 +3,11 @@ import React from 'react';
 import Zone from 'src/model/zone';
 import { SCREEN_IDS } from 'src/components/screens/constant';
 import Pixel from 'src/draw/size/pixel';
-import { runningDeviceModel } from 'src/draw/device/model/deviceModel';
 import Percentage from 'src/draw/size/percentage';
 import { push } from 'src/navigation/navigation';
 import { blue, white } from 'src/draw/color';
 import { TextBoxStyleProps } from 'src/components/box/TextBox';
+import runningDeviceModel from '../../draw/device/model/deviceModel';
 
 interface Props {
   componentId: string;

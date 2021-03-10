@@ -1,7 +1,6 @@
 import React, { ReactNode, useState } from 'react';
 import { StyleSheet, View, ViewStyle } from 'react-native';
 import TextInputBox, { TextInputBoxStyle } from 'src/components/box/TextInputBox';
-import { runningDeviceModel } from 'src/draw/device/model/deviceModel';
 import Percentage from 'src/draw/size/percentage';
 import InformationBoard from 'src/components/board/InformationBoard';
 import Pixel from 'src/draw/size/pixel';
@@ -9,6 +8,7 @@ import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Avatar, Button } from 'react-native-paper';
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
+import runningDeviceModel from '../../draw/device/model/deviceModel';
 
 const deviceModelHeight: Pixel = runningDeviceModel._height;
 const deviceModelWidth: Pixel = runningDeviceModel._width;

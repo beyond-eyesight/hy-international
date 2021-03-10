@@ -23,7 +23,7 @@ function getAndroidBottomNavigationBarHeight(): Pixel {
   return statusbarHeight.plus(ANDROID_SOFT_MENU_BAR_HEIGHT);
 }
 
-export const runningDeviceModel: DeviceModel = {
+const runningDeviceModel: DeviceModel = {
   _height: new Pixel(runningScreen.height),
   _width: new Pixel(runningScreen.width),
 
@@ -114,3 +114,5 @@ const isIphoneX =
     runningScreen.width === 896);
 
 const isIOS = Platform.OS === 'ios';
+
+export default runningDeviceModel;

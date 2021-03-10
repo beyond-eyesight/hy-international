@@ -1,11 +1,11 @@
 import React from 'react';
 import ChatSection from 'src/components/section/ChatSection';
 import { StyleSheet, View, ViewStyle } from 'react-native';
-import { runningDeviceModel } from 'src/draw/device/model/deviceModel';
 import Percentage from 'src/draw/size/percentage';
 import Topbar, { ActionProps, TopbarStyle } from 'src/components/bar/Topbar';
 import Pixel from 'src/draw/size/pixel';
 import { blue } from 'src/draw/color';
+import runningDeviceModel from '../../draw/device/model/deviceModel';
 
 interface Props {
   componentId: string;

@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { StyleSheet, View, ViewStyle } from 'react-native';
 import Topbar, { ActionProps, TopbarStyle } from 'src/components/bar/Topbar';
 import Pixel from 'src/draw/size/pixel';
-import { runningDeviceModel } from 'src/draw/device/model/deviceModel';
 import { blue } from 'src/draw/color';
 import Percentage from 'src/draw/size/percentage';
 import SignInSection from 'src/components/section/SignInSection';
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
+import runningDeviceModel from '../../draw/device/model/deviceModel';
 
 interface Props {
   componentId: string;

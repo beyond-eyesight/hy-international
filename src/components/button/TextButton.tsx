@@ -1,10 +1,10 @@
 import React from 'react';
 import Pixel from 'src/draw/size/pixel';
-import { runningDeviceModel } from 'src/draw/device/model/deviceModel';
 import Percentage from 'src/draw/size/percentage';
 import { grey, white } from 'src/draw/color';
 import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
 import { StyleSheet } from 'react-native';
+import runningDeviceModel from '../../draw/device/model/deviceModel';
 
 interface Props {
   width: string;
