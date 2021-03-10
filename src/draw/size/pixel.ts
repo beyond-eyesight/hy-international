@@ -26,4 +26,8 @@ export default class Pixel {
   public plus(other: Pixel): Pixel {
     return new Pixel(this._value + other._value);
   }
+
+  isZero() {
+    return this._value === 0;
+  }
 }

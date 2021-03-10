@@ -7,24 +7,19 @@ export interface DeviceModel {
   readonly _height: Pixel;
   hasBottomNavigationBar(): boolean;
   getTopStatusBarHeight(): Pixel;
-  getBottomNavigationBarHeight(): Pixel;
+  getOnKeyboardDidShowBottom(): Pixel;
   getBackActionIcon(): IconSource;
 }
 
 const runningScreen: ScaledSize = Dimensions.get('screen');
 const runningWindow: ScaledSize = Dimensions.get('window');
 
-function getAndroidBottomNavigationBarHeight(): Pixel {
-  if (Platform.OS === 'android') {
-    const statusbarHeight: Pixel = getAndroidStatusBarHeight();
-    const softMenubarHeight: Pixel = ANDROID_SOFT_MENU_BAR_HEIGHT;
-    if (statusbarHeight === undefined) {
-      return new Pixel(0);
-    }
-    return statusbarHeight.plus(softMenubarHeight);
+function getAndroidOnKeyboardDidShowBottom(): Pixel {
+  const statusbarHeight: Pixel = getAndroidStatusBarHeight();
+  if (statusbarHeight.isZero()) {
+    return statusbarHeight;
   }
-
-  return new Pixel(0);
+  return statusbarHeight.plus(ANDROID_SOFT_MENU_BAR_HEIGHT);
 }
 
 const runningDeviceModel: DeviceModel = {
@@ -42,9 +37,9 @@ const runningDeviceModel: DeviceModel = {
     }) as Pixel;
   },
 
-  getBottomNavigationBarHeight(): Pixel {
+  getOnKeyboardDidShowBottom(): Pixel {
     return Platform.select({
-      android: getAndroidBottomNavigationBarHeight(),
+      android: getAndroidOnKeyboardDidShowBottom(),
       ios: new Pixel(0)
     }) as Pixel;
   },
@@ -70,7 +65,7 @@ export function getRunningModelSoftMenuBarHeight(): Pixel {
 }
 
 export function getRunningModelBottomNavigationBarHeight(): Pixel {
-  return runningDeviceModel.getBottomNavigationBarHeight();
+  return runningDeviceModel.getOnKeyboardDidShowBottom();
 }
 
 export function getRunningModelStatusBarHeight(): Pixel {
