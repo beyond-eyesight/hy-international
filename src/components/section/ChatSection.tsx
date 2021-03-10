@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { GiftedChat, IMessage, InputToolbar } from 'react-native-gifted-chat';
-import { Keyboard, KeyboardAvoidingView, Platform, StyleSheet, View } from 'react-native';
+import {
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  StyleSheet,
+  View
+} from 'react-native';
 import Pixel from '../../draw/size/pixel';
 import runningDeviceModel from '../../draw/device/model/deviceModel';
 import TextInputBox, { TextInputBoxStyle } from '../box/TextInputBox';
+import TextButton from '../button/TextButton';
 
 // todo: userId 하드코딩 제거!
 const ChatSection: React.FC = () => {
@@ -16,14 +23,14 @@ const ChatSection: React.FC = () => {
   const bottomOnKeyboardDidHide = runningDeviceModel.getBottomOnKeyboardDidHide();
   const inputStyles = StyleSheet.create<TextInputBoxStyle>({
     boxStyle: {
-      width: '100%',
-      height: 50,
+      width: 100,
+      height: 30,
       backgroundColor: 'red'
     },
     contentStyle: {
-      width: '100%',
+      width: 100,
       backgroundColor: 'red',
-      height: 50
+      height: 30
     }
   });
   useEffect(() => {
@@ -50,12 +57,28 @@ const ChatSection: React.FC = () => {
               bottom: bottom.value
             }}
             renderComposer={(props) => (
-              <TextInputBox
-                textInputBoxStyle={{
-                  boxStyle: inputStyles.boxStyle,
-                  contentStyle: inputStyles.contentStyle
+              <View
+                style={{
+                  flexDirection: 'row',
+                  flex: 1,
+                  justifyContent: 'space-between'
                 }}
-              />
+              >
+                <TextInputBox
+                  textInputBoxStyle={{
+                    boxStyle: inputStyles.boxStyle,
+                    contentStyle: inputStyles.contentStyle
+                  }}
+                />
+                <TextButton
+                  width="300px"
+                  height="20px"
+                  content="SE"
+                  ellipticalColor="black"
+                  textColor="white"
+                  borderRadius="0px"
+                />
+              </View>
             )}
             primaryStyle={{}}
           />
