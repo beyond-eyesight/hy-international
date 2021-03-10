@@ -1,11 +1,7 @@
 import React from 'react';
 import ChatSection from 'src/components/section/ChatSection';
 import { StyleSheet, View, ViewStyle } from 'react-native';
-import {
-  getRunningModelBackActionIcon,
-  getRunningModelHeight,
-  getRunningModelStatusBarHeight
-} from 'src/draw/device/model/deviceModel';
+import { runningDeviceModel } from 'src/draw/device/model/deviceModel';
 import Percentage from 'src/draw/size/percentage';
 import Topbar, { ActionProps, TopbarStyle } from 'src/components/bar/Topbar';
 import Pixel from 'src/draw/size/pixel';
@@ -14,6 +10,8 @@ import { blue } from 'src/draw/color';
 interface Props {
   componentId: string;
 }
+
+const deviceModelHeight: Pixel = runningDeviceModel._height;
 
 const ChatScreen: React.FC<Props> = ({ componentId }: Props) => {
   return (
@@ -27,9 +25,9 @@ const ChatScreen: React.FC<Props> = ({ componentId }: Props) => {
 const TopbarNode: React.FC = () => {
   const leftActionProps: Array<ActionProps> = [
     {
-      icon: getRunningModelBackActionIcon(),
+      icon: runningDeviceModel.getBackActionIcon(),
       iconColor: 'white',
-      iconSize: getRunningModelHeight().multiply(new Percentage(3)),
+      iconSize: deviceModelHeight.multiply(new Percentage(3)),
       iconDisabled: false,
       actionStyle: {},
       onPress: () => {}
@@ -40,7 +38,7 @@ const TopbarNode: React.FC = () => {
     {
       icon: 'alarm-bell',
       iconColor: 'white',
-      iconSize: getRunningModelHeight().multiply(new Percentage(3)),
+      iconSize: deviceModelHeight.multiply(new Percentage(3)),
       iconDisabled: false,
       actionStyle: {},
       onPress: () => {}
@@ -58,10 +56,10 @@ const TopbarNode: React.FC = () => {
         title: 'hihi',
         subtitle: 'kkk',
         titleStyle: {
-          fontSize: getRunningModelHeight().multiply(new Percentage(3)).value
+          fontSize: deviceModelHeight.multiply(new Percentage(3)).value
         },
         subtitleStyle: {
-          fontSize: getRunningModelHeight().multiply(new Percentage(2)).value
+          fontSize: deviceModelHeight.multiply(new Percentage(2)).value
         },
         onPress: () => {},
         contentStyle: topbarStyles.content
@@ -71,17 +69,17 @@ const TopbarNode: React.FC = () => {
     />
   );
 };
-
+const statusBarHeight: Pixel = runningDeviceModel.getStatusBarHeight();
 const topbarStyles = StyleSheet.create<TopbarStyle>({
   header: {
     left: 0,
     right: 0,
     justifyContent: 'space-between',
     height:
-      getRunningModelHeight().multiply(new Percentage(6)).value +
-      getRunningModelStatusBarHeight().value,
+      deviceModelHeight.multiply(new Percentage(6)).value +
+      statusBarHeight.value,
     backgroundColor: blue.get('600'),
-    paddingTop: getRunningModelStatusBarHeight().value
+    paddingTop: statusBarHeight.value
   },
   content: {
     alignItems: 'center',
@@ -96,7 +94,7 @@ const topbarStyles = StyleSheet.create<TopbarStyle>({
 const chatScreenStyle = StyleSheet.create<{ screenStyle: ViewStyle }>({
   screenStyle: {
     backgroundColor: '#FCFCFC',
-    height: getRunningModelHeight().multiply(new Percentage(100)).value
+    height: deviceModelHeight.multiply(new Percentage(100)).value
   }
 });
 

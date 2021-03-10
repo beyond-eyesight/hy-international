@@ -2,7 +2,7 @@ import { Dimensions, Platform, ScaledSize, StatusBar } from 'react-native';
 import Pixel from 'src/draw/size/pixel';
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
 
-export interface DeviceModel {
+interface DeviceModel {
   readonly _width: Pixel;
   readonly _height: Pixel;
   getStatusBarHeight(): Pixel;
@@ -23,7 +23,7 @@ function getAndroidBottomNavigationBarHeight(): Pixel {
   return statusbarHeight.plus(ANDROID_SOFT_MENU_BAR_HEIGHT);
 }
 
-const runningDeviceModel: DeviceModel = {
+export const runningDeviceModel: DeviceModel = {
   _height: new Pixel(runningScreen.height),
   _width: new Pixel(runningScreen.width),
 
@@ -134,11 +134,11 @@ function getIosStatusBarHeight(): Pixel {
   return new Pixel(0);
 }
 
-export const isIphoneX =
+const isIphoneX =
   Platform.OS === 'ios' &&
   (runningScreen.height === 812 ||
     runningScreen.width === 812 ||
     runningScreen.height === 896 ||
     runningScreen.width === 896);
 
-export const isIOS = Platform.OS === 'ios';
+const isIOS = Platform.OS === 'ios';
