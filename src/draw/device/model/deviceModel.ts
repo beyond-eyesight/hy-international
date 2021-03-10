@@ -82,14 +82,6 @@ function androidHasBottomNavigationBar(): boolean {
   return runningScreen.height - runningWindow.height !== 0;
 }
 
-export function getRunningModelBackActionIcon(): IconSource {
-  return runningDeviceModel.getBackActionIcon();
-}
-
-export function getRunningModelStatusBarHeight(): Pixel {
-  return runningDeviceModel.getStatusBarHeight();
-}
-
 export function getRunningModelHeight(): Pixel {
   return runningDeviceModel._height;
 }
