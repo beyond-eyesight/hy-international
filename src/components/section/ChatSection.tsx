@@ -1,53 +1,33 @@
 import React, { useEffect, useState } from 'react';
+import { GiftedChat, IMessage, InputToolbar } from 'react-native-gifted-chat';
+import { Keyboard, KeyboardAvoidingView, Platform, View } from 'react-native';
 import {
-  GiftedChat,
-  IMessage,
-  InputToolbar,
-  InputToolbarProps
-} from 'react-native-gifted-chat';
-import {
-  Keyboard,
-  KeyboardAvoidingView,
-  Platform,
-  StatusBar,
-  StyleSheet,
-  View
-} from 'react-native';
-import TextInputBox, { TextInputBoxStyle } from '../box/TextInputBox';
-import { getRunningModelBottomNavigationBarHeight } from '../../draw/device/model/deviceModel';
+  getRunningModelBottomNavigationBarHeight,
+  runningModelHasBottomNavigationBar
+} from '../../draw/device/model/deviceModel';
+import Pixel from '../../draw/size/pixel';
 
-interface ToolbarProps extends InputToolbarProps {}
+function getOnKeyboardDidHideBottom() {
+  if (runningModelHasBottomNavigationBar()) {
+    return new Pixel(48);
+  }
+  return new Pixel(24);
+}
 
 // todo: userId 하드코딩 제거!
 const ChatSection: React.FC = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);
-  const [bottom, setBottom] = useState<number>(
-    getRunningModelBottomNavigationBarHeight().value
+  const [bottom, setBottom] = useState<Pixel>(
+    getRunningModelBottomNavigationBarHeight()
   );
   useEffect(() => {
     Keyboard.addListener('keyboardDidShow', () => {
-      console.log('Keyboard Shown');
-      console.log(bottom);
+      setBottom(getOnKeyboardDidShowBottom());
+    });
+    Keyboard.addListener('keyboardDidHide', () => {
+      setBottom(getOnKeyboardDidHideBottom());
     });
   }, [bottom]);
-  console.log('kk');
-  console.log(StatusBar.currentHeight);
-
-  // scrollToBottom
-  // todo: 트랜잭션으로 묶든가 해야할거같은디
-
-  const inputStyles = StyleSheet.create<TextInputBoxStyle>({
-    boxStyle: {
-      width: '100%',
-      height: 48,
-      backgroundColor: 'green'
-    },
-    contentStyle: {
-      width: '100%',
-      height: 48,
-      backgroundColor: 'blue'
-    }
-  });
 
   return (
     <View style={{ flex: 1 }}>
@@ -60,7 +40,7 @@ const ChatSection: React.FC = () => {
             containerStyle={{
               backgroundColor: 'red',
               borderWidth: 0,
-              bottom
+              bottom: bottom.value
             }}
             primaryStyle={{}}
             {...props}
@@ -75,6 +55,14 @@ const ChatSection: React.FC = () => {
     </View>
   );
 };
+
+function getOnKeyboardDidShowBottom(): Pixel {
+  if (runningModelHasBottomNavigationBar()) {
+    return new Pixel(48 + 24);
+  }
+
+  return new Pixel(48);
+}
 
 // renderComposer={(props) => (
 //   <TextInputBox
