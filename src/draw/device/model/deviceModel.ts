@@ -82,10 +82,6 @@ function androidHasBottomNavigationBar(): boolean {
   return runningScreen.height - runningWindow.height !== 0;
 }
 
-export function getRunningModelHeight(): Pixel {
-  return runningDeviceModel._height;
-}
-
 const ANDROID_SOFT_MENU_BAR_HEIGHT: Pixel = new Pixel(
   runningScreen.height - runningWindow.height
 );

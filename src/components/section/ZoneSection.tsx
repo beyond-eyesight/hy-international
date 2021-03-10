@@ -4,7 +4,7 @@ import ZoneList from 'src/components/list/ZoneList';
 import Zone from 'src/model/zone';
 import ApplicationContext from 'src/context/applicationContext';
 import Pixel from 'src/draw/size/pixel';
-import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
+import { runningDeviceModel } from 'src/draw/device/model/deviceModel';
 import Percentage from 'src/draw/size/percentage';
 import { blue, white } from 'src/draw/color';
 import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
@@ -14,7 +14,9 @@ export type Props = {
   componentId: string;
 };
 
-const textSize: Pixel = getRunningModelHeight().multiply(new Percentage(2.5));
+const deviceModelHeight: Pixel = runningDeviceModel._height;
+
+const textSize: Pixel = deviceModelHeight.multiply(new Percentage(2.5));
 
 const textBoxProps = StyleSheet.create<TextBoxStyleProps>({
   boxStyle: {
