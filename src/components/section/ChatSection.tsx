@@ -58,15 +58,23 @@ const Composer: React.FC = () => {
     container: {
       flexDirection: 'row',
       flex: 1,
-      justifyContent: 'space-between'
+      justifyContent: 'space-between',
+      marginVertical: new Pixel(1).value
     }
   });
   const inputStyles = StyleSheet.create<TextInputBoxStyle>({
-    boxStyle: {},
+    boxStyle: {
+      height: deviceHeight.multiply(new Percentage(7)).value,
+      borderColor: '#FCFCFC',
+      borderWidth: new Pixel(1).value,
+      overflow: 'hidden'
+    },
     contentStyle: {
       width: deviceWidth.multiply(new Percentage(80)).value,
+      borderColor: 'transparent',
       backgroundColor: '#FCFCFC',
-      height: deviceHeight.multiply(new Percentage(7)).value
+      height: deviceHeight.multiply(new Percentage(7)).value,
+      overflow: 'hidden'
     }
   });
 
