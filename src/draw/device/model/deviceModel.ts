@@ -10,6 +10,7 @@ export interface DeviceModel {
   getBottomNavigationBarHeight(): Pixel;
   getBackActionIcon(): IconSource;
   getBottomOnKeyboardDidShow(): Pixel;
+  getBottomOnKeyboardDidHide(): Pixel;
 }
 
 const runningScreen: ScaledSize = Dimensions.get('screen');
@@ -52,6 +53,13 @@ const runningDeviceModel: DeviceModel = {
     }) as Pixel;
   },
 
+  getBottomOnKeyboardDidHide(): Pixel {
+    return Platform.select({
+      android: getAndroidBottomOnKeyboardDidHide(),
+      ios: new Pixel(0)
+    }) as Pixel;
+  },
+
   getBackActionIcon(): IconSource {
     return <IconSource>Platform.select({
       android: 'arrow-left',
@@ -59,6 +67,13 @@ const runningDeviceModel: DeviceModel = {
     });
   }
 };
+
+function getAndroidBottomOnKeyboardDidHide() {
+  if (runningModelHasBottomNavigationBar()) {
+    return new Pixel(48);
+  }
+  return new Pixel(24);
+}
 
 function getAndroidBottomOnKeyboardDidShow() {
   if (runningModelHasBottomNavigationBar()) {
@@ -70,6 +85,10 @@ function getAndroidBottomOnKeyboardDidShow() {
 
 export function runningModelHasBottomNavigationBar(): boolean {
   return runningDeviceModel.hasBottomNavigationBar();
+}
+
+export function getRunningModelBottomOnKeyboardDidHide(): Pixel {
+  return runningDeviceModel.getBottomOnKeyboardDidHide();
 }
 
 export function getRunningModelBottomOnKeyboardDidShow(): Pixel {
