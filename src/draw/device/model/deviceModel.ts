@@ -6,8 +6,8 @@ export interface DeviceModel {
   readonly _width: Pixel;
   readonly _height: Pixel;
   hasBottomNavigationBar(): boolean;
-  getTopStatusBarHeight(): Pixel;
-  getOnKeyboardDidShowBottom(): Pixel;
+  getStatusBarHeight(): Pixel;
+  getBottomNavigationBarHeight(): Pixel;
   getBackActionIcon(): IconSource;
 }
 
@@ -30,14 +30,14 @@ const runningDeviceModel: DeviceModel = {
     return runningScreen.height - runningWindow.height !== 0;
   },
 
-  getTopStatusBarHeight(): Pixel {
+  getStatusBarHeight(): Pixel {
     return Platform.select({
       android: new Pixel(0),
       ios: getIosStatusBarHeight()
     }) as Pixel;
   },
 
-  getOnKeyboardDidShowBottom(): Pixel {
+  getBottomNavigationBarHeight(): Pixel {
     return Platform.select({
       android: getAndroidOnKeyboardDidShowBottom(),
       ios: new Pixel(0)
@@ -65,11 +65,11 @@ export function getRunningModelSoftMenuBarHeight(): Pixel {
 }
 
 export function getRunningModelBottomNavigationBarHeight(): Pixel {
-  return runningDeviceModel.getOnKeyboardDidShowBottom();
+  return runningDeviceModel.getBottomNavigationBarHeight();
 }
 
 export function getRunningModelStatusBarHeight(): Pixel {
-  return runningDeviceModel.getTopStatusBarHeight();
+  return runningDeviceModel.getStatusBarHeight();
 }
 
 export function getRunningModelHeight(): Pixel {
