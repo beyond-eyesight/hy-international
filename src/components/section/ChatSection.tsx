@@ -10,14 +10,17 @@ const ChatSection: React.FC = () => {
   const [bottom, setBottom] = useState<Pixel>(
     runningDeviceModel.getBottomNavigationBarHeight()
   );
+
+  const bottomOnKeyboardDidShow = runningDeviceModel.getBottomOnKeyboardDidShow();
+  const bottomOnKeyboardDidHide = runningDeviceModel.getBottomOnKeyboardDidHide()
   useEffect(() => {
     Keyboard.addListener('keyboardDidShow', () => {
-      setBottom(runningDeviceModel.getBottomOnKeyboardDidShow());
+      setBottom(bottomOnKeyboardDidShow);
     });
     Keyboard.addListener('keyboardDidHide', () => {
-      setBottom(runningDeviceModel.getBottomOnKeyboardDidHide());
+      setBottom(bottomOnKeyboardDidHide);
     });
-  }, [bottom]);
+  }, [bottom, bottomOnKeyboardDidShow, bottomOnKeyboardDidHide]);
 
   return (
     <View style={{ flex: 1 }}>
