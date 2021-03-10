@@ -7,10 +7,16 @@ import {
   StyleSheet,
   View
 } from 'react-native';
-import { Button } from 'react-native-paper';
-import Pixel from '../../draw/size/pixel';
-import runningDeviceModel from '../../draw/device/model/deviceModel';
-import TextInputBox, { TextInputBoxStyle } from '../box/TextInputBox';
+import { IconButton } from 'react-native-paper';
+import Percentage from 'src/draw/size/percentage';
+import Pixel from 'src/draw/size/pixel';
+import runningDeviceModel from 'src/draw/device/model/deviceModel';
+import TextInputBox, {
+  TextInputBoxStyle
+} from 'src/components/box/TextInputBox';
+
+const deviceWidth: Pixel = runningDeviceModel._width;
+const deviceHeight: Pixel = runningDeviceModel._height;
 
 // todo: userId 하드코딩 제거!
 const ChatSection: React.FC = () => {
@@ -48,36 +54,38 @@ const ChatSection: React.FC = () => {
 };
 
 const Composer: React.FC = () => {
+  const containerStyle = StyleSheet.create({
+    container: {
+      flexDirection: 'row',
+      flex: 1,
+      justifyContent: 'space-between'
+    }
+  });
   const inputStyles = StyleSheet.create<TextInputBoxStyle>({
-    boxStyle: {
-      width: 100,
-      height: 30,
-      backgroundColor: 'red'
-    },
+    boxStyle: {},
     contentStyle: {
-      width: 100,
+      width: deviceWidth.multiply(new Percentage(80)).value,
       backgroundColor: 'red',
-      height: 30
+      height: deviceHeight.multiply(new Percentage(7)).value
     }
   });
 
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        flex: 1,
-        justifyContent: 'space-between'
-      }}
-    >
+    <View style={containerStyle.container}>
       <TextInputBox
         textInputBoxStyle={{
           boxStyle: inputStyles.boxStyle,
           contentStyle: inputStyles.contentStyle
         }}
       />
-      <Button mode="text" color="white">
-        haha
-      </Button>
+      <IconButton
+        icon="send"
+        color="white"
+        size={deviceWidth.multiply(new Percentage(6)).value}
+        style={{
+          alignSelf: 'center'
+        }}
+      />
     </View>
   );
 };
@@ -87,6 +95,7 @@ const InputBar: React.FC<{ bottom: Pixel }> = (props: { bottom: Pixel }) => {
 
   const containerStyles = StyleSheet.create({
     container: {
+      height: deviceHeight.multiply(new Percentage(7)).value,
       backgroundColor: 'blue',
       borderWidth: 0,
       bottom: bottom.value
