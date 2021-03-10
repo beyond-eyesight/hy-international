@@ -1,19 +1,20 @@
 import React from 'react';
 import SignUpSection from 'src/components/section/SignUpSection';
 import { StyleSheet, View, ViewStyle } from 'react-native';
-import {
-  getRunningModelBackActionIcon,
-  getRunningModelHeight,
-  getRunningModelStatusBarHeight
-} from 'src/draw/device/model/deviceModel';
+import { runningDeviceModel } from 'src/draw/device/model/deviceModel';
 import Percentage from 'src/draw/size/percentage';
 import Topbar, { ActionProps, TopbarStyle } from 'src/components/bar/Topbar';
 import Pixel from 'src/draw/size/pixel';
 import { blue } from 'src/draw/color';
+import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
 
 interface Props {
   componentId: string;
 }
+
+const deviceModelHeight: Pixel = runningDeviceModel._height;
+const statusbarHeight: Pixel = runningDeviceModel.getStatusBarHeight();
+const backActionIcon: IconSource = runningDeviceModel.getBackActionIcon();
 
 const SignUpScreen: React.FC<Props> = ({ componentId }: Props) => {
   return (
@@ -27,16 +28,16 @@ const SignUpScreen: React.FC<Props> = ({ componentId }: Props) => {
 const signupScreenStyle = StyleSheet.create<{ screenStyle: ViewStyle }>({
   screenStyle: {
     backgroundColor: '#FCFCFC',
-    height: getRunningModelHeight().multiply(new Percentage(100)).value
+    height: deviceModelHeight.multiply(new Percentage(100)).value
   }
 });
 
 const TopbarNode: React.FC = () => {
   const leftActionProps: Array<ActionProps> = [
     {
-      icon: getRunningModelBackActionIcon(),
+      icon: backActionIcon,
       iconColor: 'white',
-      iconSize: getRunningModelHeight().multiply(new Percentage(3)),
+      iconSize: deviceModelHeight.multiply(new Percentage(3)),
       iconDisabled: false,
       actionStyle: {},
       onPress: () => {}
@@ -47,7 +48,7 @@ const TopbarNode: React.FC = () => {
     {
       icon: 'alarm-bell',
       iconColor: 'white',
-      iconSize: getRunningModelHeight().multiply(new Percentage(3)),
+      iconSize: deviceModelHeight.multiply(new Percentage(3)),
       iconDisabled: false,
       actionStyle: {},
       onPress: () => {}
@@ -65,10 +66,10 @@ const TopbarNode: React.FC = () => {
         title: 'signup',
         subtitle: 'signup',
         titleStyle: {
-          fontSize: getRunningModelHeight().multiply(new Percentage(3)).value
+          fontSize: deviceModelHeight.multiply(new Percentage(3)).value
         },
         subtitleStyle: {
-          fontSize: getRunningModelHeight().multiply(new Percentage(2)).value
+          fontSize: deviceModelHeight.multiply(new Percentage(2)).value
         },
         onPress: () => {},
         contentStyle: topbarStyles.content
@@ -85,10 +86,10 @@ const topbarStyles = StyleSheet.create<TopbarStyle>({
     right: 0,
     justifyContent: 'space-between',
     height:
-      getRunningModelHeight().multiply(new Percentage(6)).value +
-      getRunningModelStatusBarHeight().value,
+      deviceModelHeight.multiply(new Percentage(6)).value +
+      statusbarHeight.value,
     backgroundColor: blue.get('600'),
-    paddingTop: getRunningModelStatusBarHeight().value
+    paddingTop: statusbarHeight.value
   },
   content: {
     alignItems: 'center',
