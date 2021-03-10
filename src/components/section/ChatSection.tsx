@@ -7,11 +7,18 @@ import {
 } from '../../draw/device/model/deviceModel';
 import Pixel from '../../draw/size/pixel';
 
-function getOnKeyboardDidHideBottom() {
+function getAndroidOnKeyboardDidHideBottom() {
   if (runningModelHasBottomNavigationBar()) {
     return new Pixel(48);
   }
   return new Pixel(24);
+}
+
+function getOnKeyboardDidHideBottom(): Pixel {
+  return Platform.select({
+    android: getAndroidOnKeyboardDidHideBottom(),
+    ios: new Pixel(0)
+  }) as Pixel;
 }
 
 // todo: userId 하드코딩 제거!
@@ -56,12 +63,19 @@ const ChatSection: React.FC = () => {
   );
 };
 
-function getOnKeyboardDidShowBottom(): Pixel {
+function getAndroidOnKeyboardDidShowBottom() {
   if (runningModelHasBottomNavigationBar()) {
     return new Pixel(48 + 24);
   }
 
   return new Pixel(48);
+}
+
+function getOnKeyboardDidShowBottom(): Pixel {
+  return Platform.select({
+    android: getAndroidOnKeyboardDidShowBottom(),
+    ios: new Pixel(0)
+  }) as Pixel;
 }
 
 // renderComposer={(props) => (

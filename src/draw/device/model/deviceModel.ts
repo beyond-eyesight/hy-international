@@ -83,7 +83,6 @@ export function getRunningModelStatusBarHeight(): Pixel {
 }
 
 export function getRunningModelHeight(): Pixel {
-  console.log(runningDeviceModel._height);
   return new Pixel(runningDeviceModel._height);
 }
 
