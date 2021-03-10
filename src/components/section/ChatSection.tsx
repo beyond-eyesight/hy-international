@@ -65,7 +65,7 @@ const Composer: React.FC = () => {
     boxStyle: {},
     contentStyle: {
       width: deviceWidth.multiply(new Percentage(80)).value,
-      backgroundColor: 'red',
+      backgroundColor: '#FCFCFC',
       height: deviceHeight.multiply(new Percentage(7)).value
     }
   });
@@ -80,7 +80,7 @@ const Composer: React.FC = () => {
       />
       <IconButton
         icon="send"
-        color="white"
+        color="blue"
         size={deviceWidth.multiply(new Percentage(6)).value}
         style={{
           alignSelf: 'center'
@@ -96,7 +96,8 @@ const InputBar: React.FC<{ bottom: Pixel }> = (props: { bottom: Pixel }) => {
   const containerStyles = StyleSheet.create({
     container: {
       height: deviceHeight.multiply(new Percentage(7)).value,
-      backgroundColor: 'blue',
+      backgroundColor: '#FCFCFC',
+      borderTopWidth: 0,
       borderWidth: 0,
       bottom: bottom.value
     }
