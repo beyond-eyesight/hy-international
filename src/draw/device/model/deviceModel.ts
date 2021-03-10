@@ -82,20 +82,8 @@ function androidHasBottomNavigationBar(): boolean {
   return runningScreen.height - runningWindow.height !== 0;
 }
 
-export function getRunningModelBottomOnKeyboardDidHide(): Pixel {
-  return runningDeviceModel.getBottomOnKeyboardDidHide();
-}
-
-export function getRunningModelBottomOnKeyboardDidShow(): Pixel {
-  return runningDeviceModel.getBottomOnKeyboardDidShow();
-}
-
 export function getRunningModelBackActionIcon(): IconSource {
   return runningDeviceModel.getBackActionIcon();
-}
-
-export function getRunningModelBottomNavigationBarHeight(): Pixel {
-  return runningDeviceModel.getBottomNavigationBarHeight();
 }
 
 export function getRunningModelStatusBarHeight(): Pixel {
