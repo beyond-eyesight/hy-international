@@ -4,7 +4,7 @@ import { StyleSheet, View, ViewStyle } from 'react-native';
 import {
   getRunningModelBackActionIcon,
   getRunningModelHeight,
-  getRunningModelStatusBarHeight, getRunningModelBottomNavigationBarHeight
+  getRunningModelStatusBarHeight
 } from 'src/draw/device/model/deviceModel';
 import Percentage from 'src/draw/size/percentage';
 import Topbar, { ActionProps, TopbarStyle } from 'src/components/bar/Topbar';
@@ -16,7 +16,6 @@ interface Props {
 }
 
 const ChatScreen: React.FC<Props> = ({ componentId }: Props) => {
-  getRunningModelBottomNavigationBarHeight();
   return (
     <View style={chatScreenStyle.screenStyle}>
       <TopbarNode />
