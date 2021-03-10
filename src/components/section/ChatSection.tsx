@@ -7,10 +7,10 @@ import {
   StyleSheet,
   View
 } from 'react-native';
+import { Button } from 'react-native-paper';
 import Pixel from '../../draw/size/pixel';
 import runningDeviceModel from '../../draw/device/model/deviceModel';
 import TextInputBox, { TextInputBoxStyle } from '../box/TextInputBox';
-import TextButton from '../button/TextButton';
 
 // todo: userId 하드코딩 제거!
 const ChatSection: React.FC = () => {
@@ -70,14 +70,13 @@ const ChatSection: React.FC = () => {
                     contentStyle: inputStyles.contentStyle
                   }}
                 />
-                <TextButton
-                  width="300px"
-                  height="20px"
-                  content="SE"
-                  ellipticalColor="black"
-                  textColor="white"
-                  borderRadius="0px"
-                />
+                <Button
+                  mode="text"
+                  color="white"
+                  style={{ backgroundColor: 'white' }}
+                >
+                  haha
+                </Button>
               </View>
             )}
             primaryStyle={{}}
