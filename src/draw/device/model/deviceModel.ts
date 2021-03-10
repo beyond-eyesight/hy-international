@@ -5,7 +5,6 @@ import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
 export interface DeviceModel {
   readonly _width: Pixel;
   readonly _height: Pixel;
-  hasBottomNavigationBar(): boolean;
   getStatusBarHeight(): Pixel;
   getBottomNavigationBarHeight(): Pixel;
   getBackActionIcon(): IconSource;
@@ -27,10 +26,6 @@ function getAndroidBottomNavigationBarHeight(): Pixel {
 const runningDeviceModel: DeviceModel = {
   _height: new Pixel(runningScreen.height),
   _width: new Pixel(runningScreen.width),
-
-  hasBottomNavigationBar(): boolean {
-    return runningScreen.height - runningWindow.height !== 0;
-  },
 
   getStatusBarHeight(): Pixel {
     return Platform.select({
@@ -69,22 +64,22 @@ const runningDeviceModel: DeviceModel = {
 };
 
 function getAndroidBottomOnKeyboardDidHide() {
-  if (runningModelHasBottomNavigationBar()) {
+  if (androidHasBottomNavigationBar()) {
     return new Pixel(48);
   }
   return new Pixel(24);
 }
 
 function getAndroidBottomOnKeyboardDidShow() {
-  if (runningModelHasBottomNavigationBar()) {
+  if (androidHasBottomNavigationBar()) {
     return new Pixel(48 + 24);
   }
 
   return new Pixel(48);
 }
 
-export function runningModelHasBottomNavigationBar(): boolean {
-  return runningDeviceModel.hasBottomNavigationBar();
+function androidHasBottomNavigationBar(): boolean {
+  return runningScreen.height - runningWindow.height !== 0;
 }
 
 export function getRunningModelBottomOnKeyboardDidHide(): Pixel {
@@ -97,10 +92,6 @@ export function getRunningModelBottomOnKeyboardDidShow(): Pixel {
 
 export function getRunningModelBackActionIcon(): IconSource {
   return runningDeviceModel.getBackActionIcon();
-}
-
-export function getRunningModelSoftMenuBarHeight(): Pixel {
-  return new Pixel(48);
 }
 
 export function getRunningModelBottomNavigationBarHeight(): Pixel {
