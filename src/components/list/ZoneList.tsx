@@ -3,7 +3,7 @@ import React from 'react';
 import Zone from 'src/model/zone';
 import { SCREEN_IDS } from 'src/components/screens/constant';
 import Pixel from 'src/draw/size/pixel';
-import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
+import { runningDeviceModel } from 'src/draw/device/model/deviceModel';
 import Percentage from 'src/draw/size/percentage';
 import { push } from 'src/navigation/navigation';
 import { blue, white } from 'src/draw/color';
@@ -14,10 +14,10 @@ interface Props {
   zones?: Zone[];
 }
 
-const zoneNameSize: Pixel = getRunningModelHeight().multiply(
-  new Percentage(2.5)
-);
-const zoneExplanationSize: Pixel = getRunningModelHeight().multiply(
+const deviceModelHeight: Pixel = runningDeviceModel._height;
+
+const zoneNameSize: Pixel = deviceModelHeight.multiply(new Percentage(2.5));
+const zoneExplanationSize: Pixel = deviceModelHeight.multiply(
   new Percentage(1.9)
 );
 

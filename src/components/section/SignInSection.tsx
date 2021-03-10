@@ -1,9 +1,6 @@
 import React, { ReactNode, useState } from 'react';
 import Percentage from 'src/draw/size/percentage';
-import {
-  getRunningModelHeight,
-  getRunningModelWidth
-} from 'src/draw/device/model/deviceModel';
+import { runningDeviceModel } from 'src/draw/device/model/deviceModel';
 import Pixel from 'src/draw/size/pixel';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { StyleSheet, View, ViewStyle } from 'react-native';
@@ -13,6 +10,9 @@ import TextInputBox, {
 } from 'src/components/box/TextInputBox';
 import { Avatar, Banner, Button } from 'react-native-paper';
 import InformationBoard from 'src/components/board/InformationBoard';
+
+const deviceModelHeight: Pixel = runningDeviceModel._height;
+const deviceModelWidth: Pixel = runningDeviceModel._width;
 
 const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
   const [bannerVisible, setBannerVisible] = React.useState(true);
@@ -49,35 +49,35 @@ const SigninBoard: React.FC<{ title: string; children: ReactNode }> = (props: {
   const { title, children } = props;
   const titleStyles = StyleSheet.create<TextInputBoxStyle>({
     boxStyle: {
-      width: getRunningModelWidth().multiply(new Percentage(90)).value,
-      height: getRunningModelHeight().multiply(new Percentage(3)).value,
+      width: deviceModelWidth.multiply(new Percentage(90)).value,
+      height: deviceModelHeight.multiply(new Percentage(3)).value,
       alignItems: 'center',
       alignSelf: 'center',
       justifyContent: 'center',
-      marginTop: getRunningModelHeight().multiply(new Percentage(5)).value
+      marginTop: deviceModelHeight.multiply(new Percentage(5)).value
     },
     contentStyle: {
       fontFamily: 'ProximaNova-Bold',
-      fontSize: getRunningModelHeight().multiply(new Percentage(3)).value,
-      lineHeight: getRunningModelHeight().multiply(new Percentage(3)).value,
+      fontSize: deviceModelHeight.multiply(new Percentage(3)).value,
+      lineHeight: deviceModelHeight.multiply(new Percentage(3)).value,
       color: 'black'
     }
   });
 
   const bodyStyles = StyleSheet.create<TextInputBoxStyle>({
     boxStyle: {
-      width: getRunningModelWidth().multiply(new Percentage(90)).value,
-      height: getRunningModelHeight().multiply(new Percentage(5)).value,
+      width: deviceModelWidth.multiply(new Percentage(90)).value,
+      height: deviceModelHeight.multiply(new Percentage(5)).value,
       alignItems: 'center',
       alignSelf: 'center',
       justifyContent: 'center',
-      marginTop: getRunningModelHeight().multiply(new Percentage(3)).value,
-      marginBottom: getRunningModelHeight().multiply(new Percentage(3)).value
+      marginTop: deviceModelHeight.multiply(new Percentage(3)).value,
+      marginBottom: deviceModelHeight.multiply(new Percentage(3)).value
     },
     contentStyle: {
       fontFamily: 'ProximaNova-Regular',
-      fontSize: getRunningModelHeight().multiply(new Percentage(2.5)).value,
-      lineHeight: getRunningModelHeight().multiply(new Percentage(2.5)).value,
+      fontSize: deviceModelHeight.multiply(new Percentage(2.5)).value,
+      lineHeight: deviceModelHeight.multiply(new Percentage(2.5)).value,
       color: 'black'
     }
   });
@@ -105,17 +105,17 @@ const SigninButton: React.FC<{
   }>({
     container: {
       alignSelf: 'center',
-      marginTop: getRunningModelHeight().multiply(new Percentage(1)).value
+      marginTop: deviceModelHeight.multiply(new Percentage(1)).value
     },
 
     content: {
-      width: getRunningModelWidth().multiply(new Percentage(90)).value,
-      height: getRunningModelHeight().multiply(new Percentage(8)).value
+      width: deviceModelWidth.multiply(new Percentage(90)).value,
+      height: deviceModelHeight.multiply(new Percentage(8)).value
     },
 
     label: {
-      fontSize: getRunningModelHeight().multiply(new Percentage(2.5)).value,
-      lineHeight: getRunningModelHeight().multiply(new Percentage(2.5)).value
+      fontSize: deviceModelHeight.multiply(new Percentage(2.5)).value,
+      lineHeight: deviceModelHeight.multiply(new Percentage(2.5)).value
     }
   });
 
@@ -124,7 +124,7 @@ const SigninButton: React.FC<{
       theme={{ roundness: BORDER_RADIUS }}
       icon={() => (
         <Avatar.Icon
-          size={getRunningModelHeight().multiply(new Percentage(4.5)).value}
+          size={deviceModelHeight.multiply(new Percentage(4.5)).value}
           icon="login"
         />
       )}
@@ -145,7 +145,7 @@ const SignupButton: React.FC = () => {
       theme={{ roundness: BORDER_RADIUS }}
       icon={() => (
         <Avatar.Icon
-          size={getRunningModelHeight().multiply(new Percentage(4.5)).value}
+          size={deviceModelHeight.multiply(new Percentage(4.5)).value}
           icon="draw"
         />
       )}
@@ -154,19 +154,18 @@ const SignupButton: React.FC = () => {
         console.log('pressed');
       }}
       style={{
-        width: getRunningModelWidth().multiply(new Percentage(90)).value,
-        height: getRunningModelHeight().multiply(new Percentage(8)).value,
+        width: deviceModelWidth.multiply(new Percentage(90)).value,
+        height: deviceModelHeight.multiply(new Percentage(8)).value,
         alignSelf: 'center',
-        marginVertical: getRunningModelHeight().multiply(new Percentage(1))
-          .value
+        marginVertical: deviceModelHeight.multiply(new Percentage(1)).value
       }}
       contentStyle={{
-        width: getRunningModelWidth().multiply(new Percentage(90)).value,
-        height: getRunningModelHeight().multiply(new Percentage(8)).value
+        width: deviceModelWidth.multiply(new Percentage(90)).value,
+        height: deviceModelHeight.multiply(new Percentage(8)).value
       }}
       labelStyle={{
-        fontSize: getRunningModelHeight().multiply(new Percentage(2.5)).value,
-        lineHeight: getRunningModelHeight().multiply(new Percentage(2.5)).value
+        fontSize: deviceModelHeight.multiply(new Percentage(2.5)).value,
+        lineHeight: deviceModelHeight.multiply(new Percentage(2.5)).value
       }}
     >
       Sign Up
@@ -178,15 +177,13 @@ const SigninEmailInput: React.FC = () => {
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([]);
 
-  const emailInputWidth: Pixel = getRunningModelWidth().multiply(
-    new Percentage(45)
-  );
+  const emailInputWidth: Pixel = deviceModelWidth.multiply(new Percentage(45));
 
   const containerStyle = StyleSheet.create<{ containerStyle: ViewStyle }>({
     containerStyle: {
       flexDirection: 'row',
       alignSelf: 'center',
-      marginVertical: getRunningModelHeight().multiply(new Percentage(1)).value
+      marginVertical: deviceModelHeight.multiply(new Percentage(1)).value
     }
   });
 
@@ -218,16 +215,16 @@ const SigninEmailInput: React.FC = () => {
 
   const atSignProps = StyleSheet.create<TextBoxStyleProps>({
     boxStyle: {
-      height: getRunningModelHeight().multiply(new Percentage(8)).value,
-      width: getRunningModelWidth().multiply(new Percentage(10)).value,
+      height: deviceModelHeight.multiply(new Percentage(8)).value,
+      width: deviceModelWidth.multiply(new Percentage(10)).value,
       backgroundColor: '#1E88E5',
       alignItems: 'center',
       justifyContent: 'center'
     },
     textStyle: {
       fontFamily: 'ProximaNova-Regular',
-      fontSize: getRunningModelHeight().multiply(new Percentage(3)).value,
-      lineHeight: getRunningModelHeight().multiply(new Percentage(3)).value,
+      fontSize: deviceModelHeight.multiply(new Percentage(3)).value,
+      lineHeight: deviceModelHeight.multiply(new Percentage(3)).value,
       color: '#FFFFFF'
     }
   });
@@ -240,11 +237,11 @@ const SigninEmailInput: React.FC = () => {
     dropdownStyle: ViewStyle;
   }>({
     containerStyle: {
-      width: getRunningModelWidth().multiply(new Percentage(35)).value,
-      height: getRunningModelHeight().multiply(new Percentage(8)).value
+      width: deviceModelWidth.multiply(new Percentage(35)).value,
+      height: deviceModelHeight.multiply(new Percentage(8)).value
     },
     labelStyle: {
-      fontSize: getRunningModelHeight().multiply(new Percentage(1.5)).value
+      fontSize: deviceModelHeight.multiply(new Percentage(1.5)).value
     },
     contentStyle: {
       backgroundColor: '#FCFCFC',
@@ -307,17 +304,17 @@ const SigninEmailInput: React.FC = () => {
 const SigninPasswordInput: React.FC = () => {
   const passwordInputStyles = StyleSheet.create<TextInputBoxStyle>({
     boxStyle: {
-      width: getRunningModelWidth().multiply(new Percentage(90)).value,
+      width: deviceModelWidth.multiply(new Percentage(90)).value,
       height: INPUT_COMPONENT_HEIGHT.value,
       borderWidth: BORDER_WIDTH.value,
       borderColor: '#E0E0E0',
       borderRadius: BORDER_RADIUS,
       overflow: 'hidden',
       alignSelf: 'center',
-      marginVertical: getRunningModelHeight().multiply(new Percentage(1)).value
+      marginVertical: deviceModelHeight.multiply(new Percentage(1)).value
     },
     contentStyle: {
-      width: getRunningModelWidth().multiply(new Percentage(90)).value,
+      width: deviceModelWidth.multiply(new Percentage(90)).value,
       height: INPUT_COMPONENT_HEIGHT.plus(
         BORDER_WIDTH.multiply(new Percentage(200))
       ).value,
@@ -363,7 +360,7 @@ const SignInFailBanner: React.FC<{
 };
 
 const BORDER_WIDTH: Pixel = new Pixel(1);
-const INPUT_COMPONENT_HEIGHT: Pixel = getRunningModelHeight().multiply(
+const INPUT_COMPONENT_HEIGHT: Pixel = deviceModelHeight.multiply(
   new Percentage(8)
 );
 const BORDER_RADIUS: number = 10;
