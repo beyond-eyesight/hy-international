@@ -85,6 +85,8 @@ const Composer: React.FC = () => {
           boxStyle: inputStyles.boxStyle,
           contentStyle: inputStyles.contentStyle
         }}
+        placeholder="Type Here..."
+        placeholderTextColor="black"
       />
       <IconButton
         icon="send"

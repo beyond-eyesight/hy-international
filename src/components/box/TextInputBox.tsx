@@ -14,7 +14,8 @@ interface TextInputBoxProps extends Omit<TextInputProps, 'theme'> {
 
 const TextInputBox: React.FC<TextInputBoxProps> = ({
   textInputBoxStyle,
-  label
+  label,
+  placeholder
 }: TextInputBoxProps) => {
   const [text, setText] = React.useState('');
   return (
@@ -22,6 +23,7 @@ const TextInputBox: React.FC<TextInputBoxProps> = ({
       <TextInput
         label={label}
         value={text}
+        placeholder={placeholder}
         onChangeText={(text) => setText(text)}
         style={textInputBoxStyle.contentStyle}
       />
