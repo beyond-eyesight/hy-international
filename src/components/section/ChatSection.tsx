@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { GiftedChat, IMessage, InputToolbar } from 'react-native-gifted-chat';
 import { Keyboard, KeyboardAvoidingView, Platform, View } from 'react-native';
 import {
-  getRunningModelBottomNavigationBarHeight,
+  getRunningModelBottomNavigationBarHeight, getRunningModelBottomOnKeyboardDidShow,
   runningModelHasBottomNavigationBar
 } from '../../draw/device/model/deviceModel';
 import Pixel from '../../draw/size/pixel';
@@ -29,7 +29,7 @@ const ChatSection: React.FC = () => {
   );
   useEffect(() => {
     Keyboard.addListener('keyboardDidShow', () => {
-      setBottom(getOnKeyboardDidShowBottom());
+      setBottom(getRunningModelBottomOnKeyboardDidShow());
     });
     Keyboard.addListener('keyboardDidHide', () => {
       setBottom(getOnKeyboardDidHideBottom());
