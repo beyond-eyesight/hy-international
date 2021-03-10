@@ -86,10 +86,6 @@ export function getRunningModelHeight(): Pixel {
   return runningDeviceModel._height;
 }
 
-export function getRunningModelWidth(): Pixel {
-  return runningDeviceModel._width;
-}
-
 const ANDROID_SOFT_MENU_BAR_HEIGHT: Pixel = new Pixel(
   runningScreen.height - runningWindow.height
 );
