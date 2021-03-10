@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { GiftedChat, IMessage, InputToolbar } from 'react-native-gifted-chat';
-import {
-  Keyboard,
-  KeyboardAvoidingView,
-  Platform,
-  StyleSheet,
-  View
-} from 'react-native';
+import { Keyboard, KeyboardAvoidingView, Platform, StyleSheet, View } from 'react-native';
 import Pixel from '../../draw/size/pixel';
 import runningDeviceModel from '../../draw/device/model/deviceModel';
 import TextInputBox, { TextInputBoxStyle } from '../box/TextInputBox';
@@ -46,8 +40,10 @@ const ChatSection: React.FC = () => {
       <GiftedChat
         messages={messages}
         onSend={(messages: IMessage[]) => {}}
+        renderActions={(props) => null}
         renderInputToolbar={(props) => (
           <InputToolbar
+            renderActions={(props) => null}
             containerStyle={{
               backgroundColor: 'blue',
               borderWidth: 0,
