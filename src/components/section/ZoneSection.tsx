@@ -3,6 +3,7 @@ import Zone from 'src/model/zone';
 import Pixel from 'src/draw/size/pixel';
 import Percentage from 'src/draw/size/percentage';
 import { StyleSheet, View } from 'react-native';
+import { List } from 'react-native-paper';
 import runningDeviceModel from '../../draw/device/model/deviceModel';
 import InformationBoard from '../board/InformationBoard';
 import { TextInputBoxStyle } from '../box/TextInputBox';
@@ -16,10 +17,21 @@ const deviceModelWidth: Pixel = runningDeviceModel._width;
 
 const ZoneSection: React.FC<Props> = ({ componentId }: Props) => {
   const [chatRooms, setChatRooms] = useState<Zone[]>();
+  const [checked, setChecked] = React.useState('first');
 
   return (
     <View>
       <TitleBoard />
+      <List.Item
+        title="Wangsimni"
+        description="11 peaple are chatting"
+        left={(props) => <List.Icon {...props} icon="circle-slice-8" />}
+      />
+      <List.Item
+        title="Campus"
+        description="6 peaple are chatting"
+        left={(props) => <List.Icon {...props} icon="circle-slice-8" />}
+      />
       <RemarkBoard />
     </View>
   );
@@ -52,8 +64,8 @@ const RemarkBoard: React.FC = () => {
     >
       You can join the zone when you are at near the location
     </InformationBoard>
-  )
-}
+  );
+};
 
 const TitleBoard: React.FC = () => {
   const titleStyles = StyleSheet.create<TextInputBoxStyle>({
