@@ -9,6 +9,8 @@ export default class Zone {
 
   private readonly _count: Count;
 
+  private readonly _isOpen: Boolean;
+
   get count(): Count {
     return this._count;
   }
@@ -21,13 +23,23 @@ export default class Zone {
     return this._name;
   }
 
-  static of(id: string, name: string, count: number) {
-    return new Zone(new ZoneId(id), new ZoneName(name), new Count(count));
+  get isOpen(): Boolean {
+    return this._isOpen;
   }
 
-  constructor(id: ZoneId, name: ZoneName, count: Count) {
+  static of(id: string, name: string, count: number, isOpen: Boolean) {
+    return new Zone(
+      new ZoneId(id),
+      new ZoneName(name),
+      new Count(count),
+      isOpen
+    );
+  }
+
+  constructor(id: ZoneId, name: ZoneName, count: Count, isOpen: Boolean) {
     this._id = id;
     this._name = name;
     this._count = count;
+    this._isOpen = isOpen;
   }
 }
