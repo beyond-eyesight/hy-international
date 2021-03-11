@@ -3,7 +3,7 @@ import Zone from 'src/model/zone';
 import Pixel from 'src/draw/size/pixel';
 import Percentage from 'src/draw/size/percentage';
 import { StyleSheet, View } from 'react-native';
-import { List } from 'react-native-paper';
+import { Appbar, List } from 'react-native-paper';
 import runningDeviceModel from '../../draw/device/model/deviceModel';
 import InformationBoard from '../board/InformationBoard';
 import { TextInputBoxStyle } from '../box/TextInputBox';
@@ -16,22 +16,26 @@ const deviceModelHeight: Pixel = runningDeviceModel._height;
 const deviceModelWidth: Pixel = runningDeviceModel._width;
 
 const ZoneSection: React.FC<Props> = ({ componentId }: Props) => {
-  const [chatRooms, setChatRooms] = useState<Zone[]>();
+  const [zones, setZones] = useState<Zone[]>([
+    Zone.of('26dd9c66-0507-4469-8c5e-791834074732', 'Wangsimni', 0)
+  ]);
   const [checked, setChecked] = React.useState('first');
 
   return (
     <View>
       <TitleBoard />
-      <List.Item
-        title="Wangsimni"
-        description="11 peaple are chatting"
-        left={(props) => <List.Icon {...props} icon="circle-slice-8" />}
-      />
-      <List.Item
-        title="Campus"
-        description="6 peaple are chatting"
-        left={(props) => <List.Icon {...props} icon="circle-slice-8" />}
-      />
+      <View>
+        {zones.map((zone, key) => {
+          return (
+            <List.Item
+              key={parseInt('radix', key)}
+              title={zone.name.toString()}
+              description={`${zone.count.toString()} people are chatting`}
+              left={(props) => <List.Icon {...props} icon="circle-slice-8" />}
+            />
+          );
+        })}
+      </View>
       <RemarkBoard />
     </View>
   );
