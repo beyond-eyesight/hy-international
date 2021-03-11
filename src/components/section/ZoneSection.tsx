@@ -14,17 +14,46 @@ export type Props = {
 const deviceModelHeight: Pixel = runningDeviceModel._height;
 const deviceModelWidth: Pixel = runningDeviceModel._width;
 
-const textSize: Pixel = deviceModelHeight.multiply(new Percentage(2.5));
-
 const ZoneSection: React.FC<Props> = ({ componentId }: Props) => {
   const [chatRooms, setChatRooms] = useState<Zone[]>();
 
   return (
     <View>
       <TitleBoard />
+      <RemarkBoard />
     </View>
   );
 };
+
+const RemarkBoard: React.FC = () => {
+  const remarkStyles = StyleSheet.create<TextInputBoxStyle>({
+    boxStyle: {
+      width: deviceModelWidth.multiply(new Percentage(90)).value,
+      height: deviceModelHeight.multiply(new Percentage(5)).value,
+      alignItems: 'center',
+      alignSelf: 'center',
+      justifyContent: 'center',
+      marginTop: deviceModelHeight.multiply(new Percentage(3)).value
+    },
+    contentStyle: {
+      fontFamily: 'ProximaNova-Regular',
+      fontSize: deviceModelHeight.multiply(new Percentage(2.5)).value,
+      lineHeight: deviceModelHeight.multiply(new Percentage(2.5)).value,
+      color: 'black'
+    }
+  });
+  return (
+    <InformationBoard
+      titleStyles={StyleSheet.create<TextInputBoxStyle>({
+        boxStyle: {},
+        contentStyle: {}
+      })}
+      bodyStyles={remarkStyles}
+    >
+      You can join the zone when you are at near the location
+    </InformationBoard>
+  )
+}
 
 const TitleBoard: React.FC = () => {
   const titleStyles = StyleSheet.create<TextInputBoxStyle>({
