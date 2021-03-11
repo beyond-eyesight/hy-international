@@ -18,7 +18,7 @@ import TextInputBox, {
 const deviceWidth: Pixel = runningDeviceModel._width;
 const deviceHeight: Pixel = runningDeviceModel._height;
 
-// todo: userId 하드코딩 제거!
+// todo: userId 하드코딩 제거, 칼라 및 size 등 하드코딩 제거
 const ChatSection: React.FC = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [bottom, setBottom] = useState<Pixel>(
@@ -50,6 +50,29 @@ const ChatSection: React.FC = () => {
       />
       {Platform.OS === 'android' && <KeyboardAvoidingView behavior="padding" />}
     </View>
+  );
+};
+
+const InputBar: React.FC<{ bottom: Pixel }> = (props: { bottom: Pixel }) => {
+  const { bottom } = props;
+
+  const containerStyles = StyleSheet.create({
+    container: {
+      height: deviceHeight.multiply(new Percentage(7)).value,
+      backgroundColor: '#FCFCFC',
+      borderTopWidth: 0,
+      borderWidth: 0,
+      bottom: bottom.value
+    }
+  });
+
+  return (
+    <InputToolbar
+      renderActions={() => null}
+      containerStyle={containerStyles.container}
+      renderComposer={(props) => <Composer />}
+      primaryStyle={{}}
+    />
   );
 };
 
@@ -97,29 +120,6 @@ const Composer: React.FC = () => {
         }}
       />
     </View>
-  );
-};
-
-const InputBar: React.FC<{ bottom: Pixel }> = (props: { bottom: Pixel }) => {
-  const { bottom } = props;
-
-  const containerStyles = StyleSheet.create({
-    container: {
-      height: deviceHeight.multiply(new Percentage(7)).value,
-      backgroundColor: '#FCFCFC',
-      borderTopWidth: 0,
-      borderWidth: 0,
-      bottom: bottom.value
-    }
-  });
-
-  return (
-    <InputToolbar
-      renderActions={() => null}
-      containerStyle={containerStyles.container}
-      renderComposer={(props) => <Composer />}
-      primaryStyle={{}}
-    />
   );
 };
 
