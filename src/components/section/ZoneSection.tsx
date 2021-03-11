@@ -3,7 +3,7 @@ import Zone from 'src/model/zone';
 import Pixel from 'src/draw/size/pixel';
 import Percentage from 'src/draw/size/percentage';
 import { StyleSheet, View } from 'react-native';
-import { Appbar, List } from 'react-native-paper';
+import { List } from 'react-native-paper';
 import runningDeviceModel from '../../draw/device/model/deviceModel';
 import InformationBoard from '../board/InformationBoard';
 import { TextInputBoxStyle } from '../box/TextInputBox';

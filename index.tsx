@@ -11,6 +11,8 @@ import SignUpScreen from 'src/components/screens/SignUpScreen';
 import SignInScreen from 'src/components/screens/SignInScreen';
 import ZoneScreen from 'src/components/screens/ZoneScreen';
 import ChatScreen from 'src/components/screens/ChatScreen';
+import { Provider } from 'react-native-paper';
+import theme from './src/draw/theme/theme';
 
 interface IScreenProps {
   id: string;
@@ -36,14 +38,18 @@ const screens: IScreenProps[] = [
   }
 ];
 
-// <Provider theme={theme}>
-//   {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-//   <Component {...props} />
-// </Provider>
-
 screens.forEach((screen) => {
   const { id, Component } = screen;
-  Navigation.registerComponent(id, () => Component);
+  Navigation.registerComponent(
+    id,
+    () => (props) => (
+      <Provider theme={theme}>
+        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+        <Component {...props} />
+      </Provider>
+    ),
+    () => Component
+  );
 });
 
 Navigation.setDefaultOptions({
