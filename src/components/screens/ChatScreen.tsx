@@ -6,6 +6,7 @@ import Topbar, { ActionProps, TopbarStyle } from 'src/components/bar/Topbar';
 import Pixel from 'src/draw/size/pixel';
 import { blue } from 'src/draw/color';
 import runningDeviceModel from '../../draw/device/model/deviceModel';
+import Zone from '../../model/zone';
 
 interface Props {
   componentId: string;
@@ -14,10 +15,16 @@ interface Props {
 const deviceModelHeight: Pixel = runningDeviceModel._height;
 
 const ChatScreen: React.FC<Props> = ({ componentId }: Props) => {
+  const zone: Zone = Zone.of(
+    '110841e3-e6fb-4191-8fd8-5674a5107c33',
+    'Wangsimni',
+    0,
+    true
+  );
   return (
     <View style={chatScreenStyle.screenStyle}>
       <TopbarNode />
-      <ChatSection />
+      <ChatSection zone={zone} />
     </View>
   );
 };
