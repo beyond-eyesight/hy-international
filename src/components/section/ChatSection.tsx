@@ -1,15 +1,11 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { GiftedChat, IMessage, InputToolbar } from 'react-native-gifted-chat';
 import {
-  FlatList,
-  FlatListProps,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
-  SafeAreaView,
   StatusBar,
   StyleSheet,
-  Text,
   View
 } from 'react-native';
 import { IconButton } from 'react-native-paper';
@@ -29,6 +25,23 @@ const deviceWidth: Pixel = runningDeviceModel._width;
 const deviceHeight: Pixel = runningDeviceModel._height;
 
 // todo: userId 하드코딩 제거, 칼라 및 size 등 하드코딩 제거
+
+const statusBarHeight: Pixel = runningDeviceModel.getStatusBarHeight();
+
+function getTopbarHeight() {
+  const height =
+    deviceHeight.multiply(new Percentage(16)).value + statusBarHeight.value;
+  return height;
+}
+
+function getMessageContainerHeight() {
+  return (
+    deviceHeight.value -
+    getTopbarHeight() -
+    runningDeviceModel.getBottomNavigationBarHeight().value
+  );
+}
+
 const ChatSection: React.FC<{ zone: Zone }> = (props: { zone: Zone }) => {
   const { zone } = props;
   const [messages, setMessages] = useState<IMessage[]>([]);
@@ -58,48 +71,6 @@ const ChatSection: React.FC<{ zone: Zone }> = (props: { zone: Zone }) => {
     // };
   }, [chatApi, zone, bottom, bottomOnKeyboardDidShow, bottomOnKeyboardDidHide]);
 
-  const DATA = [
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      title: 'First Item'
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      title: 'Second Item'
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      title: 'Third Item'
-    }
-  ];
-
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      marginTop: StatusBar.currentHeight || 0
-    },
-    item: {
-      backgroundColor: '#f9c2ff',
-      padding: 20,
-      marginVertical: 8,
-      marginHorizontal: 16
-    },
-    title: {
-      fontSize: 32
-    }
-  });
-
-  const Item = (props: { title: string }) => {
-    const { title } = props;
-    return (
-      <View style={styles.item}>
-        <Text style={styles.title}>{title}</Text>
-      </View>
-    );
-  };
-
-  const renderItem = ({ item }: any) => <Item title={item.title} />;
-
   const onSend = useCallback(
     (newMessages: IMessage[]) => {
       function sendMessages(newMessages: IMessage[]) {
@@ -113,11 +84,8 @@ const ChatSection: React.FC<{ zone: Zone }> = (props: { zone: Zone }) => {
     [chatApi, zone.id]
   );
 
-  // data={DATA}
-  // renderItem={renderItem}
-  // keyExtractor={(item) => item.id}
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: 'green' }}>
       <GiftedChat
         messages={messages}
         renderActions={(props) => null}
@@ -128,22 +96,16 @@ const ChatSection: React.FC<{ zone: Zone }> = (props: { zone: Zone }) => {
           />
         )}
         listViewProps={{
-          renderScrollComponent: (props: FlatListProps<any>) => {
-            const { data, renderItem, keyExtractor } = props;
-
-            return (
-              <SafeAreaView style={styles.container}>
-                <FlatList
-                  data={data}
-                  renderItem={renderItem}
-                  keyExtractor={keyExtractor}
-                  contentContainerStyle={{
-                    flexGrow: 1,
-                    justifyContent: 'flex-start'
-                  }}
-                />
-              </SafeAreaView>
-            );
+          style: {
+            height: getMessageContainerHeight(),
+            backgroundColor: 'blue',
+            overflow: 'hidden',
+            flexGrow: 0
+          },
+          contentContainerStyle: {
+            width: 400,
+            height: 100,
+            backgroundColor: 'yellow'
           }
         }}
         user={{
@@ -192,22 +154,21 @@ const Composer: React.FC<{
     container: {
       flexDirection: 'row',
       flex: 1,
-      justifyContent: 'space-between',
-      marginVertical: new Pixel(1).value
+      justifyContent: 'space-between'
     }
   });
   const inputStyles = StyleSheet.create<TextInputBoxStyle>({
     boxStyle: {
-      height: deviceHeight.multiply(new Percentage(7)).value,
-      borderColor: 'red',
+      height: deviceHeight.multiply(new Percentage(0)).value,
+      borderColor: 'transparent',
       borderWidth: new Pixel(1).value,
       overflow: 'hidden'
     },
     contentStyle: {
       width: deviceWidth.multiply(new Percentage(80)).value,
       borderColor: 'transparent',
-      backgroundColor: 'red',
-      height: deviceHeight.multiply(new Percentage(7)).value,
+      backgroundColor: 'transparent',
+      height: deviceHeight.multiply(new Percentage(0)).value,
       overflow: 'hidden'
     }
   });

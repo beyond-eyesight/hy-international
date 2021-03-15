@@ -80,14 +80,18 @@ const TopbarNode: React.FC = () => {
   );
 };
 
+function getTopbarHeight() {
+  const topbarHeight =
+    deviceModelHeight.multiply(new Percentage(6)).value + statusbarHeight.value;
+  return topbarHeight;
+}
+
 const topbarStyles = StyleSheet.create<TopbarStyle>({
   header: {
     left: 0,
     right: 0,
     justifyContent: 'space-between',
-    height:
-      deviceModelHeight.multiply(new Percentage(6)).value +
-      statusbarHeight.value,
+    height: getTopbarHeight(),
     backgroundColor: blue.get('600'),
     paddingTop: statusbarHeight.value
   },
