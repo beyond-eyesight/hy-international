@@ -8,7 +8,6 @@ interface DeviceModel {
   readonly _width: Pixel;
   readonly _height: Pixel;
   getTopNavigationBarTop(): Pixel;
-  getStatusBarHeight(): Pixel;
   getTopSectionHeightBy(percentage: Percentage): Pixel;
   getCenterSectionHeight(): Pixel;
   getBottomNavigationBarHeight(): Pixel;
@@ -41,18 +40,11 @@ const runningDeviceModel: DeviceModel = {
     const topbarHeight: Pixel = this._height.multiply(percentage);
     return Platform.select({
       android: topbarHeight,
-      ios: topbarHeight.plus(this.getStatusBarHeight())
+      ios: topbarHeight.plus(this.getTopNavigationBarTop())
     }) as Pixel;
   },
   _height: new Pixel(runningScreen.height),
   _width: new Pixel(runningScreen.width),
-
-  getStatusBarHeight(): Pixel {
-    return Platform.select({
-      android: new Pixel(24),
-      ios: getIosStatusBarHeight()
-    }) as Pixel;
-  },
 
   getBottomNavigationBarHeight(): Pixel {
     return Platform.select({

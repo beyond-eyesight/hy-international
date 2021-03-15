@@ -25,11 +25,8 @@ const deviceHeight: Pixel = runningDeviceModel._height;
 
 // todo: userId 하드코딩 제거, 칼라 및 size 등 하드코딩 제거
 
-const statusBarHeight: Pixel = runningDeviceModel.getStatusBarHeight();
-
 function getTopbarHeight() {
-  const height =
-    deviceHeight.multiply(new Percentage(16)).value + statusBarHeight.value;
+  const height = deviceHeight.multiply(new Percentage(16)).value + 44;
   return height;
 }
 
