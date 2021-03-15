@@ -60,7 +60,7 @@ const topbarStyles = StyleSheet.create<TopbarStyle>({
   header: {
     justifyContent: 'space-between',
     height: runningDeviceModel.getTopSectionHeightBy(new Percentage(6)).value,
-    paddingTop: runningDeviceModel.getTopNavigationBarTop().value,
+    paddingTop: runningDeviceModel.getHeaderPaddingTop().value,
     backgroundColor: blue.get('600')
   },
   content: {
