@@ -1,37 +1,17 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, ViewStyle } from 'react-native';
-import Topbar, { ActionProps, TopbarStyle } from 'src/components/bar/Topbar';
-import Pixel from 'src/draw/size/pixel';
-import { blue } from 'src/draw/color';
-import Percentage from 'src/draw/size/percentage';
-import SignInSection from 'src/components/section/SignInSection';
+import React from 'react';
+import { StyleSheet, ViewStyle } from 'react-native';
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
+import Topbar, { ActionProps, TopbarStyle } from '../bar/Topbar';
+import Percentage from '../../draw/size/percentage';
+import Pixel from '../../draw/size/pixel';
+import { blue } from '../../draw/color';
 import runningDeviceModel from '../../draw/device/model/deviceModel';
-import TopSection from '../section/TopSection';
-
-interface Props {
-  componentId: string;
-}
 
 const deviceModelHeight: Pixel = runningDeviceModel._height;
 const deviceStatusBarHeight: Pixel = runningDeviceModel.getStatusBarHeight();
 const backActionIcon: IconSource = runningDeviceModel.getBackActionIcon();
 
-const SignInScreen: React.FC<Props> = ({ componentId }: Props) => {
-  const [showDropDown, setShowDropDown] = useState(false);
-  const [gender, setGender] = useState();
-  const [value, setValue] = useState(null);
-  const [items, setItems] = useState([]);
-
-  return (
-    <View style={signinScreenStyle.screenStyle}>
-      <TopSection />
-      <SignInSection componentId={componentId} />
-    </View>
-  );
-};
-
-const TopbarNode: React.FC = () => {
+const TopSection: React.FC = () => {
   const leftActionProps: Array<ActionProps> = [
     {
       icon: backActionIcon,
@@ -79,14 +59,18 @@ const TopbarNode: React.FC = () => {
   );
 };
 
+function getTopNavigationBarHeight(): Pixel {
+  return deviceModelHeight.multiply(new Percentage(6));
+}
+
+function getTopSectionHeight(): Pixel {
+  return getTopNavigationBarHeight().plus(deviceStatusBarHeight);
+}
+
 const topbarStyles = StyleSheet.create<TopbarStyle>({
   header: {
-    left: 0,
-    right: 0,
     justifyContent: 'space-between',
-    height:
-      deviceModelHeight.multiply(new Percentage(6)).value +
-      deviceStatusBarHeight.value,
+    height: getTopSectionHeight().value,
     backgroundColor: blue.get('600'),
     paddingTop: deviceStatusBarHeight.value
   },
@@ -100,11 +84,4 @@ const topbarStyles = StyleSheet.create<TopbarStyle>({
   }
 });
 
-const signinScreenStyle = StyleSheet.create<{ screenStyle: ViewStyle }>({
-  screenStyle: {
-    backgroundColor: '#FCFCFC',
-    height: deviceModelHeight.multiply(new Percentage(100)).value
-  }
-});
-
-export default SignInScreen;
+export default TopSection;
