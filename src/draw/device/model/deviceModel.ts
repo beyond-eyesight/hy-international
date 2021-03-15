@@ -1,6 +1,7 @@
 import { Dimensions, Platform, ScaledSize, StatusBar } from 'react-native';
 import Pixel from 'src/draw/size/pixel';
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
+import Percentage from '../../size/percentage';
 
 interface DeviceModel {
   readonly _width: Pixel;
@@ -10,6 +11,8 @@ interface DeviceModel {
   getBackActionIcon(): IconSource;
   getBottomOnKeyboardDidShow(): Pixel;
   getBottomOnKeyboardDidHide(): Pixel;
+  getHeightOf(percentage: Percentage): Pixel;
+  getWidthOf(percentage: Percentage): Pixel;
 }
 
 const runningScreen: ScaledSize = Dimensions.get('screen');
@@ -60,6 +63,14 @@ const runningDeviceModel: DeviceModel = {
       android: 'arrow-left',
       ios: 'chevron-left'
     });
+  },
+
+  getHeightOf(percentage: Percentage): Pixel {
+    return this._height.multiply(percentage);
+  },
+
+  getWidthOf(percentage: Percentage): Pixel {
+    return this._width.multiply(percentage);
   }
 };
 

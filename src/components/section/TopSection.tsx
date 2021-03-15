@@ -1,22 +1,22 @@
 import React from 'react';
-import { StyleSheet, ViewStyle } from 'react-native';
-import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
+import { StyleSheet } from 'react-native';
 import Topbar, { ActionProps, TopbarStyle } from '../bar/Topbar';
 import Percentage from '../../draw/size/percentage';
 import Pixel from '../../draw/size/pixel';
 import { blue } from '../../draw/color';
 import runningDeviceModel from '../../draw/device/model/deviceModel';
+import ZERO from '../../draw/size/value';
 
-const deviceModelHeight: Pixel = runningDeviceModel._height;
 const deviceStatusBarHeight: Pixel = runningDeviceModel.getStatusBarHeight();
-const backActionIcon: IconSource = runningDeviceModel.getBackActionIcon();
+
+const ICON_COLOR = 'white';
 
 const TopSection: React.FC = () => {
   const leftActionProps: Array<ActionProps> = [
     {
-      icon: backActionIcon,
-      iconColor: 'white',
-      iconSize: deviceModelHeight.multiply(new Percentage(3)),
+      icon: runningDeviceModel.getBackActionIcon(),
+      iconColor: ICON_COLOR,
+      iconSize: runningDeviceModel.getHeightOf(new Percentage(3)),
       iconDisabled: false,
       actionStyle: {},
       onPress: () => {}
@@ -27,7 +27,7 @@ const TopSection: React.FC = () => {
     {
       icon: 'alarm-bell',
       iconColor: 'white',
-      iconSize: deviceModelHeight.multiply(new Percentage(3)),
+      iconSize: runningDeviceModel.getHeightOf(new Percentage(3)),
       iconDisabled: false,
       actionStyle: {},
       onPress: () => {}
@@ -38,17 +38,17 @@ const TopSection: React.FC = () => {
     <Topbar
       headerProps={{
         isDark: true,
-        statusBarHeight: new Pixel(0),
+        statusBarHeight: ZERO,
         headerStyle: topbarStyles.header
       }}
       contentProps={{
         title: 'hihi',
         subtitle: 'kkk',
         titleStyle: {
-          fontSize: deviceModelHeight.multiply(new Percentage(3)).value
+          fontSize: runningDeviceModel.getHeightOf(new Percentage(3)).value
         },
         subtitleStyle: {
-          fontSize: deviceModelHeight.multiply(new Percentage(2)).value
+          fontSize: runningDeviceModel.getHeightOf(new Percentage(2)).value
         },
         onPress: () => {},
         contentStyle: topbarStyles.content
@@ -60,7 +60,7 @@ const TopSection: React.FC = () => {
 };
 
 function getTopNavigationBarHeight(): Pixel {
-  return deviceModelHeight.multiply(new Percentage(6));
+  return runningDeviceModel.getHeightOf(new Percentage(6));
 }
 
 function getTopSectionHeight(): Pixel {
@@ -72,16 +72,12 @@ const topbarStyles = StyleSheet.create<TopbarStyle>({
     justifyContent: 'space-between',
     height: getTopSectionHeight().value,
     backgroundColor: blue.get('600'),
-    paddingTop: deviceStatusBarHeight.value
+    paddingTop: runningDeviceModel.getStatusBarHeight().value
   },
   content: {
-    alignItems: 'center',
-    flex: 0,
-    width: 100
+    alignItems: 'center'
   },
-  action: {
-    width: 100
-  }
+  action: {}
 });
 
 export default TopSection;
