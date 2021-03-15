@@ -7,11 +7,11 @@ import { blue } from '../../draw/color';
 import runningDeviceModel from '../../draw/device/model/deviceModel';
 import ZERO from '../../draw/size/value';
 
-const deviceStatusBarHeight: Pixel = runningDeviceModel.getStatusBarHeight();
-
 const ICON_COLOR = 'white';
 
 const TopSection: React.FC = () => {
+  console.log('topSection');
+  console.log(getTopSectionHeight().value);
   const leftActionProps: Array<ActionProps> = [
     {
       icon: runningDeviceModel.getBackActionIcon(),
@@ -64,7 +64,9 @@ function getTopNavigationBarHeight(): Pixel {
 }
 
 function getTopSectionHeight(): Pixel {
-  return getTopNavigationBarHeight().plus(deviceStatusBarHeight);
+  return getTopNavigationBarHeight().plus(
+    runningDeviceModel.getStatusBarHeight()
+  );
 }
 
 const topbarStyles = StyleSheet.create<TopbarStyle>({

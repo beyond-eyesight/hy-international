@@ -66,7 +66,7 @@ Navigation.events().registerAppLaunchedListener(async () => {
         children: [
           {
             component: {
-              name: SCREEN_IDS.ChatScreen
+              name: SCREEN_IDS.SignInScreen
             }
           }
         ]
