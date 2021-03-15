@@ -34,7 +34,7 @@ const runningDeviceModel: DeviceModel = {
     const topbarHeight: Pixel = this._height.multiply(percentage);
     return Platform.select({
       android: topbarHeight,
-      ios: topbarHeight.plus(topbarHeight)
+      ios: topbarHeight.plus(this.getStatusBarHeight())
     }) as Pixel;
   },
   _height: new Pixel(runningScreen.height),
@@ -42,7 +42,7 @@ const runningDeviceModel: DeviceModel = {
 
   getStatusBarHeight(): Pixel {
     return Platform.select({
-      android: new Pixel(0),
+      android: new Pixel(24),
       ios: getIosStatusBarHeight()
     }) as Pixel;
   },
