@@ -8,6 +8,7 @@ interface DeviceModel {
   readonly _width: Pixel;
   readonly _height: Pixel;
   getTopSectionPaddingTop(): Pixel;
+  getCenterSectionPaddingBottom(): Pixel;
   getTopSectionHeightBy(percentage: Percentage): Pixel;
   getCenterSectionHeight(): Pixel;
   getBottomNavigationBarHeight(): Pixel;
@@ -80,6 +81,13 @@ const runningDeviceModel: DeviceModel = {
 
   getCenterSectionHeight(): Pixel {
     return new Pixel(0);
+  },
+
+  getCenterSectionPaddingBottom(): Pixel {
+    return Platform.select({
+      android: getAndroidBottomOnKeyboardDidShow(),
+      ios: new Pixel(34.5)
+    }) as Pixel;
   }
 };
 

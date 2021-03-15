@@ -26,14 +26,25 @@ const deviceHeight: Pixel = runningDeviceModel._height;
 
 // todo: userId 하드코딩 제거, 칼라 및 size 등 하드코딩 제거
 
+const INPUT_BAR_HEIGHT = runningDeviceModel.getHeightOf(new Percentage(7));
+
 function getMessageContainerHeight() {
+  // console.log('HEADER_HEIGHT');
+  // console.log(HEADER_HEIGHT.value);
+  // console.log('centerSectionPaddingBottom');
+  // console.log(runningDeviceModel.getCenterSectionPaddingBottom().value);
+  // console.log('INPUT_BAR_HEIGHT');
+  // console.log(INPUT_BAR_HEIGHT.value);
   return runningDeviceModel
     .getHeightOf(new Percentage(100))
     .minus(HEADER_HEIGHT)
-    .minus(runningDeviceModel.getBottomNavigationBarHeight()).value;
+    .minus(runningDeviceModel.getCenterSectionPaddingBottom())
+    .minus(INPUT_BAR_HEIGHT).value;
 }
 
 const ChatSection: React.FC<{ zone: Zone }> = (props: { zone: Zone }) => {
+  console.log('MessageContainerHeight');
+  console.log(getMessageContainerHeight());
   const { zone } = props;
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [bottom, setBottom] = useState<Pixel>(
@@ -117,7 +128,7 @@ const InputBar: React.FC<{
 
   const containerStyles = StyleSheet.create({
     container: {
-      height: deviceHeight.multiply(new Percentage(7)).value,
+      height: INPUT_BAR_HEIGHT.value,
       backgroundColor: 'red',
       borderTopWidth: 0,
       borderWidth: 0,
