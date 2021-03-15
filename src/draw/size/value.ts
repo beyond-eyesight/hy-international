@@ -4,6 +4,12 @@ import Percentage from './percentage';
 
 const ZERO: Pixel = new Pixel(0);
 
-const HEADER_HEIGHT = runningDeviceModel.getHeaderHeightBy(new Percentage(6));
+const TOPSECTION_HEIGHT: Pixel = runningDeviceModel.getTopSectionHeightBy(
+  new Percentage(6)
+);
 
-export { ZERO, HEADER_HEIGHT };
+const HEADER_HEIGHT = TOPSECTION_HEIGHT.plus(
+  runningDeviceModel.getTopSectionPaddingTop()
+);
+
+export { ZERO, TOPSECTION_HEIGHT, HEADER_HEIGHT };

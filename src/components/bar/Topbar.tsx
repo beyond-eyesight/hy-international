@@ -8,6 +8,7 @@ import {
 import Pixel from 'src/draw/size/pixel';
 import { Appbar } from 'react-native-paper';
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
+import runningDeviceModel from '../../draw/device/model/deviceModel';
 
 export interface TopbarStyle {
   header: ViewStyle;
@@ -57,7 +58,7 @@ const Topbar: React.FC<TopBarProps> = ({
   return (
     <Appbar.Header
       style={headerProps.headerStyle}
-      statusBarHeight={headerProps.statusBarHeight.value}
+      statusBarHeight={runningDeviceModel.getTopSectionPaddingTop().value}
       dark={headerProps.isDark}
     >
       <View>

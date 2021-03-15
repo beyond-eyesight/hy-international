@@ -7,8 +7,8 @@ import Percentage from '../../size/percentage';
 interface DeviceModel {
   readonly _width: Pixel;
   readonly _height: Pixel;
-  getHeaderPaddingTop(): Pixel;
-  getHeaderHeightBy(percentage: Percentage): Pixel;
+  getTopSectionPaddingTop(): Pixel;
+  getTopSectionHeightBy(percentage: Percentage): Pixel;
   getCenterSectionHeight(): Pixel;
   getBottomNavigationBarHeight(): Pixel;
   getBackActionIcon(): IconSource;
@@ -30,15 +30,14 @@ function getAndroidBottomNavigationBarHeight(): Pixel {
 }
 
 const runningDeviceModel: DeviceModel = {
-  getHeaderPaddingTop(): Pixel {
+  getTopSectionPaddingTop(): Pixel {
     return Platform.select({
       android: new Pixel(0),
       ios: getIosStatusBarHeight()
     }) as Pixel;
   },
-  getHeaderHeightBy(percentage: Percentage): Pixel {
-    const topbarHeight: Pixel = this._height.multiply(percentage);
-    return topbarHeight.plus(this.getHeaderPaddingTop());
+  getTopSectionHeightBy(percentage: Percentage): Pixel {
+    return this._height.multiply(percentage);
   },
   _height: new Pixel(runningScreen.height),
   _width: new Pixel(runningScreen.width),
