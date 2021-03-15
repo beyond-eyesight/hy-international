@@ -10,8 +10,6 @@ import ZERO from '../../draw/size/value';
 const ICON_COLOR = 'white';
 
 const TopSection: React.FC = () => {
-  console.log('topSection');
-  console.log(getTopSectionHeight().value);
   const leftActionProps: Array<ActionProps> = [
     {
       icon: runningDeviceModel.getBackActionIcon(),

@@ -74,6 +74,7 @@ const runningDeviceModel: DeviceModel = {
   }
 };
 
+// todo: refac - 결국 앞은 같고 뒤만 다른것.
 function getAndroidBottomOnKeyboardDidHide() {
   if (androidHasBottomNavigationBar()) {
     return new Pixel(48);
