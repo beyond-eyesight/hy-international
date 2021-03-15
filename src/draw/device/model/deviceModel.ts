@@ -3,10 +3,13 @@ import Pixel from 'src/draw/size/pixel';
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
 import Percentage from '../../size/percentage';
 
+// todo: getStatusBarHeight 지우기
 interface DeviceModel {
   readonly _width: Pixel;
   readonly _height: Pixel;
   getStatusBarHeight(): Pixel;
+  getTopSectionHeightBy(percentage: Percentage): Pixel;
+  getCenterSectionHeight(): Pixel;
   getBottomNavigationBarHeight(): Pixel;
   getBackActionIcon(): IconSource;
   getBottomOnKeyboardDidShow(): Pixel;
@@ -27,6 +30,13 @@ function getAndroidBottomNavigationBarHeight(): Pixel {
 }
 
 const runningDeviceModel: DeviceModel = {
+  getTopSectionHeightBy(percentage: Percentage): Pixel {
+    const topbarHeight: Pixel = this._height.multiply(percentage);
+    return Platform.select({
+      android: topbarHeight,
+      ios: topbarHeight.plus(topbarHeight)
+    }) as Pixel;
+  },
   _height: new Pixel(runningScreen.height),
   _width: new Pixel(runningScreen.width),
 
@@ -71,6 +81,10 @@ const runningDeviceModel: DeviceModel = {
 
   getWidthOf(percentage: Percentage): Pixel {
     return this._width.multiply(percentage);
+  },
+
+  getCenterSectionHeight(): Pixel {
+    return new Pixel(0);
   }
 };
 

@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import Topbar, { ActionProps, TopbarStyle } from '../bar/Topbar';
 import Percentage from '../../draw/size/percentage';
-import Pixel from '../../draw/size/pixel';
 import { blue } from '../../draw/color';
 import runningDeviceModel from '../../draw/device/model/deviceModel';
 import ZERO from '../../draw/size/value';
@@ -57,20 +56,10 @@ const TopSection: React.FC = () => {
   );
 };
 
-function getTopNavigationBarHeight(): Pixel {
-  return runningDeviceModel.getHeightOf(new Percentage(6));
-}
-
-function getTopSectionHeight(): Pixel {
-  return getTopNavigationBarHeight().plus(
-    runningDeviceModel.getStatusBarHeight()
-  );
-}
-
 const topbarStyles = StyleSheet.create<TopbarStyle>({
   header: {
     justifyContent: 'space-between',
-    height: getTopSectionHeight().value,
+    height: runningDeviceModel.getTopSectionHeightBy(new Percentage(6)).value,
     backgroundColor: blue.get('600'),
     paddingTop: runningDeviceModel.getStatusBarHeight().value
   },
