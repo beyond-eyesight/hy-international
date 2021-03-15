@@ -4,7 +4,7 @@ import Topbar, { ActionProps, TopbarStyle } from '../bar/Topbar';
 import Percentage from '../../draw/size/percentage';
 import { blue } from '../../draw/color';
 import runningDeviceModel from '../../draw/device/model/deviceModel';
-import ZERO from '../../draw/size/value';
+import { HEADER_HEIGHT, ZERO } from '../../draw/size/value';
 
 const ICON_COLOR = 'white';
 
@@ -59,7 +59,7 @@ const Header: React.FC = () => {
 const topbarStyles = StyleSheet.create<TopbarStyle>({
   header: {
     justifyContent: 'space-between',
-    height: runningDeviceModel.getHeaderHeightBy(new Percentage(6)).value,
+    height: HEADER_HEIGHT.value,
     paddingTop: runningDeviceModel.getHeaderPaddingTop().value,
     backgroundColor: blue.get('600')
   },
@@ -68,5 +68,7 @@ const topbarStyles = StyleSheet.create<TopbarStyle>({
   },
   action: {}
 });
+
+
 
 export default Header;
