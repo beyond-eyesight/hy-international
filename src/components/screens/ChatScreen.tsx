@@ -4,7 +4,7 @@ import { StyleSheet, View, ViewStyle } from 'react-native';
 import Percentage from 'src/draw/size/percentage';
 import runningDeviceModel from '../../draw/device/model/deviceModel';
 import Zone from '../../model/zone';
-import TopHeader from '../section/TopHeader';
+import Header from '../section/Header';
 
 interface Props {
   componentId: string;
@@ -19,7 +19,7 @@ const ChatScreen: React.FC<Props> = ({ componentId }: Props) => {
   );
   return (
     <View style={chatScreenStyle.screenStyle}>
-      <TopHeader />
+      <Header />
       <ChatSection zone={zone} />
     </View>
   );

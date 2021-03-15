@@ -3,7 +3,7 @@ import { StyleSheet, View, ViewStyle } from 'react-native';
 import Percentage from 'src/draw/size/percentage';
 import SignInSection from 'src/components/section/SignInSection';
 import runningDeviceModel from '../../draw/device/model/deviceModel';
-import TopHeader from '../section/TopHeader';
+import Header from '../section/Header';
 
 interface Props {
   componentId: string;
@@ -17,7 +17,7 @@ const SignInScreen: React.FC<Props> = ({ componentId }: Props) => {
 
   return (
     <View style={signinScreenStyle.screenStyle}>
-      <TopHeader />
+      <Header />
       <SignInSection componentId={componentId} />
     </View>
   );

@@ -8,7 +8,7 @@ import ZERO from '../../draw/size/value';
 
 const ICON_COLOR = 'white';
 
-const TopHeader: React.FC = () => {
+const Header: React.FC = () => {
   const leftActionProps: Array<ActionProps> = [
     {
       icon: runningDeviceModel.getBackActionIcon(),
@@ -69,4 +69,4 @@ const topbarStyles = StyleSheet.create<TopbarStyle>({
   action: {}
 });
 
-export default TopHeader;
+export default Header;
