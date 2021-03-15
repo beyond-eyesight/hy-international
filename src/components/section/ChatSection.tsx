@@ -29,12 +29,6 @@ const deviceHeight: Pixel = runningDeviceModel._height;
 const INPUT_BAR_HEIGHT = runningDeviceModel.getHeightOf(new Percentage(7));
 
 function getMessageContainerHeight() {
-  // console.log('HEADER_HEIGHT');
-  // console.log(HEADER_HEIGHT.value);
-  // console.log('centerSectionPaddingBottom');
-  // console.log(runningDeviceModel.getCenterSectionPaddingBottom().value);
-  // console.log('INPUT_BAR_HEIGHT');
-  // console.log(INPUT_BAR_HEIGHT.value);
   return runningDeviceModel
     .getHeightOf(new Percentage(100))
     .minus(HEADER_HEIGHT)
@@ -43,8 +37,6 @@ function getMessageContainerHeight() {
 }
 
 const ChatSection: React.FC<{ zone: Zone }> = (props: { zone: Zone }) => {
-  console.log('MessageContainerHeight');
-  console.log(getMessageContainerHeight());
   const { zone } = props;
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [bottom, setBottom] = useState<Pixel>(

@@ -30,6 +30,14 @@ function getAndroidBottomNavigationBarHeight(): Pixel {
   return statusbarHeight.plus(ANDROID_SOFT_MENU_BAR_HEIGHT);
 }
 
+function getAndroidCenterSectionPaddingBottom() {
+  if (androidHasBottomNavigationBar()) {
+    return new Pixel(48 + 24);
+  }
+
+  return new Pixel(0);
+}
+
 const runningDeviceModel: DeviceModel = {
   getTopSectionPaddingTop(): Pixel {
     return Platform.select({
@@ -85,7 +93,7 @@ const runningDeviceModel: DeviceModel = {
 
   getCenterSectionPaddingBottom(): Pixel {
     return Platform.select({
-      android: getAndroidBottomOnKeyboardDidShow(),
+      android: getAndroidCenterSectionPaddingBottom(),
       ios: new Pixel(34.5)
     }) as Pixel;
   }
@@ -107,7 +115,7 @@ function getAndroidBottomOnKeyboardDidShow() {
   return new Pixel(48);
 }
 
-function androidHasBottomNavigationBar(): boolean {
+export function androidHasBottomNavigationBar(): boolean {
   return runningScreen.height - runningWindow.height !== 0;
 }
 
