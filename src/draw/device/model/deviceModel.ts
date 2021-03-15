@@ -7,6 +7,7 @@ import Percentage from '../../size/percentage';
 interface DeviceModel {
   readonly _width: Pixel;
   readonly _height: Pixel;
+  getTopNavigationBarTop(): Pixel;
   getStatusBarHeight(): Pixel;
   getTopSectionHeightBy(percentage: Percentage): Pixel;
   getCenterSectionHeight(): Pixel;
@@ -30,6 +31,12 @@ function getAndroidBottomNavigationBarHeight(): Pixel {
 }
 
 const runningDeviceModel: DeviceModel = {
+  getTopNavigationBarTop(): Pixel {
+    return Platform.select({
+      android: new Pixel(0),
+      ios: getIosStatusBarHeight()
+    }) as Pixel;
+  },
   getTopSectionHeightBy(percentage: Percentage): Pixel {
     const topbarHeight: Pixel = this._height.multiply(percentage);
     return Platform.select({

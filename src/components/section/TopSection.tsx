@@ -1,11 +1,10 @@
 import React from 'react';
-import { Platform, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Topbar, { ActionProps, TopbarStyle } from '../bar/Topbar';
 import Percentage from '../../draw/size/percentage';
 import { blue } from '../../draw/color';
 import runningDeviceModel from '../../draw/device/model/deviceModel';
 import ZERO from '../../draw/size/value';
-import Pixel from '../../draw/size/pixel';
 
 const ICON_COLOR = 'white';
 
@@ -61,7 +60,7 @@ const topbarStyles = StyleSheet.create<TopbarStyle>({
   header: {
     justifyContent: 'space-between',
     height: runningDeviceModel.getTopSectionHeightBy(new Percentage(6)).value,
-    paddingTop: getTopNavigationBarTop().value,
+    paddingTop: runningDeviceModel.getTopNavigationBarTop().value,
     backgroundColor: blue.get('600')
   },
   content: {
@@ -69,12 +68,5 @@ const topbarStyles = StyleSheet.create<TopbarStyle>({
   },
   action: {}
 });
-
-function getTopNavigationBarTop(): Pixel {
-  return Platform.select({
-    android: new Pixel(0),
-    ios: runningDeviceModel.getStatusBarHeight()
-  }) as Pixel;
-}
 
 export default TopSection;
