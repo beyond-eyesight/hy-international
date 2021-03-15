@@ -19,23 +19,18 @@ import ApplicationContext from '../../context/applicationContext';
 import ChatMessageDto from '../../dto/chatMessageDto';
 import Zone from '../../model/zone';
 import ChatMessage from '../../model/chatMessage';
+import { HEADER_HEIGHT } from '../../draw/size/value';
 
 const deviceWidth: Pixel = runningDeviceModel._width;
 const deviceHeight: Pixel = runningDeviceModel._height;
 
 // todo: userId 하드코딩 제거, 칼라 및 size 등 하드코딩 제거
 
-function getTopbarHeight() {
-  const height = deviceHeight.multiply(new Percentage(16)).value + 44;
-  return height;
-}
-
 function getMessageContainerHeight() {
-  return (
-    deviceHeight.value -
-    getTopbarHeight() -
-    runningDeviceModel.getBottomNavigationBarHeight().value
-  );
+  return runningDeviceModel
+    .getHeightOf(new Percentage(100))
+    .minus(HEADER_HEIGHT)
+    .minus(runningDeviceModel.getBottomNavigationBarHeight()).value;
 }
 
 const ChatSection: React.FC<{ zone: Zone }> = (props: { zone: Zone }) => {
