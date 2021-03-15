@@ -1,7 +1,7 @@
 import React from 'react';
 import ZoneSection from 'src/components/section/ZoneSection';
 import { View } from 'react-native';
-import TopSection from '../section/TopSection';
+import TopHeader from '../section/TopHeader';
 
 interface Props {
   componentId: string;
@@ -10,7 +10,7 @@ interface Props {
 const ZoneScreen: React.FC<Props> = ({ componentId }: Props) => {
   return (
     <View>
-      <TopSection />
+      <TopHeader />
       <ZoneSection componentId={componentId} />
     </View>
   );

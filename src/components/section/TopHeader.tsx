@@ -8,7 +8,7 @@ import ZERO from '../../draw/size/value';
 
 const ICON_COLOR = 'white';
 
-const TopSection: React.FC = () => {
+const TopHeader: React.FC = () => {
   const leftActionProps: Array<ActionProps> = [
     {
       icon: runningDeviceModel.getBackActionIcon(),
@@ -59,7 +59,7 @@ const TopSection: React.FC = () => {
 const topbarStyles = StyleSheet.create<TopbarStyle>({
   header: {
     justifyContent: 'space-between',
-    height: runningDeviceModel.getTopSectionHeightBy(new Percentage(6)).value,
+    height: runningDeviceModel.getHeaderHeightBy(new Percentage(6)).value,
     paddingTop: runningDeviceModel.getHeaderPaddingTop().value,
     backgroundColor: blue.get('600')
   },
@@ -69,4 +69,4 @@ const topbarStyles = StyleSheet.create<TopbarStyle>({
   action: {}
 });
 
-export default TopSection;
+export default TopHeader;

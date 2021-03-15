@@ -8,7 +8,7 @@ interface DeviceModel {
   readonly _width: Pixel;
   readonly _height: Pixel;
   getHeaderPaddingTop(): Pixel;
-  getTopSectionHeightBy(percentage: Percentage): Pixel;
+  getHeaderHeightBy(percentage: Percentage): Pixel;
   getCenterSectionHeight(): Pixel;
   getBottomNavigationBarHeight(): Pixel;
   getBackActionIcon(): IconSource;
@@ -36,7 +36,7 @@ const runningDeviceModel: DeviceModel = {
       ios: getIosStatusBarHeight()
     }) as Pixel;
   },
-  getTopSectionHeightBy(percentage: Percentage): Pixel {
+  getHeaderHeightBy(percentage: Percentage): Pixel {
     const topbarHeight: Pixel = this._height.multiply(percentage);
     return topbarHeight.plus(this.getHeaderPaddingTop());
   },

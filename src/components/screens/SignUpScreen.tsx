@@ -3,7 +3,7 @@ import SignUpSection from 'src/components/section/SignUpSection';
 import { StyleSheet, View, ViewStyle } from 'react-native';
 import Percentage from 'src/draw/size/percentage';
 import runningDeviceModel from '../../draw/device/model/deviceModel';
-import TopSection from '../section/TopSection';
+import TopHeader from '../section/TopHeader';
 
 interface Props {
   componentId: string;
@@ -12,7 +12,7 @@ interface Props {
 const SignUpScreen: React.FC<Props> = ({ componentId }: Props) => {
   return (
     <View style={signupScreenStyle.screenStyle}>
-      <TopSection />
+      <TopHeader />
       <SignUpSection />
     </View>
   );
