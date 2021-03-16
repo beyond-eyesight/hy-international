@@ -27,8 +27,8 @@ export default class Pixel {
     return new Pixel(this._value + other._value);
   }
 
-  isZero() {
-    return this._value === 0;
+  isNotZero() {
+    return this._value !== 0;
   }
 
   equals(number: number) {

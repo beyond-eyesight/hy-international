@@ -38,6 +38,7 @@ class Iphone implements MobileDevice {
     return Iphone.BACK_ACTION_ICON_NAME;
   }
 
+  // todo: 이거 없어도 됨.
   // eslint-disable-next-line class-methods-use-this
   getBottomSectionHeight(): Pixel {
     return new Pixel(34.5);
