@@ -3,12 +3,14 @@ import Pixel from 'src/draw/size/pixel';
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
 import Percentage from '../../size/percentage';
 
+type CenterSectionState = 'constructed' | 'keyboardDidShow' | 'keyboardDidHide';
+
 // todo: getStatusBarHeight 지우기
 interface DeviceModel {
   readonly _width: Pixel;
   readonly _height: Pixel;
   getTopSectionPaddingTop(): Pixel;
-  getCenterSectionPaddingBottom(): Pixel;
+  getCenterSectionPaddingBottom(centerSectionState: CenterSectionState): Pixel;
   getTopSectionHeightBy(percentage: Percentage): Pixel;
   getCenterSectionHeight(): Pixel;
   getBottomNavigationBarHeight(): Pixel;
@@ -30,9 +32,15 @@ function getAndroidBottomNavigationBarHeight(): Pixel {
   return statusbarHeight.plus(ANDROID_SOFT_MENU_BAR_HEIGHT);
 }
 
-function getAndroidCenterSectionPaddingBottom() {
+function getAndroidCenterSectionPaddingBottom(
+  centerSectionState: CenterSectionState
+) {
   if (androidHasBottomNavigationBar()) {
     return new Pixel(72);
+  }
+
+  if (centerSectionState === 'constructed') {
+    return new Pixel(0);
   }
 
   return new Pixel(24);
@@ -91,9 +99,9 @@ const runningDeviceModel: DeviceModel = {
     return new Pixel(0);
   },
 
-  getCenterSectionPaddingBottom(): Pixel {
+  getCenterSectionPaddingBottom(centerSectionState: CenterSectionState): Pixel {
     return Platform.select({
-      android: getAndroidCenterSectionPaddingBottom(),
+      android: getAndroidCenterSectionPaddingBottom(centerSectionState),
       ios: new Pixel(34.5)
     }) as Pixel;
   }
