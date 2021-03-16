@@ -10,27 +10,17 @@ interface DeviceModel {
   readonly _width: Pixel;
   readonly _height: Pixel;
   getTopSectionPaddingTop(): Pixel;
-  getCenterSectionPaddingBottom(centerSectionState: CenterSectionState): Pixel;
   getTopSectionHeightBy(percentage: Percentage): Pixel;
-  getCenterSectionHeight(): Pixel;
-  getBottomNavigationBarHeight(): Pixel;
+  getCenterSectionPaddingBottom(centerSectionState: CenterSectionState): Pixel;
+  getCenterSectionHeight(centerSectionState: CenterSectionState): Pixel;
   getBackActionIcon(): IconSource;
-  getBottomOnKeyboardDidShow(): Pixel;
-  getBottomOnKeyboardDidHide(): Pixel;
   getHeightOf(percentage: Percentage): Pixel;
   getWidthOf(percentage: Percentage): Pixel;
+  getBottomSectionHeight(): Pixel;
 }
 
 const runningScreen: ScaledSize = Dimensions.get('screen');
 const runningWindow: ScaledSize = Dimensions.get('window');
-
-function getAndroidBottomNavigationBarHeight(): Pixel {
-  const statusbarHeight: Pixel = getAndroidStatusBarHeight();
-  if (statusbarHeight.isZero()) {
-    return statusbarHeight;
-  }
-  return statusbarHeight.plus(ANDROID_SOFT_MENU_BAR_HEIGHT);
-}
 
 function getAndroidCenterSectionPaddingBottom(
   centerSectionState: CenterSectionState
@@ -45,14 +35,27 @@ function getAndroidCenterSectionPaddingBottom(
 function getIosCenterSectionPaddingBottom(
   centerSectionState: CenterSectionState
 ) {
-  if (centerSectionState === 'keyboardDidShow') {
-    return new Pixel(34.5);
+  if (centerSectionState === 'constructed') {
+    return new Pixel(0);
   }
 
   return new Pixel(0);
 }
 
+function getAndroidCenterSectionHeight(): Pixel {
+  return new Pixel(0);
+}
+
+function getIosCenterSectionHeight(
+  centerSectionState: CenterSectionState
+): Pixel {
+  return new Pixel(0);
+}
+
 const runningDeviceModel: DeviceModel = {
+  getBottomSectionHeight(): Pixel {
+    return new Pixel(0);
+  },
   getTopSectionPaddingTop(): Pixel {
     return Platform.select({
       android: new Pixel(0),
@@ -64,27 +67,6 @@ const runningDeviceModel: DeviceModel = {
   },
   _height: new Pixel(runningScreen.height),
   _width: new Pixel(runningScreen.width),
-
-  getBottomNavigationBarHeight(): Pixel {
-    return Platform.select({
-      android: getAndroidBottomNavigationBarHeight(),
-      ios: new Pixel(0)
-    }) as Pixel;
-  },
-
-  getBottomOnKeyboardDidShow(): Pixel {
-    return Platform.select({
-      android: getAndroidBottomOnKeyboardDidShow(),
-      ios: new Pixel(0)
-    }) as Pixel;
-  },
-
-  getBottomOnKeyboardDidHide(): Pixel {
-    return Platform.select({
-      android: getAndroidBottomOnKeyboardDidHide(),
-      ios: new Pixel(0)
-    }) as Pixel;
-  },
 
   getBackActionIcon(): IconSource {
     return <IconSource>Platform.select({
@@ -101,8 +83,11 @@ const runningDeviceModel: DeviceModel = {
     return this._width.multiply(percentage);
   },
 
-  getCenterSectionHeight(): Pixel {
-    return new Pixel(0);
+  getCenterSectionHeight(centerSectionState: CenterSectionState): Pixel {
+    return Platform.select({
+      android: getAndroidCenterSectionHeight(),
+      ios: getIosCenterSectionHeight(centerSectionState)
+    }) as Pixel;
   },
 
   getCenterSectionPaddingBottom(centerSectionState: CenterSectionState): Pixel {

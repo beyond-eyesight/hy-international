@@ -22,11 +22,14 @@ const deviceWidth: Pixel = runningDeviceModel._width;
 const INPUT_BAR_HEIGHT = runningDeviceModel.getHeightOf(new Percentage(7));
 
 function getMessageContainerHeight(centerSectionPaddingBottom: Pixel) {
+  console.log('centerSectionPaddingTop');
+  console.log(centerSectionPaddingBottom.value);
+  console.log(INPUT_BAR_HEIGHT.value);
   return runningDeviceModel
     .getHeightOf(new Percentage(100))
     .minus(HEADER_HEIGHT)
     .minus(centerSectionPaddingBottom)
-    .minus(INPUT_BAR_HEIGHT).value;
+    .minus(INPUT_BAR_HEIGHT);
 }
 
 const ChatSection: React.FC<{ zone: Zone }> = (props: { zone: Zone }) => {
@@ -39,8 +42,14 @@ const ChatSection: React.FC<{ zone: Zone }> = (props: { zone: Zone }) => {
   const { chatApi } = useContext(ApplicationContext);
 
   const [messageContainerHeight, setMessageContainerHeight] = useState<number>(
-    getMessageContainerHeight(paddingBottom)
+    runningDeviceModel
+      .getCenterSectionHeight('constructed')
+      .minus(INPUT_BAR_HEIGHT).value
   );
+
+  console.log('messagecontainerHeight');
+  console.log(messageContainerHeight);
+  console.log(paddingBottom.value);
   useEffect(() => {
     chatApi.joinRoom(zone.id, (message: StompMessage) => {
       const chatMessageDto: ChatMessageDto = JSON.parse(message.body);
@@ -51,12 +60,18 @@ const ChatSection: React.FC<{ zone: Zone }> = (props: { zone: Zone }) => {
       const pBottom = runningDeviceModel.getCenterSectionPaddingBottom(
         'keyboardDidShow'
       );
-      setPaddingBottom(new Pixel(event.endCoordinates.height).plus(pBottom));
+
+      console.log('pBottom');
+      console.log(pBottom);
+      setPaddingBottom(pBottom);
       setMessageContainerHeight(
-        getMessageContainerHeight(pBottom) - event.endCoordinates.height
+        getMessageContainerHeight(pBottom).value - event.endCoordinates.height
       );
     });
     Keyboard.addListener('keyboardDidHide', (event) => {
+      setMessageContainerHeight(
+        getMessageContainerHeight(new Pixel(34.5)).value
+      );
       setPaddingBottom(
         runningDeviceModel.getCenterSectionPaddingBottom('keyboardDidHide')
       );
