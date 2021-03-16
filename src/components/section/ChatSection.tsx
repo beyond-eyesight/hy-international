@@ -153,16 +153,16 @@ const Composer: React.FC<{
   });
   const inputStyles = StyleSheet.create<TextInputBoxStyle>({
     boxStyle: {
-      height: deviceHeight.multiply(new Percentage(0)).value,
       borderColor: 'transparent',
+      height: INPUT_BAR_HEIGHT.value,
       borderWidth: new Pixel(1).value,
       overflow: 'hidden'
     },
     contentStyle: {
       width: deviceWidth.multiply(new Percentage(80)).value,
+      height: INPUT_BAR_HEIGHT.value,
       borderColor: 'transparent',
       backgroundColor: 'transparent',
-      height: deviceHeight.multiply(new Percentage(0)).value,
       overflow: 'hidden'
     }
   });
@@ -174,7 +174,7 @@ const Composer: React.FC<{
           boxStyle: inputStyles.boxStyle,
           contentStyle: inputStyles.contentStyle
         }}
-        placeholder="Type Here..."
+        placeholder="Type Herekkk..."
         placeholderTextColor="black"
       />
       <IconButton
