@@ -62,9 +62,9 @@ const ChatSection: React.FC<{ zone: Zone }> = (props: { zone: Zone }) => {
 
     Keyboard.addListener('keyboardDidShow', (event) => {
       console.log('keyboardDidShow');
-      console.log(event.endCoordinates.height);
       console.log(bottomOnKeyboardDidShow);
-      setBottom(bottomOnKeyboardDidShow);
+      console.log(event.endCoordinates.height);
+      setBottom(new Pixel(event.endCoordinates.height + 72));
       setMessageContainerHeight(messageContainerHeightOnKeyboardDidShow);
     });
     Keyboard.addListener('keyboardDidHide', (e) => {
@@ -128,10 +128,10 @@ const ChatSection: React.FC<{ zone: Zone }> = (props: { zone: Zone }) => {
           _id: '1'
         }}
       />
-      {Platform.OS === 'android' && <KeyboardAvoidingView behavior="padding" />}
     </View>
   );
 };
+// {Platform.OS === 'android' && <KeyboardAvoidingView behavior="padding" />}
 
 const InputBar: React.FC<{
   bottom: Pixel;
