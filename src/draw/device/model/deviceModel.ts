@@ -102,17 +102,17 @@ const runningDeviceModel: DeviceModel = {
 // todo: refac - 결국 앞은 같고 뒤만 다른것.
 function getAndroidBottomOnKeyboardDidHide() {
   if (androidHasBottomNavigationBar()) {
-    return new Pixel(48);
+    return new Pixel(48 - 5);
   }
   return new Pixel(24);
 }
 
 function getAndroidBottomOnKeyboardDidShow() {
   if (androidHasBottomNavigationBar()) {
-    return new Pixel(48 + 24);
+    return new Pixel(48 + 24 - 5);
   }
 
-  return new Pixel(48);
+  return new Pixel(48 + 8);
 }
 
 export function androidHasBottomNavigationBar(): boolean {

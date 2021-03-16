@@ -47,23 +47,44 @@ const ChatSection: React.FC<{ zone: Zone }> = (props: { zone: Zone }) => {
 
   const bottomOnKeyboardDidShow = runningDeviceModel.getBottomOnKeyboardDidShow();
   const bottomOnKeyboardDidHide = runningDeviceModel.getBottomOnKeyboardDidHide();
+
+  const messageContainerHeightOnKeyboardDidShow =
+    getMessageContainerHeight() - 282;
+
+  const [messageContainerHeight, setMessageContainerHeight] = useState<number>(
+    getMessageContainerHeight()
+  );
   useEffect(() => {
     chatApi.joinRoom(zone.id, (message: StompMessage) => {
       const chatMessageDto: ChatMessageDto = JSON.parse(message.body);
       renderMessageOfOthers(chatMessageDto, setMessages);
     });
 
-    Keyboard.addListener('keyboardDidShow', () => {
+    Keyboard.addListener('keyboardDidShow', (event) => {
+      console.log('keyboardDidShow');
+      console.log(event.endCoordinates.height);
+      console.log(bottomOnKeyboardDidShow);
       setBottom(bottomOnKeyboardDidShow);
+      setMessageContainerHeight(messageContainerHeightOnKeyboardDidShow);
     });
-    Keyboard.addListener('keyboardDidHide', () => {
+    Keyboard.addListener('keyboardDidHide', (e) => {
+      console.log('kkkkkkk');
+      console.log('keyboardDidHide');
+      console.log(e);
       setBottom(bottomOnKeyboardDidHide);
     });
 
     // return () => {
     //   chatApi.leaveRoom(zone.id);
     // };
-  }, [chatApi, zone, bottom, bottomOnKeyboardDidShow, bottomOnKeyboardDidHide]);
+  }, [
+    chatApi,
+    zone,
+    bottom,
+    bottomOnKeyboardDidShow,
+    bottomOnKeyboardDidHide,
+    messageContainerHeightOnKeyboardDidShow
+  ]);
 
   const onSend = useCallback(
     (newMessages: IMessage[]) => {
@@ -91,7 +112,7 @@ const ChatSection: React.FC<{ zone: Zone }> = (props: { zone: Zone }) => {
         )}
         listViewProps={{
           style: {
-            height: getMessageContainerHeight(),
+            height: messageContainerHeight,
             backgroundColor: 'blue',
             overflow: 'hidden',
             flexGrow: 0
