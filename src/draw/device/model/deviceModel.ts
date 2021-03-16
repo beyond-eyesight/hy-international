@@ -39,11 +39,17 @@ function getAndroidCenterSectionPaddingBottom(
     return new Pixel(72);
   }
 
-  if (centerSectionState === 'constructed') {
-    return new Pixel(0);
+  return new Pixel(24);
+}
+
+function getIosCenterSectionPaddingBottom(
+  centerSectionState: CenterSectionState
+) {
+  if (centerSectionState === 'keyboardDidShow') {
+    return new Pixel(34.5);
   }
 
-  return new Pixel(24);
+  return new Pixel(0);
 }
 
 const runningDeviceModel: DeviceModel = {
@@ -102,7 +108,7 @@ const runningDeviceModel: DeviceModel = {
   getCenterSectionPaddingBottom(centerSectionState: CenterSectionState): Pixel {
     return Platform.select({
       android: getAndroidCenterSectionPaddingBottom(centerSectionState),
-      ios: new Pixel(34.5)
+      ios: getIosCenterSectionPaddingBottom(centerSectionState)
     }) as Pixel;
   }
 };
