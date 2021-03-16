@@ -30,4 +30,8 @@ export default class Pixel {
   isZero() {
     return this._value === 0;
   }
+
+  equals(number: number) {
+    return this.value === number;
+  }
 }

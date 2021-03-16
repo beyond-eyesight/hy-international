@@ -6,11 +6,9 @@ import Percentage from '../../size/percentage';
 type CenterSectionState = 'constructed' | 'keyboardDidShow' | 'keyboardDidHide';
 
 // todo: getStatusBarHeight 지우기
-interface DeviceModel {
-  readonly _width: Pixel;
-  readonly _height: Pixel;
-  getTopSectionPaddingTop(): Pixel;
-  getTopSectionHeightBy(percentage: Percentage): Pixel;
+export interface MobileDevice {
+  // getTopbarPaddingTop(): Pixel;
+  // getTopSectionHeightBy(percentage: Percentage): Pixel;
   getCenterSectionPaddingBottom(centerSectionState: CenterSectionState): Pixel;
   getCenterSectionHeight(centerSectionState: CenterSectionState): Pixel;
   getBackActionIcon(): IconSource;
@@ -18,9 +16,6 @@ interface DeviceModel {
   getWidthOf(percentage: Percentage): Pixel;
   getBottomSectionHeight(): Pixel;
 }
-
-const runningScreen: ScaledSize = Dimensions.get('screen');
-const runningWindow: ScaledSize = Dimensions.get('window');
 
 function getAndroidCenterSectionPaddingBottom(
   centerSectionState: CenterSectionState
@@ -52,11 +47,11 @@ function getIosCenterSectionHeight(
   return new Pixel(0);
 }
 
-const runningDeviceModel: DeviceModel = {
+const runningDeviceModel: MobileDevice = {
   getBottomSectionHeight(): Pixel {
     return new Pixel(0);
   },
-  getTopSectionPaddingTop(): Pixel {
+  getTopbarPaddingTop(): Pixel {
     return Platform.select({
       android: new Pixel(0),
       ios: getIosStatusBarHeight()
