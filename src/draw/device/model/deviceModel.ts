@@ -32,10 +32,10 @@ function getAndroidBottomNavigationBarHeight(): Pixel {
 
 function getAndroidCenterSectionPaddingBottom() {
   if (androidHasBottomNavigationBar()) {
-    return new Pixel(48 + 24);
+    return new Pixel(72);
   }
 
-  return new Pixel(0);
+  return new Pixel(24);
 }
 
 const runningDeviceModel: DeviceModel = {
@@ -102,7 +102,7 @@ const runningDeviceModel: DeviceModel = {
 // todo: refac - 결국 앞은 같고 뒤만 다른것.
 function getAndroidBottomOnKeyboardDidHide() {
   if (androidHasBottomNavigationBar()) {
-    return new Pixel(48 - 5);
+    return new Pixel(72);
   }
   return new Pixel(24);
 }

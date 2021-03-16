@@ -1,12 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { GiftedChat, IMessage, InputToolbar } from 'react-native-gifted-chat';
-import {
-  Keyboard,
-  KeyboardAvoidingView,
-  Platform,
-  StyleSheet,
-  View
-} from 'react-native';
+import { Keyboard, StyleSheet, View } from 'react-native';
 import { IconButton } from 'react-native-paper';
 import Percentage from 'src/draw/size/percentage';
 import Pixel from 'src/draw/size/pixel';
@@ -28,11 +22,13 @@ const deviceHeight: Pixel = runningDeviceModel._height;
 
 const INPUT_BAR_HEIGHT = runningDeviceModel.getHeightOf(new Percentage(7));
 
+const CenterSectionPaddingBottom: Pixel = runningDeviceModel.getCenterSectionPaddingBottom();
+
 function getMessageContainerHeight() {
   return runningDeviceModel
     .getHeightOf(new Percentage(100))
     .minus(HEADER_HEIGHT)
-    .minus(runningDeviceModel.getCenterSectionPaddingBottom())
+    .minus(CenterSectionPaddingBottom)
     .minus(INPUT_BAR_HEIGHT).value;
 }
 
@@ -48,9 +44,6 @@ const ChatSection: React.FC<{ zone: Zone }> = (props: { zone: Zone }) => {
   const bottomOnKeyboardDidShow = runningDeviceModel.getBottomOnKeyboardDidShow();
   const bottomOnKeyboardDidHide = runningDeviceModel.getBottomOnKeyboardDidHide();
 
-  const messageContainerHeightOnKeyboardDidShow =
-    getMessageContainerHeight() - 282;
-
   const [messageContainerHeight, setMessageContainerHeight] = useState<number>(
     getMessageContainerHeight()
   );
@@ -62,29 +55,24 @@ const ChatSection: React.FC<{ zone: Zone }> = (props: { zone: Zone }) => {
 
     Keyboard.addListener('keyboardDidShow', (event) => {
       console.log('keyboardDidShow');
-      console.log(bottomOnKeyboardDidShow);
-      console.log(event.endCoordinates.height);
-      setBottom(new Pixel(event.endCoordinates.height + 72));
-      setMessageContainerHeight(messageContainerHeightOnKeyboardDidShow);
+      console.log(event);
+      setBottom(
+        new Pixel(event.endCoordinates.height).plus(CenterSectionPaddingBottom)
+      );
+      setMessageContainerHeight(
+        getMessageContainerHeight() - event.endCoordinates.height
+      );
     });
-    Keyboard.addListener('keyboardDidHide', (e) => {
-      console.log('kkkkkkk');
+    Keyboard.addListener('keyboardDidHide', (event) => {
       console.log('keyboardDidHide');
-      console.log(e);
+      console.log(event);
       setBottom(bottomOnKeyboardDidHide);
     });
 
     // return () => {
     //   chatApi.leaveRoom(zone.id);
     // };
-  }, [
-    chatApi,
-    zone,
-    bottom,
-    bottomOnKeyboardDidShow,
-    bottomOnKeyboardDidHide,
-    messageContainerHeightOnKeyboardDidShow
-  ]);
+  }, [chatApi, zone, bottom, bottomOnKeyboardDidShow, bottomOnKeyboardDidHide]);
 
   const onSend = useCallback(
     (newMessages: IMessage[]) => {
