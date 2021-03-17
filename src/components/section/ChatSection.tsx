@@ -1,6 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { GiftedChat, IMessage, InputToolbar } from 'react-native-gifted-chat';
-import { Keyboard, StyleSheet, View } from 'react-native';
+import { Keyboard, KeyboardEvent, StyleSheet, View } from 'react-native';
 import { IconButton } from 'react-native-paper';
 import Percentage from 'src/draw/size/percentage';
 import Pixel from 'src/draw/size/pixel';
@@ -12,15 +12,16 @@ import ApplicationContext from '../../context/applicationContext';
 import ChatMessageDto from '../../dto/chatMessageDto';
 import Zone from '../../model/zone';
 import ChatMessage from '../../model/chatMessage';
-import { CENTER_SECTION_HEIGHT } from '../../draw/size/value';
 import RunningMobileDevice from '../../draw/device/model/runningMobileDevice';
 
 // todo: userId 하드코딩 제거, 칼라 및 size 등 하드코딩 제거
 
 const INPUT_BAR_HEIGHT = RunningMobileDevice.getHeightOf(new Percentage(7));
 
-function getMessageContainerHeight(): Pixel {
-  return CENTER_SECTION_HEIGHT.minus(INPUT_BAR_HEIGHT);
+function getMessageContainerHeight(event?: KeyboardEvent): Pixel {
+  return RunningMobileDevice.getCenterSectionHeight(event).minus(
+    INPUT_BAR_HEIGHT
+  );
 }
 
 const ChatSection: React.FC<{ zone: Zone }> = (props: { zone: Zone }) => {
@@ -43,15 +44,21 @@ const ChatSection: React.FC<{ zone: Zone }> = (props: { zone: Zone }) => {
       renderMessageOfOthers(chatMessageDto, setMessages);
     });
 
-    Keyboard.addListener('keyboardDidShow', (event) => {
+    Keyboard.addListener('keyboardDidShow', (event: KeyboardEvent) => {
+      console.log('keyboardDidShowEvent');
+      console.log(event);
       const pBottom = RunningMobileDevice.getCenterSectionPaddingBottom(
         'keyboardDidShow'
       );
       setPaddingBottom(pBottom);
-      setMessageContainerHeight(getMessageContainerHeight());
+      setMessageContainerHeight(
+        getMessageContainerHeight(event).minus(new Pixel(0))
+      );
     });
-    Keyboard.addListener('keyboardDidHide', (event) => {
-      setMessageContainerHeight(getMessageContainerHeight());
+    Keyboard.addListener('keyboardDidHide', (event: KeyboardEvent) => {
+      console.log('keyboardDidHideEvent');
+      console.log(event);
+      setMessageContainerHeight(getMessageContainerHeight(event));
       setPaddingBottom(
         RunningMobileDevice.getCenterSectionPaddingBottom('keyboardDidHide')
       );

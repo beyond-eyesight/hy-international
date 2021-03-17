@@ -1,5 +1,6 @@
 import Pixel from 'src/draw/size/pixel';
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
+import { KeyboardEvent } from 'react-native';
 import Percentage from '../../size/percentage';
 
 type CenterSectionState = 'constructed' | 'keyboardDidShow' | 'keyboardDidHide';
@@ -9,7 +10,7 @@ type CenterSectionState = 'constructed' | 'keyboardDidShow' | 'keyboardDidHide';
 export interface MobileDevice {
   getStatusBarOnScreenHeight(): Pixel;
   getCenterSectionPaddingBottom(centerSectionState: CenterSectionState): Pixel;
-  getCenterSectionHeight(): Pixel;
+  getCenterSectionHeight(event?: KeyboardEvent): Pixel;
   getBackActionIcon(): IconSource;
   getHeightOf(percentage: Percentage): Pixel;
   getWidthOf(percentage: Percentage): Pixel;
