@@ -12,7 +12,7 @@ const TOPSECTION_HEIGHT: Pixel = runningDeviceModel.getTopSectionHeightBy(
 );
 
 function getIosHeaderHeight(): Pixel {
-  return TOPSECTION_HEIGHT.plus(runningDeviceModel.getTopSectionPaddingTop());
+  return TOPSECTION_HEIGHT.plus(runningDeviceModel.getTopbarPaddingTop());
 }
 
 function getAndroidHeaderHeight(): Pixel {

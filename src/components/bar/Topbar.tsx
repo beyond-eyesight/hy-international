@@ -58,7 +58,7 @@ const Topbar: React.FC<TopBarProps> = ({
   return (
     <Appbar.Header
       style={headerProps.headerStyle}
-      statusBarHeight={runningDeviceModel.getTopSectionPaddingTop().value}
+      statusBarHeight={runningDeviceModel.getTopbarPaddingTop().value}
       dark={headerProps.isDark}
     >
       <View>
