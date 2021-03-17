@@ -14,9 +14,9 @@ class Iphone implements MobileDevice {
 
   private readonly _height: Pixel;
 
-  constructor(height: Pixel, width: Pixel) {
-    this._height = height;
+  constructor(width: Pixel, height: Pixel) {
     this._width = width;
+    this._height = height;
   }
 
   getWidthOf(percentage: Percentage): Pixel {
