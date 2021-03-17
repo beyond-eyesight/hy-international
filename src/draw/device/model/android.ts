@@ -88,3 +88,5 @@ class Android implements MobileDevice {
     return Android.getStatusBarHeight();
   }
 }
+
+export default Android;
