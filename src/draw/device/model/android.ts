@@ -66,10 +66,10 @@ class Android implements MobileDevice {
     );
 
     if (this.hasBottomNavigationBarOnScreen()) {
-      return topbarHeight.plus(Android.getStatusBarHeight());
+      return topbarHeight;
     }
 
-    return topbarHeight;
+    return topbarHeight.plus(this.getStatusBarOnScreenHeight());
   }
 
   private hasBottomNavigationBarOnScreen(): Boolean {
@@ -81,6 +81,14 @@ class Android implements MobileDevice {
   ): Pixel {
     if (this.hasBottomNavigationBarOnScreen()) {
       return this.getBottomSectionHeight();
+    }
+
+    return Android.getStatusBarHeight();
+  }
+
+  getStatusBarOnScreenHeight(): Pixel {
+    if (this.hasBottomNavigationBarOnScreen()) {
+      return new Pixel(0);
     }
 
     return Android.getStatusBarHeight();

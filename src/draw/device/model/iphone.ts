@@ -58,6 +58,10 @@ class Iphone implements MobileDevice {
     return new Pixel(0);
   }
 
+  getStatusBarOnScreenHeight(): Pixel {
+    return this.getStatusBarHeight();
+  }
+
   private getHeaderHeight(): Pixel {
     const statusBarHeight: Pixel = this.getStatusBarHeight();
     return this._height
@@ -70,7 +74,7 @@ class Iphone implements MobileDevice {
     if (this.versionIsX()) {
       return new Pixel(44);
     }
-    return new Pixel(0);
+    return new Pixel(20);
   }
 }
 

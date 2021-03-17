@@ -7,8 +7,7 @@ type CenterSectionState = 'constructed' | 'keyboardDidShow' | 'keyboardDidHide';
 // todo: getStatusBarHeight 지우기
 // todo: abstract, getWidthOf랑 getHeightOf
 export interface MobileDevice {
-  // getTopbarPaddingTop(): Pixel;
-  // getTopSectionHeightBy(percentage: Percentage): Pixel;
+  getStatusBarOnScreenHeight(): Pixel;
   getCenterSectionPaddingBottom(centerSectionState: CenterSectionState): Pixel;
   getCenterSectionHeight(): Pixel;
   getBackActionIcon(): IconSource;
