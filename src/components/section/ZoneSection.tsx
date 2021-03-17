@@ -4,16 +4,20 @@ import Pixel from 'src/draw/size/pixel';
 import Percentage from 'src/draw/size/percentage';
 import { StyleSheet, View } from 'react-native';
 import { List } from 'react-native-paper';
-import runningDeviceModel from '../../draw/device/model/deviceModel';
 import InformationBoard from '../board/InformationBoard';
 import { TextInputBoxStyle } from '../box/TextInputBox';
+import RunningMobileDevice from '../../draw/device/model/runningMobileDevice';
 
 export type Props = {
   componentId: string;
 };
 
-const deviceModelHeight: Pixel = runningDeviceModel._height;
-const deviceModelWidth: Pixel = runningDeviceModel._width;
+const deviceModelHeight: Pixel = RunningMobileDevice.getHeightOf(
+  new Percentage(100)
+);
+const deviceModelWidth: Pixel = RunningMobileDevice.getWidthOf(
+  new Percentage(100)
+);
 
 const ZoneSection: React.FC<Props> = ({ componentId }: Props) => {
   const [zones, setZones] = useState<Zone[]>([

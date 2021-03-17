@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { StyleSheet, View, ViewStyle } from 'react-native';
 import Percentage from 'src/draw/size/percentage';
 import SignInSection from 'src/components/section/SignInSection';
-import runningDeviceModel from '../../draw/device/model/deviceModel';
 import TopSection from '../section/TopSection';
+import RunningMobileDevice from '../../draw/device/model/runningMobileDevice';
 
 interface Props {
   componentId: string;
@@ -26,7 +26,7 @@ const SignInScreen: React.FC<Props> = ({ componentId }: Props) => {
 const signinScreenStyle = StyleSheet.create<{ screenStyle: ViewStyle }>({
   screenStyle: {
     backgroundColor: '#FCFCFC',
-    height: runningDeviceModel.getHeightOf(new Percentage(100)).value
+    height: RunningMobileDevice.getHeightOf(new Percentage(100)).value
   }
 });
 

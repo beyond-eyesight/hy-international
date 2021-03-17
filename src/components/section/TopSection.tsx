@@ -3,17 +3,17 @@ import { StyleSheet } from 'react-native';
 import Topbar, { ActionProps, TopbarStyle } from '../bar/Topbar';
 import Percentage from '../../draw/size/percentage';
 import { blue } from '../../draw/color';
-import runningDeviceModel from '../../draw/device/model/deviceModel';
-import { TOPSECTION_HEIGHT, ZERO } from '../../draw/size/value';
+import { TOPBAR_HEIGHT, ZERO } from '../../draw/size/value';
+import RunningMobileDevice from '../../draw/device/model/runningMobileDevice';
 
 const ICON_COLOR = 'white';
 
 const TopSection: React.FC = () => {
   const leftActionProps: Array<ActionProps> = [
     {
-      icon: runningDeviceModel.getBackActionIcon(),
+      icon: RunningMobileDevice.getBackActionIcon(),
       iconColor: ICON_COLOR,
-      iconSize: runningDeviceModel.getHeightOf(new Percentage(3)),
+      iconSize: RunningMobileDevice.getHeightOf(new Percentage(3)),
       iconDisabled: false,
       actionStyle: {},
       onPress: () => {}
@@ -24,7 +24,7 @@ const TopSection: React.FC = () => {
     {
       icon: 'alarm-bell',
       iconColor: 'white',
-      iconSize: runningDeviceModel.getHeightOf(new Percentage(3)),
+      iconSize: RunningMobileDevice.getHeightOf(new Percentage(3)),
       iconDisabled: false,
       actionStyle: {},
       onPress: () => {}
@@ -42,10 +42,10 @@ const TopSection: React.FC = () => {
         title: 'hihi',
         subtitle: 'kkk',
         titleStyle: {
-          fontSize: runningDeviceModel.getHeightOf(new Percentage(3)).value
+          fontSize: RunningMobileDevice.getHeightOf(new Percentage(3)).value
         },
         subtitleStyle: {
-          fontSize: runningDeviceModel.getHeightOf(new Percentage(2)).value
+          fontSize: RunningMobileDevice.getHeightOf(new Percentage(2)).value
         },
         onPress: () => {},
         contentStyle: topbarStyles.content
@@ -59,7 +59,7 @@ const TopSection: React.FC = () => {
 const topbarStyles = StyleSheet.create<TopbarStyle>({
   header: {
     justifyContent: 'space-between',
-    height: TOPSECTION_HEIGHT.value,
+    height: TOPBAR_HEIGHT.value,
     backgroundColor: blue.get('600')
   },
   content: {

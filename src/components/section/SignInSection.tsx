@@ -9,10 +9,14 @@ import TextInputBox, {
 } from 'src/components/box/TextInputBox';
 import { Avatar, Banner, Button } from 'react-native-paper';
 import InformationBoard from 'src/components/board/InformationBoard';
-import runningDeviceModel from '../../draw/device/model/deviceModel';
+import RunningMobileDevice from '../../draw/device/model/runningMobileDevice';
 
-const deviceModelHeight: Pixel = runningDeviceModel._height;
-const deviceModelWidth: Pixel = runningDeviceModel._width;
+const deviceModelHeight: Pixel = RunningMobileDevice.getHeightOf(
+  new Percentage(100)
+);
+const deviceModelWidth: Pixel = RunningMobileDevice.getWidthOf(
+  new Percentage(100)
+);
 
 const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
   const [bannerVisible, setBannerVisible] = React.useState(true);

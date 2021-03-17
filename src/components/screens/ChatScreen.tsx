@@ -2,9 +2,9 @@ import React from 'react';
 import ChatSection from 'src/components/section/ChatSection';
 import { StyleSheet, View, ViewStyle } from 'react-native';
 import Percentage from 'src/draw/size/percentage';
-import runningDeviceModel from '../../draw/device/model/deviceModel';
 import Zone from '../../model/zone';
 import TopSection from '../section/TopSection';
+import RunningMobileDevice from '../../draw/device/model/runningMobileDevice';
 
 interface Props {
   componentId: string;
@@ -28,7 +28,7 @@ const ChatScreen: React.FC<Props> = ({ componentId }: Props) => {
 const chatScreenStyle = StyleSheet.create<{ screenStyle: ViewStyle }>({
   screenStyle: {
     backgroundColor: '#FCFCFC',
-    height: runningDeviceModel.getHeightOf(new Percentage(100)).value
+    height: RunningMobileDevice.getHeightOf(new Percentage(100)).value
   }
 });
 

@@ -1,6 +1,8 @@
 import React, { ReactNode, useState } from 'react';
 import { StyleSheet, View, ViewStyle } from 'react-native';
-import TextInputBox, { TextInputBoxStyle } from 'src/components/box/TextInputBox';
+import TextInputBox, {
+  TextInputBoxStyle
+} from 'src/components/box/TextInputBox';
 import Percentage from 'src/draw/size/percentage';
 import InformationBoard from 'src/components/board/InformationBoard';
 import Pixel from 'src/draw/size/pixel';
@@ -8,10 +10,14 @@ import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Avatar, Button } from 'react-native-paper';
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
-import runningDeviceModel from '../../draw/device/model/deviceModel';
+import RunningMobileDevice from '../../draw/device/model/runningMobileDevice';
 
-const deviceModelHeight: Pixel = runningDeviceModel._height;
-const deviceModelWidth: Pixel = runningDeviceModel._width;
+const deviceModelHeight: Pixel = RunningMobileDevice.getHeightOf(
+  new Percentage(100)
+);
+const deviceModelWidth: Pixel = RunningMobileDevice.getWidthOf(
+  new Percentage(100)
+);
 
 const SignUpSection: React.FC = () => {
   return (
@@ -104,9 +110,7 @@ const SignupEmailInput: React.FC = () => {
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([]);
 
-  const emailInputWidth: Pixel = deviceModelWidth.multiply(
-    new Percentage(45)
-  );
+  const emailInputWidth: Pixel = deviceModelWidth.multiply(new Percentage(45));
 
   const containerStyle = StyleSheet.create<{ containerStyle: ViewStyle }>({
     containerStyle: {

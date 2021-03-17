@@ -4,7 +4,7 @@ import Percentage from 'src/draw/size/percentage';
 import { grey, white } from 'src/draw/color';
 import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
 import { StyleSheet } from 'react-native';
-import runningDeviceModel from '../../draw/device/model/deviceModel';
+import RunningMobileDevice from '../../draw/device/model/runningMobileDevice';
 
 interface Props {
   width: string;
@@ -16,7 +16,9 @@ interface Props {
   onPress?: () => void;
 }
 
-const deviceModelHeight: Pixel = runningDeviceModel._height;
+const deviceModelHeight: Pixel = RunningMobileDevice.getHeightOf(
+  new Percentage(100)
+);
 
 const TextButton: React.FC<Props> = ({
   width,
