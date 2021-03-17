@@ -4,7 +4,6 @@ import { Keyboard, StyleSheet, View } from 'react-native';
 import { IconButton } from 'react-native-paper';
 import Percentage from 'src/draw/size/percentage';
 import Pixel from 'src/draw/size/pixel';
-import runningDeviceModel from 'src/draw/device/model/deviceModel';
 import TextInputBox, {
   TextInputBoxStyle
 } from 'src/components/box/TextInputBox';
@@ -13,43 +12,29 @@ import ApplicationContext from '../../context/applicationContext';
 import ChatMessageDto from '../../dto/chatMessageDto';
 import Zone from '../../model/zone';
 import ChatMessage from '../../model/chatMessage';
-import { HEADER_HEIGHT } from '../../draw/size/value';
-
-const deviceWidth: Pixel = runningDeviceModel._width;
+import { CENTER_SECTION_HEIGHT } from '../../draw/size/value';
+import RunningMobileDevice from '../../draw/device/model/runningMobileDevice';
 
 // todo: userId 하드코딩 제거, 칼라 및 size 등 하드코딩 제거
 
-const INPUT_BAR_HEIGHT = runningDeviceModel.getHeightOf(new Percentage(7));
+const INPUT_BAR_HEIGHT = RunningMobileDevice.getHeightOf(new Percentage(7));
 
-function getMessageContainerHeight(centerSectionPaddingBottom: Pixel) {
-  console.log('centerSectionPaddingTop');
-  console.log(centerSectionPaddingBottom.value);
-  console.log(INPUT_BAR_HEIGHT.value);
-  return runningDeviceModel
-    .getHeightOf(new Percentage(100))
-    .minus(HEADER_HEIGHT)
-    .minus(centerSectionPaddingBottom)
-    .minus(INPUT_BAR_HEIGHT);
+function getMessageContainerHeight(): Pixel {
+  return CENTER_SECTION_HEIGHT.minus(INPUT_BAR_HEIGHT);
 }
 
 const ChatSection: React.FC<{ zone: Zone }> = (props: { zone: Zone }) => {
   const { zone } = props;
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [paddingBottom, setPaddingBottom] = useState<Pixel>(
-    runningDeviceModel.getCenterSectionPaddingBottom('constructed')
+    RunningMobileDevice.getCenterSectionPaddingBottom('constructed')
   );
 
   const { chatApi } = useContext(ApplicationContext);
 
-  const [messageContainerHeight, setMessageContainerHeight] = useState<number>(
-    runningDeviceModel
-      .getCenterSectionHeight('constructed')
-      .minus(INPUT_BAR_HEIGHT).value
+  const [messageContainerHeight, setMessageContainerHeight] = useState<Pixel>(
+    getMessageContainerHeight()
   );
-
-  console.log('messagecontainerHeight');
-  console.log(messageContainerHeight);
-  console.log(paddingBottom.value);
   useEffect(() => {
     chatApi.joinRoom(zone.id, (message: StompMessage) => {
       const chatMessageDto: ChatMessageDto = JSON.parse(message.body);
@@ -57,23 +42,16 @@ const ChatSection: React.FC<{ zone: Zone }> = (props: { zone: Zone }) => {
     });
 
     Keyboard.addListener('keyboardDidShow', (event) => {
-      const pBottom = runningDeviceModel.getCenterSectionPaddingBottom(
+      const pBottom = RunningMobileDevice.getCenterSectionPaddingBottom(
         'keyboardDidShow'
       );
-
-      console.log('pBottom');
-      console.log(pBottom);
       setPaddingBottom(pBottom);
-      setMessageContainerHeight(
-        getMessageContainerHeight(pBottom).value - event.endCoordinates.height
-      );
+      setMessageContainerHeight(getMessageContainerHeight());
     });
     Keyboard.addListener('keyboardDidHide', (event) => {
-      setMessageContainerHeight(
-        getMessageContainerHeight(new Pixel(34.5)).value
-      );
+      setMessageContainerHeight(getMessageContainerHeight());
       setPaddingBottom(
-        runningDeviceModel.getCenterSectionPaddingBottom('keyboardDidHide')
+        RunningMobileDevice.getCenterSectionPaddingBottom('keyboardDidHide')
       );
     });
 
@@ -176,7 +154,7 @@ const Composer: React.FC<{
       overflow: 'hidden'
     },
     contentStyle: {
-      width: deviceWidth.multiply(new Percentage(80)).value,
+      width: RunningMobileDevice.getWidthOf(new Percentage(80)).value,
       height: INPUT_BAR_HEIGHT.value,
       borderColor: 'transparent',
       backgroundColor: 'transparent',
@@ -197,7 +175,7 @@ const Composer: React.FC<{
       <IconButton
         icon="send"
         color="blue"
-        size={deviceWidth.multiply(new Percentage(6)).value}
+        size={RunningMobileDevice.getWidthOf(new Percentage(6)).value}
         onPress={onPressIconButton}
         style={{
           alignSelf: 'center'

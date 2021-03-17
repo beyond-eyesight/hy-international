@@ -44,9 +44,7 @@ class Iphone implements MobileDevice {
     return new Pixel(34.5);
   }
 
-  getCenterSectionHeight(
-    centerSectionState: 'constructed' | 'keyboardDidShow' | 'keyboardDidHide'
-  ): Pixel {
+  getCenterSectionHeight(): Pixel {
     return this._height
       .minus(this.getHeaderHeight())
       .minus(Iphone.BOTTOM_SECTION_HEIGHT);

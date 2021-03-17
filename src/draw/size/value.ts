@@ -1,30 +1,11 @@
-import { Platform } from 'react-native';
 import Pixel from './pixel';
-import runningDeviceModel, {
-  androidHasBottomNavigationBar
-} from '../device/model/deviceModel';
 import Percentage from './percentage';
+import RunningMobileDevice from '../device/model/runningMobileDevice';
 
 const ZERO: Pixel = new Pixel(0);
 
-const TOPSECTION_HEIGHT: Pixel = runningDeviceModel.getTopSectionHeightBy(
-  new Percentage(6)
-);
+const TOPBAR_HEIGHT: Pixel = RunningMobileDevice.getHeightOf(new Percentage(6));
 
-function getIosHeaderHeight(): Pixel {
-  return TOPSECTION_HEIGHT.plus(runningDeviceModel.getTopbarPaddingTop());
-}
+const CENTER_SECTION_HEIGHT: Pixel = RunningMobileDevice.getCenterSectionHeight();
 
-function getAndroidHeaderHeight(): Pixel {
-  if (androidHasBottomNavigationBar()) {
-    return TOPSECTION_HEIGHT;
-  }
-  return TOPSECTION_HEIGHT.plus(new Pixel(24));
-}
-
-const HEADER_HEIGHT = Platform.select({
-  android: getAndroidHeaderHeight(),
-  ios: getIosHeaderHeight()
-}) as Pixel;
-
-export { ZERO, TOPSECTION_HEIGHT, HEADER_HEIGHT };
+export { ZERO, TOPBAR_HEIGHT, CENTER_SECTION_HEIGHT };

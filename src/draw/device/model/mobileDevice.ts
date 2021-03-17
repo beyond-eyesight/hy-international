@@ -10,7 +10,7 @@ export interface MobileDevice {
   // getTopbarPaddingTop(): Pixel;
   // getTopSectionHeightBy(percentage: Percentage): Pixel;
   getCenterSectionPaddingBottom(centerSectionState: CenterSectionState): Pixel;
-  getCenterSectionHeight(centerSectionState: CenterSectionState): Pixel;
+  getCenterSectionHeight(): Pixel;
   getBackActionIcon(): IconSource;
   getHeightOf(percentage: Percentage): Pixel;
   getWidthOf(percentage: Percentage): Pixel;

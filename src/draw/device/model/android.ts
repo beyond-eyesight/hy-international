@@ -45,9 +45,7 @@ class Android implements MobileDevice {
     return Android.BACK_ACTION_ICON_NAME;
   }
 
-  getCenterSectionHeight(
-    centerSectionState: 'constructed' | 'keyboardDidShow' | 'keyboardDidHide'
-  ): Pixel {
+  getCenterSectionHeight(): Pixel {
     return this._screenHeight
       .minus(this.getHeaderHeight())
       .minus(this.getBottomSectionHeight());
