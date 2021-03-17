@@ -25,6 +25,7 @@ function getMessageContainerHeight(): Pixel {
 
 const ChatSection: React.FC<{ zone: Zone }> = (props: { zone: Zone }) => {
   const { zone } = props;
+
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [paddingBottom, setPaddingBottom] = useState<Pixel>(
     RunningMobileDevice.getCenterSectionPaddingBottom('constructed')
@@ -35,6 +36,7 @@ const ChatSection: React.FC<{ zone: Zone }> = (props: { zone: Zone }) => {
   const [messageContainerHeight, setMessageContainerHeight] = useState<Pixel>(
     getMessageContainerHeight()
   );
+
   useEffect(() => {
     chatApi.joinRoom(zone.id, (message: StompMessage) => {
       const chatMessageDto: ChatMessageDto = JSON.parse(message.body);
@@ -86,7 +88,7 @@ const ChatSection: React.FC<{ zone: Zone }> = (props: { zone: Zone }) => {
         )}
         listViewProps={{
           style: {
-            height: messageContainerHeight,
+            height: messageContainerHeight.value,
             backgroundColor: 'blue',
             overflow: 'hidden',
             flexGrow: 0
