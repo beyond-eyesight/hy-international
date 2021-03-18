@@ -6,8 +6,6 @@ import Percentage from '../../size/percentage';
 import { ZERO } from '../../value';
 
 class Android implements MobileDevice {
-  private static readonly BACK_ACTION_ICON_NAME = 'arrow-left';
-
   // todo: refac 중복 제거
   private static readonly TOPBAR_HEIGHT_RATE = new Percentage(6);
 
@@ -23,6 +21,13 @@ class Android implements MobileDevice {
     this._screenWidth = screenWidth;
     this._screenHeight = screenHeight;
     this._navigationBarHeightOnScreen = screenHeight.minus(windowHeight);
+  }
+
+  private static readonly BACK_ACTION_ICON: IconSource = 'arrow-left';
+
+  // eslint-disable-next-line class-methods-use-this
+  get backActionIcon(): IconSource {
+    return Android.BACK_ACTION_ICON;
   }
 
   private static getStatusBarHeight(): Pixel {
@@ -50,11 +55,6 @@ class Android implements MobileDevice {
 
   getHeightOf(percentage: Percentage): Pixel {
     return this._screenHeight.multiply(percentage);
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  getBackActionIcon(): IconSource {
-    return Android.BACK_ACTION_ICON_NAME;
   }
 
   getCenterSectionHeightOn(event?: KeyboardEvent): Pixel {

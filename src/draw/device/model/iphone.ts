@@ -1,13 +1,10 @@
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
-import { KeyboardEventName } from 'react-native';
 import Pixel from '../../size/pixel';
 import Percentage from '../../size/percentage';
 import { MobileDevice } from './mobileDevice';
 import { ZERO } from '../../value';
 
 class Iphone implements MobileDevice {
-  private static readonly BACK_ACTION_ICON_NAME = 'chevron-left';
-
   private static readonly BOTTOM_SECTION_HEIGHT = new Pixel(34.5);
 
   private static readonly TOPBAR_HEIGHT_RATE = new Percentage(6);
@@ -18,9 +15,16 @@ class Iphone implements MobileDevice {
     20
   );
 
+  private static readonly BACK_ACTION_ICON: IconSource = 'chevron-left';
+
   private readonly _width: Pixel;
 
   private readonly _height: Pixel;
+
+  // eslint-disable-next-line class-methods-use-this
+  get backActionIcon(): IconSource {
+    return Iphone.BACK_ACTION_ICON;
+  }
 
   constructor(width: Pixel, height: Pixel) {
     this._width = width;
@@ -37,17 +41,6 @@ class Iphone implements MobileDevice {
 
   private versionIsX(): Boolean {
     return this._height.equals(812) || this._height.equals(896);
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  getBackActionIcon(): IconSource {
-    return Iphone.BACK_ACTION_ICON_NAME;
-  }
-
-  // todo: 이거 없어도 됨.
-  // eslint-disable-next-line class-methods-use-this
-  getBottomSectionHeight(): Pixel {
-    return Iphone.BOTTOM_SECTION_HEIGHT;
   }
 
   getCenterSectionHeightOn(): Pixel {

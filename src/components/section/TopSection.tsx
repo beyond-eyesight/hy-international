@@ -14,7 +14,7 @@ const TOPBAR_HEIGHT: Pixel = RunningMobileDevice.getHeightOf(new Percentage(6));
 const TopSection: React.FC = () => {
   const leftActionProps: Array<ActionProps> = [
     {
-      icon: RunningMobileDevice.getBackActionIcon(),
+      icon: RunningMobileDevice.backActionIcon,
       iconColor: ICON_COLOR,
       iconSize: RunningMobileDevice.getHeightOf(new Percentage(3)),
       iconDisabled: false,
