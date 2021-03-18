@@ -86,8 +86,6 @@ class Android implements MobileDevice {
   }
 
   private hasBottomNavigationBarOnScreen(): Boolean {
-    console.log('kkkk');
-    console.log(this._navigationBarHeightOnScreen.value);
     return this._navigationBarHeightOnScreen.isNotZero();
   }
 
@@ -101,13 +99,13 @@ class Android implements MobileDevice {
 
   getCenterSectionBottom(event?: KeyboardEvent): Pixel {
     if (event === undefined) {
-      if (this._navigationBarHeightOnScreen.value !== 0) {
+      if (this.hasBottomNavigationBarOnScreen()) {
         return new Pixel(72);
       }
       return new Pixel(24);
     }
 
-    if (this._navigationBarHeightOnScreen.value !== 0) {
+    if (this.hasBottomNavigationBarOnScreen()) {
       return new Pixel(72).plus(new Pixel(event.endCoordinates.height));
     }
     return new Pixel(24).plus(new Pixel(event.endCoordinates.height));
