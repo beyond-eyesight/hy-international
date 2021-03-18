@@ -90,12 +90,9 @@ class Android implements MobileDevice {
     return this._navigationBarHeightOnScreen.isNotZero();
   }
 
+  // eslint-disable-next-line class-methods-use-this
   getStatusBarOnScreenHeight(): Pixel {
-    if (this.hasBottomNavigationBarOnScreen()) {
-      return new Pixel(0);
-    }
-
-    return Android.getStatusBarHeight();
+    return new Pixel(0);
   }
 
   getCenterSectionBottom(event?: KeyboardEvent): Pixel {
