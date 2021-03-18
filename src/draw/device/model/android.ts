@@ -98,17 +98,19 @@ class Android implements MobileDevice {
   }
 
   getCenterSectionBottom(event?: KeyboardEvent): Pixel {
-    if (event === undefined) {
-      if (this.hasBottomNavigationBarOnScreen()) {
-        return new Pixel(72);
-      }
-      return new Pixel(24);
-    }
+    let centerSectionBottom: Pixel = new Pixel(24);
 
     if (this.hasBottomNavigationBarOnScreen()) {
-      return new Pixel(72).plus(new Pixel(event.endCoordinates.height));
+      centerSectionBottom = centerSectionBottom.plus(new Pixel(48));
     }
-    return new Pixel(24).plus(new Pixel(event.endCoordinates.height));
+
+    if (event !== undefined) {
+      centerSectionBottom = centerSectionBottom.plus(
+        new Pixel(event.endCoordinates.height)
+      );
+    }
+
+    return centerSectionBottom;
   }
 }
 
