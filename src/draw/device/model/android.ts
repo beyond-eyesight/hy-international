@@ -11,6 +11,8 @@ class Android implements MobileDevice {
   // todo: refac 중복 제거
   private static readonly TOPBAR_HEIGHT_RATE = new Percentage(6);
 
+  private static readonly NAVIGATION_BAR_HEIGHT: Pixel = new Pixel(48);
+
   private readonly _screenWidth: Pixel;
 
   private readonly _screenHeight: Pixel;
@@ -36,7 +38,7 @@ class Android implements MobileDevice {
   // todo: 현재 이벤트가 있기만 해도 키보드 헤잇 주고있음.
   private static getKeyboardHeightOn(event?: KeyboardEvent): Pixel {
     if (event === undefined) {
-      return new Pixel(0);
+      return new Pixel(ZERO);
     }
 
     return new Pixel(event.endCoordinates.height);
@@ -66,13 +68,12 @@ class Android implements MobileDevice {
   }
 
   getBottomSectionHeight(eventName: KeyboardEventName): Pixel {
+    const statusBarHeight: Pixel = Android.getStatusBarHeight();
     if (this.hasBottomNavigationBarOnScreen()) {
-      return this._navigationBarHeightOnScreen.plus(
-        Android.getStatusBarHeight()
-      );
+      return statusBarHeight.plus(this._navigationBarHeightOnScreen);
     }
 
-    return new Pixel(24);
+    return statusBarHeight;
   }
 
   private getHeaderHeight(): Pixel {
@@ -97,10 +98,12 @@ class Android implements MobileDevice {
   }
 
   getCenterSectionBottom(event?: KeyboardEvent): Pixel {
-    let centerSectionBottom: Pixel = new Pixel(24);
+    let centerSectionBottom: Pixel = Android.getStatusBarHeight();
 
     if (this.hasBottomNavigationBarOnScreen()) {
-      centerSectionBottom = centerSectionBottom.plus(new Pixel(48));
+      centerSectionBottom = centerSectionBottom.plus(
+        Android.NAVIGATION_BAR_HEIGHT
+      );
     }
 
     return centerSectionBottom.plus(Android.getKeyboardHeightOn(event));
