@@ -58,16 +58,15 @@ class Android implements MobileDevice {
   }
 
   getCenterSectionHeightOn(
-    eventName: KeyboardEventName,
     event?: KeyboardEvent
   ): Pixel {
     return this._screenHeight
       .minus(this.getHeaderHeight())
-      .minus(this.getBottomSectionHeight(eventName))
+      .minus(this.getBottomSectionHeight())
       .minus(Android.getKeyboardHeightOn(event));
   }
 
-  getBottomSectionHeight(eventName: KeyboardEventName): Pixel {
+  getBottomSectionHeight(): Pixel {
     const statusBarHeight: Pixel = Android.getStatusBarHeight();
     if (this.hasBottomNavigationBarOnScreen()) {
       return statusBarHeight.plus(this._navigationBarHeightOnScreen);

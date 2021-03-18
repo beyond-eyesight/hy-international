@@ -6,10 +6,7 @@ import Percentage from '../../size/percentage';
 // todo: abstract, getWidthOf랑 getHeightOf
 export interface MobileDevice {
   getStatusBarOnScreenHeight(): Pixel;
-  getCenterSectionHeightOn(
-    eventName: KeyboardEventName,
-    event?: KeyboardEvent
-  ): Pixel;
+  getCenterSectionHeightOn(event?: KeyboardEvent): Pixel;
   getCenterSectionBottom(event?: KeyboardEvent): Pixel;
   getBackActionIcon(): IconSource;
   getHeightOf(percentage: Percentage): Pixel;

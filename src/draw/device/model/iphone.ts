@@ -46,14 +46,14 @@ class Iphone implements MobileDevice {
 
   // todo: 이거 없어도 됨.
   // eslint-disable-next-line class-methods-use-this
-  getBottomSectionHeight(eventName: KeyboardEventName): Pixel {
+  getBottomSectionHeight(): Pixel {
     return Iphone.BOTTOM_SECTION_HEIGHT;
   }
 
-  getCenterSectionHeightOn(eventName: KeyboardEventName): Pixel {
+  getCenterSectionHeightOn(): Pixel {
     return this._height
       .minus(this.getHeaderHeight())
-      .minus(this.getBottomSectionHeight(eventName));
+      .minus(this.getBottomSectionHeight());
   }
 
   getStatusBarOnScreenHeight(): Pixel {

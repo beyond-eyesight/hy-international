@@ -1,12 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { GiftedChat, IMessage, InputToolbar } from 'react-native-gifted-chat';
-import {
-  Keyboard,
-  KeyboardEvent,
-  KeyboardEventName,
-  StyleSheet,
-  View
-} from 'react-native';
+import { Keyboard, KeyboardEvent, StyleSheet, View } from 'react-native';
 import { IconButton } from 'react-native-paper';
 import Percentage from 'src/draw/size/percentage';
 import Pixel from 'src/draw/size/pixel';
@@ -24,11 +18,8 @@ import RunningMobileDevice from '../../draw/device/model/runningMobileDevice';
 
 const INPUT_BAR_HEIGHT = RunningMobileDevice.getHeightOf(new Percentage(7));
 
-function getMessageContainerHeight(
-  eventName: KeyboardEventName,
-  event?: KeyboardEvent
-): Pixel {
-  return RunningMobileDevice.getCenterSectionHeightOn(eventName, event).minus(
+function getMessageContainerHeight(event?: KeyboardEvent): Pixel {
+  return RunningMobileDevice.getCenterSectionHeightOn(event).minus(
     INPUT_BAR_HEIGHT
   );
 }
@@ -43,7 +34,7 @@ const ChatSection: React.FC<{ zone: Zone }> = (props: { zone: Zone }) => {
   const { chatApi } = useContext(ApplicationContext);
 
   const [messageContainerHeight, setMessageContainerHeight] = useState<Pixel>(
-    getMessageContainerHeight('keyboardWillShow').minus(new Pixel(0))
+    getMessageContainerHeight().minus(new Pixel(0))
   );
 
   useEffect(() => {
@@ -55,14 +46,10 @@ const ChatSection: React.FC<{ zone: Zone }> = (props: { zone: Zone }) => {
     Keyboard.addListener('keyboardDidShow', (event: KeyboardEvent) => {
       const bottom = RunningMobileDevice.getCenterSectionBottom(event);
       setBottom(bottom);
-      setMessageContainerHeight(
-        getMessageContainerHeight('keyboardDidShow', event).minus(new Pixel(0))
-      );
+      setMessageContainerHeight(getMessageContainerHeight(event));
     });
     Keyboard.addListener('keyboardDidHide', (event: KeyboardEvent) => {
-      setMessageContainerHeight(
-        getMessageContainerHeight('keyboardDidHide', event)
-      );
+      setMessageContainerHeight(getMessageContainerHeight(event));
       setBottom(RunningMobileDevice.getCenterSectionBottom());
     });
 
