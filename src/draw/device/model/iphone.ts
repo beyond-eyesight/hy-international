@@ -3,6 +3,7 @@ import { KeyboardEventName } from 'react-native';
 import Pixel from '../../size/pixel';
 import Percentage from '../../size/percentage';
 import { MobileDevice } from './mobileDevice';
+import { ZERO } from '../../value';
 
 class Iphone implements MobileDevice {
   private static readonly BACK_ACTION_ICON_NAME = 'chevron-left';
@@ -72,7 +73,7 @@ class Iphone implements MobileDevice {
 
   // eslint-disable-next-line class-methods-use-this
   getCenterSectionBottom(): Pixel {
-    return new Pixel(0);
+    return new Pixel(ZERO);
   }
 }
 

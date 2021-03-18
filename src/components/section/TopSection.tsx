@@ -3,8 +3,9 @@ import { StyleSheet } from 'react-native';
 import Topbar, { ActionProps, TopbarStyle } from '../bar/Topbar';
 import Percentage from '../../draw/size/percentage';
 import { blue } from '../../draw/color';
-import { TOPBAR_HEIGHT, ZERO } from '../../draw/size/value';
 import RunningMobileDevice from '../../draw/device/model/runningMobileDevice';
+import { TOPBAR_HEIGHT, ZERO } from '../../draw/value';
+import Pixel from '../../draw/size/pixel';
 
 const ICON_COLOR = 'white';
 
@@ -35,7 +36,7 @@ const TopSection: React.FC = () => {
     <Topbar
       headerProps={{
         isDark: true,
-        statusBarHeight: ZERO,
+        statusBarHeight: new Pixel(ZERO),
         headerStyle: topbarStyles.header
       }}
       contentProps={{

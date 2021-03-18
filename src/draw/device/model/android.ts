@@ -3,6 +3,7 @@ import { KeyboardEvent, KeyboardEventName, StatusBar } from 'react-native';
 import { MobileDevice } from './mobileDevice';
 import Pixel from '../../size/pixel';
 import Percentage from '../../size/percentage';
+import { ZERO } from '../../value';
 
 class Android implements MobileDevice {
   private static readonly BACK_ACTION_ICON_NAME = 'arrow-left';
@@ -92,7 +93,7 @@ class Android implements MobileDevice {
 
   // eslint-disable-next-line class-methods-use-this
   getStatusBarOnScreenHeight(): Pixel {
-    return new Pixel(0);
+    return new Pixel(ZERO);
   }
 
   getCenterSectionBottom(event?: KeyboardEvent): Pixel {
