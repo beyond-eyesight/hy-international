@@ -32,7 +32,8 @@ class Android implements MobileDevice {
     return new Pixel(statusbarHeight);
   }
 
-  private static getSurplusCenterSectionHeightOn(event?: KeyboardEvent): Pixel {
+  // todo: 현재 이벤트가 있기만 해도 키보드 헤잇 주고있음.
+  private static getKeyboardHeightOn(event?: KeyboardEvent): Pixel {
     if (event === undefined) {
       return new Pixel(0);
     }
@@ -60,7 +61,7 @@ class Android implements MobileDevice {
     return this._screenHeight
       .minus(this.getHeaderHeight())
       .minus(this.getBottomSectionHeight(eventName))
-      .minus(Android.getSurplusCenterSectionHeightOn(event));
+      .minus(Android.getKeyboardHeightOn(event));
   }
 
   getBottomSectionHeight(eventName: KeyboardEventName): Pixel {
@@ -104,13 +105,7 @@ class Android implements MobileDevice {
       centerSectionBottom = centerSectionBottom.plus(new Pixel(48));
     }
 
-    if (event !== undefined) {
-      centerSectionBottom = centerSectionBottom.plus(
-        new Pixel(event.endCoordinates.height)
-      );
-    }
-
-    return centerSectionBottom;
+    return centerSectionBottom.plus(Android.getKeyboardHeightOn(event));
   }
 }
 
