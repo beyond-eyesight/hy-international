@@ -4,10 +4,12 @@ import Topbar, { ActionProps, TopbarStyle } from '../bar/Topbar';
 import Percentage from '../../draw/size/percentage';
 import { blue } from '../../draw/color';
 import RunningMobileDevice from '../../draw/device/model/runningMobileDevice';
-import { TOPBAR_HEIGHT, ZERO } from '../../draw/value';
+import { ZERO } from '../../draw/value';
 import Pixel from '../../draw/size/pixel';
 
 const ICON_COLOR = 'white';
+
+const TOPBAR_HEIGHT: Pixel = RunningMobileDevice.getHeightOf(new Percentage(6));
 
 const TopSection: React.FC = () => {
   const leftActionProps: Array<ActionProps> = [
