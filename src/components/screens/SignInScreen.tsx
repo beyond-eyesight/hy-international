@@ -17,7 +17,7 @@ const SignInScreen: React.FC<Props> = ({ componentId }: Props) => {
 
   return (
     <View style={signinScreenStyle.screenStyle}>
-      <TopSection />
+      <TopSection componentId={componentId} />
       <SignInSection componentId={componentId} />
     </View>
   );

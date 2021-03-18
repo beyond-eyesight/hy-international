@@ -2,12 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import Zone from 'src/model/zone';
 import Pixel from 'src/draw/size/pixel';
 import Percentage from 'src/draw/size/percentage';
-import { StyleSheet, View } from 'react-native';
-import { List } from 'react-native-paper';
+import { StyleSheet, View, ViewStyle } from 'react-native';
+import { Button, List } from 'react-native-paper';
 import InformationBoard from '../board/InformationBoard';
 import { TextInputBoxStyle } from '../box/TextInputBox';
 import RunningMobileDevice from '../../draw/device/model/runningMobileDevice';
 import ApplicationContext from '../../context/applicationContext';
+import { push } from '../../navigation/navigation';
+import { SCREEN_IDS } from '../screens/constant';
 
 export type Props = {
   componentId: string;
@@ -33,7 +35,7 @@ const ZoneSection: React.FC<Props> = ({ componentId }: Props) => {
   return (
     <View>
       <TitleBoard />
-      <ZoneList zones={zones} />
+      <ZoneList componentId={componentId} zones={zones} />
       <RemarkBoard />
     </View>
   );
@@ -73,8 +75,11 @@ const RemarkBoard: React.FC = () => {
   );
 };
 
-const ZoneList: React.FC<{ zones: Zone[] }> = (props: { zones: Zone[] }) => {
-  const { zones } = props;
+const ZoneList: React.FC<{ componentId: string; zones: Zone[] }> = (props: {
+  componentId: string;
+  zones: Zone[];
+}) => {
+  const { componentId, zones } = props;
   return (
     <View>
       {zones.map((zone, key) => {
@@ -90,12 +95,38 @@ const ZoneList: React.FC<{ zones: Zone[] }> = (props: { zones: Zone[] }) => {
                 icon="circle-slice-8"
               />
             )}
+            right={() => (
+              <Button
+                mode="contained"
+                onPress={async () => {
+                  await push({
+                    currentComponentId: componentId,
+                    nextComponentName: SCREEN_IDS.ChatScreen
+                  });
+                }}
+                style={joinButtonStyle.container}
+              >
+                JOIN
+              </Button>
+            )}
           />
         );
       })}
     </View>
   );
 };
+
+const joinButtonStyle = StyleSheet.create<{
+  container: ViewStyle;
+  content: ViewStyle;
+  label: ViewStyle;
+}>({
+  container: {
+    alignSelf: 'center'
+  },
+  content: {},
+  label: {}
+});
 
 const TitleBoard: React.FC = () => {
   const titleStyles = StyleSheet.create<TextInputBoxStyle>({

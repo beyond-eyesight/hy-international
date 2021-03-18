@@ -10,6 +10,8 @@ import TextInputBox, {
 import { Avatar, Banner, Button } from 'react-native-paper';
 import InformationBoard from 'src/components/board/InformationBoard';
 import RunningMobileDevice from '../../draw/device/model/runningMobileDevice';
+import { push } from '../../navigation/navigation';
+import { SCREEN_IDS } from '../screens/constant';
 
 const deviceModelHeight: Pixel = RunningMobileDevice.getHeightOf(
   new Percentage(100)
@@ -32,12 +34,26 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
       </SigninBoard>
       <SigninEmailInput />
       <SigninPasswordInput />
-      <SigninButton onPress={setBannerVisibleOpposite(bannerVisible)} />
+      <SigninButton
+        onPress={async () => {
+          await push({
+            currentComponentId: componentId,
+            nextComponentName: SCREEN_IDS.ZoneScreen
+          });
+        }}
+      />
       <SignInFailBanner
         bannerVisible={bannerVisible}
         onPress={setBannerVisibleOpposite(bannerVisible)}
       />
-      <SignupButton />
+      <SignupButton
+        onPress={async () => {
+          await push({
+            currentComponentId: componentId,
+            nextComponentName: SCREEN_IDS.SignUpScreen
+          });
+        }}
+      />
     </View>
   );
 };
@@ -143,7 +159,10 @@ const SigninButton: React.FC<{
   );
 };
 
-const SignupButton: React.FC = () => {
+const SignupButton: React.FC<{
+  onPress: () => void;
+}> = (props: { onPress: () => void }) => {
+  const { onPress } = props;
   return (
     <Button
       theme={{ roundness: BORDER_RADIUS }}
@@ -154,9 +173,7 @@ const SignupButton: React.FC = () => {
         />
       )}
       mode="contained"
-      onPress={() => {
-        console.log('pressed');
-      }}
+      onPress={onPress}
       style={{
         width: deviceModelWidth.multiply(new Percentage(90)).value,
         height: deviceModelHeight.multiply(new Percentage(8)).value,

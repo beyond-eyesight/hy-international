@@ -12,7 +12,7 @@ interface Props {
 const SignUpScreen: React.FC<Props> = ({ componentId }: Props) => {
   return (
     <View style={signupScreenStyle.screenStyle}>
-      <TopSection />
+      <TopSection componentId={componentId} />
       <SignUpSection />
     </View>
   );

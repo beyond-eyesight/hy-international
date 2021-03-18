@@ -6,6 +6,8 @@ interface Props {
   params?: object;
 }
 
+// todo: move 등으로 용어를 바꾸는게 좋을듯?
+
 const push = async ({
   currentComponentId,
   nextComponentName,

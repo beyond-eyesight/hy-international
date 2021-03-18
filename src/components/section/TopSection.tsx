@@ -6,12 +6,16 @@ import { blue } from '../../draw/color';
 import RunningMobileDevice from '../../draw/device/model/runningMobileDevice';
 import { ZERO } from '../../draw/value';
 import Pixel from '../../draw/size/pixel';
+import { pop } from '../../navigation/navigation';
 
 const ICON_COLOR = 'white';
 
 const TOPBAR_HEIGHT: Pixel = RunningMobileDevice.getHeightOf(new Percentage(6));
 
-const TopSection: React.FC = () => {
+const TopSection: React.FC<{ componentId: string }> = (props: {
+  componentId: string;
+}) => {
+  const { componentId } = props;
   const leftActionProps: Array<ActionProps> = [
     {
       icon: RunningMobileDevice.backActionIcon,
@@ -19,7 +23,9 @@ const TopSection: React.FC = () => {
       iconSize: RunningMobileDevice.getHeightOf(new Percentage(3)),
       iconDisabled: false,
       actionStyle: {},
-      onPress: () => {}
+      onPress: async () => {
+        await pop(componentId);
+      }
     }
   ];
 

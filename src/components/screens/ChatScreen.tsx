@@ -19,7 +19,7 @@ const ChatScreen: React.FC<Props> = ({ componentId }: Props) => {
   );
   return (
     <View style={chatScreenStyle.screenStyle}>
-      <TopSection />
+      <TopSection componentId={componentId} />
       <ChatSection zone={zone} />
     </View>
   );

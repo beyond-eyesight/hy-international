@@ -10,7 +10,7 @@ interface Props {
 const ZoneScreen: React.FC<Props> = ({ componentId }: Props) => {
   return (
     <View>
-      <TopSection />
+      <TopSection componentId={componentId} />
       <ZoneSection componentId={componentId} />
     </View>
   );
