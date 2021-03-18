@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Zone from 'src/model/zone';
 import Pixel from 'src/draw/size/pixel';
 import Percentage from 'src/draw/size/percentage';
@@ -7,6 +7,7 @@ import { List } from 'react-native-paper';
 import InformationBoard from '../board/InformationBoard';
 import { TextInputBoxStyle } from '../box/TextInputBox';
 import RunningMobileDevice from '../../draw/device/model/runningMobileDevice';
+import ApplicationContext from '../../context/applicationContext';
 
 export type Props = {
   componentId: string;
@@ -20,9 +21,14 @@ const deviceModelWidth: Pixel = RunningMobileDevice.getWidthOf(
 );
 
 const ZoneSection: React.FC<Props> = ({ componentId }: Props) => {
-  const [zones, setZones] = useState<Zone[]>([
-    Zone.of('26dd9c66-0507-4469-8c5e-791834074732', 'Wangsimni', 0, true)
-  ]);
+  const { zoneApi } = useContext(ApplicationContext);
+  const [zones, setZones] = useState<Zone[]>([]);
+
+  useEffect(() => {
+    zoneApi.getZones().then((response: Zone[]) => {
+      setZones(response);
+    });
+  }, [zoneApi]);
 
   return (
     <View>
@@ -74,7 +80,7 @@ const ZoneList: React.FC<{ zones: Zone[] }> = (props: { zones: Zone[] }) => {
       {zones.map((zone, key) => {
         return (
           <List.Item
-            key={parseInt('radix', key)}
+            key={zone.id.toString()}
             title={zone.name.toString()}
             description={`${zone.count.toString()} people are chatting`}
             left={(props) => (

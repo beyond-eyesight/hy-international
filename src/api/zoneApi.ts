@@ -5,9 +5,9 @@ import Zone from 'src/model/zone';
 export default class ZoneApi {
   private readonly httpClient: AxiosInstance;
 
-  private static readonly HTTP_SERVER_BASE_URL = 'http://localhost:8080/';
+  private static readonly HTTP_SERVER_BASE_URL = 'http://localhost:8090/';
 
-  private static readonly RESOURCE = 'chat/rooms';
+  private static readonly RESOURCE = 'zones';
 
   constructor() {
     this.httpClient = createAxios({ baseURL: ZoneApi.HTTP_SERVER_BASE_URL });
@@ -15,6 +15,9 @@ export default class ZoneApi {
 
   public async getZones(): Promise<Zone[]> {
     const response: AxiosResponse = await this.httpClient.get(ZoneApi.RESOURCE);
-    return response.data;
+
+    return response.data.content.map((zoneDto: any, key: any) => {
+      return Zone.of(zoneDto.id, zoneDto.name, 0, true);
+    });
   }
 }
