@@ -4,9 +4,7 @@ import { Keyboard, KeyboardEvent, StyleSheet, View } from 'react-native';
 import { IconButton } from 'react-native-paper';
 import Percentage from 'src/draw/size/percentage';
 import Pixel from 'src/draw/size/pixel';
-import TextInputBox, {
-  TextInputBoxStyle
-} from 'src/components/box/TextInputBox';
+import TextInputBox, { TextInputBoxStyle } from 'src/components/box/TextInputBox';
 import { IMessage as StompMessage } from '@stomp/stompjs/esm6/i-message';
 import ApplicationContext from '../../context/applicationContext';
 import ChatMessageDto from '../../dto/chatMessageDto';

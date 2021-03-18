@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { KeyboardAvoidingView, Platform, View } from 'react-native';
+import { View } from 'react-native';
 import TextBox from 'src/components/box/TextBox';
 import { TextInputBoxStyle } from 'src/components/box/TextInputBox';
 

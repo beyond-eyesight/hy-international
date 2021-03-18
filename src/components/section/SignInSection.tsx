@@ -4,9 +4,7 @@ import Pixel from 'src/draw/size/pixel';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { StyleSheet, View, ViewStyle } from 'react-native';
 import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
-import TextInputBox, {
-  TextInputBoxStyle
-} from 'src/components/box/TextInputBox';
+import TextInputBox, { TextInputBoxStyle } from 'src/components/box/TextInputBox';
 import { Avatar, Banner, Button } from 'react-native-paper';
 import InformationBoard from 'src/components/board/InformationBoard';
 import RunningMobileDevice from '../../draw/device/model/runningMobileDevice';

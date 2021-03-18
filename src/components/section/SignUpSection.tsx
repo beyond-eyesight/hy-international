@@ -1,8 +1,6 @@
 import React, { ReactNode, useState } from 'react';
 import { StyleSheet, View, ViewStyle } from 'react-native';
-import TextInputBox, {
-  TextInputBoxStyle
-} from 'src/components/box/TextInputBox';
+import TextInputBox, { TextInputBoxStyle } from 'src/components/box/TextInputBox';
 import Percentage from 'src/draw/size/percentage';
 import InformationBoard from 'src/components/board/InformationBoard';
 import Pixel from 'src/draw/size/pixel';

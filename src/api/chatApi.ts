@@ -1,8 +1,6 @@
 import { Client, IFrame } from '@stomp/stompjs';
 import { IMessage as StompMessage } from '@stomp/stompjs/esm6/i-message';
-import createStompClient, {
-  WebSocketVersion
-} from 'src/api/adapter/stompClientFactory';
+import createStompClient, { WebSocketVersion } from 'src/api/adapter/stompClientFactory';
 import ChatMessageDto from 'src/dto/chatMessageDto';
 import { AxiosInstance } from 'axios';
 import createAxios from 'src/api/adapter/axiosFactory';
