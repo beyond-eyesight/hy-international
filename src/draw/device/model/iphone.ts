@@ -53,7 +53,7 @@ class Iphone implements MobileDevice {
   getCenterSectionHeightOn(): Pixel {
     return this._height
       .minus(this.getHeaderHeight())
-      .minus(this.getBottomSectionHeight());
+      .minus(Iphone.BOTTOM_SECTION_HEIGHT);
   }
 
   getStatusBarOnScreenHeight(): Pixel {

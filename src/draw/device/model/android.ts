@@ -1,5 +1,5 @@
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
-import { KeyboardEvent, KeyboardEventName, StatusBar } from 'react-native';
+import { KeyboardEvent, StatusBar } from 'react-native';
 import { MobileDevice } from './mobileDevice';
 import Pixel from '../../size/pixel';
 import Percentage from '../../size/percentage';
@@ -57,16 +57,14 @@ class Android implements MobileDevice {
     return Android.BACK_ACTION_ICON_NAME;
   }
 
-  getCenterSectionHeightOn(
-    event?: KeyboardEvent
-  ): Pixel {
+  getCenterSectionHeightOn(event?: KeyboardEvent): Pixel {
     return this._screenHeight
       .minus(this.getHeaderHeight())
       .minus(this.getBottomSectionHeight())
       .minus(Android.getKeyboardHeightOn(event));
   }
 
-  getBottomSectionHeight(): Pixel {
+  private getBottomSectionHeight(): Pixel {
     const statusBarHeight: Pixel = Android.getStatusBarHeight();
     if (this.hasBottomNavigationBarOnScreen()) {
       return statusBarHeight.plus(this._navigationBarHeightOnScreen);
