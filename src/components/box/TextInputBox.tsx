@@ -1,22 +1,31 @@
 import React from 'react';
 import { TextInput } from 'react-native-paper';
-import { View } from 'react-native';
-import { blue, white } from 'src/draw/color';
+import { View, ViewStyle } from 'react-native';
+import { TextInputProps } from 'react-native-paper/lib/typescript/components/TextInput/TextInput';
 
-const TextInputBox: React.FC = () => {
+export interface TextInputBoxStyle {
+  boxStyle: ViewStyle;
+  contentStyle: ViewStyle;
+}
+
+interface TextInputBoxProps extends Omit<TextInputProps, 'theme'> {
+  textInputBoxStyle: TextInputBoxStyle;
+}
+
+const TextInputBox: React.FC<TextInputBoxProps> = ({
+  textInputBoxStyle,
+  label,
+  placeholder
+}: TextInputBoxProps) => {
   const [text, setText] = React.useState('');
   return (
-    <View
-      style={{
-        backgroundColor: white
-      }}
-    >
+    <View style={textInputBoxStyle.boxStyle}>
       <TextInput
-        label="email"
+        label={label}
         value={text}
+        placeholder={placeholder}
         onChangeText={(text) => setText(text)}
-        selectionColor={blue.get('600')}
-        underlineColor={blue.get('600')}
+        style={textInputBoxStyle.contentStyle}
       />
     </View>
   );

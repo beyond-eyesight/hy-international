@@ -1,27 +1,35 @@
 import React from 'react';
-import styled from 'styled-components/native';
-import ContainerWithStatusBar from 'src/components/container/ContainerWithStatusBar';
-import BackTopbar from 'src/components/topbar/BackTopbar';
 import ChatSection from 'src/components/section/ChatSection';
+import { StyleSheet, View, ViewStyle } from 'react-native';
+import Percentage from 'src/draw/size/percentage';
 import Zone from 'src/model/zone';
-import { blue, grey } from 'src/draw/color';
-
-const Container = styled(ContainerWithStatusBar)`
-  background-color: ${grey.get('99')};
-`;
+import TopSection from 'src/components/section/TopSection';
+import RunningMobileDevice from 'src/draw/device/model/runningMobileDevice';
 
 interface Props {
   componentId: string;
-  zone: Zone;
 }
 
-const ChatScreen: React.FC<Props> = ({ componentId, zone }: Props) => {
+const ChatScreen: React.FC<Props> = ({ componentId }: Props) => {
+  const zone: Zone = Zone.of(
+    '110841e3-e6fb-4191-8fd8-5674a5107c33',
+    'Wangsimni',
+    0,
+    true
+  );
   return (
-    <Container statusBarColor={blue.get('600')}>
-      <BackTopbar componentId={componentId} />
+    <View style={chatScreenStyle.screenStyle}>
+      <TopSection componentId={componentId} />
       <ChatSection zone={zone} />
-    </Container>
+    </View>
   );
 };
+
+const chatScreenStyle = StyleSheet.create<{ screenStyle: ViewStyle }>({
+  screenStyle: {
+    backgroundColor: '#FCFCFC',
+    height: RunningMobileDevice.getHeightOf(new Percentage(100)).value
+  }
+});
 
 export default ChatScreen;

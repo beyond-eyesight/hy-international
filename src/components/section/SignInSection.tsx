@@ -1,206 +1,40 @@
-import styled from 'styled-components/native';
-import React, { useState } from 'react';
-import Board from 'src/components/board/Board';
-import TextButton from 'src/components/button/TextButton';
-import { SCREEN_IDS } from 'src/components/screens/constant';
+import React, { ReactNode, useState } from 'react';
 import Percentage from 'src/draw/size/percentage';
-import {
-  getRunningModelHeight,
-  getRunningModelWidth
-} from 'src/draw/device/model/deviceModel';
 import Pixel from 'src/draw/size/pixel';
-import RNTextInput from 'src/components/input/RNTextInput';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View, ViewStyle } from 'react-native';
 import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
+import TextInputBox, {
+  TextInputBoxStyle
+} from 'src/components/box/TextInputBox';
+import { Avatar, Banner, Button } from 'react-native-paper';
+import InformationBoard from 'src/components/board/InformationBoard';
+import RunningMobileDevice from 'src/draw/device/model/runningMobileDevice';
 import { push } from 'src/navigation/navigation';
-import TextInputBox from 'src/components/box/TextInputBox';
-import { black, blue, grey, white } from 'src/draw/color';
+import { SCREEN_IDS } from 'src/components/screens/constant';
 
-const Container = styled.View`
-  height: ${getRunningModelHeight().multiply(new Percentage(100)).toString};
-  background: ${white};
-  align-items: center;
-  width: ${getRunningModelWidth().multiply(new Percentage(90)).toString};
-`;
-
-const NoticeContainer = styled.View`
-  width: ${getRunningModelWidth().multiply(new Percentage(90)).toString};
-  align-items: center;
-  margin-top: ${getRunningModelHeight().multiply(new Percentage(5)).toString};
-  margin-bottom: ${getRunningModelHeight().multiply(new Percentage(10))
-    .toString};
-`;
-
-interface Props {
-  componentId: string;
-}
-
-const EmailContainer = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  z-index: 1;
-`;
-
-const DefaultTextInputContainer = styled.View`
-  align-items: center;
-  text-align: center;
-`;
-
-const titleSize: Pixel = getRunningModelHeight().multiply(new Percentage(2.5));
-const bodySize: Pixel = getRunningModelHeight().multiply(new Percentage(1.9));
-
-const textBoxProps1 = StyleSheet.create<TextBoxStyleProps>({
-  boxStyle: {
-    height: '100%',
-    width: '10%',
-    backgroundColor: blue.get('600'),
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  textStyle: {
-    fontFamily: 'ProximaNova-Regular',
-    fontSize: titleSize.value,
-    lineHeight: titleSize.value,
-    color: white
-  }
-});
-
-const textBoxProps2 = StyleSheet.create<TextBoxStyleProps>({
-  boxStyle: {
-    height: '100%',
-    width: '10%',
-    backgroundColor: blue.get('600'),
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  textStyle: {
-    fontFamily: 'ProximaNova-Regular',
-    fontSize: bodySize.value,
-    lineHeight: bodySize.value,
-    color: white
-  }
-});
+const deviceModelHeight: Pixel = RunningMobileDevice.getHeightOf(
+  new Percentage(100)
+);
+const deviceModelWidth: Pixel = RunningMobileDevice.getWidthOf(
+  new Percentage(100)
+);
 
 const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
-  const placeholderSize: Pixel = getRunningModelHeight().multiply(
-    new Percentage(2)
-  );
+  const [bannerVisible, setBannerVisible] = React.useState(true);
 
-  let controller;
-
-  const [value, setValue] = useState(null);
-  const [items, setItems] = useState([]);
+  // todo: refac
+  function setBannerVisibleOpposite(bannerVisible: boolean) {
+    return () => setBannerVisible(!bannerVisible);
+  }
   return (
-    <Container>
-      <Board containerWidth="100%" containerHeight="10%" title="Sign In" />
-      <EmailContainer
-        style={{
-          width: '100%',
-          height: '6%',
-          marginTop: '5%',
-          marginBottom: '3%'
-        }}
-      >
-        <TextInputBox />
-
-        <RNTextInput
-          borderTopLeftRadius={10}
-          borderBottomLeftRadius={10}
-          placeHolder=" Email ID"
-          placeholderTextColor={grey.get('500')}
-          containerWidth="50%"
-          containerHeight="100%"
-        />
-        <TextBox
-          boxStyle={textBoxProps.boxStyle}
-          textStyle={textBoxProps.textStyle}
-        >
-          @
-        </TextBox>
-        <DropDownPicker
-          items={[
-            {
-              label: 'hanyang.ac.kr',
-              value: 'hanyang.ac.kr'
-            },
-            {
-              label: 'hmail.hanyang.ac.kr',
-              value: 'hmail.hanyang.ac.kr'
-            }
-          ]}
-          controller={(instance) => {
-            controller = instance;
-          }}
-          containerStyle={{
-            width: '40%',
-            height: '100%',
-            borderBottomLeftRadius: 0,
-            borderTopLeftRadius: 0
-          }}
-          labelStyle={{
-            fontSize: 12
-          }}
-          style={{
-            backgroundColor: grey.get('50'),
-            borderBottomLeftRadius: 0,
-            borderTopLeftRadius: 0,
-            borderTopRightRadius: 10,
-            borderBottomRightRadius: 10
-          }}
-          itemStyle={{
-            justifyContent: 'flex-start'
-          }}
-          dropDownStyle={{ backgroundColor: grey.get('50') }}
-          onChangeList={(items, callback) => {
-            new Promise((resolve, reject) => resolve(setItems(items)))
-              .then(() => callback())
-              .catch(() => {});
-          }}
-          defaultValue="hanyang.ac.kr"
-          onChangeItem={(item) => setValue(item.value)}
-        />
-      </EmailContainer>
-      <DefaultTextInputContainer
-        style={{
-          width: '100%',
-          height: '6%',
-          marginTop: '1%',
-          marginBottom: '3%'
-        }}
-      >
-        <RNTextInput
-          borderTopLeftRadius={10}
-          borderTopRightRadius={10}
-          borderBottomLeftRadius={10}
-          borderBottomRightRadius={10}
-          placeHolder=" Password"
-          placeholderTextColor={black}
-          textAlign="center"
-        />
-      </DefaultTextInputContainer>
-      <NoticeContainer>
-        <TextBox
-          boxStyle={textBoxProps1.boxStyle}
-          textStyle={textBoxProps1.textStyle}
-        >
-          Notice!
-        </TextBox>
-        <TextBox
-          boxStyle={textBoxProps2.boxStyle}
-          textStyle={textBoxProps2.textStyle}
-        >
-          Only hanyang e-mail can be used. Although you already registered in
-          Hanyang Portal, you should sign up cause this app is another system.
-        </TextBox>
-      </NoticeContainer>
-      <TextButton
-        width="100%"
-        height="6%"
-        content="Sign In"
-        ellipticalColor={blue.get('600')}
-        textColor={white}
-        borderRadius="100px"
+    <View>
+      <SigninBoard title="Welcome HY International">
+        You can enjoy more your exchange-campus life with this app
+      </SigninBoard>
+      <SigninEmailInput />
+      <SigninPasswordInput />
+      <SigninButton
         onPress={async () => {
           await push({
             currentComponentId: componentId,
@@ -208,25 +42,348 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
           });
         }}
       />
-    </Container>
+      <SignInFailBanner
+        bannerVisible={bannerVisible}
+        onPress={setBannerVisibleOpposite(bannerVisible)}
+      />
+      <SignupButton
+        onPress={async () => {
+          await push({
+            currentComponentId: componentId,
+            nextComponentName: SCREEN_IDS.SignUpScreen
+          });
+        }}
+      />
+    </View>
   );
 };
 
-const textSize: Pixel = getRunningModelHeight().multiply(new Percentage(3));
-const textBoxProps = StyleSheet.create<TextBoxStyleProps>({
-  boxStyle: {
-    height: '100%',
-    width: '10%',
-    backgroundColor: grey.get('600'),
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  textStyle: {
-    fontFamily: 'ProximaNova-Regular',
-    fontSize: textSize.value,
-    lineHeight: textSize.value,
-    color: white
-  }
-});
+interface Props {
+  componentId: string;
+}
+
+const SigninBoard: React.FC<{ title: string; children: ReactNode }> = (props: {
+  title: string;
+  children: ReactNode;
+}) => {
+  const { title, children } = props;
+  const titleStyles = StyleSheet.create<TextInputBoxStyle>({
+    boxStyle: {
+      width: deviceModelWidth.multiply(new Percentage(90)).value,
+      height: deviceModelHeight.multiply(new Percentage(3)).value,
+      alignItems: 'center',
+      alignSelf: 'center',
+      justifyContent: 'center',
+      marginTop: deviceModelHeight.multiply(new Percentage(5)).value
+    },
+    contentStyle: {
+      fontFamily: 'ProximaNova-Bold',
+      fontSize: deviceModelHeight.multiply(new Percentage(3)).value,
+      lineHeight: deviceModelHeight.multiply(new Percentage(3)).value,
+      color: 'black'
+    }
+  });
+
+  const bodyStyles = StyleSheet.create<TextInputBoxStyle>({
+    boxStyle: {
+      width: deviceModelWidth.multiply(new Percentage(90)).value,
+      height: deviceModelHeight.multiply(new Percentage(5)).value,
+      alignItems: 'center',
+      alignSelf: 'center',
+      justifyContent: 'center',
+      marginTop: deviceModelHeight.multiply(new Percentage(3)).value,
+      marginBottom: deviceModelHeight.multiply(new Percentage(3)).value
+    },
+    contentStyle: {
+      fontFamily: 'ProximaNova-Regular',
+      fontSize: deviceModelHeight.multiply(new Percentage(2.5)).value,
+      lineHeight: deviceModelHeight.multiply(new Percentage(2.5)).value,
+      color: 'black'
+    }
+  });
+
+  return (
+    <InformationBoard
+      title={title}
+      titleStyles={titleStyles}
+      bodyStyles={bodyStyles}
+    >
+      {children}
+    </InformationBoard>
+  );
+};
+
+const SigninButton: React.FC<{
+  onPress: () => void;
+}> = (props: { onPress: () => void }) => {
+  const { onPress } = props;
+
+  const signInButtonStyle = StyleSheet.create<{
+    container: ViewStyle;
+    content: ViewStyle;
+    label: ViewStyle;
+  }>({
+    container: {
+      alignSelf: 'center',
+      marginTop: deviceModelHeight.multiply(new Percentage(1)).value
+    },
+
+    content: {
+      width: deviceModelWidth.multiply(new Percentage(90)).value,
+      height: deviceModelHeight.multiply(new Percentage(8)).value
+    },
+
+    label: {
+      fontSize: deviceModelHeight.multiply(new Percentage(2.5)).value,
+      lineHeight: deviceModelHeight.multiply(new Percentage(2.5)).value
+    }
+  });
+
+  return (
+    <Button
+      theme={{ roundness: BORDER_RADIUS }}
+      icon={() => (
+        <Avatar.Icon
+          size={deviceModelHeight.multiply(new Percentage(4.5)).value}
+          icon="login"
+        />
+      )}
+      mode="contained"
+      onPress={onPress}
+      style={signInButtonStyle.container}
+      contentStyle={signInButtonStyle.content}
+      labelStyle={signInButtonStyle.label}
+    >
+      Sign In
+    </Button>
+  );
+};
+
+const SignupButton: React.FC<{
+  onPress: () => void;
+}> = (props: { onPress: () => void }) => {
+  const { onPress } = props;
+  return (
+    <Button
+      theme={{ roundness: BORDER_RADIUS }}
+      icon={() => (
+        <Avatar.Icon
+          size={deviceModelHeight.multiply(new Percentage(4.5)).value}
+          icon="draw"
+        />
+      )}
+      mode="contained"
+      onPress={onPress}
+      style={{
+        width: deviceModelWidth.multiply(new Percentage(90)).value,
+        height: deviceModelHeight.multiply(new Percentage(8)).value,
+        alignSelf: 'center',
+        marginVertical: deviceModelHeight.multiply(new Percentage(1)).value
+      }}
+      contentStyle={{
+        width: deviceModelWidth.multiply(new Percentage(90)).value,
+        height: deviceModelHeight.multiply(new Percentage(8)).value
+      }}
+      labelStyle={{
+        fontSize: deviceModelHeight.multiply(new Percentage(2.5)).value,
+        lineHeight: deviceModelHeight.multiply(new Percentage(2.5)).value
+      }}
+    >
+      Sign Up
+    </Button>
+  );
+};
+
+const SigninEmailInput: React.FC = () => {
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([]);
+
+  const emailInputWidth: Pixel = deviceModelWidth.multiply(new Percentage(45));
+
+  const containerStyle = StyleSheet.create<{ containerStyle: ViewStyle }>({
+    containerStyle: {
+      flexDirection: 'row',
+      alignSelf: 'center',
+      marginVertical: deviceModelHeight.multiply(new Percentage(1)).value
+    }
+  });
+
+  const inputStyles = StyleSheet.create<TextInputBoxStyle>({
+    boxStyle: {
+      width: emailInputWidth.value,
+      height: INPUT_COMPONENT_HEIGHT.value,
+      backgroundColor: '#EEEEEE',
+      borderWidth: BORDER_WIDTH.value,
+      borderColor: '#E0E0E0',
+      borderRightColor: 'transparent',
+      borderRadius: BORDER_RADIUS,
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: 0,
+      borderBottomLeftRadius: BORDER_RADIUS,
+      overflow: 'hidden'
+    },
+    contentStyle: {
+      width: emailInputWidth.value,
+      height: INPUT_COMPONENT_HEIGHT.plus(
+        BORDER_WIDTH.multiply(new Percentage(200))
+      ).value,
+      borderColor: 'transparent',
+      borderTopLeftRadius: BORDER_RADIUS,
+      borderBottomLeftRadius: BORDER_RADIUS,
+      overflow: 'hidden'
+    }
+  });
+
+  const atSignProps = StyleSheet.create<TextBoxStyleProps>({
+    boxStyle: {
+      height: deviceModelHeight.multiply(new Percentage(8)).value,
+      width: deviceModelWidth.multiply(new Percentage(10)).value,
+      backgroundColor: '#1E88E5',
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+    textStyle: {
+      fontFamily: 'ProximaNova-Regular',
+      fontSize: deviceModelHeight.multiply(new Percentage(3)).value,
+      lineHeight: deviceModelHeight.multiply(new Percentage(3)).value,
+      color: '#FFFFFF'
+    }
+  });
+
+  const dropdownStyle = StyleSheet.create<{
+    containerStyle: ViewStyle;
+    labelStyle: ViewStyle;
+    contentStyle: ViewStyle;
+    itemStyle: ViewStyle;
+    dropdownStyle: ViewStyle;
+  }>({
+    containerStyle: {
+      width: deviceModelWidth.multiply(new Percentage(35)).value,
+      height: deviceModelHeight.multiply(new Percentage(8)).value
+    },
+    labelStyle: {
+      fontSize: deviceModelHeight.multiply(new Percentage(1.5)).value
+    },
+    contentStyle: {
+      backgroundColor: '#FCFCFC',
+      borderBottomLeftRadius: 0,
+      borderTopLeftRadius: 0,
+      borderColor: '#E0E0E0',
+      borderLeftColor: 'transparent'
+    },
+    itemStyle: {
+      justifyContent: 'flex-start'
+    },
+    dropdownStyle: { backgroundColor: '#FCFCFC', zIndex: 1 }
+  });
+
+  const emailHosts = [
+    {
+      label: 'hanyang.ac.kr',
+      value: 'hanyang.ac.kr'
+    },
+    {
+      label: 'hmail.hanyang.ac.kr',
+      value: 'hmail.hanyang.ac.kr'
+    }
+  ];
+
+  return (
+    <View style={containerStyle.containerStyle}>
+      <TextInputBox
+        textInputBoxStyle={{
+          boxStyle: inputStyles.boxStyle,
+          contentStyle: inputStyles.contentStyle
+        }}
+        label="email"
+      />
+      <TextBox
+        boxStyle={atSignProps.boxStyle}
+        textStyle={atSignProps.textStyle}
+      >
+        @
+      </TextBox>
+      <DropDownPicker
+        items={emailHosts}
+        containerStyle={dropdownStyle.containerStyle}
+        labelStyle={dropdownStyle.labelStyle}
+        style={dropdownStyle.contentStyle}
+        itemStyle={dropdownStyle.itemStyle}
+        dropDownStyle={dropdownStyle.dropdownStyle}
+        onChangeList={(items, callback) => {
+          new Promise((resolve, reject) => resolve(setItems(items)))
+            .then(() => callback())
+            .catch(() => {});
+        }}
+        defaultValue="hanyang.ac.kr"
+        onChangeItem={(item) => setValue(item.value)}
+      />
+    </View>
+  );
+};
+
+const SigninPasswordInput: React.FC = () => {
+  const passwordInputStyles = StyleSheet.create<TextInputBoxStyle>({
+    boxStyle: {
+      width: deviceModelWidth.multiply(new Percentage(90)).value,
+      height: INPUT_COMPONENT_HEIGHT.value,
+      borderWidth: BORDER_WIDTH.value,
+      borderColor: '#E0E0E0',
+      borderRadius: BORDER_RADIUS,
+      overflow: 'hidden',
+      alignSelf: 'center',
+      marginVertical: deviceModelHeight.multiply(new Percentage(1)).value
+    },
+    contentStyle: {
+      width: deviceModelWidth.multiply(new Percentage(90)).value,
+      height: INPUT_COMPONENT_HEIGHT.plus(
+        BORDER_WIDTH.multiply(new Percentage(200))
+      ).value,
+      backgroundColor: '#EEEEEE',
+      borderColor: '#E0E0E0',
+      borderWidth: BORDER_WIDTH.value,
+      overflow: 'hidden'
+    }
+  });
+
+  return (
+    <TextInputBox
+      textInputBoxStyle={{
+        boxStyle: passwordInputStyles.boxStyle,
+        contentStyle: passwordInputStyles.contentStyle
+      }}
+      label="password"
+    />
+  );
+};
+
+const SignInFailBanner: React.FC<{
+  bannerVisible: boolean;
+  onPress: () => void;
+}> = (props: { bannerVisible: boolean; onPress: () => void }) => {
+  const { bannerVisible, onPress } = props;
+
+  return (
+    <Banner
+      visible={bannerVisible}
+      actions={[
+        {
+          label: 'OK',
+          onPress
+        }
+      ]}
+      icon={() => <Avatar.Icon size={40} icon="chat-alert" />}
+    >
+      Although you already registered in Hanyang Portal, you should sign up
+      cause this app is another system
+    </Banner>
+  );
+};
+
+const BORDER_WIDTH: Pixel = new Pixel(1);
+const INPUT_COMPONENT_HEIGHT: Pixel = deviceModelHeight.multiply(
+  new Percentage(8)
+);
+const BORDER_RADIUS: number = 10;
 
 export default SignInSection;

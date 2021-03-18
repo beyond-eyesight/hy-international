@@ -18,4 +18,20 @@ export default class Pixel {
   public multiply(percentage: Percentage): Pixel {
     return new Pixel(this._value * (percentage.value / 100));
   }
+
+  public minus(other: Pixel): Pixel {
+    return new Pixel(this._value - other._value);
+  }
+
+  public plus(other: Pixel): Pixel {
+    return new Pixel(this._value + other._value);
+  }
+
+  public isNotZero() {
+    return this._value !== 0;
+  }
+
+  equals(number: number) {
+    return this.value === number;
+  }
 }

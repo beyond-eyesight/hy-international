@@ -1,25 +1,33 @@
-import React from 'react';
-import styled from 'styled-components/native';
-import ContainerWithStatusBar from 'src/components/container/ContainerWithStatusBar';
-import BackTopbar from 'src/components/topbar/BackTopbar';
+import React, { useState } from 'react';
+import { StyleSheet, View, ViewStyle } from 'react-native';
+import Percentage from 'src/draw/size/percentage';
 import SignInSection from 'src/components/section/SignInSection';
-import { blue, grey } from 'src/draw/color';
-
-const Container = styled(ContainerWithStatusBar)`
-  background-color: ${grey.get('99')};
-  align-items: center;
-`;
+import TopSection from 'src/components/section/TopSection';
+import RunningMobileDevice from 'src/draw/device/model/runningMobileDevice';
 
 interface Props {
   componentId: string;
 }
 
 const SignInScreen: React.FC<Props> = ({ componentId }: Props) => {
+  const [showDropDown, setShowDropDown] = useState(false);
+  const [gender, setGender] = useState();
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([]);
+
   return (
-    <Container statusBarColor={blue.get('600')}>
-      <BackTopbar componentId={componentId} />
+    <View style={signinScreenStyle.screenStyle}>
+      <TopSection componentId={componentId} />
       <SignInSection componentId={componentId} />
-    </Container>
+    </View>
   );
 };
+
+const signinScreenStyle = StyleSheet.create<{ screenStyle: ViewStyle }>({
+  screenStyle: {
+    backgroundColor: '#FCFCFC',
+    height: RunningMobileDevice.getHeightOf(new Percentage(100)).value
+  }
+});
+
 export default SignInScreen;

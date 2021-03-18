@@ -1,78 +1,160 @@
 import React, { useContext, useEffect, useState } from 'react';
-import styled from 'styled-components/native';
-import Board from 'src/components/board/Board';
-import ZoneList from 'src/components/list/ZoneList';
 import Zone from 'src/model/zone';
-import ApplicationContext from 'src/context/applicationContext';
 import Pixel from 'src/draw/size/pixel';
-import { getRunningModelHeight } from 'src/draw/device/model/deviceModel';
 import Percentage from 'src/draw/size/percentage';
-import TextInputBox from 'src/components/box/TextInputBox';
-import { blue, grey, white } from 'src/draw/color';
-import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View, ViewStyle } from 'react-native';
+import { Button, List } from 'react-native-paper';
+import RunningMobileDevice from 'src/draw/device/model/runningMobileDevice';
+import ApplicationContext from 'src/context/applicationContext';
+import { TextInputBoxStyle } from 'src/components/box/TextInputBox';
+import InformationBoard from 'src/components/board/InformationBoard';
+import { push } from 'src/navigation/navigation';
+import { SCREEN_IDS } from 'src/components/screens/constant';
 
 export type Props = {
   componentId: string;
 };
 
-const Container = styled.View`
-  height: 100%;
-  width: 90%;
-`;
-
-const ExplanationContainer = styled.View`
-  width: 100%;
-  align-items: center;
-  margin-top: 5%;
-  margin-bottom: 5%;
-`;
-
-const textSize: Pixel = getRunningModelHeight().multiply(new Percentage(2.5));
-
-const textBoxProps = StyleSheet.create<TextBoxStyleProps>({
-  boxStyle: {
-    height: '100%',
-    width: '10%',
-    backgroundColor: blue.get('600'),
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  textStyle: {
-    fontFamily: 'ProximaNova-Regular',
-    fontSize: textSize.value,
-    lineHeight: textSize.value,
-    color: white
-  }
-});
+const deviceModelHeight: Pixel = RunningMobileDevice.getHeightOf(
+  new Percentage(100)
+);
+const deviceModelWidth: Pixel = RunningMobileDevice.getWidthOf(
+  new Percentage(100)
+);
 
 const ZoneSection: React.FC<Props> = ({ componentId }: Props) => {
-  const [chatRooms, setChatRooms] = useState<Zone[]>();
   const { zoneApi } = useContext(ApplicationContext);
+  const [zones, setZones] = useState<Zone[]>([]);
 
   useEffect(() => {
-    zoneApi.getZones().then((response) => {
-      setChatRooms(response);
+    zoneApi.getZones().then((response: Zone[]) => {
+      setZones(response);
     });
   }, [zoneApi]);
+
   return (
-    <Container>
-      <TextInputBox />
-      <Board
-        containerWidth="100%"
-        containerHeight="6%"
-        title="Enter Chat Zone"
-      />
-      <ExplanationContainer>
-        <TextBox
-          boxStyle={textBoxProps.boxStyle}
-          textStyle={textBoxProps.textStyle}
-        >
-          you can join chat room when you are near the location
-        </TextBox>
-      </ExplanationContainer>
-      <ZoneList componentId={componentId} zones={chatRooms} />
-    </Container>
+    <View>
+      <TitleBoard />
+      <ZoneList componentId={componentId} zones={zones} />
+      <RemarkBoard />
+    </View>
+  );
+};
+
+function getColorOf(zone: Zone): string {
+  return zone.isOpen ? 'blue' : 'red';
+}
+
+const RemarkBoard: React.FC = () => {
+  const remarkStyles = StyleSheet.create<TextInputBoxStyle>({
+    boxStyle: {
+      width: deviceModelWidth.multiply(new Percentage(90)).value,
+      height: deviceModelHeight.multiply(new Percentage(5)).value,
+      alignItems: 'center',
+      alignSelf: 'center',
+      justifyContent: 'center',
+      marginTop: deviceModelHeight.multiply(new Percentage(3)).value
+    },
+    contentStyle: {
+      fontFamily: 'ProximaNova-Regular',
+      fontSize: deviceModelHeight.multiply(new Percentage(2.5)).value,
+      lineHeight: deviceModelHeight.multiply(new Percentage(2.5)).value,
+      color: 'black'
+    }
+  });
+  return (
+    <InformationBoard
+      titleStyles={StyleSheet.create<TextInputBoxStyle>({
+        boxStyle: {},
+        contentStyle: {}
+      })}
+      bodyStyles={remarkStyles}
+    >
+      You can join the zone when you are at near the location
+    </InformationBoard>
+  );
+};
+
+const ZoneList: React.FC<{ componentId: string; zones: Zone[] }> = (props: {
+  componentId: string;
+  zones: Zone[];
+}) => {
+  const { componentId, zones } = props;
+  return (
+    <View>
+      {zones.map((zone, key) => {
+        return (
+          <List.Item
+            key={zone.id.toString()}
+            title={zone.name.toString()}
+            description={`${zone.count.toString()} people are chatting`}
+            left={(props) => (
+              <List.Icon
+                {...props}
+                color={getColorOf(zone)}
+                icon="circle-slice-8"
+              />
+            )}
+            right={() => (
+              <Button
+                mode="contained"
+                onPress={async () => {
+                  await push({
+                    currentComponentId: componentId,
+                    nextComponentName: SCREEN_IDS.ChatScreen
+                  });
+                }}
+                style={joinButtonStyle.container}
+              >
+                JOIN
+              </Button>
+            )}
+          />
+        );
+      })}
+    </View>
+  );
+};
+
+const joinButtonStyle = StyleSheet.create<{
+  container: ViewStyle;
+  content: ViewStyle;
+  label: ViewStyle;
+}>({
+  container: {
+    alignSelf: 'center'
+  },
+  content: {},
+  label: {}
+});
+
+const TitleBoard: React.FC = () => {
+  const titleStyles = StyleSheet.create<TextInputBoxStyle>({
+    boxStyle: {
+      width: deviceModelWidth.multiply(new Percentage(90)).value,
+      height: deviceModelHeight.multiply(new Percentage(4)).value,
+      alignItems: 'center',
+      alignSelf: 'center',
+      justifyContent: 'center',
+      marginTop: deviceModelHeight.multiply(new Percentage(5)).value
+    },
+    contentStyle: {
+      fontFamily: 'ProximaNova-Bold',
+      fontSize: deviceModelHeight.multiply(new Percentage(4)).value,
+      lineHeight: deviceModelHeight.multiply(new Percentage(4)).value,
+      color: 'black'
+    }
+  });
+
+  return (
+    <InformationBoard
+      title="Endter the zone"
+      titleStyles={titleStyles}
+      bodyStyles={StyleSheet.create<TextInputBoxStyle>({
+        boxStyle: {},
+        contentStyle: {}
+      })}
+    />
   );
 };
 
