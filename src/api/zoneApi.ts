@@ -16,6 +16,7 @@ export default class ZoneApi {
   public async getZones(): Promise<Zone[]> {
     const response: AxiosResponse = await this.httpClient.get(ZoneApi.RESOURCE);
 
+    // todo: refac - 깔끔하게 (dto도)
     return response.data.content.map((zoneDto: any, key: any) => {
       return Zone.of(zoneDto.id, zoneDto.name, 0, true);
     });

@@ -7,7 +7,7 @@ const ProximaNovaBold: Font = {
 
 const ProximaNovaRegular: Font = {
   fontFamily: 'ProximaNova-Regular',
-  fontWeight: '800'
+  fontWeight: '400'
 };
 
 const ProximaNovaLight: Font = {
