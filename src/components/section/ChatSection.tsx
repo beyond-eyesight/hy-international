@@ -4,13 +4,15 @@ import { Keyboard, KeyboardEvent, StyleSheet, View } from 'react-native';
 import { IconButton } from 'react-native-paper';
 import Percentage from 'src/draw/size/percentage';
 import Pixel from 'src/draw/size/pixel';
-import TextInputBox, { TextInputBoxStyle } from 'src/components/box/TextInputBox';
+import TextInputBox, {
+  TextInputBoxStyle
+} from 'src/components/box/TextInputBox';
 import { IMessage as StompMessage } from '@stomp/stompjs/esm6/i-message';
-import ApplicationContext from '../../context/applicationContext';
-import ChatMessageDto from '../../dto/chatMessageDto';
-import Zone from '../../model/zone';
-import ChatMessage from '../../model/chatMessage';
-import RunningMobileDevice from '../../draw/device/model/runningMobileDevice';
+import RunningMobileDevice from 'src/draw/device/model/runningMobileDevice';
+import Zone from 'src/model/zone';
+import ApplicationContext from 'src/context/applicationContext';
+import ChatMessageDto from 'src/dto/chatMessageDto';
+import ChatMessage from 'src/model/chatMessage';
 
 // todo: userId 하드코딩 제거, 칼라 및 size 등 하드코딩 제거
 

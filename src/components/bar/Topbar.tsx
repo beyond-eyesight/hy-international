@@ -1,9 +1,14 @@
 import React, { ReactNode, RefObject } from 'react';
-import { TextStyle, TouchableWithoutFeedback, View, ViewStyle } from 'react-native';
+import {
+  TextStyle,
+  TouchableWithoutFeedback,
+  View,
+  ViewStyle
+} from 'react-native';
 import Pixel from 'src/draw/size/pixel';
 import { Appbar } from 'react-native-paper';
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
-import RunningMobileDevice from '../../draw/device/model/runningMobileDevice';
+import RunningMobileDevice from 'src/draw/device/model/runningMobileDevice';
 
 export interface TopbarStyle {
   header: ViewStyle;

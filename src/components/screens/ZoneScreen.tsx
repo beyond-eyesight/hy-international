@@ -1,7 +1,7 @@
 import React from 'react';
 import ZoneSection from 'src/components/section/ZoneSection';
 import { View } from 'react-native';
-import TopSection from '../section/TopSection';
+import TopSection from 'src/components/section/TopSection';
 
 interface Props {
   componentId: string;

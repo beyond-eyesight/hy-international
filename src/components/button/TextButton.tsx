@@ -4,7 +4,7 @@ import Percentage from 'src/draw/size/percentage';
 import { grey, white } from 'src/draw/color';
 import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
 import { StyleSheet } from 'react-native';
-import RunningMobileDevice from '../../draw/device/model/runningMobileDevice';
+import RunningMobileDevice from 'src/draw/device/model/runningMobileDevice';
 
 interface Props {
   width: string;

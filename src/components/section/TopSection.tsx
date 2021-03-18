@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import Topbar, { ActionProps, TopbarStyle } from '../bar/Topbar';
-import Percentage from '../../draw/size/percentage';
-import { blue } from '../../draw/color';
-import RunningMobileDevice from '../../draw/device/model/runningMobileDevice';
-import { ZERO } from '../../draw/value';
-import Pixel from '../../draw/size/pixel';
-import { pop } from '../../navigation/navigation';
+import Pixel from 'src/draw/size/pixel';
+import RunningMobileDevice from 'src/draw/device/model/runningMobileDevice';
+import Percentage from 'src/draw/size/percentage';
+import { pop } from 'src/navigation/navigation';
+import { ZERO } from 'src/draw/value';
+import { blue } from 'src/draw/color';
+import Topbar, { ActionProps, TopbarStyle } from 'src/components/bar/Topbar';
 
 const ICON_COLOR = 'white';
 

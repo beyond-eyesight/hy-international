@@ -4,12 +4,12 @@ import Pixel from 'src/draw/size/pixel';
 import Percentage from 'src/draw/size/percentage';
 import { StyleSheet, View, ViewStyle } from 'react-native';
 import { Button, List } from 'react-native-paper';
-import InformationBoard from '../board/InformationBoard';
-import { TextInputBoxStyle } from '../box/TextInputBox';
-import RunningMobileDevice from '../../draw/device/model/runningMobileDevice';
-import ApplicationContext from '../../context/applicationContext';
-import { push } from '../../navigation/navigation';
-import { SCREEN_IDS } from '../screens/constant';
+import RunningMobileDevice from 'src/draw/device/model/runningMobileDevice';
+import ApplicationContext from 'src/context/applicationContext';
+import { TextInputBoxStyle } from 'src/components/box/TextInputBox';
+import InformationBoard from 'src/components/board/InformationBoard';
+import { push } from 'src/navigation/navigation';
+import { SCREEN_IDS } from 'src/components/screens/constant';
 
 export type Props = {
   componentId: string;

@@ -1,6 +1,6 @@
 import ZoneId from 'src/model/zoneId';
 import ZoneName from 'src/model/zoneName';
-import Count from './count';
+import Count from 'src/model/count';
 
 export default class Zone {
   private readonly _id: ZoneId;
