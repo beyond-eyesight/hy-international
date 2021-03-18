@@ -1,5 +1,5 @@
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
-import { KeyboardEvent, StatusBar } from 'react-native';
+import { KeyboardEvent, KeyboardEventName, StatusBar } from 'react-native';
 import { MobileDevice } from './mobileDevice';
 import Pixel from '../../size/pixel';
 import Percentage from '../../size/percentage';
@@ -53,20 +53,24 @@ class Android implements MobileDevice {
     return Android.BACK_ACTION_ICON_NAME;
   }
 
-  getCenterSectionHeight(event?: KeyboardEvent): Pixel {
+  getCenterSectionHeightOn(
+    eventName: KeyboardEventName,
+    event?: KeyboardEvent
+  ): Pixel {
     return this._screenHeight
       .minus(this.getHeaderHeight())
-      .minus(this.getBottomSectionHeight())
+      .minus(this.getBottomSectionHeight(eventName))
       .minus(Android.getSurplusCenterSectionHeightOn(event));
   }
 
-  getBottomSectionHeight(): Pixel {
+  getBottomSectionHeight(eventName: KeyboardEventName): Pixel {
     if (this.hasBottomNavigationBarOnScreen()) {
       return this._navigationBarHeightOnScreen.plus(
         Android.getStatusBarHeight()
       );
     }
-    return new Pixel(0);
+
+    return new Pixel(24);
   }
 
   private getHeaderHeight(): Pixel {
@@ -82,17 +86,9 @@ class Android implements MobileDevice {
   }
 
   private hasBottomNavigationBarOnScreen(): Boolean {
+    console.log('kkkk');
+    console.log(this._navigationBarHeightOnScreen.value);
     return this._navigationBarHeightOnScreen.isNotZero();
-  }
-
-  getCenterSectionPaddingBottom(
-    centerSectionState: 'constructed' | 'keyboardDidShow' | 'keyboardDidHide'
-  ): Pixel {
-    if (this.hasBottomNavigationBarOnScreen()) {
-      return this.getBottomSectionHeight();
-    }
-
-    return Android.getStatusBarHeight();
   }
 
   getStatusBarOnScreenHeight(): Pixel {
@@ -101,6 +97,20 @@ class Android implements MobileDevice {
     }
 
     return Android.getStatusBarHeight();
+  }
+
+  getCenterSectionBottom(event?: KeyboardEvent): Pixel {
+    if (event === undefined) {
+      if (this._navigationBarHeightOnScreen.value !== 0) {
+        return new Pixel(72);
+      }
+      return new Pixel(24);
+    }
+
+    if (this._navigationBarHeightOnScreen.value !== 0) {
+      return new Pixel(72).plus(new Pixel(event.endCoordinates.height));
+    }
+    return new Pixel(24).plus(new Pixel(event.endCoordinates.height));
   }
 }
 

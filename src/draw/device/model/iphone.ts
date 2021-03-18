@@ -1,4 +1,5 @@
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
+import { KeyboardEventName } from 'react-native';
 import Pixel from '../../size/pixel';
 import Percentage from '../../size/percentage';
 import { MobileDevice } from './mobileDevice';
@@ -40,22 +41,14 @@ class Iphone implements MobileDevice {
 
   // todo: 이거 없어도 됨.
   // eslint-disable-next-line class-methods-use-this
-  getBottomSectionHeight(): Pixel {
+  getBottomSectionHeight(eventName: KeyboardEventName): Pixel {
     return new Pixel(34.5);
   }
 
-  getCenterSectionHeight(): Pixel {
+  getCenterSectionHeightOn(eventName: KeyboardEventName): Pixel {
     return this._height
       .minus(this.getHeaderHeight())
-      .minus(Iphone.BOTTOM_SECTION_HEIGHT);
-  }
-
-  // todo: 이건 아마추상화에서 빼도 될거같은..? 센터섹션헤잇만 있음 될거같은데.
-  // eslint-disable-next-line class-methods-use-this
-  getCenterSectionPaddingBottom(
-    centerSectionState: 'constructed' | 'keyboardDidShow' | 'keyboardDidHide'
-  ): Pixel {
-    return new Pixel(0);
+      .minus(this.getBottomSectionHeight(eventName));
   }
 
   getStatusBarOnScreenHeight(): Pixel {
@@ -75,6 +68,11 @@ class Iphone implements MobileDevice {
       return new Pixel(44);
     }
     return new Pixel(20);
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  getCenterSectionBottom(): Pixel {
+    return new Pixel(0);
   }
 }
 

@@ -27,7 +27,7 @@ export default class Pixel {
     return new Pixel(this._value + other._value);
   }
 
-  isNotZero() {
+  public isNotZero() {
     return this._value !== 0;
   }
 

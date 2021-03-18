@@ -1,6 +1,12 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { GiftedChat, IMessage, InputToolbar } from 'react-native-gifted-chat';
-import { Keyboard, KeyboardEvent, StyleSheet, View } from 'react-native';
+import {
+  Keyboard,
+  KeyboardEvent,
+  KeyboardEventName,
+  StyleSheet,
+  View
+} from 'react-native';
 import { IconButton } from 'react-native-paper';
 import Percentage from 'src/draw/size/percentage';
 import Pixel from 'src/draw/size/pixel';
@@ -18,8 +24,11 @@ import RunningMobileDevice from '../../draw/device/model/runningMobileDevice';
 
 const INPUT_BAR_HEIGHT = RunningMobileDevice.getHeightOf(new Percentage(7));
 
-function getMessageContainerHeight(event?: KeyboardEvent): Pixel {
-  return RunningMobileDevice.getCenterSectionHeight(event).minus(
+function getMessageContainerHeight(
+  eventName: KeyboardEventName,
+  event?: KeyboardEvent
+): Pixel {
+  return RunningMobileDevice.getCenterSectionHeightOn(eventName, event).minus(
     INPUT_BAR_HEIGHT
   );
 }
@@ -28,14 +37,13 @@ const ChatSection: React.FC<{ zone: Zone }> = (props: { zone: Zone }) => {
   const { zone } = props;
 
   const [messages, setMessages] = useState<IMessage[]>([]);
-  const [paddingBottom, setPaddingBottom] = useState<Pixel>(
-    RunningMobileDevice.getCenterSectionPaddingBottom('constructed')
+  const [bottom, setBottom] = useState<Pixel>(
+    RunningMobileDevice.getCenterSectionBottom()
   );
-
   const { chatApi } = useContext(ApplicationContext);
 
   const [messageContainerHeight, setMessageContainerHeight] = useState<Pixel>(
-    getMessageContainerHeight()
+    getMessageContainerHeight('keyboardWillShow').minus(new Pixel(0))
   );
 
   useEffect(() => {
@@ -45,29 +53,23 @@ const ChatSection: React.FC<{ zone: Zone }> = (props: { zone: Zone }) => {
     });
 
     Keyboard.addListener('keyboardDidShow', (event: KeyboardEvent) => {
-      console.log('keyboardDidShowEvent');
-      console.log(event);
-      const pBottom = RunningMobileDevice.getCenterSectionPaddingBottom(
-        'keyboardDidShow'
-      );
-      setPaddingBottom(pBottom);
+      const bottom = RunningMobileDevice.getCenterSectionBottom(event);
+      setBottom(bottom);
       setMessageContainerHeight(
-        getMessageContainerHeight(event).minus(new Pixel(0))
+        getMessageContainerHeight('keyboardDidShow', event).minus(new Pixel(0))
       );
     });
     Keyboard.addListener('keyboardDidHide', (event: KeyboardEvent) => {
-      console.log('keyboardDidHideEvent');
-      console.log(event);
-      setMessageContainerHeight(getMessageContainerHeight(event));
-      setPaddingBottom(
-        RunningMobileDevice.getCenterSectionPaddingBottom('keyboardDidHide')
+      setMessageContainerHeight(
+        getMessageContainerHeight('keyboardDidHide', event)
       );
+      setBottom(RunningMobileDevice.getCenterSectionBottom());
     });
 
     // return () => {
     //   chatApi.leaveRoom(zone.id);
     // };
-  }, [chatApi, zone, paddingBottom]);
+  }, [chatApi, zone, bottom]);
 
   const onSend = useCallback(
     (newMessages: IMessage[]) => {
@@ -87,12 +89,14 @@ const ChatSection: React.FC<{ zone: Zone }> = (props: { zone: Zone }) => {
       <GiftedChat
         messages={messages}
         renderActions={(props) => null}
-        renderInputToolbar={(props) => (
-          <InputBar
-            bottom={paddingBottom}
-            onPressIconButton={() => onSend(messages)}
-          />
-        )}
+        renderInputToolbar={(props) => {
+          return (
+            <InputBar
+              bottom={bottom}
+              onPressIconButton={() => onSend(messages)}
+            />
+          );
+        }}
         listViewProps={{
           style: {
             height: messageContainerHeight.value,
