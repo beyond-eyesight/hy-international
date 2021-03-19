@@ -1,26 +1,21 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Zone from 'src/model/zone';
-import Pixel from 'src/draw/size/pixel';
 import Percentage from 'src/draw/size/percentage';
 import { StyleSheet, View, ViewStyle } from 'react-native';
 import { Button, List } from 'react-native-paper';
-import RunningMobileDevice from 'src/draw/device/model/runningMobileDevice';
+import {
+  screenHeight,
+  screenWidth
+} from 'src/draw/device/model/runningMobileDevice';
 import ApplicationContext from 'src/context/applicationContext';
 import { TextInputBoxStyle } from 'src/components/box/TextInputBox';
 import InformationBoard from 'src/components/board/InformationBoard';
-import { push } from 'src/navigation/navigation';
-import { SCREEN_IDS } from 'src/components/screens/constant';
+import { moveScreen } from 'src/navigation/navigation';
+import { SCREEN_IDS } from 'src/screens/constant';
 
 export type Props = {
   componentId: string;
 };
-
-const deviceModelHeight: Pixel = RunningMobileDevice.getHeightOf(
-  new Percentage(100)
-);
-const deviceModelWidth: Pixel = RunningMobileDevice.getWidthOf(
-  new Percentage(100)
-);
 
 const ZoneSection: React.FC<Props> = ({ componentId }: Props) => {
   const { zoneApi } = useContext(ApplicationContext);
@@ -48,17 +43,17 @@ function getColorOf(zone: Zone): string {
 const RemarkBoard: React.FC = () => {
   const remarkStyles = StyleSheet.create<TextInputBoxStyle>({
     boxStyle: {
-      width: deviceModelWidth.multiply(new Percentage(90)).value,
-      height: deviceModelHeight.multiply(new Percentage(5)).value,
+      width: screenWidth.multiply(new Percentage(90)).value,
+      height: screenHeight.multiply(new Percentage(5)).value,
       alignItems: 'center',
       alignSelf: 'center',
       justifyContent: 'center',
-      marginTop: deviceModelHeight.multiply(new Percentage(3)).value
+      marginTop: screenHeight.multiply(new Percentage(3)).value
     },
     contentStyle: {
       fontFamily: 'ProximaNova-Regular',
-      fontSize: deviceModelHeight.multiply(new Percentage(2.5)).value,
-      lineHeight: deviceModelHeight.multiply(new Percentage(2.5)).value,
+      fontSize: screenHeight.multiply(new Percentage(2.5)).value,
+      lineHeight: screenHeight.multiply(new Percentage(2.5)).value,
       color: 'black'
     }
   });
@@ -99,7 +94,7 @@ const ZoneList: React.FC<{ componentId: string; zones: Zone[] }> = (props: {
               <Button
                 mode="contained"
                 onPress={async () => {
-                  await push({
+                  await moveScreen({
                     currentComponentId: componentId,
                     nextComponentName: SCREEN_IDS.ChatScreen
                   });
@@ -131,17 +126,17 @@ const joinButtonStyle = StyleSheet.create<{
 const TitleBoard: React.FC = () => {
   const titleStyles = StyleSheet.create<TextInputBoxStyle>({
     boxStyle: {
-      width: deviceModelWidth.multiply(new Percentage(90)).value,
-      height: deviceModelHeight.multiply(new Percentage(4)).value,
+      width: screenWidth.multiply(new Percentage(90)).value,
+      height: screenHeight.multiply(new Percentage(4)).value,
       alignItems: 'center',
       alignSelf: 'center',
       justifyContent: 'center',
-      marginTop: deviceModelHeight.multiply(new Percentage(5)).value
+      marginTop: screenHeight.multiply(new Percentage(5)).value
     },
     contentStyle: {
       fontFamily: 'ProximaNova-Bold',
-      fontSize: deviceModelHeight.multiply(new Percentage(4)).value,
-      lineHeight: deviceModelHeight.multiply(new Percentage(4)).value,
+      fontSize: screenHeight.multiply(new Percentage(4)).value,
+      lineHeight: screenHeight.multiply(new Percentage(4)).value,
       color: 'black'
     }
   });

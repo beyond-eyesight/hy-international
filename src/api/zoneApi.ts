@@ -5,6 +5,7 @@ import Zone from 'src/model/zone';
 export default class ZoneApi {
   private readonly httpClient: AxiosInstance;
 
+  // todo: local, dev, prod 환경 나누기
   private static readonly HTTP_SERVER_BASE_URL = 'http://localhost:8090/';
 
   private static readonly RESOURCE = 'zones';

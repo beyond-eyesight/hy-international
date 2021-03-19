@@ -1,10 +1,10 @@
 import React from 'react';
-import ChatSection from 'src/components/section/ChatSection';
 import { StyleSheet, View, ViewStyle } from 'react-native';
 import Percentage from 'src/draw/size/percentage';
 import Zone from 'src/model/zone';
-import TopSection from 'src/components/section/TopSection';
+import DefaultTopBar from 'src/components/bar/Topbar';
 import RunningMobileDevice from 'src/draw/device/model/runningMobileDevice';
+import ChatSection from 'src/screens/sections/ChatSection';
 
 interface Props {
   componentId: string;
@@ -19,7 +19,7 @@ const ChatScreen: React.FC<Props> = ({ componentId }: Props) => {
   );
   return (
     <View style={chatScreenStyle.screenStyle}>
-      <TopSection componentId={componentId} />
+      <DefaultTopBar componentId={componentId} />
       <ChatSection zone={zone} />
     </View>
   );

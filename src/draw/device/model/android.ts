@@ -94,7 +94,7 @@ class Android implements MobileDevice {
     return new Pixel(ZERO);
   }
 
-  getCenterSectionBottom(event?: KeyboardEvent): Pixel {
+  getCenterSectionBottomOn(event?: KeyboardEvent): Pixel {
     let centerSectionBottom: Pixel = Android.getStatusBarHeight();
 
     if (this.hasBottomNavigationBarOnScreen()) {

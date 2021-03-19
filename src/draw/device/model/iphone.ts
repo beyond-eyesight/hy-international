@@ -70,7 +70,7 @@ class Iphone implements MobileDevice {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  getCenterSectionBottom(): Pixel {
+  getCenterSectionBottomOn(): Pixel {
     return new Pixel(ZERO);
   }
 }

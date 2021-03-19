@@ -11,8 +11,8 @@ import { IMessage as StompMessage } from '@stomp/stompjs/esm6/i-message';
 import RunningMobileDevice from 'src/draw/device/model/runningMobileDevice';
 import Zone from 'src/model/zone';
 import ApplicationContext from 'src/context/applicationContext';
-import ChatMessageDto from 'src/dto/chatMessageDto';
 import ChatMessage from 'src/model/chatMessage';
+import ChatMessageDto from 'src/model/dto/chatMessageDto';
 
 // todo: userId 하드코딩 제거, 칼라 및 size 등 하드코딩 제거
 
@@ -29,12 +29,12 @@ const ChatSection: React.FC<{ zone: Zone }> = (props: { zone: Zone }) => {
 
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [bottom, setBottom] = useState<Pixel>(
-    RunningMobileDevice.getCenterSectionBottom()
+    RunningMobileDevice.getCenterSectionBottomOn()
   );
   const { chatApi } = useContext(ApplicationContext);
 
   const [messageContainerHeight, setMessageContainerHeight] = useState<Pixel>(
-    getMessageContainerHeight().minus(new Pixel(0))
+    getMessageContainerHeight()
   );
 
   useEffect(() => {
@@ -44,13 +44,12 @@ const ChatSection: React.FC<{ zone: Zone }> = (props: { zone: Zone }) => {
     });
 
     Keyboard.addListener('keyboardDidShow', (event: KeyboardEvent) => {
-      const bottom = RunningMobileDevice.getCenterSectionBottom(event);
-      setBottom(bottom);
+      setBottom(RunningMobileDevice.getCenterSectionBottomOn(event));
       setMessageContainerHeight(getMessageContainerHeight(event));
     });
     Keyboard.addListener('keyboardDidHide', (event: KeyboardEvent) => {
+      setBottom(RunningMobileDevice.getCenterSectionBottomOn());
       setMessageContainerHeight(getMessageContainerHeight(event));
-      setBottom(RunningMobileDevice.getCenterSectionBottom());
     });
 
     // return () => {

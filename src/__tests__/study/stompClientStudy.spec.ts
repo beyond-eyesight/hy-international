@@ -3,7 +3,7 @@ import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 import { WS } from 'jest-websocket-mock';
 import { IPublishParams } from '@stomp/stompjs/esm6/types';
-import ChatMessageDto from 'src/dto/chatMessageDto';
+import ChatMessageDto from 'src/model/dto/chatMessageDto';
 
 const brokerURL = 'ws://localhost:1234/ws-stomp';
 

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, ViewStyle } from 'react-native';
 import Percentage from 'src/draw/size/percentage';
-import SignInSection from 'src/components/section/SignInSection';
-import TopSection from 'src/components/section/TopSection';
+import DefaultTopBar from 'src/components/bar/Topbar';
 import RunningMobileDevice from 'src/draw/device/model/runningMobileDevice';
+import SignInSection from 'src/screens/sections/SignInSection';
 
 interface Props {
   componentId: string;
@@ -17,7 +17,7 @@ const SignInScreen: React.FC<Props> = ({ componentId }: Props) => {
 
   return (
     <View style={signinScreenStyle.screenStyle}>
-      <TopSection componentId={componentId} />
+      <DefaultTopBar componentId={componentId} />
       <SignInSection componentId={componentId} />
     </View>
   );

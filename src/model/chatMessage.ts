@@ -1,6 +1,6 @@
 import { IMessage } from 'react-native-gifted-chat';
 import { User } from 'react-native-gifted-chat/lib/Models';
-import ChatMessageDto from 'src/dto/chatMessageDto';
+import ChatMessageDto from 'src/model/dto/chatMessageDto';
 
 export default class ChatMessage implements IMessage {
   _id: string;

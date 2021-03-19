@@ -1,9 +1,9 @@
 import React from 'react';
-import SignUpSection from 'src/components/section/SignUpSection';
 import { StyleSheet, View, ViewStyle } from 'react-native';
 import Percentage from 'src/draw/size/percentage';
-import TopSection from 'src/components/section/TopSection';
 import RunningMobileDevice from 'src/draw/device/model/runningMobileDevice';
+import DefaultTopBar from 'src/components/bar/Topbar';
+import SignUpSection from 'src/screens/sections/SignUpSection';
 
 interface Props {
   componentId: string;
@@ -12,7 +12,7 @@ interface Props {
 const SignUpScreen: React.FC<Props> = ({ componentId }: Props) => {
   return (
     <View style={signupScreenStyle.screenStyle}>
-      <TopSection componentId={componentId} />
+      <DefaultTopBar componentId={componentId} />
       <SignUpSection />
     </View>
   );

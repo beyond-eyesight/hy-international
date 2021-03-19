@@ -8,7 +8,7 @@ export interface MobileDevice {
   readonly backActionIcon: IconSource;
   getStatusBarOnScreenHeight(): Pixel;
   getCenterSectionHeightOn(event?: KeyboardEvent): Pixel;
-  getCenterSectionBottom(event?: KeyboardEvent): Pixel;
+  getCenterSectionBottomOn(event?: KeyboardEvent): Pixel;
   getHeightOf(percentage: Percentage): Pixel;
   getWidthOf(percentage: Percentage): Pixel;
 }

@@ -1,7 +1,6 @@
 import { IMessage } from 'react-native-gifted-chat';
 
 export default class ChatMessageDto {
-  // todo: check 위험!
   private constructor(
     id: string,
     createdAt: Date,

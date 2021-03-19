@@ -9,16 +9,12 @@ import TextInputBox, {
 } from 'src/components/box/TextInputBox';
 import { Avatar, Banner, Button } from 'react-native-paper';
 import InformationBoard from 'src/components/board/InformationBoard';
-import RunningMobileDevice from 'src/draw/device/model/runningMobileDevice';
-import { push } from 'src/navigation/navigation';
-import { SCREEN_IDS } from 'src/components/screens/constant';
-
-const deviceModelHeight: Pixel = RunningMobileDevice.getHeightOf(
-  new Percentage(100)
-);
-const deviceModelWidth: Pixel = RunningMobileDevice.getWidthOf(
-  new Percentage(100)
-);
+import { moveScreen } from 'src/navigation/navigation';
+import {
+  screenHeight,
+  screenWidth
+} from 'src/draw/device/model/runningMobileDevice';
+import { SCREEN_IDS } from 'src/screens/constant';
 
 const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
   const [bannerVisible, setBannerVisible] = React.useState(true);
@@ -36,7 +32,7 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
       <SigninPasswordInput />
       <SigninButton
         onPress={async () => {
-          await push({
+          await moveScreen({
             currentComponentId: componentId,
             nextComponentName: SCREEN_IDS.ZoneScreen
           });
@@ -48,7 +44,7 @@ const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
       />
       <SignupButton
         onPress={async () => {
-          await push({
+          await moveScreen({
             currentComponentId: componentId,
             nextComponentName: SCREEN_IDS.SignUpScreen
           });
@@ -69,35 +65,35 @@ const SigninBoard: React.FC<{ title: string; children: ReactNode }> = (props: {
   const { title, children } = props;
   const titleStyles = StyleSheet.create<TextInputBoxStyle>({
     boxStyle: {
-      width: deviceModelWidth.multiply(new Percentage(90)).value,
-      height: deviceModelHeight.multiply(new Percentage(3)).value,
+      width: screenWidth.multiply(new Percentage(90)).value,
+      height: screenHeight.multiply(new Percentage(3)).value,
       alignItems: 'center',
       alignSelf: 'center',
       justifyContent: 'center',
-      marginTop: deviceModelHeight.multiply(new Percentage(5)).value
+      marginTop: screenHeight.multiply(new Percentage(5)).value
     },
     contentStyle: {
       fontFamily: 'ProximaNova-Bold',
-      fontSize: deviceModelHeight.multiply(new Percentage(3)).value,
-      lineHeight: deviceModelHeight.multiply(new Percentage(3)).value,
+      fontSize: screenHeight.multiply(new Percentage(3)).value,
+      lineHeight: screenHeight.multiply(new Percentage(3)).value,
       color: 'black'
     }
   });
 
   const bodyStyles = StyleSheet.create<TextInputBoxStyle>({
     boxStyle: {
-      width: deviceModelWidth.multiply(new Percentage(90)).value,
-      height: deviceModelHeight.multiply(new Percentage(5)).value,
+      width: screenWidth.multiply(new Percentage(90)).value,
+      height: screenHeight.multiply(new Percentage(5)).value,
       alignItems: 'center',
       alignSelf: 'center',
       justifyContent: 'center',
-      marginTop: deviceModelHeight.multiply(new Percentage(3)).value,
-      marginBottom: deviceModelHeight.multiply(new Percentage(3)).value
+      marginTop: screenHeight.multiply(new Percentage(3)).value,
+      marginBottom: screenHeight.multiply(new Percentage(3)).value
     },
     contentStyle: {
       fontFamily: 'ProximaNova-Regular',
-      fontSize: deviceModelHeight.multiply(new Percentage(2.5)).value,
-      lineHeight: deviceModelHeight.multiply(new Percentage(2.5)).value,
+      fontSize: screenHeight.multiply(new Percentage(2.5)).value,
+      lineHeight: screenHeight.multiply(new Percentage(2.5)).value,
       color: 'black'
     }
   });
@@ -125,17 +121,17 @@ const SigninButton: React.FC<{
   }>({
     container: {
       alignSelf: 'center',
-      marginTop: deviceModelHeight.multiply(new Percentage(1)).value
+      marginTop: screenHeight.multiply(new Percentage(1)).value
     },
 
     content: {
-      width: deviceModelWidth.multiply(new Percentage(90)).value,
-      height: deviceModelHeight.multiply(new Percentage(8)).value
+      width: screenWidth.multiply(new Percentage(90)).value,
+      height: screenHeight.multiply(new Percentage(8)).value
     },
 
     label: {
-      fontSize: deviceModelHeight.multiply(new Percentage(2.5)).value,
-      lineHeight: deviceModelHeight.multiply(new Percentage(2.5)).value
+      fontSize: screenHeight.multiply(new Percentage(2.5)).value,
+      lineHeight: screenHeight.multiply(new Percentage(2.5)).value
     }
   });
 
@@ -144,7 +140,7 @@ const SigninButton: React.FC<{
       theme={{ roundness: BORDER_RADIUS }}
       icon={() => (
         <Avatar.Icon
-          size={deviceModelHeight.multiply(new Percentage(4.5)).value}
+          size={screenHeight.multiply(new Percentage(4.5)).value}
           icon="login"
         />
       )}
@@ -168,25 +164,25 @@ const SignupButton: React.FC<{
       theme={{ roundness: BORDER_RADIUS }}
       icon={() => (
         <Avatar.Icon
-          size={deviceModelHeight.multiply(new Percentage(4.5)).value}
+          size={screenHeight.multiply(new Percentage(4.5)).value}
           icon="draw"
         />
       )}
       mode="contained"
       onPress={onPress}
       style={{
-        width: deviceModelWidth.multiply(new Percentage(90)).value,
-        height: deviceModelHeight.multiply(new Percentage(8)).value,
+        width: screenWidth.multiply(new Percentage(90)).value,
+        height: screenHeight.multiply(new Percentage(8)).value,
         alignSelf: 'center',
-        marginVertical: deviceModelHeight.multiply(new Percentage(1)).value
+        marginVertical: screenHeight.multiply(new Percentage(1)).value
       }}
       contentStyle={{
-        width: deviceModelWidth.multiply(new Percentage(90)).value,
-        height: deviceModelHeight.multiply(new Percentage(8)).value
+        width: screenWidth.multiply(new Percentage(90)).value,
+        height: screenHeight.multiply(new Percentage(8)).value
       }}
       labelStyle={{
-        fontSize: deviceModelHeight.multiply(new Percentage(2.5)).value,
-        lineHeight: deviceModelHeight.multiply(new Percentage(2.5)).value
+        fontSize: screenHeight.multiply(new Percentage(2.5)).value,
+        lineHeight: screenHeight.multiply(new Percentage(2.5)).value
       }}
     >
       Sign Up
@@ -198,13 +194,13 @@ const SigninEmailInput: React.FC = () => {
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([]);
 
-  const emailInputWidth: Pixel = deviceModelWidth.multiply(new Percentage(45));
+  const emailInputWidth: Pixel = screenWidth.multiply(new Percentage(45));
 
   const containerStyle = StyleSheet.create<{ containerStyle: ViewStyle }>({
     containerStyle: {
       flexDirection: 'row',
       alignSelf: 'center',
-      marginVertical: deviceModelHeight.multiply(new Percentage(1)).value
+      marginVertical: screenHeight.multiply(new Percentage(1)).value
     }
   });
 
@@ -236,16 +232,16 @@ const SigninEmailInput: React.FC = () => {
 
   const atSignProps = StyleSheet.create<TextBoxStyleProps>({
     boxStyle: {
-      height: deviceModelHeight.multiply(new Percentage(8)).value,
-      width: deviceModelWidth.multiply(new Percentage(10)).value,
+      height: screenHeight.multiply(new Percentage(8)).value,
+      width: screenWidth.multiply(new Percentage(10)).value,
       backgroundColor: '#1E88E5',
       alignItems: 'center',
       justifyContent: 'center'
     },
     textStyle: {
       fontFamily: 'ProximaNova-Regular',
-      fontSize: deviceModelHeight.multiply(new Percentage(3)).value,
-      lineHeight: deviceModelHeight.multiply(new Percentage(3)).value,
+      fontSize: screenHeight.multiply(new Percentage(3)).value,
+      lineHeight: screenHeight.multiply(new Percentage(3)).value,
       color: '#FFFFFF'
     }
   });
@@ -258,11 +254,11 @@ const SigninEmailInput: React.FC = () => {
     dropdownStyle: ViewStyle;
   }>({
     containerStyle: {
-      width: deviceModelWidth.multiply(new Percentage(35)).value,
-      height: deviceModelHeight.multiply(new Percentage(8)).value
+      width: screenWidth.multiply(new Percentage(35)).value,
+      height: screenHeight.multiply(new Percentage(8)).value
     },
     labelStyle: {
-      fontSize: deviceModelHeight.multiply(new Percentage(1.5)).value
+      fontSize: screenHeight.multiply(new Percentage(1.5)).value
     },
     contentStyle: {
       backgroundColor: '#FCFCFC',
@@ -325,17 +321,17 @@ const SigninEmailInput: React.FC = () => {
 const SigninPasswordInput: React.FC = () => {
   const passwordInputStyles = StyleSheet.create<TextInputBoxStyle>({
     boxStyle: {
-      width: deviceModelWidth.multiply(new Percentage(90)).value,
+      width: screenWidth.multiply(new Percentage(90)).value,
       height: INPUT_COMPONENT_HEIGHT.value,
       borderWidth: BORDER_WIDTH.value,
       borderColor: '#E0E0E0',
       borderRadius: BORDER_RADIUS,
       overflow: 'hidden',
       alignSelf: 'center',
-      marginVertical: deviceModelHeight.multiply(new Percentage(1)).value
+      marginVertical: screenHeight.multiply(new Percentage(1)).value
     },
     contentStyle: {
-      width: deviceModelWidth.multiply(new Percentage(90)).value,
+      width: screenWidth.multiply(new Percentage(90)).value,
       height: INPUT_COMPONENT_HEIGHT.plus(
         BORDER_WIDTH.multiply(new Percentage(200))
       ).value,
@@ -381,9 +377,7 @@ const SignInFailBanner: React.FC<{
 };
 
 const BORDER_WIDTH: Pixel = new Pixel(1);
-const INPUT_COMPONENT_HEIGHT: Pixel = deviceModelHeight.multiply(
-  new Percentage(8)
-);
+const INPUT_COMPONENT_HEIGHT: Pixel = screenHeight.multiply(new Percentage(8));
 const BORDER_RADIUS: number = 10;
 
 export default SignInSection;

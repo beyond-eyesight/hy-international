@@ -6,9 +6,7 @@ interface Props {
   params?: object;
 }
 
-// todo: move 등으로 용어를 바꾸는게 좋을듯?
-
-const push = async ({
+const moveScreen = async ({
   currentComponentId,
   nextComponentName,
   params
@@ -21,8 +19,8 @@ const push = async ({
   });
 };
 
-const pop = async (componentId: string) => {
+const backScreen = async (componentId: string) => {
   await Navigation.pop(componentId);
 };
 
-export { push, pop };
+export { moveScreen, backScreen };

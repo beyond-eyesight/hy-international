@@ -1,5 +1,6 @@
 import React, { ReactNode, RefObject } from 'react';
 import {
+  StyleSheet,
   TextStyle,
   TouchableWithoutFeedback,
   View,
@@ -9,6 +10,81 @@ import Pixel from 'src/draw/size/pixel';
 import { Appbar } from 'react-native-paper';
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
 import RunningMobileDevice from 'src/draw/device/model/runningMobileDevice';
+import Percentage from 'src/draw/size/percentage';
+import { backScreen } from 'src/navigation/navigation';
+import { ZERO } from 'src/draw/value';
+import { blue } from 'src/draw/color';
+
+const ICON_COLOR = 'white';
+
+const TOP_BAR_HEIGHT: Pixel = RunningMobileDevice.getHeightOf(
+  new Percentage(6)
+);
+
+const DefaultTopBar: React.FC<{ componentId: string }> = (props: {
+  componentId: string;
+}) => {
+  const { componentId } = props;
+  const leftActionProps: Array<ActionProps> = [
+    {
+      icon: RunningMobileDevice.backActionIcon,
+      iconColor: ICON_COLOR,
+      iconSize: RunningMobileDevice.getHeightOf(new Percentage(3)),
+      iconDisabled: false,
+      actionStyle: {},
+      onPress: async () => {
+        await backScreen(componentId);
+      }
+    }
+  ];
+
+  const rightActionProps: Array<ActionProps> = [
+    {
+      icon: 'alarm-bell',
+      iconColor: 'white',
+      iconSize: RunningMobileDevice.getHeightOf(new Percentage(3)),
+      iconDisabled: false,
+      actionStyle: {},
+      onPress: () => {}
+    }
+  ];
+
+  return (
+    <Topbar
+      headerProps={{
+        isDark: true,
+        statusBarHeight: new Pixel(ZERO),
+        headerStyle: topbarStyles.header
+      }}
+      contentProps={{
+        title: 'hihi',
+        subtitle: 'kkk',
+        titleStyle: {
+          fontSize: RunningMobileDevice.getHeightOf(new Percentage(3)).value
+        },
+        subtitleStyle: {
+          fontSize: RunningMobileDevice.getHeightOf(new Percentage(2)).value
+        },
+        onPress: () => {},
+        contentStyle: topbarStyles.content
+      }}
+      leftActionsProps={leftActionProps}
+      rightActionsProps={rightActionProps}
+    />
+  );
+};
+
+const topbarStyles = StyleSheet.create<TopbarStyle>({
+  header: {
+    justifyContent: 'space-between',
+    height: TOP_BAR_HEIGHT.value,
+    backgroundColor: blue.get('600')
+  },
+  content: {
+    alignItems: 'center'
+  },
+  action: {}
+});
 
 export interface TopbarStyle {
   header: ViewStyle;
@@ -103,4 +179,4 @@ const Topbar: React.FC<TopBarProps> = ({
   );
 };
 
-export default Topbar;
+export default DefaultTopBar;

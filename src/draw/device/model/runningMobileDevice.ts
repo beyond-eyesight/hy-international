@@ -3,6 +3,7 @@ import Pixel from 'src/draw/size/pixel';
 import { MobileDevice } from 'src/draw/device/model/mobileDevice';
 import Iphone from 'src/draw/device/model/iphone';
 import Android from 'src/draw/device/model/android';
+import Percentage from 'src/draw/size/percentage';
 
 const runningScreen: ScaledSize = Dimensions.get('screen');
 const runningWindow: ScaledSize = Dimensions.get('window');
@@ -38,6 +39,13 @@ function createRunningMobileDevice(platform: MobilePlatform): MobileDevice {
 
 const RunningMobileDevice: MobileDevice = createRunningMobileDevice(
   currentMobilePlatform
+);
+
+export const screenHeight: Pixel = RunningMobileDevice.getHeightOf(
+  new Percentage(100)
+);
+export const screenWidth: Pixel = RunningMobileDevice.getWidthOf(
+  new Percentage(100)
 );
 
 export default RunningMobileDevice;

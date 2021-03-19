@@ -1,7 +1,7 @@
 import React from 'react';
-import ZoneSection from 'src/components/section/ZoneSection';
 import { View } from 'react-native';
-import TopSection from 'src/components/section/TopSection';
+import DefaultTopBar from 'src/components/bar/Topbar';
+import ZoneSection from 'src/screens/sections/ZoneSection';
 
 interface Props {
   componentId: string;
@@ -10,7 +10,7 @@ interface Props {
 const ZoneScreen: React.FC<Props> = ({ componentId }: Props) => {
   return (
     <View>
-      <TopSection componentId={componentId} />
+      <DefaultTopBar componentId={componentId} />
       <ZoneSection componentId={componentId} />
     </View>
   );

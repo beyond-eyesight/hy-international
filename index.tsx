@@ -6,13 +6,13 @@ import React from 'react';
 import { Navigation } from 'react-native-navigation';
 import 'reflect-metadata';
 import 'text-encoding';
-import { SCREEN_IDS } from 'src/components/screens/constant';
-import SignUpScreen from 'src/components/screens/SignUpScreen';
-import SignInScreen from 'src/components/screens/SignInScreen';
-import ZoneScreen from 'src/components/screens/ZoneScreen';
-import ChatScreen from 'src/components/screens/ChatScreen';
 import { Provider } from 'react-native-paper';
 import theme from 'src/draw/theme/theme';
+import { SCREEN_IDS } from 'src/screens/constant';
+import SignUpScreen from 'src/screens/SignUpScreen';
+import SignInScreen from 'src/screens/SignInScreen';
+import ZoneScreen from 'src/screens/ZoneScreen';
+import ChatScreen from 'src/screens/ChatScreen';
 
 interface IScreenProps {
   id: string;

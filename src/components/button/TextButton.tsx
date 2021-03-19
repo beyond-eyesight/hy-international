@@ -4,7 +4,7 @@ import Percentage from 'src/draw/size/percentage';
 import { grey, white } from 'src/draw/color';
 import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
 import { StyleSheet } from 'react-native';
-import RunningMobileDevice from 'src/draw/device/model/runningMobileDevice';
+import { screenHeight } from 'src/draw/device/model/runningMobileDevice';
 
 interface Props {
   width: string;
@@ -15,10 +15,6 @@ interface Props {
   borderRadius: string;
   onPress?: () => void;
 }
-
-const deviceModelHeight: Pixel = RunningMobileDevice.getHeightOf(
-  new Percentage(100)
-);
 
 const TextButton: React.FC<Props> = ({
   width,
@@ -40,7 +36,7 @@ const TextButton: React.FC<Props> = ({
   );
 };
 
-const textSize: Pixel = deviceModelHeight.multiply(new Percentage(3));
+const textSize: Pixel = screenHeight.multiply(new Percentage(3));
 
 const textBoxProps = StyleSheet.create<TextBoxStyleProps>({
   boxStyle: {

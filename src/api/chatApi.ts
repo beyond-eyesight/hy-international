@@ -3,10 +3,10 @@ import { IMessage as StompMessage } from '@stomp/stompjs/esm6/i-message';
 import createStompClient, {
   WebSocketVersion
 } from 'src/api/adapter/stompClientFactory';
-import ChatMessageDto from 'src/dto/chatMessageDto';
 import { AxiosInstance } from 'axios';
 import createAxios from 'src/api/adapter/axiosFactory';
 import ZoneId from 'src/model/zoneId';
+import ChatMessageDto from 'src/model/dto/chatMessageDto';
 
 export default class ChatApi {
   // todo: config 파일로 옮기
