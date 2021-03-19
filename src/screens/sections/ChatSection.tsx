@@ -2,17 +2,17 @@ import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { GiftedChat, IMessage, InputToolbar } from 'react-native-gifted-chat';
 import { Keyboard, KeyboardEvent, StyleSheet, View } from 'react-native';
 import { IconButton } from 'react-native-paper';
-import Percentage from 'src/draw/size/percentage';
-import Pixel from 'src/draw/size/pixel';
 import TextInputBox, {
   TextInputBoxStyle
 } from 'src/components/box/TextInputBox';
 import { IMessage as StompMessage } from '@stomp/stompjs/esm6/i-message';
-import RunningMobileDevice from 'src/draw/device/model/runningMobileDevice';
 import Zone from 'src/model/zone';
 import ApplicationContext from 'src/context/applicationContext';
 import ChatMessage from 'src/model/chatMessage';
 import ChatMessageDto from 'src/model/dto/chatMessageDto';
+import RunningMobileDevice from 'draw/device/model/runningMobileDevice';
+import Percentage from 'draw/size/percentage';
+import Pixel from 'draw/size/pixel';
 
 // todo: userId 하드코딩 제거, 칼라 및 size 등 하드코딩 제거
 

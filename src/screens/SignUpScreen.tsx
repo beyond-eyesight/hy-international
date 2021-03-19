@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, ViewStyle } from 'react-native';
-import Percentage from 'src/draw/size/percentage';
-import RunningMobileDevice from 'src/draw/device/model/runningMobileDevice';
 import DefaultTopBar from 'src/components/bar/Topbar';
 import SignUpSection from 'src/screens/sections/SignUpSection';
+import RunningMobileDevice from 'draw/device/model/runningMobileDevice';
+import Percentage from 'draw/size/percentage';
 
 interface Props {
   componentId: string;

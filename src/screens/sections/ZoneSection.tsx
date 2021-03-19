@@ -1,17 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Zone from 'src/model/zone';
-import Percentage from 'src/draw/size/percentage';
 import { StyleSheet, View, ViewStyle } from 'react-native';
 import { Button, List } from 'react-native-paper';
-import {
-  screenHeight,
-  screenWidth
-} from 'src/draw/device/model/runningMobileDevice';
 import ApplicationContext from 'src/context/applicationContext';
 import { TextInputBoxStyle } from 'src/components/box/TextInputBox';
 import InformationBoard from 'src/components/board/InformationBoard';
 import { moveScreen } from 'src/navigation/navigation';
 import { SCREEN_IDS } from 'src/screens/constant';
+import Percentage from 'draw/size/percentage';
+import {
+  screenHeight,
+  screenWidth
+} from 'draw/device/model/runningMobileDevice';
 
 export type Props = {
   componentId: string;

@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, View, ViewStyle } from 'react-native';
-import Percentage from 'src/draw/size/percentage';
 import Zone from 'src/model/zone';
 import DefaultTopBar from 'src/components/bar/Topbar';
-import RunningMobileDevice from 'src/draw/device/model/runningMobileDevice';
 import ChatSection from 'src/screens/sections/ChatSection';
+import RunningMobileDevice from 'draw/device/model/runningMobileDevice';
+import Percentage from 'draw/size/percentage';
 
 interface Props {
   componentId: string;

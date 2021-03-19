@@ -1,8 +1,8 @@
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
-import { MobileDevice } from 'src/draw/device/model/mobileDevice';
-import Pixel from 'src/draw/size/pixel';
-import Percentage from 'src/draw/size/percentage';
-import { ZERO } from 'src/draw/value';
+import { MobileDevice } from 'draw/device/model/mobileDevice';
+import Pixel from 'draw/size/pixel';
+import Percentage from 'draw/size/percentage';
+import { ZERO } from 'draw/value';
 
 class Iphone implements MobileDevice {
   private static readonly BOTTOM_SECTION_HEIGHT = new Pixel(34.5);

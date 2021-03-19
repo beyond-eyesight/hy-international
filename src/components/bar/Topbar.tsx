@@ -6,14 +6,14 @@ import {
   View,
   ViewStyle
 } from 'react-native';
-import Pixel from 'src/draw/size/pixel';
 import { Appbar } from 'react-native-paper';
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
-import RunningMobileDevice from 'src/draw/device/model/runningMobileDevice';
-import Percentage from 'src/draw/size/percentage';
 import { backScreen } from 'src/navigation/navigation';
-import { ZERO } from 'src/draw/value';
-import { blue } from 'src/draw/color';
+import Pixel from 'draw/size/pixel';
+import RunningMobileDevice from 'draw/device/model/runningMobileDevice';
+import Percentage from 'draw/size/percentage';
+import { ZERO } from 'draw/value';
+import { blue } from 'draw/color';
 
 const ICON_COLOR = 'white';
 

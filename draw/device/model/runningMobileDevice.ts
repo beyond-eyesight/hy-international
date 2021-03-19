@@ -1,9 +1,9 @@
 import { Dimensions, Platform, ScaledSize } from 'react-native';
-import Pixel from 'src/draw/size/pixel';
-import { MobileDevice } from 'src/draw/device/model/mobileDevice';
-import Iphone from 'src/draw/device/model/iphone';
-import Android from 'src/draw/device/model/android';
-import Percentage from 'src/draw/size/percentage';
+import { MobileDevice } from 'draw/device/model/mobileDevice';
+import Iphone from 'draw/device/model/iphone';
+import Pixel from 'draw/size/pixel';
+import Android from 'draw/device/model/android';
+import Percentage from 'draw/size/percentage';
 
 const runningScreen: ScaledSize = Dimensions.get('screen');
 const runningWindow: ScaledSize = Dimensions.get('window');

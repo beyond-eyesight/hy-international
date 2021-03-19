@@ -7,12 +7,12 @@ import { Navigation } from 'react-native-navigation';
 import 'reflect-metadata';
 import 'text-encoding';
 import { Provider } from 'react-native-paper';
-import theme from 'src/draw/theme/theme';
 import { SCREEN_IDS } from 'src/screens/constant';
 import SignUpScreen from 'src/screens/SignUpScreen';
 import SignInScreen from 'src/screens/SignInScreen';
 import ZoneScreen from 'src/screens/ZoneScreen';
 import ChatScreen from 'src/screens/ChatScreen';
+import theme from 'draw/theme/theme';
 
 interface IScreenProps {
   id: string;

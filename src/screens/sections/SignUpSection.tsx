@@ -3,9 +3,7 @@ import { StyleSheet, View, ViewStyle } from 'react-native';
 import TextInputBox, {
   TextInputBoxStyle
 } from 'src/components/box/TextInputBox';
-import Percentage from 'src/draw/size/percentage';
 import InformationBoard from 'src/components/board/InformationBoard';
-import Pixel from 'src/draw/size/pixel';
 import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Avatar, Button } from 'react-native-paper';
@@ -13,7 +11,9 @@ import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
 import {
   screenHeight,
   screenWidth
-} from 'src/draw/device/model/runningMobileDevice';
+} from 'draw/device/model/runningMobileDevice';
+import Percentage from 'draw/size/percentage';
+import Pixel from 'draw/size/pixel';
 
 const SignUpSection: React.FC = () => {
   return (
