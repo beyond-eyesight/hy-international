@@ -1,5 +1,5 @@
 import { AxiosInstance, AxiosResponse } from 'axios';
-import createAxios from 'src/api/adapter/axiosFactory';
+import createAxios from 'src/api/adapterFactory/axiosFactory';
 import Zone from 'src/model/zone';
 
 export default class ZoneApi {
