@@ -3,15 +3,15 @@ import Zone from 'src/model/zone';
 import { StyleSheet, View, ViewStyle } from 'react-native';
 import { Button, List } from 'react-native-paper';
 import ApplicationContext from 'src/context/applicationContext';
-import { TextInputBoxStyle } from 'src/components/box/TextInputBox';
-import InformationBoard from 'src/components/board/InformationBoard';
-import { moveScreen } from 'src/navigation/navigation';
 import { SCREEN_IDS } from 'src/screens/constant';
 import Percentage from 'draw/size/percentage';
 import {
   screenHeight,
   screenWidth
 } from 'draw/device/model/runningMobileDevice';
+import { TextInputBoxStyle } from 'src/screens/sections/components/box/TextInputBox';
+import InformationBoard from 'src/screens/sections/components/board/InformationBoard';
+import { moveScreen } from 'src/screens/navigation/navigation';
 
 export type Props = {
   componentId: string;

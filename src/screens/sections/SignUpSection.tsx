@@ -1,10 +1,5 @@
 import React, { ReactNode, useState } from 'react';
 import { StyleSheet, View, ViewStyle } from 'react-native';
-import TextInputBox, {
-  TextInputBoxStyle
-} from 'src/components/box/TextInputBox';
-import InformationBoard from 'src/components/board/InformationBoard';
-import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Avatar, Button } from 'react-native-paper';
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
@@ -14,6 +9,13 @@ import {
 } from 'draw/device/model/runningMobileDevice';
 import Percentage from 'draw/size/percentage';
 import Pixel from 'draw/size/pixel';
+import TextInputBox, {
+  TextInputBoxStyle
+} from 'src/screens/sections/components/box/TextInputBox';
+import InformationBoard from 'src/screens/sections/components/board/InformationBoard';
+import TextBox, {
+  TextBoxStyleProps
+} from 'src/screens/sections/components/box/TextBox';
 
 const SignUpSection: React.FC = () => {
   return (

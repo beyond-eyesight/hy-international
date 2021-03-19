@@ -5,4 +5,5 @@ export const SCREEN_IDS = {
   ChatScreen: 'app.ChatScreen'
 };
 
+// todo: index.ts를 만드는게 나을듯
 export default { SCREEN_IDS };

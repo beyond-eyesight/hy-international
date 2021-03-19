@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { View } from 'react-native';
-import TextBox from 'src/components/box/TextBox';
-import { TextInputBoxStyle } from 'src/components/box/TextInputBox';
+import TextBox from 'src/screens/sections/components/box/TextBox';
+import { TextInputBoxStyle } from 'src/screens/sections/components/box/TextInputBox';
 
 interface Props {
   title?: string;

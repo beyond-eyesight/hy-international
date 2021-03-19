@@ -1,10 +1,12 @@
 import React from 'react';
-import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
 import { StyleSheet } from 'react-native';
 import Pixel from 'draw/size/pixel';
 import { screenHeight } from 'draw/device/model/runningMobileDevice';
 import Percentage from 'draw/size/percentage';
 import { grey, white } from 'draw/color';
+import TextBox, {
+  TextBoxStyleProps
+} from 'src/screens/sections/components/box/TextBox';
 
 interface Props {
   width: string;

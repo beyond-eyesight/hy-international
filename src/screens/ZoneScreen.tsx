@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
-import DefaultTopBar from 'src/components/bar/Topbar';
 import ZoneSection from 'src/screens/sections/ZoneSection';
+import DefaultTopBar from 'src/screens/sections/components/bar/Topbar';
 
 interface Props {
   componentId: string;

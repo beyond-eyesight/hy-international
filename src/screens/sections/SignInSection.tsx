@@ -1,13 +1,7 @@
 import React, { ReactNode, useState } from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { StyleSheet, View, ViewStyle } from 'react-native';
-import TextBox, { TextBoxStyleProps } from 'src/components/box/TextBox';
-import TextInputBox, {
-  TextInputBoxStyle
-} from 'src/components/box/TextInputBox';
 import { Avatar, Banner, Button } from 'react-native-paper';
-import InformationBoard from 'src/components/board/InformationBoard';
-import { moveScreen } from 'src/navigation/navigation';
 import { SCREEN_IDS } from 'src/screens/constant';
 import {
   screenHeight,
@@ -15,6 +9,14 @@ import {
 } from 'draw/device/model/runningMobileDevice';
 import Percentage from 'draw/size/percentage';
 import Pixel from 'draw/size/pixel';
+import TextInputBox, {
+  TextInputBoxStyle
+} from 'src/screens/sections/components/box/TextInputBox';
+import InformationBoard from 'src/screens/sections/components/board/InformationBoard';
+import TextBox, {
+  TextBoxStyleProps
+} from 'src/screens/sections/components/box/TextBox';
+import { moveScreen } from 'src/screens/navigation/navigation';
 
 const SignInSection: React.FC<Props> = ({ componentId }: Props) => {
   const [bannerVisible, setBannerVisible] = React.useState(true);

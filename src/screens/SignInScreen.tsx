@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, ViewStyle } from 'react-native';
-import DefaultTopBar from 'src/components/bar/Topbar';
 import SignInSection from 'src/screens/sections/SignInSection';
 import RunningMobileDevice from 'draw/device/model/runningMobileDevice';
 import Percentage from 'draw/size/percentage';
+import DefaultTopBar from 'src/screens/sections/components/bar/Topbar';
 
 interface Props {
   componentId: string;
