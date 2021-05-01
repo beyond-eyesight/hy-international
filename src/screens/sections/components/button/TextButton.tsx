@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import Pixel from 'draw/size/pixel';
-import { screenHeight } from 'draw/device/model/runningMobileDevice';
-import Percentage from 'draw/size/percentage';
-import { grey, white } from 'draw/color';
+import Pixel from 'graphic/size/pixel';
+import { screenHeight } from 'graphic/device/model/runningMobileDevice';
+import Percentage from 'graphic/size/percentage';
+import { grey, white } from 'graphic/color';
 import TextBox, {
   TextBoxStyleProps
 } from 'src/screens/sections/components/box/TextBox';

@@ -1,9 +1,9 @@
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
 import { KeyboardEvent, StatusBar } from 'react-native';
-import { MobileDevice } from 'draw/device/model/mobileDevice';
-import Percentage from 'draw/size/percentage';
-import Pixel from 'draw/size/pixel';
-import { ZERO } from 'draw/value';
+import { MobileDevice } from 'graphic/device/model/mobileDevice';
+import Percentage from 'graphic/size/percentage';
+import Pixel from 'graphic/size/pixel';
+import { ZERO } from 'graphic/value';
 
 class Android implements MobileDevice {
   // todo: refac 중복 제거

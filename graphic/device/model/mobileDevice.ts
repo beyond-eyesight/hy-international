@@ -1,7 +1,7 @@
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
 import { KeyboardEvent } from 'react-native';
-import Pixel from 'draw/size/pixel';
-import Percentage from 'draw/size/percentage';
+import Pixel from 'graphic/size/pixel';
+import Percentage from 'graphic/size/percentage';
 
 // todo: abstract, getWidthOf랑 getHeightOf
 export interface MobileDevice {

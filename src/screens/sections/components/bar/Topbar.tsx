@@ -8,11 +8,11 @@ import {
 } from 'react-native';
 import { Appbar } from 'react-native-paper';
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
-import Pixel from 'draw/size/pixel';
-import RunningMobileDevice from 'draw/device/model/runningMobileDevice';
-import Percentage from 'draw/size/percentage';
-import { ZERO } from 'draw/value';
-import { blue } from 'draw/color';
+import Pixel from 'graphic/size/pixel';
+import RunningMobileDevice from 'graphic/device/model/runningMobileDevice';
+import Percentage from 'graphic/size/percentage';
+import { ZERO } from 'graphic/value';
+import { blue } from 'graphic/color';
 import { backScreen } from 'src/screens/navigation/navigation';
 
 const ICON_COLOR = 'white';

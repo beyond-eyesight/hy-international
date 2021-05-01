@@ -4,11 +4,11 @@ import { StyleSheet, View, ViewStyle } from 'react-native';
 import { Button, List } from 'react-native-paper';
 import ApplicationContext from 'src/context/applicationContext';
 import { SCREEN_IDS } from 'src/screens/constant';
-import Percentage from 'draw/size/percentage';
+import Percentage from 'graphic/size/percentage';
 import {
   screenHeight,
   screenWidth
-} from 'draw/device/model/runningMobileDevice';
+} from 'graphic/device/model/runningMobileDevice';
 import { TextInputBoxStyle } from 'src/screens/sections/components/box/TextInputBox';
 import InformationBoard from 'src/screens/sections/components/board/InformationBoard';
 import { moveScreen } from 'src/screens/navigation/navigation';

@@ -1,6 +1,6 @@
 import { Theme } from 'react-native-paper/lib/typescript/types';
 import { configureFonts } from 'react-native-paper';
-import fontConfig from 'draw/text/font';
+import fontConfig from 'graphic/text/font';
 
 const theme: Theme = {
   animation: { scale: 1.0 },

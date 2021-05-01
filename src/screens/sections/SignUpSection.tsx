@@ -6,9 +6,9 @@ import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
 import {
   screenHeight,
   screenWidth
-} from 'draw/device/model/runningMobileDevice';
-import Percentage from 'draw/size/percentage';
-import Pixel from 'draw/size/pixel';
+} from 'graphic/device/model/runningMobileDevice';
+import Percentage from 'graphic/size/percentage';
+import Pixel from 'graphic/size/pixel';
 import TextInputBox, {
   TextInputBoxStyle
 } from 'src/screens/sections/components/box/TextInputBox';

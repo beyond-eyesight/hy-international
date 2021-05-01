@@ -12,7 +12,7 @@ import SignUpScreen from 'src/screens/SignUpScreen';
 import SignInScreen from 'src/screens/SignInScreen';
 import ZoneScreen from 'src/screens/ZoneScreen';
 import ChatScreen from 'src/screens/ChatScreen';
-import theme from 'draw/theme/theme';
+import theme from 'graphic/theme/theme';
 
 interface IScreenProps {
   id: string;

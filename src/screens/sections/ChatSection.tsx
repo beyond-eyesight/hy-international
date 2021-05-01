@@ -7,9 +7,9 @@ import Zone from 'src/model/zone';
 import ApplicationContext from 'src/context/applicationContext';
 import ChatMessage from 'src/model/chatMessage';
 import ChatMessageDto from 'src/model/dto/chatMessageDto';
-import RunningMobileDevice from 'draw/device/model/runningMobileDevice';
-import Percentage from 'draw/size/percentage';
-import Pixel from 'draw/size/pixel';
+import RunningMobileDevice from 'graphic/device/model/runningMobileDevice';
+import Percentage from 'graphic/size/percentage';
+import Pixel from 'graphic/size/pixel';
 import TextInputBox, {
   TextInputBoxStyle
 } from 'src/screens/sections/components/box/TextInputBox';
